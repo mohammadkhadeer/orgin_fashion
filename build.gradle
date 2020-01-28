@@ -13,14 +13,16 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.1.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
 
 
 
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
-        
+        classpath 'com.google.gms:google-services:4.1.0'
+
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -36,6 +38,7 @@ allprojects {
 
         maven { url 'https://dl.bintray.com/cjt/maven' }
         maven { url "https://maven.google.com" }
+
 
         mavenCentral()
         jcenter()

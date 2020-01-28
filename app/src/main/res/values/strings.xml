@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Hala Motor</string>
+
+    <string name="tab_home">Home</string>
+    <string name="tab_message">Messages</string>
+    <string name="tab_adv">Adv</string>
+    <string name="tab_notifications_">Notifications</string>
+    <string name="tab_profile">Profile</string>
 </resources>

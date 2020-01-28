@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "221507317609",
+    "firebase_url": "https://hala-motor.firebaseio.com",
+    "project_id": "hala-motor",
+    "storage_bucket": "hala-motor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221507317609:android:f8702486a6690336e797f8",
+        "android_client_info": {
+          "package_name": "com.cars.halamotor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221507317609-f0ojdtm4p46vnrc53b228ch3hrg2hd6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.application",
+            "certificate_hash": "70732a2a2dd944dfce93ec50266cebbea3beabb0"
+          }
+        },
+        {
+          "client_id": "221507317609-bfgsoh2mra3jo35v6t4nu90jl3l1g0h0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYAiCGfSLs6ZzM_TzesHkA4yWbTIGEYbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221507317609-bfgsoh2mra3jo35v6t4nu90jl3l1g0h0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

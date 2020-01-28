@@ -1,5 +1,6 @@
 //noinspection GradleCompatible
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 27
@@ -33,6 +34,9 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
     //noinspection GradleCompatible
     implementation "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
+
+    implementation 'com.google.firebase:firebase-database:16.0.5'
+    implementation 'com.google.firebase:firebase-core:16.0.5'
 
     androidTestImplementation 'com.android.support.test:runner:0.5'
     androidTestImplementation 'com.android.support.test:rules:0.5'
