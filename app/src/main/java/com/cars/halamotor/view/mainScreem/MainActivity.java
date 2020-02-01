@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +25,10 @@ import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView messageView,appNameTV,searchTextTV;
+    private TextView messageView,appNameTV;
     DatabaseReference mDatabase;
     BottomBar bottomBar;
+    EditText searchEdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changeGeneralFontType() {
-        searchTextTV.setTypeface(Functions.changeFontGeneral(getApplicationContext()));
+        searchEdt.setTypeface(Functions.changeFontGeneral(getApplicationContext()));
     }
 
     private void changeAppNameFontType() {
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         messageView = (TextView) findViewById(R.id.messageView);
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         appNameTV =(TextView) findViewById(R.id.app_name_tv);
-        searchTextTV = (TextView) findViewById(R.id.searchTextTV);
+        searchEdt = (EditText) findViewById(R.id.searchEdt);
     }
 
     private void BottomBarMenu() {
