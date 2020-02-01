@@ -10,7 +10,7 @@
         title="@string/tab_message" />
     <tab
         id="@+id/tab_adv"
-        icon="@mipmap/ic_friends"
+        icon="@mipmap/add"
         title="@string/tab_adv" />
     <tab
         id="@+id/tab_notifications"
