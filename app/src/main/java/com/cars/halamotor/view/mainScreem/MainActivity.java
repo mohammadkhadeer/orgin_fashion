@@ -233,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
     private void moveToAddItem() {
         Intent intent = new Intent(MainActivity.this, AddItem.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
     }
 
     private void statusBarColor() {
