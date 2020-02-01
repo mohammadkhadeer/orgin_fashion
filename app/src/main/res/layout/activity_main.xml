@@ -20,7 +20,6 @@
             android:layout_marginLeft="16dp"
             />
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -56,14 +55,19 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/messageView"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomBar"
-        android:gravity="center"
-        android:text="Hi mom!" />
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="105dp">
 
+        <include
+            layout="@layout/content_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </RelativeLayout>
 
 
 

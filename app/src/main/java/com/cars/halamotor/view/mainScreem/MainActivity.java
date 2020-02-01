@@ -25,7 +25,7 @@ import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView messageView,appNameTV;
+    private TextView appNameTV;
     DatabaseReference mDatabase;
     BottomBar bottomBar;
     EditText searchEdt;
@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inti() {
-        messageView = (TextView) findViewById(R.id.messageView);
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         appNameTV =(TextView) findViewById(R.id.app_name_tv);
         searchEdt = (EditText) findViewById(R.id.searchEdt);
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
-                messageView.setText(TabMessage.get(tabId, false));
+
             }
         });
 
