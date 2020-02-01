@@ -1,5 +1,6 @@
 package com.cars.halamotor.view.mainScreem;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.cars.halamotor.R;
 import com.cars.halamotor.functions.Functions;
+import com.cars.halamotor.view.addItem.AddItem;
 import com.cars.halamotor.view.fragmentHomeMainScreen.FragmentHomeScreen;
 import com.cars.halamotor.view.fragmentHomeMainScreen.FragmentMessage;
 import com.cars.halamotor.view.fragmentHomeMainScreen.FragmentNotification;
@@ -42,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
     final Fragment fragmentProfile = new FragmentProfile();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragmentHome;
+    BottomBarTab homeBBT,messagesBBT, notificationsBBT, addItemBBT,profileBBT;
+    private BottomBarTab[] bbtArr = {homeBBT, messagesBBT, notificationsBBT, addItemBBT, profileBBT};
+    private String[] bbtArrStr = {"homeBBT", "messagesBBT", "notificationsBBT", "addItemBBT", "profileBBT"};
+    String lastFragmentStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,14 +123,28 @@ public class MainActivity extends AppCompatActivity {
         bottomBar.setOnTabReselectListener(new OnTabReselectListener() {
             @Override
             public void onTabReSelected(@IdRes int tabId) {
-                Toast.makeText(getApplicationContext(), TabMessage.get(tabId, true), Toast.LENGTH_LONG).show();
+                if (tabId == R.id.tab_adv)
+                {
+                    moveToAddItem();
+                }
+                //Toast.makeText(getApplicationContext(), TabMessage.get(tabId, true), Toast.LENGTH_LONG).show();
             }
         });
 
-        BottomBarTab messages = bottomBar.getTabWithId(R.id.tab_messages);
-        BottomBarTab notifications = bottomBar.getTabWithId(R.id.tab_notifications);
-        messages.setBadgeCount(13);
-        notifications.setBadgeCount(1);
+        intiBBT();
+
+        messagesBBT.setBadgeCount(12);
+        int num =2;
+        if(num >5)
+        notificationsBBT.setBadgeCount(num);
+    }
+
+    private void intiBBT() {
+        homeBBT = bottomBar.getTabWithId(R.id.tab_home);
+        messagesBBT = bottomBar.getTabWithId(R.id.tab_messages);
+        notificationsBBT = bottomBar.getTabWithId(R.id.tab_notifications);
+        addItemBBT = bottomBar.getTabWithId(R.id.tab_adv);
+        profileBBT = bottomBar.getTabWithId(R.id.tab_profile);
     }
 
     private boolean switchFragment(int tabId) {
@@ -132,24 +152,87 @@ public class MainActivity extends AppCompatActivity {
             case R.id.tab_home:
                 fm.beginTransaction().hide(active).show(fragmentHome).commit();
                 active = fragmentHome;
+                lastFragmentStr= "fragmentHome";
                 return true;
 
             case R.id.tab_messages:
                 fm.beginTransaction().hide(active).show(fragmentMessage).commit();
                 active = fragmentMessage;
+                lastFragmentStr= "fragmentMessage";
+                return true;
+
+            case R.id.tab_adv:
+                checkWhatIsLastFragmentAndKeepItOn();
+                moveToAddItem();
                 return true;
 
             case R.id.tab_notifications:
                 fm.beginTransaction().hide(active).show(fragmentNotification).commit();
                 active = fragmentNotification;
+                lastFragmentStr= "fragmentNotification";
                 return true;
 
             case R.id.tab_profile:
                 fm.beginTransaction().hide(active).show(fragmentProfile).commit();
                 active = fragmentProfile;
+                lastFragmentStr= "fragmentProfile";
                 return true;
         }
         return false;
+    }
+
+    private void checkWhatIsLastFragmentAndKeepItOn() {
+        Log.i("TAG",lastFragmentStr);
+        switch (lastFragmentStr) {
+            case "fragmentHome":
+                fm.beginTransaction().hide(active).show(fragmentHome).commit();
+                active = fragmentHome;
+                keepItPressed(homeBBT);
+                break;
+            case "fragmentMessage":
+                fm.beginTransaction().hide(active).show(fragmentMessage).commit();
+                active = fragmentMessage;
+                keepItPressed(messagesBBT);
+                break;
+
+            case "fragmentNotification":
+                fm.beginTransaction().hide(active).show(fragmentNotification).commit();
+                active = fragmentNotification;
+                keepItPressed(notificationsBBT);
+                break;
+
+            case "fragmentProfile":
+                fm.beginTransaction().hide(active).show(fragmentProfile).commit();
+                active = fragmentProfile;
+                keepItPressed(profileBBT);
+                break;
+
+        }
+    }
+
+    private void resetOtherBBTToDefault(String bbtStr,BottomBarTab bbt) {
+        for (int i=0;i<bbtArrStr.length;i++)
+        {
+            if (!bbtArrStr[i].equals(bbtStr))
+            {
+                Log.i("TAGEQ",bbtArrStr[i]);
+                //bbt.performClick(false);
+                //bbtArr[i].isSelected();
+                bbtArr[i].callOnClick();
+            }
+        }
+    }
+
+    private void keepItPressed(BottomBarTab bbt) {
+        //bbt.performClick();
+         bbt.callOnClick();
+         bbt.removeBadge();
+
+    }
+
+    private void moveToAddItem() {
+        Intent intent = new Intent(MainActivity.this, AddItem.class);
+        startActivity(intent);
     }
 
     private void statusBarColor() {

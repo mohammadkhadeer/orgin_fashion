@@ -4,7 +4,7 @@
     <string name="tab_home">Home</string>
     <string name="tab_message">Messages</string>
     <string name="tab_adv">Add Post</string>
-    <string name="tab_notifications_">Notifications</string>
+    <string name="tab_notifications_">Notices</string>
     <string name="tab_profile">Profile</string>
     <string name="search">Search on hala motor</string>
 </resources>
