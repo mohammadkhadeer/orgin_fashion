@@ -18,6 +18,8 @@ import com.cars.halamotor.R;
 import com.cars.halamotor.functions.Functions;
 import com.cars.halamotor.view.fragmentHomeMainScreen.FragmentHomeScreen;
 import com.cars.halamotor.view.fragmentHomeMainScreen.FragmentMessage;
+import com.cars.halamotor.view.fragmentHomeMainScreen.FragmentNotification;
+import com.cars.halamotor.view.fragmentHomeMainScreen.FragmentProfile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     final Fragment fragmentHome = new FragmentHomeScreen();
     final Fragment fragmentMessage = new FragmentMessage();
+    final Fragment fragmentNotification = new FragmentNotification();
+    final Fragment fragmentProfile = new FragmentProfile();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragmentHome;
 
@@ -56,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void moveBetweenFragment() {
+        fm.beginTransaction().add(R.id.main_container, fragmentProfile, "4").hide(fragmentProfile).commit();
+        fm.beginTransaction().add(R.id.main_container, fragmentNotification, "3").hide(fragmentNotification).commit();
         fm.beginTransaction().add(R.id.main_container, fragmentMessage, "2").hide(fragmentMessage).commit();
         fm.beginTransaction().add(R.id.main_container,fragmentHome, "1").commit();
     }
@@ -128,10 +134,19 @@ public class MainActivity extends AppCompatActivity {
                 active = fragmentHome;
                 return true;
 
-
             case R.id.tab_messages:
                 fm.beginTransaction().hide(active).show(fragmentMessage).commit();
                 active = fragmentMessage;
+                return true;
+
+            case R.id.tab_notifications:
+                fm.beginTransaction().hide(active).show(fragmentNotification).commit();
+                active = fragmentNotification;
+                return true;
+
+            case R.id.tab_profile:
+                fm.beginTransaction().hide(active).show(fragmentProfile).commit();
+                active = fragmentProfile;
                 return true;
         }
         return false;
