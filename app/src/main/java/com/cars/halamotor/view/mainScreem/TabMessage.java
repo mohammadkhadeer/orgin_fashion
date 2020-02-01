@@ -1,4 +1,6 @@
-package com.cars.halamotor;
+package com.cars.halamotor.view.mainScreem;
+
+import com.cars.halamotor.R;
 
 class TabMessage {
     public static String get(int menuItemId, boolean isReselection) {
