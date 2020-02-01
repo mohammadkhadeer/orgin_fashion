@@ -2,6 +2,8 @@ package com.cars.halamotor.view.mainScreem;
 
 import android.os.Build;
 import android.support.annotation.IdRes;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import android.widget.Toast;
 
 import com.cars.halamotor.R;
 import com.cars.halamotor.functions.Functions;
+import com.cars.halamotor.view.fragmentHomeMainScreen.FragmentHomeScreen;
+import com.cars.halamotor.view.fragmentHomeMainScreen.FragmentMessage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
     BottomBar bottomBar;
     EditText searchEdt;
 
+    final Fragment fragmentHome = new FragmentHomeScreen();
+    final Fragment fragmentMessage = new FragmentMessage();
+    final FragmentManager fm = getSupportFragmentManager();
+    Fragment active = fragmentHome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +51,13 @@ public class MainActivity extends AppCompatActivity {
         BottomBarMenu();
         writeOnDataBase();
         readFromDataBase();
+        moveBetweenFragment();
 
+    }
 
+    private void moveBetweenFragment() {
+        fm.beginTransaction().add(R.id.main_container, fragmentMessage, "2").hide(fragmentMessage).commit();
+        fm.beginTransaction().add(R.id.main_container,fragmentHome, "1").commit();
     }
 
     private void changeGeneralFontType() {
@@ -90,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
-
+                switchFragment(tabId);
             }
         });
 
@@ -105,6 +119,22 @@ public class MainActivity extends AppCompatActivity {
         BottomBarTab notifications = bottomBar.getTabWithId(R.id.tab_notifications);
         messages.setBadgeCount(13);
         notifications.setBadgeCount(1);
+    }
+
+    private boolean switchFragment(int tabId) {
+        switch (tabId) {
+            case R.id.tab_home:
+                fm.beginTransaction().hide(active).show(fragmentHome).commit();
+                active = fragmentHome;
+                return true;
+
+
+            case R.id.tab_messages:
+                fm.beginTransaction().hide(active).show(fragmentMessage).commit();
+                active = fragmentMessage;
+                return true;
+        }
+        return false;
     }
 
     private void statusBarColor() {

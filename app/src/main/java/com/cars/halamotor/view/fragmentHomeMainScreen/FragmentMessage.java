@@ -8,16 +8,15 @@ import android.view.ViewGroup;
 
 import com.cars.halamotor.R;
 
-public class FragmentHomeScreen extends Fragment{
+public class FragmentMessage extends Fragment {
 
-    public FragmentHomeScreen(){}
+    public FragmentMessage(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_message, container, false);
 
         return view;
     }
-
 }
