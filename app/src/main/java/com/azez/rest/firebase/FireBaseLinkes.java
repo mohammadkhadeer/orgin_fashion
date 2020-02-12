@@ -32,6 +32,8 @@ public class FireBaseLinkes {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.i("TAG ERROR", databaseError.toString());
+
             }
 
         });

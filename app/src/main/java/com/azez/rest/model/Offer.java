@@ -10,11 +10,11 @@ public class Offer {
     int priceInt;
     String arNameStr,enNameStr;
     String arDesStr,enDesStr;
-    String subCategoryStr,restaurantsNameStr,restaurantsOpenAtStr,restaurantsCloseAtStr
+    String subCategoryStr,restaurantsImageStr,restaurantsNameStr,restaurantsOpenAtStr,restaurantsCloseAtStr
             ,restaurantsCityStr,neighborhoodStr,restaurantsAddressLinkStr,restaurantsIDStr;
     public Offer(){}
 
-    public Offer(String imagePathStr, String categoryStr, String mailTypeStr, int offerOrNotInt, int newPriceInt, String timeStampStr, int priceInt, String arNameStr, String enNameStr, String arDesStr, String enDesStr, String subCategoryStr, String restaurantsNameStr, String restaurantsOpenAtStr, String restaurantsCloseAtStr, String restaurantsCityStr, String neighborhoodStr, String restaurantsAddressLinkStr, String restaurantsIDStr) {
+    public Offer(String imagePathStr, String categoryStr, String mailTypeStr, int offerOrNotInt, int newPriceInt, String timeStampStr, int priceInt, String arNameStr, String enNameStr, String arDesStr, String enDesStr, String subCategoryStr,String restaurantsImageStr, String restaurantsNameStr, String restaurantsOpenAtStr, String restaurantsCloseAtStr, String restaurantsCityStr, String neighborhoodStr, String restaurantsAddressLinkStr, String restaurantsIDStr) {
         this.imagePathStr = imagePathStr;
         this.categoryStr = categoryStr;
         this.mailTypeStr = mailTypeStr;
@@ -28,12 +28,21 @@ public class Offer {
         this.enDesStr = enDesStr;
         this.subCategoryStr = subCategoryStr;
         this.restaurantsNameStr = restaurantsNameStr;
+        this.restaurantsImageStr = restaurantsImageStr;
         this.restaurantsOpenAtStr = restaurantsOpenAtStr;
         this.restaurantsCloseAtStr = restaurantsCloseAtStr;
         this.restaurantsCityStr = restaurantsCityStr;
         this.neighborhoodStr = neighborhoodStr;
         this.restaurantsAddressLinkStr = restaurantsAddressLinkStr;
         this.restaurantsIDStr = restaurantsIDStr;
+    }
+
+    public String getRestaurantsImageStr() {
+        return restaurantsImageStr;
+    }
+
+    public void setRestaurantsImageStr(String restaurantsImageStr) {
+        this.restaurantsImageStr = restaurantsImageStr;
     }
 
     public String getImagePathStr() {

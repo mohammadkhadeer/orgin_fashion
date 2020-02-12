@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         changeGeneralFontType();
         BottomBarMenu();
         //writeOnDataBase();
-        readFromDataBase();
+        //readFromDataBase();
         moveBetweenFragment();
 
     }
@@ -86,29 +86,22 @@ public class MainActivity extends AppCompatActivity {
         appNameTV.setTypeface(Functions.changeFontAppName(getApplicationContext()));
     }
 
-    private void readFromDataBase() {
-        mList = getOffers(mList);
-    }
-
-
-    List<Offer> mList = new ArrayList<>();
-
 
     private void writeOnDataBase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("menu").child("category").child("offers").child("mail2");
-        String imagePath = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fmandy.jpg?alt=media&token=5607fdb4-ad53-4089-bfea-e0592d9099e1";
-
-        String arDesStr = "المنسف الاردني مع الجميد الكركي الاصلي";
-        String enDesStr = "Jordanian mansf with wight famed";
-        String arNameStr = "المنسف الاردني";
-        String enNameStr = "Jordanian mansf";
+        DatabaseReference myRef = database.getReference("menu").child("category").child("offers").child("mail3");
+        String imagePath = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
+        String resImagePath = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/restaurants_images%2Fres.png?alt=media&token=f2abaab0-4e51-4512-be3a-7de9a84c6342";
+        String arDesStr = "المسخن الفلسطيني الاصلي";
+        String enDesStr = "Musakhan palestinian";
+        String arNameStr = "المسخن الفلسطيني";
+        String enNameStr = "musakhan palestinian";
         String timeStampStr = "4534545453";
         int newPriceInt = 120;
 
         Offer offer = new Offer(imagePath,"category","test"
                 ,1,newPriceInt,timeStampStr,110
-                ,arNameStr,enNameStr,arDesStr,enDesStr,"subCategory"
+                ,arNameStr,enNameStr,arDesStr,enDesStr,"subCategory",resImagePath
                                 ,"petra","10:00 AM"
                 ,"12:00 PM","Doubai"
                 ,"Barsha1","lattude,lengtude","test");
