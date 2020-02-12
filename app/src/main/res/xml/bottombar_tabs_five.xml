@@ -5,7 +5,7 @@
         icon="@drawable/ic_favorites"
         title="Recents" />
     <tab
-        id="@+id/tab_messages"
+        id="@+id/tab_near"
         icon="@drawable/ic_favorites"
         title="Nearby" />
     <tab

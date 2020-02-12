@@ -6,7 +6,7 @@
         title="Recents"
         barColorWhenSelected="@color/colorAccent" />
     <tab
-        id="@+id/tab_messages"
+        id="@+id/tab_near"
         icon="@drawable/ic_favorites"
         title="Nearby"
         barColorWhenSelected="#7B1FA2" />

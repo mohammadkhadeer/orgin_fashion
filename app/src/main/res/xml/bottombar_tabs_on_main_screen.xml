@@ -4,14 +4,7 @@
         id="@+id/tab_home"
         icon="@drawable/ic_home"
         title="@string/tab_home" />
-    <tab
-        id="@+id/tab_messages"
-        icon="@mipmap/ic_message"
-        title="@string/tab_message" />
-    <tab
-        id="@+id/tab_adv"
-        icon="@mipmap/add"
-        title="@string/tab_adv" />
+
     <tab
         id="@+id/tab_notifications"
         icon="@drawable/ic_notifications"

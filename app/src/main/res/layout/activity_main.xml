@@ -9,16 +9,44 @@
         android:layout_height="105dp"
         android:background="@color/colorRed">
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="25dp"
-            android:id="@+id/app_name_tv"
-            android:textColor="@color/colorWhite"
-            android:text="@string/app_name"
-            android:layout_marginLeft="16dp"
-            />
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="25dp"
+                android:id="@+id/app_name_tv"
+                android:textColor="@color/colorWhite"
+                android:text="@string/app_name"
+                android:layout_marginLeft="16dp"
+                />
+
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="20">
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,31 +57,56 @@
             android:background="@drawable/search_background">
 
 
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:alpha="0.6"
-                android:background="@mipmap/search"
-                />
-
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginStart="40dp"
-                android:textCursorDrawable="@drawable/c"
-                android:hint="@string/search"
-                android:id="@+id/searchEdt"
-                android:background="@null"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:alpha="0.6"
+                    android:background="@mipmap/search"
+                    />
+
+
+            </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="90">
+
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_centerVertical="true"
+                        android:textCursorDrawable="@drawable/c"
+                        android:hint="@string/search"
+                        android:id="@+id/searchEdt"
+                        android:background="@null"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
 
         </RelativeLayout>
 
     </RelativeLayout>
+
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"

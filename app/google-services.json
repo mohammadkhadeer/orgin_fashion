@@ -1,42 +1,71 @@
 {
   "project_info": {
-    "project_number": "221507317609",
-    "firebase_url": "https://hala-motor.firebaseio.com",
-    "project_id": "hala-motor",
-    "storage_bucket": "hala-motor.appspot.com"
+    "project_number": "1099354404107",
+    "firebase_url": "https://restaurant-31ab3.firebaseio.com",
+    "project_id": "restaurant-31ab3",
+    "storage_bucket": "restaurant-31ab3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:221507317609:android:f8702486a6690336e797f8",
+        "mobilesdk_app_id": "1:1099354404107:android:8057935d41b566afeb5e0e",
         "android_client_info": {
-          "package_name": "com.cars.halamotor"
+          "package_name": "com.azez.rest"
         }
       },
       "oauth_client": [
         {
-          "client_id": "221507317609-f0ojdtm4p46vnrc53b228ch3hrg2hd6b.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.android.application",
-            "certificate_hash": "70732a2a2dd944dfce93ec50266cebbea3beabb0"
-          }
-        },
-        {
-          "client_id": "221507317609-bfgsoh2mra3jo35v6t4nu90jl3l1g0h0.apps.googleusercontent.com",
+          "client_id": "1099354404107-ervm6q5tue5kt4bj85ltp40cmmlohruh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCYAiCGfSLs6ZzM_TzesHkA4yWbTIGEYbI"
+          "current_key": "AIzaSyCFJu5tEvhdaMo_kOpdf4iyTcGPK97ASzY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "221507317609-bfgsoh2mra3jo35v6t4nu90jl3l1g0h0.apps.googleusercontent.com",
+              "client_id": "1099354404107-ervm6q5tue5kt4bj85ltp40cmmlohruh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099354404107:android:7ab72ba31f16665eeb5e0e",
+        "android_client_info": {
+          "package_name": "com.mohammad_obeidat.pierre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1099354404107-aa74ln2lvf3rdhcaj4kvaclcjs3ei72j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mohammad_obeidat.pierre",
+            "certificate_hash": "70732a2a2dd944dfce93ec50266cebbea3beabb0"
+          }
+        },
+        {
+          "client_id": "1099354404107-ervm6q5tue5kt4bj85ltp40cmmlohruh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFJu5tEvhdaMo_kOpdf4iyTcGPK97ASzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1099354404107-ervm6q5tue5kt4bj85ltp40cmmlohruh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
