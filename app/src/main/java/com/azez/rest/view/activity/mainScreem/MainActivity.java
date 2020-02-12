@@ -36,6 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.azez.rest.firebase.FireBaseLinkes.getOffers;
+
 public class MainActivity extends AppCompatActivity {
     private TextView appNameTV;
     DatabaseReference mDatabase;
@@ -85,37 +87,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void readFromDataBase() {
-        Query mRef = FirebaseDatabase.getInstance().getReference().child("menu")
-                .child("category").child("offers");
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot offersList: dataSnapshot.getChildren()) {
-                    Offer offer = offersList.getValue(Offer.class);
-                    mList.add(offer);
-                    Log.i("TAG", offersList.toString());
-                    //Log.e("TAG", "======="+offersList.child("email").getValue());
-                    Log.i("TAG",offer.getArDesStr());
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-        });
+        mList = getOffers(mList);
     }
 
 
-
-    final List<Offer> mList = new ArrayList<>();
+    List<Offer> mList = new ArrayList<>();
 
 
     private void writeOnDataBase() {
