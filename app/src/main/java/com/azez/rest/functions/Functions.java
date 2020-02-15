@@ -72,12 +72,13 @@ public class Functions {
     public static ArrayList<FastFood> fillFastFoodArrayL(ArrayList<FastFood> fastFoodArrayL, Context context) {
         fastFoodArrayL = new ArrayList<FastFood>();
 
-        FastFood fastFood1 = new FastFood(context.getResources().getString(R.string.bg),"15",R.drawable.m1);
-        FastFood fastFood2 = new FastFood(context.getResources().getString(R.string.macdonalds),"15",R.drawable.m1);
-        FastFood fastFood3 = new FastFood(context.getResources().getString(R.string.hardees),"15",R.drawable.m1);
-        FastFood fastFood4 = new FastFood(context.getResources().getString(R.string.macdonalds),"15",R.drawable.m1);
-        FastFood fastFood5 = new FastFood(context.getResources().getString(R.string.pizza_h),"15",R.drawable.m1);
-        FastFood fastFood6 = new FastFood(context.getResources().getString(R.string.subway),"15",R.drawable.m1);
+        FastFood fastFood1 = new FastFood(context.getResources().getString(R.string.bg),"15",R.drawable.burger_king);
+        FastFood fastFood2 = new FastFood(context.getResources().getString(R.string.macdonalds),"15",R.drawable.mcdonalds);
+        FastFood fastFood3 = new FastFood(context.getResources().getString(R.string.hardees),"15",R.drawable.hardess);
+        FastFood fastFood7 = new FastFood(context.getResources().getString(R.string.dominos),"15",R.drawable.dom);
+        FastFood fastFood4 = new FastFood(context.getResources().getString(R.string.kfc),"15",R.drawable.kfc);
+        FastFood fastFood5 = new FastFood(context.getResources().getString(R.string.pizza_h),"15",R.drawable.pizz_h);
+        FastFood fastFood6 = new FastFood(context.getResources().getString(R.string.subway),"15",R.drawable.subway);
 
         fastFoodArrayL.add(fastFood1);
         fastFoodArrayL.add(fastFood2);
