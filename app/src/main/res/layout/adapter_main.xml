@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/adapter_mean_res"
+        android:visibility="gone"
         >
 
         <LinearLayout
@@ -118,6 +119,32 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adapter_mean_ff">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_marginLeft="12dp"
+                android:text="TOP BRANDS AROUND YOU"></TextView>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/adapter_brands"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 
 import com.azez.rest.R;
 import com.azez.rest.model.Category;
+import com.azez.rest.model.FastFood;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,7 @@ public class Functions {
         meanArrayL.add("res");
         meanArrayL.add("res");
         meanArrayL.add("res");
-        meanArrayL.add("res");
+        meanArrayL.add("ff");
         meanArrayL.add("res");
         meanArrayL.add("res");
         meanArrayL.add("res");
@@ -65,6 +66,27 @@ public class Functions {
         meanArrayL.add("res");
 
         return meanArrayL;
+    }
+
+
+    public static ArrayList<FastFood> fillFastFoodArrayL(ArrayList<FastFood> fastFoodArrayL, Context context) {
+        fastFoodArrayL = new ArrayList<FastFood>();
+
+        FastFood fastFood1 = new FastFood(context.getResources().getString(R.string.bg),"15",R.drawable.m1);
+        FastFood fastFood2 = new FastFood(context.getResources().getString(R.string.macdonalds),"15",R.drawable.m1);
+        FastFood fastFood3 = new FastFood(context.getResources().getString(R.string.hardees),"15",R.drawable.m1);
+        FastFood fastFood4 = new FastFood(context.getResources().getString(R.string.macdonalds),"15",R.drawable.m1);
+        FastFood fastFood5 = new FastFood(context.getResources().getString(R.string.pizza_h),"15",R.drawable.m1);
+        FastFood fastFood6 = new FastFood(context.getResources().getString(R.string.subway),"15",R.drawable.m1);
+
+        fastFoodArrayL.add(fastFood1);
+        fastFoodArrayL.add(fastFood2);
+        fastFoodArrayL.add(fastFood3);
+        fastFoodArrayL.add(fastFood4);
+        fastFoodArrayL.add(fastFood5);
+        fastFoodArrayL.add(fastFood6);
+
+        return fastFoodArrayL;
     }
 
 }
