@@ -14,22 +14,28 @@ import android.widget.TextView;
 
 import com.azez.rest.R;
 import com.azez.rest.functions.Functions;
+import com.azez.rest.model.Category;
 import com.azez.rest.model.Offer;
+import com.azez.rest.view.Adapters.AdapterCategory;
 import com.azez.rest.view.Adapters.AdapterSuggestedToYou;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.azez.rest.firebase.FireBaseLinkes.getOffers;
+import static com.azez.rest.functions.Functions.fillOptionsArrayL;
 
 public class FragmentHomeScreen extends Fragment{
 
     View view;
     List<Offer> mList = new ArrayList<>();
+    public ArrayList<Category> categoryArrayL = new ArrayList<>();
+
     TextView suggestedTV;
-    RecyclerView suggestedRV;
+    RecyclerView suggestedRV,categoryRV;
     AdapterSuggestedToYou adapterSuggestedToYou;
-    RecyclerView.LayoutManager layoutManagerSuggested;
+    AdapterCategory adapterCategory;
+    RecyclerView.LayoutManager layoutManagerSuggested,layoutManagerCategory;
     ProgressBar progressBar;
 
     public FragmentHomeScreen(){}
@@ -42,11 +48,27 @@ public class FragmentHomeScreen extends Fragment{
         init();
         changeFont();
         readFromDataBase();
+        createCategoryRV();
 
         return view;
     }
 
+    private void createCategoryRV() {
+        categoryArrayL = fillOptionsArrayL(categoryArrayL,getActivity());
+        categoryRV.setNestedScrollingEnabled(false);
+        categoryRV.setHasFixedSize(true);
+        layoutManagerSuggested = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false);
+
+        categoryRV.setLayoutManager(layoutManagerSuggested);
+        adapterCategory =new AdapterCategory(getActivity()
+                ,categoryArrayL);
+        categoryRV.setAdapter(adapterCategory);
+    }
+
     private void init() {
+        suggestedRV = (RecyclerView) view.findViewById(R.id.fragment_home_suggested_RV);
+        categoryRV = (RecyclerView) view.findViewById(R.id.fragment_home_category_RV);
         suggestedTV = view.findViewById(R.id.fragment_haom_suggested_TV);
         progressBar = view.findViewById(R.id.fragment_haom_suggested_PB);
     }
@@ -81,6 +103,5 @@ public class FragmentHomeScreen extends Fragment{
 
     private void changeFont() {
         suggestedTV.setTypeface(Functions.changeFontGeneral(getActivity()));
-        suggestedRV = (RecyclerView) view.findViewById(R.id.fragment_home_suggested_RV);
     }
 }

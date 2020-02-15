@@ -7,4 +7,15 @@
     <string name="tab_notifications_">Notices</string>
     <string name="tab_profile">Profile</string>
     <string name="search">Search on test</string>
+
+    <string name="creat_meal">Create meal</string>
+    <string name="family_meal">Family meal</string>
+    <string name="home_meal">Home meal</string>
+    <string name="veg_meal">Veg meal</string>
+    <string name="fast_food">Fast food</string>
+    <string name="healthy_food">Healthy food</string>
+    <string name="drinks">Drinks</string>
+    <string name="dessert">Dessert</string>
+    <string name="bread">Breaf</string>
+
 </resources>
