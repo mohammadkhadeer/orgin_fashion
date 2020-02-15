@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adapter_mean_res"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="30">
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="110dp"
+                    android:layout_centerHorizontal="true"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:id="@+id/adapter_meal_mean_IV"
+                        android:layout_height="match_parent">
+
+                    </ImageView>
+
+
+                </android.support.v7.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="70">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Restaurant name"
+                       android:textColor="@color/colorBlack"
+                       android:textStyle="bold"
+                       android:textSize="20dp">
+
+                   </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Category1, category2, category3 "
+                        android:textSize="14dp"
+                        android:layout_marginTop="4dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="40 AED  |  No min order"
+                        android:textSize="14dp"
+                        android:layout_marginTop="4dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25 min"
+                        android:textSize="14dp"
+                        android:layout_marginTop="4dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mean offer eg: Get 1 Take 2 free"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorGold"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="If close or near to close"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorMaroon"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"
+                        />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

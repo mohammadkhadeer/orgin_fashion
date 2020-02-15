@@ -3,6 +3,7 @@ package com.azez.rest.view.fragmentHomeMainScreen;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,12 +18,14 @@ import com.azez.rest.functions.Functions;
 import com.azez.rest.model.Category;
 import com.azez.rest.model.Offer;
 import com.azez.rest.view.Adapters.AdapterCategory;
+import com.azez.rest.view.Adapters.AdapterMainList;
 import com.azez.rest.view.Adapters.AdapterSuggestedToYou;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.azez.rest.firebase.FireBaseLinkes.getOffers;
+import static com.azez.rest.functions.Functions.fillMeanArrayL;
 import static com.azez.rest.functions.Functions.fillOptionsArrayL;
 
 public class FragmentHomeScreen extends Fragment{
@@ -31,9 +34,12 @@ public class FragmentHomeScreen extends Fragment{
     List<Offer> mList = new ArrayList<>();
     public ArrayList<Category> categoryArrayL = new ArrayList<>();
 
+    public ArrayList<String> meanList = new ArrayList<>();
+
     TextView suggestedTV;
-    RecyclerView suggestedRV,categoryRV;
+    RecyclerView suggestedRV,categoryRV,meanRV;
     AdapterSuggestedToYou adapterSuggestedToYou;
+    AdapterMainList adapterMainList;
     AdapterCategory adapterCategory;
     RecyclerView.LayoutManager layoutManagerSuggested,layoutManagerCategory;
     ProgressBar progressBar;
@@ -49,8 +55,19 @@ public class FragmentHomeScreen extends Fragment{
         changeFont();
         readFromDataBase();
         createCategoryRV();
+        createMeanL();
 
         return view;
+    }
+
+    private void createMeanL() {
+        meanList =fillMeanArrayL(meanList,getActivity());
+        meanRV.setHasFixedSize(true);
+        meanRV.setNestedScrollingEnabled(false);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
+        meanRV.setLayoutManager(mLayoutManager);
+        adapterMainList = new AdapterMainList(getActivity(), meanList);
+        meanRV.setAdapter(adapterMainList);
     }
 
     private void createCategoryRV() {
@@ -67,6 +84,7 @@ public class FragmentHomeScreen extends Fragment{
     }
 
     private void init() {
+        meanRV = (RecyclerView) view.findViewById(R.id.fragment_home_mean_RV);
         suggestedRV = (RecyclerView) view.findViewById(R.id.fragment_home_suggested_RV);
         categoryRV = (RecyclerView) view.findViewById(R.id.fragment_home_category_RV);
         suggestedTV = view.findViewById(R.id.fragment_haom_suggested_TV);

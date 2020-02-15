@@ -47,4 +47,24 @@ public class Functions {
         return categoryArrayL;
     }
 
+    public static ArrayList<String> fillMeanArrayL(ArrayList<String> meanArrayL, Context context) {
+        meanArrayL = new ArrayList<String>();
+
+
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+        meanArrayL.add("res");
+
+        return meanArrayL;
+    }
+
 }
