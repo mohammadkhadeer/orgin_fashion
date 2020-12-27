@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.cartFragment.FragmentTotale">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorSilver3"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total"
+                android:textSize="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:id="@+id/total"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tax"
+                android:textSize="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/tax"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/finale"
+                android:textSize="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/total_price"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:id="@+id/total_num"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/tax_num"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/total_price_num"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorRed"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/check_out"
+            android:textColor="@color/colorWhite"
+            android:textSize="18dp"
+            android:id="@+id/checkOut"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"></TextView>
+    </RelativeLayout>
+
+</RelativeLayout>
+

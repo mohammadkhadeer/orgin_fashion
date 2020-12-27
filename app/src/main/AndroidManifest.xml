@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.azez.rest">
+    package="com.fashion.rest">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,18 +12,45 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.azez.rest.view.activity.addItem.AddItem"
-            android:theme="@style/AppTheme2">
+        <activity android:name="com.fashion.rest.view.activity.Login"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23">
 
         </activity>
 
-        <activity android:name="com.azez.rest.view.activity.mainScreem.MainActivity">
+        <activity
+            android:name="com.fashion.rest.view.activity.Cart"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
+        <activity
+            android:name="com.fashion.rest.view.activity.SplashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.fashion.rest.view.activity.Language"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
+        <activity
+            android:name="com.fashion.rest.view.activity.ItemDetails"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
+        <activity
+            android:name="com.fashion.rest.view.activity.CategoryItem"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
+        <activity
+            android:name="com.fashion.rest.view.activity.addItem.AddItem"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name="com.fashion.rest.view.activity.mainScreem.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23"></activity>
     </application>
 
 </manifest>

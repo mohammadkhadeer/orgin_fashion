@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:id="@+id/adapter_notification_cover"
+        android:background="@color/colorWhite"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:weightSum="100">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="65">
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="35">
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adapter_wheels_inches_container_RL"
+        android:background="?android:attr/selectableItemBackground"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:civ_border_color="@color/colorSilver"
+                    app:civ_border_width="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    app:civ_shadow="true"
+                    app:civ_shadow_radius="0"
+                    android:background="@drawable/circl_silver_bg"
+                    app:civ_shadow_color="#8BC34A"
+                    android:id="@+id/adapter_notification_process_iv"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="head title"
+                        android:id="@+id/adapter_notification_head_tv"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="17dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="title description"
+                        android:id="@+id/adapter_notification_des_tv"
+                        android:textColor="@color/colorBlack"
+                        android:layout_marginTop="8dp"
+                        android:textSize="14dp"
+                        />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="89.5dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@color/colorBlack2">
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

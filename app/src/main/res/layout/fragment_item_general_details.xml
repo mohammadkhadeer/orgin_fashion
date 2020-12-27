@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+   >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title"
+                android:textSize="19dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/Cuff_Bracelet"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/des"
+                android:textSize="17dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/Cuff_Bracelet_des"
+                android:textColor="@color/colorBlack6"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/message"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textOffer"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="21dp"
+                android:text="@string/offer_4"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/colorRed6"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/cover1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text511"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:textSize="15dp"
+                    android:text="@string/Processing_Time"
+                    android:textColor="@color/colorBlack5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text512"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="2dp"
+                    android:textSize="15dp"
+                    android:text="@string/Processing_Time_con"
+                    android:textColor="@color/colorBlack"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text521"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:textSize="15dp"
+                    android:text="@string/Shipping_Time"
+                    android:textColor="@color/colorBlack5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text522"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="2dp"
+                    android:textSize="15dp"
+                    android:text="@string/Shipping_Time_con"
+                    android:textColor="@color/colorBlack"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/cover1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header1"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/Selling_Points"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text11"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Selling_Points_Gender"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text12"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Selling_Points_Material"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text13"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Selling_Points_Jewelry"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/colorBlack5"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/cover1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header2"
+                android:textSize="17dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/Specifications"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text21"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Specifications_Gender"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text22"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Specifications_Design"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text23"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Specifications_Type"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/colorBlack5"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/cover1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text31"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Specifications_Material"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text32"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Specifications_Style"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text33"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Specifications_Shape"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text41"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Specifications_Features"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text42"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Specifications_Occasion"
+                android:textColor="@color/colorBlack5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text43"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:textSize="15dp"
+                android:text="@string/Specifications_Length"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/colorBlack5"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
+
+

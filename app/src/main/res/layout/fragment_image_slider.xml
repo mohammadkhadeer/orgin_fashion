@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragments.FragmentImageSlider">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:id="@+id/item_image_load_rl"
+        android:layout_marginTop="0.5dp"
+        android:layout_marginLeft="0.5dp"
+        android:layout_marginStart="0.5dp"
+        >
+
+        <ImageView
+            android:id="@+id/item_image_load"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="-50dp"
+            android:layout_height="400dp"
+            android:src="@color/colorSilver_"
+            />
+
+        <ImageView
+            android:id="@+id/item_image_shin"
+            android:layout_width="50dp"
+            android:layout_marginLeft="-50dp"
+            android:layout_height="400dp"
+            android:src="@drawable/shine" />
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentTop="true"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/colorRed"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:alpha="0.9">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/strike"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="15dp"
+                    android:visibility="gone"
+                    android:textColor="@color/colorWhite"
+                    android:text="test text"
+                    android:id="@+id/image_slider_car_old_price"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/strike"
+                    android:layout_margin="5dp"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"
+                    android:text="14455"
+                    android:id="@+id/image_slider_car_price"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:layout_margin="3dp"
+                        android:textColor="@color/colorWhite"
+                        android:text="14999"
+                        android:id="@+id/image_slider_new_price"
+                        />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginStart="4dp"
+                        android:id="@+id/show_item_details_fire_iv"
+                        android:background="@drawable/fire"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+

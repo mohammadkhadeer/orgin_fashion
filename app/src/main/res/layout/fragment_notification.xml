@@ -5,25 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragmentHomeMainScreen.FragmentNotification">
+    tools:context=".view.fragments.fragmentHomeMainScreen.FragmentNotification">
 
-    <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/continer">
-
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="800dp"
-        android:background="@color/colorPrimary">
-
-    </RelativeLayout>
-
-
-
-    </RelativeLayout>
-
-
-
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_notification_rv"
+        />
 
 </android.support.v4.widget.NestedScrollView>
 

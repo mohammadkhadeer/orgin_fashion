@@ -25,8 +25,39 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AppTheme23" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
 
+        <item name="colorPrimary">@color/colorRed</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/colorRed</item>
 
+    </style>
 
+    <style name="AppTheme24" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/colorRed</item>
+
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
+    </style>
+
+    <style name="HintText" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/colorBlue2</item>
+    </style>
 
 </resources>
