@@ -22,8 +22,10 @@ import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentBracelets;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentEarring;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentFootAnklet;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentNecklaces;
+import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentOffers;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentRings;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentSet;
+import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +56,8 @@ public class FragmentHomeScreen extends Fragment{
     FragmentRings fragmentRings = new FragmentRings();
     FragmentFootAnklet fragmentFootAnklet = new FragmentFootAnklet();
     FragmentEarring fragmentEarring = new FragmentEarring();
+    FragmentOffers fragmentOffers = new FragmentOffers();
+    FragmentTest fragmentTest = new FragmentTest();
 
     public FragmentHomeScreen(){}
 
@@ -64,18 +68,32 @@ public class FragmentHomeScreen extends Fragment{
 
         init();
         changeFont();
+        handelTestFragment();
+        //handelOffersFragment();
         //readFromDataBase();
-        createRVSuggested();
-        createCategoryRV();
-        //createMeanL();
-        setFragment();
-        BraceletsFragment();
-        NecklacesFragment();
-        RingsFragment();
-        FootAnkletFragment();
-        EarringFragment();
+//        createRVSuggested();
+//        createCategoryRV();
+//        //createMeanL();
+//        setFragment();
+//        BraceletsFragment();
+//        NecklacesFragment();
+//        RingsFragment();
+//        FootAnkletFragment();
+//        EarringFragment();
 
         return view;
+    }
+
+    private void handelTestFragment() {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_test, fragmentTest)
+                .commit();
+    }
+
+    private void handelOffersFragment() {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_offers, fragmentOffers)
+                .commit();
     }
 
     private void EarringFragment() {

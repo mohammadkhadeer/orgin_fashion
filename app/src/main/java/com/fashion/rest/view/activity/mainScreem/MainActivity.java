@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
-import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.view.activity.Cart;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentHomeScreen;
@@ -39,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements PassObject {
     private TextView appNameTV;
     BottomBar bottomBar;
     EditText searchEdt;
-    RelativeLayout cartConRelativeLayout,cartCirRelativeLayout;
-    TextView cartNum;
 
     final Fragment fragmentHome = new FragmentHomeScreen();
     final Fragment fragmentNotification = new FragmentNotification();
@@ -70,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements PassObject {
         //cleanCart(getApplicationContext(),SharedPreferences,Editor);
         changeAppNameFontType();
         changeGeneralFontType();
-        checkNumberItemInTheCart();
         BottomBarMenu();
         //writeOnDataBase();
         //readFromDataBase();
@@ -88,19 +84,6 @@ public class MainActivity extends AppCompatActivity implements PassObject {
                     overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
                 }
             });
-    }
-
-    private void checkNumberItemInTheCart() {
-            if (numberOfItemsOnCartNow(getApplicationContext()) ==0)
-            {
-                cartConRelativeLayout.setVisibility(View.GONE);
-            }else{
-                cartConRelativeLayout.setVisibility(View.VISIBLE);
-                if(numberOfItemsOnCartNow(getApplicationContext()) > 9)
-                    cartNum.setText("+" + getResources().getString(R.string.nighn));
-                else
-                    cartNum.setText(String.valueOf(numberOfItemsOnCartNow(getApplicationContext())));
-            }
     }
 
     public static void setLocale(Activity context) {
@@ -123,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements PassObject {
 
     private void changeGeneralFontType() {
         searchEdt.setTypeface(Functions.changeFontGeneral(getApplicationContext()));
-        cartNum.setTypeface(Functions.changeFontGeneral(getApplicationContext()));
     }
 
     private void changeAppNameFontType() {
@@ -135,9 +117,6 @@ public class MainActivity extends AppCompatActivity implements PassObject {
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         appNameTV =(TextView) findViewById(R.id.app_name_tv);
         searchEdt = (EditText) findViewById(R.id.searchEdt);
-        cartConRelativeLayout = (RelativeLayout) findViewById(R.id.cart_number_con_rl);
-        cartCirRelativeLayout = (RelativeLayout) findViewById(R.id.cart_cir_rl);
-        cartNum =(TextView) findViewById(R.id.item_num_tx);
         cartRL = (RelativeLayout) findViewById(R.id.main_screen_cart_rl);
     }
 
@@ -216,14 +195,13 @@ public class MainActivity extends AppCompatActivity implements PassObject {
     @Override
     public void PassItemObject(Deal deal) {
         updateNumberOfItemInCartAndInsertToDataBase(getApplicationContext(),SharedPreferences,Editor,deal,1);
-        checkNumberItemInTheCart();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == UPDATE_CART_FROM_MAIN_SCREEN && resultCode == RESULT_OK && data != null) {
-            checkNumberItemInTheCart();
+
         }
     }
 }

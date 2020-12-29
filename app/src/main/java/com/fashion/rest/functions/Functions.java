@@ -17,6 +17,36 @@ import java.util.ArrayList;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class Functions {
+    private static final int PAGE_SIZEH = 8;
+
+    public static int nowNumberOfObject(int x , int y) {
+        int z =0;
+        if (y ==0)
+        {
+            z =0;
+        }else{
+            if (y > PAGE_SIZEH)
+            {
+                if (x >= y)
+                {
+                    z =1000;
+                }else {
+                    int d = y - x;
+                    if (d >= PAGE_SIZEH)
+                    {
+//                        Log.i("TAG","x = x+10");
+                        z =PAGE_SIZEH;
+                    }else {
+//                        Log.i("TAG","x = x+d");
+                        z =d;
+                    }
+                }
+            }else {
+                z =y;
+            }
+        }
+        return z;
+    }
 
     public static double roundTwoDecimals(double d)
     {

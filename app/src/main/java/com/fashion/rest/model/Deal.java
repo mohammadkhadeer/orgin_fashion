@@ -5,6 +5,9 @@ public class Deal {
     String image,name,des;
     Price price;
 
+    public Deal() {
+    }
+
     public Deal(int image1, String image, String name, String des, Price price) {
         this.image1 = image1;
         this.image = image;

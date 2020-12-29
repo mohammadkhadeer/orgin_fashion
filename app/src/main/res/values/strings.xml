@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Fashionista</string>
 
+    <string name="no_more_item">  No More \n Items</string>
+
     <string name="tab_home">Home</string>
     <string name="tab_message">Messages</string>
     <string name="tab_adv">Add Post</string>

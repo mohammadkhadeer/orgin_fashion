@@ -192,6 +192,7 @@
     <string name="Specifications_Length">"طول السوار \\ (سم ٧)  "</string>
     <string name="nighn">٩</string>
     <string name="total">المجموع</string>
+    <string name="no_more_item">لا مزيد من النتائج</string>
     <string name="tax">الضريبة</string>
     <string name="finale">السعر النهائي</string>
     <string name="check_out">الدفع</string>
