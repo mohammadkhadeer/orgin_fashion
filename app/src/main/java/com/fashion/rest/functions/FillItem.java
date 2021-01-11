@@ -1,6 +1,7 @@
 package com.fashion.rest.functions;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
@@ -10,16 +11,18 @@ import java.util.ArrayList;
 
 public class FillItem {
 
-    public static ArrayList<Deal> fillEndlessItemDepCatArrayL(Context context) {
-        ArrayList<Deal> dealArrayL = new ArrayList<Deal>();
+    public static ArrayList<Deal> fillEndlessItemDepCatArrayL(ArrayList<Deal> dealArrayL,Context context) {
+        //ArrayList<Deal> dealArrayL = new ArrayList<Deal>();
         String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
 
         for (int i=0;i<8;i++)
         {
-            Price price1 = new Price(180,99,180);
+            int x = 10*dealArrayL.size();
+            Price price1 = new Price(x,99,180);
             dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1));
 
         }
+        //Log.i("TAG TAG TAG TAG",String.valueOf(dealArrayL.size()));
 
         return dealArrayL;
     }

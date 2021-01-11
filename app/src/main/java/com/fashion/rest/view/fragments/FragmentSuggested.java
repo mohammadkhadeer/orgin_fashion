@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
@@ -48,6 +49,7 @@ public class FragmentSuggested extends Fragment implements AdapterSet.PassItem{
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_suggested, container, false);
         inti();
+        Toast.makeText(getActivity(),"here" + "In suggested",Toast.LENGTH_LONG).show();
         createRVSuggested();
         changeFont();
         actionListenerToSeeAll();

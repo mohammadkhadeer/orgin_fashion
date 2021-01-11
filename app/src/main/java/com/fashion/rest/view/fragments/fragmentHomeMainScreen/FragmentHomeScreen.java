@@ -2,11 +2,13 @@ package com.fashion.rest.view.fragments.fragmentHomeMainScreen;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 import com.fashion.rest.R;
@@ -19,6 +21,7 @@ import com.fashion.rest.view.Adapters.AdapterMainList;
 import com.fashion.rest.view.Adapters.AdapterOffer;
 import com.fashion.rest.view.Adapters.AdapterSuggestedToYou;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentBracelets;
+import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentCategory;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentEarring;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentFootAnklet;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentNecklaces;
@@ -37,27 +40,17 @@ public class FragmentHomeScreen extends Fragment{
 
     View view;
     List<Offer> mList = new ArrayList<>();
-    public ArrayList<Category> categoryArrayL = new ArrayList<>();
 
-    public ArrayList<String> meanList = new ArrayList<>();
 
     public ArrayList<Deal> dealsArrayList = new ArrayList<>();
 
-    TextView suggestedTV;
-    RecyclerView suggestedRV,categoryRV,meanRV;
-    AdapterSuggestedToYou adapterSuggestedToYou;
-    AdapterMainList adapterMainList;
-    AdapterOffer adapterOffer;
-    AdapterCategory adapterCategory;
-    RecyclerView.LayoutManager layoutManagerSuggested,layoutManagerCategory;
-    FragmentSet fragmentSet = new FragmentSet();
-    FragmentBracelets fragmentBracelets = new FragmentBracelets();
-    FragmentNecklaces fragmentNecklaces = new FragmentNecklaces();
-    FragmentRings fragmentRings = new FragmentRings();
-    FragmentFootAnklet fragmentFootAnklet = new FragmentFootAnklet();
-    FragmentEarring fragmentEarring = new FragmentEarring();
+
+
     FragmentOffers fragmentOffers = new FragmentOffers();
     FragmentTest fragmentTest = new FragmentTest();
+    FragmentCategory fragmentCategory = new FragmentCategory();
+    NestedScrollView nestedScrollView;
+
 
     public FragmentHomeScreen(){}
 
@@ -65,28 +58,38 @@ public class FragmentHomeScreen extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        init();
-        changeFont();
-        handelTestFragment();
-        //handelOffersFragment();
-        //readFromDataBase();
-//        createRVSuggested();
-//        createCategoryRV();
-//        //createMeanL();
-//        setFragment();
-//        BraceletsFragment();
-//        NecklacesFragment();
-//        RingsFragment();
-//        FootAnkletFragment();
-//        EarringFragment();
+        inti();
+        //handelTestFragment();
+        handelOffersFragment();
+        handelCategoryFragment();
+        actionListenerToNestedScroll();
 
         return view;
     }
 
-    private void handelTestFragment() {
+    private void actionListenerToNestedScroll() {
+        nestedScrollView.getViewTreeObserver().addOnScrollChangedListener(new
+                                                                                  ViewTreeObserver.OnScrollChangedListener() {
+                                                                                      @Override
+                                                                                      public void onScrollChanged() {
+                                                                                          View view = (View) nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1);
+                                                                                          int diff = (view.getBottom() - (nestedScrollView.getHeight() + nestedScrollView.getScrollY()));
+                                                                                          if (diff == 0) {
+                                                                                              fragmentCategory.loadMore();
+                                                                                              //code to fetch more data for endless scrolling
+
+                                                                                          }
+                                                                                      }
+                                                                                  });
+    }
+
+    private void inti() {
+        nestedScrollView = (NestedScrollView) view.findViewById(R.id.nested);
+    }
+
+    private void handelCategoryFragment() {
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_test, fragmentTest)
+                .replace(R.id.container_category, fragmentCategory)
                 .commit();
     }
 
@@ -96,102 +99,10 @@ public class FragmentHomeScreen extends Fragment{
                 .commit();
     }
 
-    private void EarringFragment() {
+    private void handelTestFragment() {
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_earring, fragmentEarring)
+                .replace(R.id.container_test, fragmentTest)
                 .commit();
     }
 
-    private void FootAnkletFragment() {
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_foot_anklet, fragmentFootAnklet)
-                .commit();
-    }
-
-    private void RingsFragment() {
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_rings, fragmentRings)
-                .commit();
-    }
-
-    private void NecklacesFragment() {
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_necklaces, fragmentNecklaces)
-                .commit();
-    }
-
-    private void BraceletsFragment() {
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_bracelets, fragmentBracelets)
-                .commit();
-    }
-
-    private void setFragment() {
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_set, fragmentSet)
-                .commit();
-    }
-
-//    private void createMeanL() {
-//        meanList =fillMeanArrayL(meanList,getActivity());
-//        meanRV.setHasFixedSize(true);
-//        meanRV.setNestedScrollingEnabled(false);
-//        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
-//        meanRV.setLayoutManager(mLayoutManager);
-//        adapterMainList = new AdapterMainList(getActivity(), meanList);
-//        meanRV.setAdapter(adapterMainList);
-//    }
-
-    private void createCategoryRV() {
-        categoryArrayL = fillOptionsArrayL(categoryArrayL,getActivity());
-        categoryRV.setNestedScrollingEnabled(false);
-        categoryRV.setHasFixedSize(true);
-        layoutManagerSuggested = new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.HORIZONTAL, false);
-
-        categoryRV.setLayoutManager(layoutManagerSuggested);
-        adapterCategory =new AdapterCategory(getActivity()
-                ,categoryArrayL);
-        categoryRV.setAdapter(adapterCategory);
-    }
-
-    private void init() {
-//        meanRV = (RecyclerView) view.findViewById(R.id.fragment_home_mean_RV);
-        suggestedRV = (RecyclerView) view.findViewById(R.id.fragment_home_suggested_RV);
-        categoryRV = (RecyclerView) view.findViewById(R.id.fragment_home_category_RV);
-        suggestedTV = view.findViewById(R.id.fragment_haom_suggested_TV);
-    }
-
-//    private void readFromDataBase() {
-//        mList = getOffers(mList);
-//
-//        new Handler().postDelayed(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//
-//
-//            }
-//        }, 1700);
-//
-//    }
-
-    private void createRVSuggested() {
-        dealsArrayList = fillOffersArrayL(dealsArrayList,getActivity());
-
-
-        suggestedRV.setNestedScrollingEnabled(false);
-        suggestedRV.setHasFixedSize(true);
-        layoutManagerSuggested = new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.HORIZONTAL, false);
-
-        suggestedRV.setLayoutManager(layoutManagerSuggested);
-        adapterSuggestedToYou =new AdapterSuggestedToYou(getActivity()
-                ,dealsArrayList);
-        suggestedRV.setAdapter(adapterSuggestedToYou);
-    }
-
-    private void changeFont() {
-        suggestedTV.setTypeface(Functions.changeFontGeneral(getActivity()));
-    }
 }

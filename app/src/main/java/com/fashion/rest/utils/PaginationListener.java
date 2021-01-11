@@ -3,6 +3,7 @@ package com.fashion.rest.utils;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 
 public abstract class PaginationListener extends RecyclerView.OnScrollListener {
@@ -36,6 +37,7 @@ public abstract class PaginationListener extends RecyclerView.OnScrollListener {
       if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
           && firstVisibleItemPosition >= 0
           && totalItemCount >= PAGE_SIZE) {
+        Log.i("FAG","here !");
         loadMoreItems();
       }
     }

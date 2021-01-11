@@ -1,16 +1,11 @@
 package com.fashion.rest.view.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Paint;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fashion.rest.R;
-import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.utils.BaseViewHolderUser;
-import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -34,7 +27,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 
-public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUser> {
+public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderUser> {
   private static final int VIEW_TYPE_LOADING = 0;
   private static final int VIEW_TYPE_NORMAL = 1;
   private boolean isLoaderVisible = false;
@@ -43,7 +36,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
   Context context;
   String comeFrom;
 
-  public AdapterEndlessOffers(List<Deal> postItems, Context context, String comeFrom) {
+  public AdapterEndlessCategory(List<Deal> postItems, Context context, String comeFrom) {
     this.dealItemsList = postItems;
     this.context = context;
     this.comeFrom = comeFrom;
@@ -56,10 +49,10 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
     switch (viewType) {
       case VIEW_TYPE_NORMAL:
         return new ViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_offers_endless, parent, false));
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_offers_category, parent, false));
       case VIEW_TYPE_LOADING:
         return new ProgressHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading_h, parent, false));
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading_category, parent, false));
       default:
         return null;
     }

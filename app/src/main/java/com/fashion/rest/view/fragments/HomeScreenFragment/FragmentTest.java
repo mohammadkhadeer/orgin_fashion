@@ -7,9 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
@@ -24,14 +26,23 @@ import java.util.List;
 
 import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
 import static com.fashion.rest.functions.Functions.fillSetArrayL;
-import static com.fashion.rest.utils.PaginationListener.PAGE_START;
 
 public class FragmentTest extends Fragment {
     View view;
     RecyclerView recyclerView;
-    RecyclerViewAdapter recyclerViewAdapter;
-    ArrayList<String> rowsArrayList = new ArrayList<>();
     boolean isLoading = false;
+    public ArrayList<Deal> dealsArrayList = new ArrayList<>();
+    public ArrayList<Deal> suggestedItemsArrayListTest;
+    public ArrayList<Deal> suggestedItemsArrayListDO;
+
+
+    public static final int PAGE_START = 1;
+    private int currentPage = PAGE_START;
+    private boolean isLastPage = false;
+    private int totalPage = 10;
+
+    LinearLayoutManager mLayoutManager;
+    AdapterEndlessOffers adapterEndlessOffers ;
 
     public FragmentTest(){}
 
@@ -39,33 +50,18 @@ public class FragmentTest extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_test, container, false);
+        suggestedItemsArrayListDO = new ArrayList<>();
+        suggestedItemsArrayListTest = new ArrayList<>();
         inti();
-        populateData();
-        initAdapter();
-        initScrollListener();
+        createRV();
+        actionListenerToRV();
+
 
         return view;
     }
 
-    private void populateData() {
-        int i = 0;
-        while (i < 10) {
-            rowsArrayList.add("Item " + i);
-            i++;
-        }
-    }
-    LinearLayoutManager linearLayoutManager;
+    private void actionListenerToRV() {
 
-    private void initAdapter() {
-
-        recyclerViewAdapter = new RecyclerViewAdapter(rowsArrayList);
-        linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(recyclerViewAdapter);
-    }
-
-    private void initScrollListener() {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -75,52 +71,96 @@ public class FragmentTest extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
-
+//                Log.i("TAG BAG","isLoading: "+String.valueOf(isLoading));
+//                Log.i("TAG BAG","mLayoutManager.findLastCompletelyVisibleItemPosition(): "+String.valueOf(mLayoutManager.findLastCompletelyVisibleItemPosition()));
+//                Log.i("TAG BAG","suggestedItemsArrayListDO.size() - 1: "+String.valueOf(suggestedItemsArrayListDO.size() - 1));
+//
+//                if (mLayoutManager != null)
+//                {
+//                    Log.i("TAG BAG","mLayoutManager: NOT NOT ~NOT null");
+//                }else{
+//                    Log.i("TAG BAG","mLayoutManager:Null");
+//                }
                 if (!isLoading) {
-                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == rowsArrayList.size() - 1) {
+                    Log.i("TAG BAG","After if isLoading: "+String.valueOf(isLoading));
+
+                    if (mLayoutManager != null && mLayoutManager.findLastCompletelyVisibleItemPosition() == suggestedItemsArrayListDO.size() - 1) {
                         //bottom of list!
-                        loadMore();
+                        Toast.makeText(getActivity(),"TAG !" +String.valueOf(currentPage)+ " Load more ...",Toast.LENGTH_SHORT).show();
+
+                        new Handler().postDelayed(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Log.i("TAG BAG","currentPage: "+String.valueOf(currentPage));
+                                doApiCall();
+
+                            }
+                        }, 2000);
+                        currentPage ++;
                         isLoading = true;
+
                     }
                 }
             }
         });
 
-
+//        recyclerView.addOnScrollListener(new PaginationListener(mLayoutManager) {
+//            @Override
+//            protected void loadMoreItems() {
+//                isLoading = true;
+//                currentPage++;
+//                Toast.makeText(getActivity(),"TAG !" +String.valueOf(currentPage)+ " Load more ...",Toast.LENGTH_SHORT).show();
+//                new Handler().postDelayed(new Runnable() {
+//
+//                    @Override
+//                    public void run() {
+//
+//                        doApiCall();
+//
+//                    }
+//                }, 2000);
+//            }
+//
+//            @Override
+//            public boolean isLastPage() {
+//                return isLastPage;
+//            }
+//
+//            @Override
+//            public boolean isLoading() {
+//                return isLoading;
+//            }
+//        });
     }
 
-    private void loadMore() {
-        rowsArrayList.add(null);
-        recyclerViewAdapter.notifyItemInserted(rowsArrayList.size() - 1);
-
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                rowsArrayList.remove(rowsArrayList.size() - 1);
-                int scrollPosition = rowsArrayList.size();
-                recyclerViewAdapter.notifyItemRemoved(scrollPosition);
-                int currentSize = scrollPosition;
-                int nextLimit = currentSize + 10;
-
-                while (currentSize - 1 < nextLimit) {
-                    rowsArrayList.add("Item " + currentSize);
-                    currentSize++;
-                }
-
-                recyclerViewAdapter.notifyDataSetChanged();
-                isLoading = false;
-            }
-        }, 2000);
-
-
+    private void createRV() {
+        adapterEndlessOffers = new AdapterEndlessOffers(new ArrayList<Deal>(),getActivity(),"call");
+        recyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(adapterEndlessOffers);
+        doApiCall();
     }
 
-//    private void changeFont() {
-//        headerTV.setTypeface(Functions.changeFontCategory(getActivity()));
-//    }
+    private void doApiCall() {
+        suggestedItemsArrayListTest = new ArrayList<>();
+        Log.i("TAG BAG","doApiCall: ");
+        suggestedItemsArrayListTest = fillEndlessItemDepCatArrayL(suggestedItemsArrayListTest,getActivity());
+        suggestedItemsArrayListDO = fillEndlessItemDepCatArrayL(suggestedItemsArrayListDO,getActivity());
+//        suggestedItemsArrayListTest.addAll(suggestedItemsArrayListDO);
+
+        //fill here
+        if (currentPage != PAGE_START) adapterEndlessOffers.removeLoading();
+        adapterEndlessOffers.addItems(suggestedItemsArrayListTest);
+        if (currentPage < totalPage) {
+            adapterEndlessOffers.addLoading();
+            isLoading = false;
+        } else {
+            isLastPage = true;
+        }
+    }
 
 
     private void inti() {
