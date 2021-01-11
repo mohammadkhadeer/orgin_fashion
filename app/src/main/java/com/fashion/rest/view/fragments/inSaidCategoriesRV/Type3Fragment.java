@@ -1,6 +1,5 @@
-package com.fashion.rest.view.fragments.HomeScreenFragment;
+package com.fashion.rest.view.fragments.inSaidCategoriesRV;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -15,49 +14,39 @@ import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
-import com.fashion.rest.presnter.PassObject;
-import com.fashion.rest.utils.PaginationListener;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
-import com.fashion.rest.view.Adapters.AdapterOffers;
-import com.fashion.rest.view.Adapters.RecyclerViewAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
-import static com.fashion.rest.functions.Functions.fillSetArrayL;
 
-public class FragmentTest extends Fragment {
+public class Type3Fragment extends Fragment {
     View view;
     RecyclerView recyclerView;
     boolean isLoading = false;
     public ArrayList<Deal> dealsArrayList = new ArrayList<>();
     public ArrayList<Deal> suggestedItemsArrayListTest;
     public ArrayList<Deal> suggestedItemsArrayListDO;
-
-
     public static final int PAGE_START = 1;
     private int currentPage = PAGE_START;
     private boolean isLastPage = false;
     private int totalPage = 10;
-
     LinearLayoutManager mLayoutManager;
     AdapterEndlessOffers adapterEndlessOffers ;
 
-    public FragmentTest(){}
+    String categoryType="Type 333 333 333 333 Fragment";
 
+    public Type3Fragment(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_test, container, false);
-        suggestedItemsArrayListDO = new ArrayList<>();
-        suggestedItemsArrayListTest = new ArrayList<>();
-
+        view= inflater.inflate(R.layout.type3_fragment, container, false);
         inti();
         createRV();
         actionListenerToRV();
 
+        Log.i("CategoryType From Fragment Fragment Fragment",categoryType);
 
         return view;
     }
@@ -73,16 +62,7 @@ public class FragmentTest extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-//                Log.i("TAG BAG","isLoading: "+String.valueOf(isLoading));
-//                Log.i("TAG BAG","mLayoutManager.findLastCompletelyVisibleItemPosition(): "+String.valueOf(mLayoutManager.findLastCompletelyVisibleItemPosition()));
-//                Log.i("TAG BAG","suggestedItemsArrayListDO.size() - 1: "+String.valueOf(suggestedItemsArrayListDO.size() - 1));
-//
-//                if (mLayoutManager != null)
-//                {
-//                    Log.i("TAG BAG","mLayoutManager: NOT NOT ~NOT null");
-//                }else{
-//                    Log.i("TAG BAG","mLayoutManager:Null");
-//                }
+
                 if (!isLoading) {
                     Log.i("TAG BAG","After if isLoading: "+String.valueOf(isLoading));
 
@@ -94,7 +74,6 @@ public class FragmentTest extends Fragment {
 
                             @Override
                             public void run() {
-                                Log.i("TAG BAG","currentPage: "+String.valueOf(currentPage));
                                 doApiCall();
 
                             }
@@ -107,33 +86,6 @@ public class FragmentTest extends Fragment {
             }
         });
 
-//        recyclerView.addOnScrollListener(new PaginationListener(mLayoutManager) {
-//            @Override
-//            protected void loadMoreItems() {
-//                isLoading = true;
-//                currentPage++;
-//                Toast.makeText(getActivity(),"TAG !" +String.valueOf(currentPage)+ " Load more ...",Toast.LENGTH_SHORT).show();
-//                new Handler().postDelayed(new Runnable() {
-//
-//                    @Override
-//                    public void run() {
-//
-//                        doApiCall();
-//
-//                    }
-//                }, 2000);
-//            }
-//
-//            @Override
-//            public boolean isLastPage() {
-//                return isLastPage;
-//            }
-//
-//            @Override
-//            public boolean isLoading() {
-//                return isLoading;
-//            }
-//        });
     }
 
     private void createRV() {
@@ -148,11 +100,8 @@ public class FragmentTest extends Fragment {
 
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        Log.i("TAG BAG","doApiCall: ");
         suggestedItemsArrayListTest = fillEndlessItemDepCatArrayL(suggestedItemsArrayListTest,getActivity());
         suggestedItemsArrayListDO = fillEndlessItemDepCatArrayL(suggestedItemsArrayListDO,getActivity());
-//        suggestedItemsArrayListTest.addAll(suggestedItemsArrayListDO);
-
         //fill here
         if (currentPage != PAGE_START) adapterEndlessOffers.removeLoading();
         adapterEndlessOffers.addItems(suggestedItemsArrayListTest);
@@ -164,9 +113,9 @@ public class FragmentTest extends Fragment {
         }
     }
 
-
     private void inti() {
+        suggestedItemsArrayListDO = new ArrayList<>();
+        suggestedItemsArrayListTest = new ArrayList<>();
         recyclerView = (RecyclerView) view.findViewById(R.id.test_RV);
     }
-
 }

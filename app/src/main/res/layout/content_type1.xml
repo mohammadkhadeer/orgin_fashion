@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    tools:context=".view.activity.ItemDetails"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/adapter_offers_category"
+    android:id="@+id/contentType1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/adapter_suggested_to_you_cont"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cover_typ1"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="100">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="70">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorRed">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/adapter_name_TV"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="8dp"
+                        android:text="test"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="15dp"
+                        android:layout_marginStart="12dp"
+                        />
+
+                </RelativeLayout>
+                <ImageView
+                    android:id="@+id/type1_IV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/adapter_des_TV"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_marginLeft="20dp"
+                        android:text="test test test test test test test test test test test test"
+                        android:textSize="14dp"
+                        android:layout_marginStart="12dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/adapter_price_TV"
+                            android:textColor="@color/colorGreen"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="14dp"
+                            android:text="120 JOD"
+                            android:layout_marginStart="12dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/adapter_old_price_TV"
+                            android:textColor="@color/colorSilver"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="12dp"
+                            android:text="130 JOD"
+                            android:layout_marginStart="12dp"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

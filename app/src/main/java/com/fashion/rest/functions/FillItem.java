@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.ListItem;
 import com.fashion.rest.model.Price;
 
 import java.util.ArrayList;
@@ -25,6 +26,18 @@ public class FillItem {
         //Log.i("TAG TAG TAG TAG",String.valueOf(dealArrayL.size()));
 
         return dealArrayL;
+    }
+
+    public static ArrayList<ListItem> fillEndlessItemListArrayL(ArrayList<ListItem> dealArrayL,Context context) {
+        ArrayList<ListItem> listArrayL = new ArrayList<ListItem>();
+
+        listArrayL.add(new ListItem("type1"));
+        listArrayL.add(new ListItem("type2"));
+        listArrayL.add(new ListItem("type3"));
+        listArrayL.add(new ListItem("type4"));
+
+
+        return listArrayL;
     }
 
 

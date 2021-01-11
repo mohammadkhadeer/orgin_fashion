@@ -99,10 +99,6 @@ public class FragmentHomeScreen extends Fragment{
                 .commit();
     }
 
-    private void handelTestFragment() {
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_test, fragmentTest)
-                .commit();
-    }
+
 
 }

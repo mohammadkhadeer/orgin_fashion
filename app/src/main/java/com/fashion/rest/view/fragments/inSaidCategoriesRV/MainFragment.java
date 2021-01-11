@@ -1,0 +1,66 @@
+package com.fashion.rest.view.fragments.inSaidCategoriesRV;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.fashion.rest.R;
+import com.fashion.rest.model.Deal;
+import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
+
+import java.util.ArrayList;
+
+import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
+
+public class MainFragment extends Fragment {
+    View view;
+
+    public MainFragment(){}
+
+    String categoryType = "empty";
+
+    Type1Fragment type1Fragment = new Type1Fragment();
+    Type2Fragment type2Fragment = new Type2Fragment();
+    Type3Fragment type3Fragment = new Type3Fragment();
+    Type4Fragment type4Fragment = new Type4Fragment();
+
+    @Override
+    public void onAttach(Context context) {
+        if (getArguments() != null) {
+            categoryType = getArguments().getString("type");
+
+        }
+        super.onAttach(context);
+//        Log.i("CategoryType",categoryType);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        view= inflater.inflate(R.layout.main_fragment, container, false);
+
+        inti();
+        handelWhitchCaseMustShow();
+
+        return view;
+    }
+
+    private void handelWhitchCaseMustShow() {
+
+    }
+
+    private void inti() {
+
+    }
+
+}

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.ListItem;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.utils.PaginationListener;
 import com.fashion.rest.view.Adapters.AdapterEndlessCategory;
@@ -25,6 +26,7 @@ import com.fashion.rest.view.Adapters.AdapterOffers;
 import java.util.ArrayList;
 
 import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
+import static com.fashion.rest.functions.FillItem.fillEndlessItemListArrayL;
 
 
 public class FragmentCategory extends Fragment{
@@ -32,9 +34,9 @@ public class FragmentCategory extends Fragment{
     RecyclerView recyclerView;
     AdapterOffers adapterOffers;
     RecyclerView.LayoutManager layoutManager;
-    public ArrayList<Deal> dealsArrayList = new ArrayList<>();
-    public ArrayList<Deal> suggestedItemsArrayListTest;
-    public ArrayList<Deal> suggestedItemsArrayListDO;
+    public ArrayList<ListItem> dealsArrayList = new ArrayList<>();
+    public ArrayList<ListItem> suggestedItemsArrayListTest;
+    public ArrayList<ListItem> suggestedItemsArrayListDO;
 
     PassObject passObject;
 
@@ -75,6 +77,7 @@ public class FragmentCategory extends Fragment{
         view= inflater.inflate(R.layout.fragment_category, container, false);
         suggestedItemsArrayListDO = new ArrayList<>();
         suggestedItemsArrayListTest = new ArrayList<>();
+
         inti();
         createRV();
         //actionListenerToRV();
@@ -99,7 +102,7 @@ public class FragmentCategory extends Fragment{
                     doApiCall();
 
                 }
-            }, 1500);
+            }, 1000);
         }
         controler =1;
         handelControler();
@@ -148,7 +151,7 @@ public class FragmentCategory extends Fragment{
     }
 
     private void createRV() {
-        adapterEndlessCategory = new AdapterEndlessCategory(new ArrayList<Deal>(),getActivity(),"call");
+        adapterEndlessCategory = new AdapterEndlessCategory(new ArrayList<ListItem>(),getActivity(),"call");
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setHasFixedSize(true);
@@ -167,8 +170,8 @@ public class FragmentCategory extends Fragment{
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
         Log.i("TAG BAG","doApiCall: ");
-        suggestedItemsArrayListTest = fillEndlessItemDepCatArrayL(suggestedItemsArrayListTest,getActivity());
-        suggestedItemsArrayListDO = fillEndlessItemDepCatArrayL(suggestedItemsArrayListDO,getActivity());
+        suggestedItemsArrayListTest = fillEndlessItemListArrayL(suggestedItemsArrayListTest,getActivity());
+        suggestedItemsArrayListDO = fillEndlessItemListArrayL(suggestedItemsArrayListDO,getActivity());
 //        suggestedItemsArrayListTest.addAll(suggestedItemsArrayListDO);
 
         //fill here
