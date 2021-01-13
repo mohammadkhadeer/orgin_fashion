@@ -3,12 +3,15 @@ package com.fashion.rest.functions;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.FastFood;
 import com.fashion.rest.model.Notification;
+import com.fashion.rest.model.OffersGradientsWithTextColor;
 import com.fashion.rest.model.Price;
 
 import java.text.DecimalFormat;
@@ -148,170 +151,33 @@ public class Functions {
     }
 
 
-    public static ArrayList<Deal> fillDealArrayL(ArrayList<Deal> dealArrayL, Context context) {
-        dealArrayL = new ArrayList<Deal>();
-
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
-        Price price1 = new Price(230,199,230);
-        Price price2 = new Price(330,299,330);
-        Price price3 = new Price(430,399,430);
-
-        Deal deal1 = new Deal(R.drawable.n3,image,"test 1","test des 1 test des 1 test des 1",price1);
-        Deal deal2 = new Deal(R.drawable.n1,image,"test 2","test des des des des 2",price2);
-        Deal deal3 = new Deal(R.drawable.n2,image,"test 3","test des 3",price3);
-
-        dealArrayL.add(deal1);
-        dealArrayL.add(deal2);
-        dealArrayL.add(deal3);
-
-        return dealArrayL;
-    }
-
-    public static ArrayList<Deal> fillOffersArrayL(ArrayList<Deal> dealArrayL, Context context) {
-        dealArrayL = new ArrayList<Deal>();
-
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
-        Price price1 = new Price(180,99,180);
-        Price price2 = new Price(170,99,170);
-        Price price3 = new Price(160,99,160);
-
-        Deal deal1 = new Deal(R.drawable.offer1,image,"QiaoKai","Crystal Gold Plated Jewellery Set long text tow be 2",price1);
-        Deal deal2 = new Deal(R.drawable.offer2,image,"Embellished","Stone Embellished Jewellery Set long text tow be 2",price2);
-        Deal deal3 = new Deal(R.drawable.offer3,image,"Jewellery","4-Piece Jewellery Set long text tow be 2",price3);
-
-        dealArrayL.add(deal1);
-        dealArrayL.add(deal2);
-        dealArrayL.add(deal3);
-
-        return dealArrayL;
-    }
-
-    public static ArrayList<Deal> fillDealsArrayL(ArrayList<Deal> dealArrayL, Context context) {
-        dealArrayL = new ArrayList<Deal>();
-
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
-        Price price1 = new Price(180,99,180);
-        Price price2 = new Price(170,99,170);
-        Price price3 = new Price(160,99,160);
-
-        Deal deal1 = new Deal(R.drawable.of1,image,"QiaoKai","Crystal Gold Plated Jewellery Set long text tow be 2",price1);
-        Deal deal2 = new Deal(R.drawable.of2,image,"Embellished","Stone Embellished Jewellery Set long text tow be 2",price2);
-        Deal deal3 = new Deal(R.drawable.of3,image,"Jewellery","4-Piece Jewellery Set long text tow be 2",price3);
-
-        dealArrayL.add(deal1);
-        dealArrayL.add(deal2);
-        dealArrayL.add(deal3);
-
-        return dealArrayL;
-    }
-
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static ArrayList<Deal> fillSetArrayL(ArrayList<Deal> dealArrayL, Context context) {
         dealArrayL = new ArrayList<Deal>();
 
+        OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna",context.getColor(R.color.colorBlack));
+
         String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
         Price price1 = new Price(180,99,180);
         Price price2 = new Price(170,99,170);
         Price price3 = new Price(160,99,160);
 
-        Deal deal1 = new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1);
-        Deal deal2 = new Deal(R.drawable.s3,image,context.getResources().getString(R.string.Embellished),context.getResources().getString(R.string.Embellished_des),price2);
-        Deal deal3 = new Deal(R.drawable.s1,image,context.getResources().getString(R.string.Jewellery),context.getResources().getString(R.string.Jewellery_des),price3);
+        Deal deal1 = new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor);
+        Deal deal2 = new Deal(R.drawable.s3,image,context.getResources().getString(R.string.Embellished),context.getResources().getString(R.string.Embellished_des),price2,offersGradientsWithTextColor);
+        Deal deal3 = new Deal(R.drawable.s1,image,context.getResources().getString(R.string.Jewellery),context.getResources().getString(R.string.Jewellery_des),price3,offersGradientsWithTextColor);
 
         dealArrayL.add(deal1);
         dealArrayL.add(deal2);
         dealArrayL.add(deal3);
-
-        return dealArrayL;
-    }
-
-    public static ArrayList<Deal> fillBraceletsArrayL(ArrayList<Deal> dealArrayL, Context context) {
-        dealArrayL = new ArrayList<Deal>();
-
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
-        Price price1 = new Price(550,499,550);
-        Price price2 = new Price(650,599,650);
-        Price price3 = new Price(750,699,750);
-
-        Deal deal1 = new Deal(R.drawable.b1,image,context.getResources().getString(R.string.Bracelet_Bangles),context.getResources().getString(R.string.Bracelet_Bangles_des),price1);
-        Deal deal2 = new Deal(R.drawable.b2,image,context.getResources().getString(R.string.Bangles),context.getResources().getString(R.string.Bangles_des),price2);
-        Deal deal3 = new Deal(R.drawable.b3,image,context.getResources().getString(R.string.Bracelet),context.getResources().getString(R.string.Bracelet_des),price3);
-
         dealArrayL.add(deal1);
         dealArrayL.add(deal2);
         dealArrayL.add(deal3);
-
-        return dealArrayL;
-    }
-
-    public static ArrayList<Deal> fillNecklacesArrayL(ArrayList<Deal> dealArrayL, Context context) {
-        dealArrayL = new ArrayList<Deal>();
-
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
-        Price price1 = new Price(950,499,550);
-        Price price2 = new Price(1050,599,650);
-        Price price3 = new Price(1150,699,750);
-
-        Deal deal1 = new Deal(R.drawable.n3,image,context.getResources().getString(R.string.Retro),context.getResources().getString(R.string.Retro_des),price1);
-        Deal deal2 = new Deal(R.drawable.n2,image,context.getResources().getString(R.string.Retro2),context.getResources().getString(R.string.Retro_de2s),price2);
-        Deal deal3 = new Deal(R.drawable.n1,image,context.getResources().getString(R.string.Retro3),context.getResources().getString(R.string.Retro_des3),price3);
-
         dealArrayL.add(deal1);
         dealArrayL.add(deal2);
         dealArrayL.add(deal3);
-
-        return dealArrayL;
-    }
-
-    public static ArrayList<Deal> fillRingsArrayL(ArrayList<Deal> dealArrayL, Context context) {
-        dealArrayL = new ArrayList<Deal>();
-
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
-        Price price1 = new Price(80,49,80);
-        Price price2 = new Price(90,79,90);
-        Price price3 = new Price(100,89,100);
-
-        Deal deal1 = new Deal(R.drawable.r1,image,context.getResources().getString(R.string.Sapphire),context.getResources().getString(R.string.Sapphire_des),price1);
-        Deal deal2 = new Deal(R.drawable.r2,image,context.getResources().getString(R.string.Band_Ring),context.getResources().getString(R.string.Band_Ring_des),price2);
-        Deal deal3 = new Deal(R.drawable.r3,image,context.getResources().getString(R.string.Statement),context.getResources().getString(R.string.Statement_des),price3);
-
         dealArrayL.add(deal1);
         dealArrayL.add(deal2);
         dealArrayL.add(deal3);
-
-        return dealArrayL;
-    }
-
-    public static ArrayList<Deal> fillAnkletArrayL(ArrayList<Deal> dealArrayL, Context context) {
-        dealArrayL = new ArrayList<Deal>();
-
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
-        Price price1 = new Price(140,99,140);
-        Price price2 = new Price(190,149,190);
-        Price price3 = new Price(230,199,230);
-
-        Deal deal1 = new Deal(R.drawable.an1,image,context.getResources().getString(R.string.Bohemian),context.getResources().getString(R.string.Bohemian_des),price1);
-        Deal deal2 = new Deal(R.drawable.an2,image,context.getResources().getString(R.string.jewelry_),context.getResources().getString(R.string.jewelry__des),price2);
-        Deal deal3 = new Deal(R.drawable.an3,image,context.getResources().getString(R.string.Statement),context.getResources().getString(R.string.Statement_des),price3);
-
-        dealArrayL.add(deal1);
-        dealArrayL.add(deal2);
-        dealArrayL.add(deal3);
-
-        return dealArrayL;
-    }
-
-    public static ArrayList<Deal> fillEarringsArrayL(ArrayList<Deal> dealArrayL, Context context) {
-        dealArrayL = new ArrayList<Deal>();
-
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
-        Price price1 = new Price(125,99,125);
-        Price price2 = new Price(235,179,235);
-        Price price3 = new Price(345,299,345);
-
-        Deal deal1 = new Deal(R.drawable.er1,image,context.getResources().getString(R.string.Women_Drop),context.getResources().getString(R.string.Women_Drop_des),price1);
-        Deal deal2 = new Deal(R.drawable.er2,image,context.getResources().getString(R.string.Earrings),context.getResources().getString(R.string.Earrings_des),price2);
-        Deal deal3 = new Deal(R.drawable.er3,image,context.getResources().getString(R.string.Statement_e),context.getResources().getString(R.string.Statement_e_des),price3);
-
         dealArrayL.add(deal1);
         dealArrayL.add(deal2);
         dealArrayL.add(deal3);

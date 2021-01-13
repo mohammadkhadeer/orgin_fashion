@@ -22,8 +22,6 @@ import com.fashion.rest.view.activity.CategoryItem;
 
 import java.util.ArrayList;
 
-import static com.fashion.rest.functions.Functions.fillBraceletsArrayL;
-
 public class FragmentBracelets extends Fragment implements AdapterSet.PassItem{
     View view;
     RecyclerView recyclerView;
@@ -59,7 +57,6 @@ public class FragmentBracelets extends Fragment implements AdapterSet.PassItem{
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_bracelets, container, false);
         inti();
-        createRVSuggested();
         changeFont();
         actionListenerToSeeAll();
         return view;
@@ -91,18 +88,6 @@ public class FragmentBracelets extends Fragment implements AdapterSet.PassItem{
         });
     }
 
-    private void createRVSuggested() {
-        dealsArrayList = fillBraceletsArrayL(dealsArrayList,getActivity());
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.HORIZONTAL, false);
-
-        recyclerView.setLayoutManager(layoutManager);
-        adapterSet =new AdapterSet(getActivity()
-                ,dealsArrayList,getActivity().getResources().getString(R.string.bracelets_s),this);
-        recyclerView.setAdapter(adapterSet);
-    }
 
     @Override
     public void onClicked(Deal deal) {

@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,17 +28,19 @@ import com.fashion.rest.view.activity.mainScreem.MainActivity;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentTest;
 import com.fashion.rest.view.fragments.inSaidCategoriesRV.MainFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 
+import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
 import static com.fashion.rest.view.categoriesComp.FillType1.fill;
 import static com.fashion.rest.view.categoriesComp.FillType2.fillCaseItem;
 import static com.fashion.rest.view.categoriesComp.FillType3.fillCase3Item;
 import static com.fashion.rest.view.categoriesComp.FillType4.fillCase4Item;
 
 
-public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderUser> {
+public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderUser>{
   private static final int VIEW_TYPE_LOADING = 0;
   private static final int VIEW_TYPE_NORMAL = 1;
   private boolean isLoaderVisible = false;
@@ -52,6 +55,10 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
     this.comeFrom = comeFrom;
   }
 
+  public interface PassItem {
+    void onClicked(Deal deal);
+  }
+
   @NonNull
   @Override
   public BaseViewHolderUser onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,7 +69,7 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_offers_category, parent, false));
       case VIEW_TYPE_LOADING:
         return new ProgressHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading_category, parent, false));
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading_category_endless, parent, false));
       default:
         return null;
     }
@@ -115,7 +122,6 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
       dealItemsList.remove(position);
       notifyItemRemoved(position);
     }
-
   }
 
   ListItem getItem(int position) {
@@ -160,10 +166,9 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
     public void onBind(int position) {
       super.onBind(position);
 
-
       if (getObject(position).getListType().equals("type1"))
       {
-        Log.i("TAG",getObject(position).getListType());
+        //Log.i("TAG",getObject(position).getListType());
             cont1.setVisibility(View.VISIBLE);
             cont2.setVisibility(View.GONE);
             cont3.setVisibility(View.GONE);
@@ -172,16 +177,18 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
       }
       if (getObject(position).getListType().equals("type2"))
       {
-        Log.i("TAG",getObject(position).getListType());
+        //Log.i("TAG",getObject(position).getListType());
         cont1.setVisibility(View.GONE);
             cont2.setVisibility(View.VISIBLE);
             cont3.setVisibility(View.GONE);
             cont4.setVisibility(View.GONE);
             fillCaseItem(recyclerViewT2,context);
+        Log.i("TAGH","im here now: ");
+        //fillType2(recyclerViewT2,context,position);
       }
       if (getObject(position).getListType().equals("type3"))
       {
-        Log.i("TAG",getObject(position).getListType());
+        //Log.i("TAG",getObject(position).getListType());
         cont1.setVisibility(View.GONE);
             cont2.setVisibility(View.GONE);
             cont3.setVisibility(View.VISIBLE);
@@ -190,7 +197,7 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
       }
       if (getObject(position).getListType().equals("type4"))
       {
-        Log.i("TAG",getObject(position).getListType());
+        //Log.i("TAG",getObject(position).getListType());
         cont1.setVisibility(View.GONE);
             cont2.setVisibility(View.GONE);
             cont3.setVisibility(View.GONE);
@@ -217,17 +224,16 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
 
 
   public class ProgressHolder extends BaseViewHolderUser {
-    CardView cardView;
+    RelativeLayout cardView;
     ImageView shinImageView,imageView,shinImageView2,imageView2,shinImageView3,imageView3
             ,shinImageView4,imageView4;
     TextView textViewNoMoreMessage;
-    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,relativeLayout4,relativeLayoutNoMoreItem;
+    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,relativeLayout4;
     ProgressHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
 
-      cardView = (CardView) itemView.findViewById(R.id.adapter_show_user_item_cv);
-      relativeLayoutNoMoreItem = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_no_more_cv);
+      cardView = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_cv);
       textViewNoMoreMessage = (TextView) itemView.findViewById(R.id.adapter_show_user_no_more_tv);
       shinImageView = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_shin);
       imageView = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_load);
@@ -265,12 +271,10 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
       if (dealItemsList.size() ==1)
       {
         cardView.setVisibility(View.GONE);
-        relativeLayoutNoMoreItem.setVisibility(View.GONE);
       }else {
         if(mod>0)
         {
           cardView.setVisibility(View.GONE);
-          relativeLayoutNoMoreItem.setVisibility(View.VISIBLE);
         }else {
           AddShineEffect(relativeLayout, shinImageView);
           AddShineEffect(relativeLayout2, shinImageView2);

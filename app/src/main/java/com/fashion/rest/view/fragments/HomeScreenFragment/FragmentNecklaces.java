@@ -5,24 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.view.Adapters.AdapterSet;
 import com.fashion.rest.view.activity.CategoryItem;
-
 import java.util.ArrayList;
-
-import static com.fashion.rest.functions.Functions.fillNecklacesArrayL;
 
 public class FragmentNecklaces extends Fragment implements AdapterSet.PassItem {
     View view;
@@ -59,7 +54,6 @@ public class FragmentNecklaces extends Fragment implements AdapterSet.PassItem {
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_necklaces, container, false);
         inti();
-        createRVSuggested();
         changeFont();
         actionListenerToSeeAll();
         return view;
@@ -89,19 +83,6 @@ public class FragmentNecklaces extends Fragment implements AdapterSet.PassItem {
                 ((Activity)getActivity()).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
             }
         });
-    }
-
-    private void createRVSuggested() {
-        dealsArrayList = fillNecklacesArrayL(dealsArrayList,getActivity());
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.HORIZONTAL, false);
-
-        recyclerView.setLayoutManager(layoutManager);
-        adapterSet =new AdapterSet(getActivity()
-                ,dealsArrayList,getActivity().getResources().getString(R.string.necklaces_s),this);
-        recyclerView.setAdapter(adapterSet);
     }
 
     @Override

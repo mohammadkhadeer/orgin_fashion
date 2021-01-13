@@ -1,33 +1,25 @@
 package com.fashion.rest.view.fragments.HomeScreenFragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.ListItem;
 import com.fashion.rest.presnter.PassObject;
-import com.fashion.rest.utils.PaginationListener;
 import com.fashion.rest.view.Adapters.AdapterEndlessCategory;
-import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
 import com.fashion.rest.view.Adapters.AdapterOffers;
-
+import com.fashion.rest.view.Adapters.AdapterType2;
 import java.util.ArrayList;
-
-import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
 import static com.fashion.rest.functions.FillItem.fillEndlessItemListArrayL;
-
 
 public class FragmentCategory extends Fragment{
     View view;
@@ -49,25 +41,24 @@ public class FragmentCategory extends Fragment{
     GridLayoutManager mLayoutManager;
     AdapterEndlessCategory adapterEndlessCategory ;
 
-    int numberOfObjectNow = 0;
     int controler;
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof PassObject) {
-//            passObject = (PassObject) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement FragmentAListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        passObject = null;
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof PassObject) {
+            passObject = (PassObject) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement FragmentAListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        passObject = null;
+    }
 
     public FragmentCategory(){}
 
@@ -85,10 +76,6 @@ public class FragmentCategory extends Fragment{
         //createRVSuggested();
         return view;
     }
-
-    //    private void changeFont() {
-//        headerTV.setTypeface(Functions.changeFontCategory(getActivity()));
-//    }
 
     public void loadMore(){
         if (controler ==0 )
@@ -116,38 +103,7 @@ public class FragmentCategory extends Fragment{
                 controler =0;
 
             }
-        }, 2000);
-    }
-
-    private void actionListenerToRV() {
-
-        recyclerView.addOnScrollListener(new PaginationListener(mLayoutManager) {
-            @Override
-            protected void loadMoreItems() {
-                isLoading = true;
-                currentPage++;
-                Toast.makeText(getActivity(),"TAG !" +String.valueOf(currentPage)+ " Load more ...",Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-
-                        doApiCall();
-
-                    }
-                }, 2000);
-            }
-
-            @Override
-            public boolean isLastPage() {
-                return isLastPage;
-            }
-
-            @Override
-            public boolean isLoading() {
-                return isLoading;
-            }
-        });
+        }, 1500);
     }
 
     private void createRV() {
@@ -156,9 +112,6 @@ public class FragmentCategory extends Fragment{
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
-
-        //mLayoutManager = new LinearLayoutManager(getActivity());
-        //mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         mLayoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -169,7 +122,6 @@ public class FragmentCategory extends Fragment{
 
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        Log.i("TAG BAG","doApiCall: ");
         suggestedItemsArrayListTest = fillEndlessItemListArrayL(suggestedItemsArrayListTest,getActivity());
         suggestedItemsArrayListDO = fillEndlessItemListArrayL(suggestedItemsArrayListDO,getActivity());
 //        suggestedItemsArrayListTest.addAll(suggestedItemsArrayListDO);

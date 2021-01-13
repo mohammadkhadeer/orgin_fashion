@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,6 +34,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import butterknife.ButterKnife;
+
+import static com.fashion.rest.view.categoriesComp.Functions.changeOffersGradientsAndTextColorCases;
 
 
 public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUser> {
@@ -132,32 +136,34 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
     ViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
-      nameTV = (TextView) itemView.findViewById(R.id.adapter_name_TV);
-      desTV = (TextView) itemView.findViewById(R.id.adapter_des_TV);
-      priceTV = (TextView) itemView.findViewById(R.id.adapter_price_TV);
-      oldPrice = (TextView) itemView.findViewById(R.id.adapter_old_price_TV);
+      nameTV = (TextView) itemView.findViewById(R.id.adapter_type2_name);
+//      desTV = (TextView) itemView.findViewById(R.id.adapter_des_TV);
+//      priceTV = (TextView) itemView.findViewById(R.id.adapter_price_TV);
+//      oldPrice = (TextView) itemView.findViewById(R.id.adapter_old_price_TV);
       imageView = (ImageView) itemView.findViewById(R.id.adapter_IV) ;
-      coverRL = (RelativeLayout) itemView.findViewById(R.id.cover_offers_set) ;
+      coverRL = (RelativeLayout) itemView.findViewById(R.id.cont_rl_offers) ;
     }
 
     protected void clear() {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void onBind(int position) {
       super.onBind(position);
 
       fillImage(imageView, position, context);
       fillText(nameTV,position,context);
       changeFont(context);
-      actionListenerToGoShowItemDetails(context, coverRL, position);
+      changeOffersGradientsAndTextColorCases(coverRL,position,context,getObject(position),nameTV);
+      //actionListenerToGoShowItemDetails(context, coverRL, position);
 
     }
 
   }
 
   private void fillText(TextView nameTV, int position, Context context) {
-    nameTV.setText(String.valueOf(getObject(position).getPrice().getPrice()));
+    nameTV.setText(String.valueOf(getObject(position).getName()));
 //    nameTV.setText(String.valueOf(position));
   }
 

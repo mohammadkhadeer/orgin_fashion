@@ -1,9 +1,11 @@
 package com.fashion.rest.view.fragments.HomeScreenFragment;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -69,6 +71,7 @@ public class FragmentOffers extends Fragment{
 
     public FragmentOffers(){}
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -105,7 +108,6 @@ public class FragmentOffers extends Fragment{
 //                    Log.i("TAG BAG","mLayoutManager:Null");
 //                }
                 if (!isLoading) {
-                    Log.i("TAG BAG","After if isLoading: "+String.valueOf(isLoading));
 
                     if (mLayoutManager != null && mLayoutManager.findLastCompletelyVisibleItemPosition() == suggestedItemsArrayListDO.size() - 1) {
                         //bottom of list!
@@ -113,6 +115,7 @@ public class FragmentOffers extends Fragment{
 
                         new Handler().postDelayed(new Runnable() {
 
+                            @RequiresApi(api = Build.VERSION_CODES.M)
                             @Override
                             public void run() {
                                 Log.i("TAG BAG","currentPage: "+String.valueOf(currentPage));
@@ -157,6 +160,7 @@ public class FragmentOffers extends Fragment{
 //        });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void createRV() {
         adapterEndlessOffers = new AdapterEndlessOffers(new ArrayList<Deal>(),getActivity(),"call");
         recyclerView.setHasFixedSize(true);
@@ -167,9 +171,9 @@ public class FragmentOffers extends Fragment{
         doApiCall();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        Log.i("TAG BAG","doApiCall: ");
         suggestedItemsArrayListTest = fillEndlessItemDepCatArrayL(suggestedItemsArrayListTest,getActivity());
         suggestedItemsArrayListDO = fillEndlessItemDepCatArrayL(suggestedItemsArrayListDO,getActivity());
 //        suggestedItemsArrayListTest.addAll(suggestedItemsArrayListDO);
