@@ -1,6 +1,8 @@
 package com.fashion.rest.view.categoriesComp;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.fashion.rest.model.Deal;
@@ -13,10 +15,12 @@ public class FillType2 {
     static RecyclerView.LayoutManager layoutManager;
     public static ArrayList<Deal> dealsArrayList = new ArrayList<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void fillCaseItem(RecyclerView recyclerView, Context context) {
         createRVSuggested(recyclerView, context);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void createRVSuggested(RecyclerView recyclerView, Context context) {
         dealsArrayList = fillSetArrayL(dealsArrayList,context);
         recyclerView.setNestedScrollingEnabled(false);

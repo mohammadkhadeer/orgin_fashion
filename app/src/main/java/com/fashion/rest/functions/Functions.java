@@ -155,9 +155,9 @@ public class Functions {
     public static ArrayList<Deal> fillSetArrayL(ArrayList<Deal> dealArrayL, Context context) {
         dealArrayL = new ArrayList<Deal>();
 
-        OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna",context.getColor(R.color.colorBlack));
+        OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
 
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
+        String image ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/1234.webp?alt=media&token=be6f0a3d-7ecd-4cc3-a8a6-2c5acccab08d";
         Price price1 = new Price(180,99,180);
         Price price2 = new Price(170,99,170);
         Price price3 = new Price(160,99,160);

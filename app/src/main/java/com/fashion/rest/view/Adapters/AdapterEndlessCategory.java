@@ -1,9 +1,11 @@
 package com.fashion.rest.view.Adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -163,6 +165,7 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
 
     MainFragment mainFragment;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void onBind(int position) {
       super.onBind(position);
 

@@ -18,49 +18,59 @@ public class FillItem {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static ArrayList<Deal> fillEndlessItemDepCatArrayL(ArrayList<Deal> dealArrayL, Context context) {
         //ArrayList<Deal> dealArrayL = new ArrayList<Deal>();
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
+        String image0 = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/5.jpg?alt=media&token=62e84817-bf98-427a-9574-62f3bdde6e63";
+        String image1 = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
+        String image2 ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/123.jpg?alt=media&token=0c082f00-3ea9-47c5-8f1f-62b0bc90a9aa";
+        String image ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/1234.webp?alt=media&token=be6f0a3d-7ecd-4cc3-a8a6-2c5acccab08d";
 
         for (int i=0;i<8;i++)
         {
+            int x = 10*dealArrayL.size();
+            Price price1 = new Price(x,99,180);
+
             OffersGradientsWithTextColor offersGradientsWithTextColor = null;
             if (i==0)
             {
-                offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna",context.getColor(R.color.colorBlack));
+                offersGradientsWithTextColor = new OffersGradientsWithTextColor("mauve","#FFFFFF");
+                dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
             }
             if (i==1)
             {
-                offersGradientsWithTextColor = new OffersGradientsWithTextColor("lady_lips",context.getColor(R.color.colorBlack));
+                offersGradientsWithTextColor = new OffersGradientsWithTextColor("frost","#FFFFFF");
+                dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
             }
             if (i==2)
             {
-                offersGradientsWithTextColor = new OffersGradientsWithTextColor("sexy_blue",context.getColor(R.color.colorBlack));
+                offersGradientsWithTextColor = new OffersGradientsWithTextColor("sexy_blue","#000000");
+                dealArrayL.add(new Deal(R.drawable.s2,image2,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
             }
             if (i==3)
             {
-                offersGradientsWithTextColor = new OffersGradientsWithTextColor("purple_love",context.getColor(R.color.colorWhite));
+                offersGradientsWithTextColor = new OffersGradientsWithTextColor("purple_love","#FFFFFF");
+                dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
             }
             if (i==4)
             {
-                offersGradientsWithTextColor = new OffersGradientsWithTextColor("mauve",context.getColor(R.color.colorWhite));
+                offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
+                dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
             }
             if (i==5)
             {
-                offersGradientsWithTextColor = new OffersGradientsWithTextColor("frost",context.getColor(R.color.colorWhite));
+                offersGradientsWithTextColor = new OffersGradientsWithTextColor("lady_lips","#FFFFFF");
+                dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
             }
             if (i==6)
             {
-                offersGradientsWithTextColor = new OffersGradientsWithTextColor("decent",context.getColor(R.color.colorBlack));
+                offersGradientsWithTextColor = new OffersGradientsWithTextColor("decent","#000000");
+                dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
             }
             if (i==7)
             {
-                offersGradientsWithTextColor = new OffersGradientsWithTextColor("aubergine",context.getColor(R.color.colorWhite));
+                offersGradientsWithTextColor = new OffersGradientsWithTextColor("aubergine","#FFFFFF");
+                dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
             }
             
-            
-            int x = 10*dealArrayL.size();
-            Price price1 = new Price(x,99,180);
-            
-            dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+            //dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
 
         }
         //Log.i("TAG TAG TAG TAG",String.valueOf(dealArrayL.size()));
@@ -71,25 +81,11 @@ public class FillItem {
     public static ArrayList<ListItem> fillEndlessItemListArrayL(ArrayList<ListItem> dealArrayL,Context context) {
         ArrayList<ListItem> listArrayL = new ArrayList<ListItem>();
 
-        ArrayList<Integer> CPArrayListT1 = new ArrayList<>();
-        ArrayList<Integer> CPArrayListT2 = new ArrayList<>();
-        ArrayList<Integer> CPArrayListT3 = new ArrayList<>();
-        ArrayList<Integer> CPArrayListT4 = new ArrayList<>();
 
-        CPArrayListT1.add(0,1);
-        CPArrayListT2.add(0,1);
-        CPArrayListT3.add(0,1);
-        CPArrayListT4.add(0,1);
-
-        ArrayList<ArrayList<Deal>> ItemT1ArrayListT1 = new ArrayList<>();
-        ArrayList<ArrayList<Deal>> ItemT2ArrayListT2 = new ArrayList<>();
-        ArrayList<ArrayList<Deal>> ItemT3ArrayListT3 = new ArrayList<>();
-        ArrayList<ArrayList<Deal>> ItemT4ArrayListT4 = new ArrayList<>();
-
-        listArrayL.add(new ListItem("type1",CPArrayListT1,CPArrayListT2,CPArrayListT3,CPArrayListT4,ItemT1ArrayListT1,ItemT2ArrayListT2,ItemT3ArrayListT3,ItemT4ArrayListT4));
-        listArrayL.add(new ListItem("type2",CPArrayListT1,CPArrayListT2,CPArrayListT3,CPArrayListT4,ItemT1ArrayListT1,ItemT2ArrayListT2,ItemT3ArrayListT3,ItemT4ArrayListT4));
-        listArrayL.add(new ListItem("type3",CPArrayListT1,CPArrayListT2,CPArrayListT3,CPArrayListT4,ItemT1ArrayListT1,ItemT2ArrayListT2,ItemT3ArrayListT3,ItemT4ArrayListT4));
-        listArrayL.add(new ListItem("type4",CPArrayListT1,CPArrayListT2,CPArrayListT3,CPArrayListT4,ItemT1ArrayListT1,ItemT2ArrayListT2,ItemT3ArrayListT3,ItemT4ArrayListT4));
+        listArrayL.add(new ListItem("type3"));
+        listArrayL.add(new ListItem("type2"));
+        listArrayL.add(new ListItem("type2"));
+        listArrayL.add(new ListItem("type2"));
 
 
         return listArrayL;
@@ -103,7 +99,7 @@ public class FillItem {
 
         if (cat.equals("Sets"))
         {
-            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna",context.getColor(R.color.colorBlack));
+            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
 
             Price price1 = new Price(180,99,180);
             Price price2 = new Price(170,99,170);
@@ -124,7 +120,7 @@ public class FillItem {
 
         if (cat.equals("Bracelets"))
         {
-            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna",context.getColor(R.color.colorBlack));
+            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
 
             Price price1 = new Price(550,499,550);
             Price price2 = new Price(650,599,650);
@@ -145,7 +141,7 @@ public class FillItem {
 
         if (cat.equals("Necklaces"))
         {
-            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna",context.getColor(R.color.colorBlack));
+            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
 
             Price price1 = new Price(950,499,550);
             Price price2 = new Price(1050,599,650);
@@ -166,7 +162,7 @@ public class FillItem {
 
         if (cat.equals("Rings"))
         {
-            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna",context.getColor(R.color.colorBlack));
+            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
 
             Price price1 = new Price(80,49,80);
             Price price2 = new Price(90,79,90);
@@ -187,7 +183,7 @@ public class FillItem {
 
         if (cat.equals("Anklet"))
         {
-            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna",context.getColor(R.color.colorBlack));
+            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
 
             Price price1 = new Price(140,99,140);
             Price price2 = new Price(190,149,190);
@@ -208,7 +204,7 @@ public class FillItem {
 
         if (cat.equals("Earrings"))
         {
-            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna",context.getColor(R.color.colorBlack));
+            OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
 
             Price price1 = new Price(125,99,125);
             Price price2 = new Price(235,179,235);

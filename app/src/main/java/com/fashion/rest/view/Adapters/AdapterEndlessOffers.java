@@ -35,6 +35,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 
+import static com.fashion.rest.view.categoriesComp.Functions.callFunction;
 import static com.fashion.rest.view.categoriesComp.Functions.changeOffersGradientsAndTextColorCases;
 
 
@@ -130,18 +131,21 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
 
   public class ViewHolder extends BaseViewHolderUser {
     ImageView imageView;
-    RelativeLayout coverRL;
-    TextView nameTV,desTV,priceTV,oldPrice;
+    RelativeLayout coverRL,callRL;
+    TextView nameTV,desTV,priceTV,oldPrice,callTV,whatsApp;
 
     ViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
       nameTV = (TextView) itemView.findViewById(R.id.adapter_type2_name);
-//      desTV = (TextView) itemView.findViewById(R.id.adapter_des_TV);
+      desTV = (TextView) itemView.findViewById(R.id.adapter_type2_des);
 //      priceTV = (TextView) itemView.findViewById(R.id.adapter_price_TV);
 //      oldPrice = (TextView) itemView.findViewById(R.id.adapter_old_price_TV);
       imageView = (ImageView) itemView.findViewById(R.id.adapter_IV) ;
       coverRL = (RelativeLayout) itemView.findViewById(R.id.cont_rl_offers) ;
+      callRL = (RelativeLayout) itemView.findViewById(R.id.adapter_type2_call_rl) ;
+      callTV = (TextView) itemView.findViewById(R.id.adapter_type2_call_tv);
+      whatsApp = (TextView) itemView.findViewById(R.id.adapter_type2_w_tv);
     }
 
     protected void clear() {
@@ -155,7 +159,8 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
       fillImage(imageView, position, context);
       fillText(nameTV,position,context);
       changeFont(context);
-      changeOffersGradientsAndTextColorCases(coverRL,position,context,getObject(position),nameTV);
+      changeOffersGradientsAndTextColorCases(coverRL,position,context,getObject(position),nameTV,desTV,callRL,callTV,whatsApp);
+      callFunction(callRL,context);
       //actionListenerToGoShowItemDetails(context, coverRL, position);
 
     }

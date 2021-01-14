@@ -36,19 +36,23 @@
             android:layout_centerVertical="true"
             />
 
+
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:alpha="0.9"
+            android:layout_height="90dp"
             android:id="@+id/cont_rl_offers"
             android:layout_alignParentBottom="true">
 
 
         </RelativeLayout>
 
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:layout_marginBottom="2dp"
             android:layout_alignParentBottom="true">
 
             <LinearLayout
@@ -60,12 +64,21 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="25">
+                    android:layout_weight="5"/>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="20">
 
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="4dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="6dp"
                         app:cardCornerRadius="8dp"
                         >
 
@@ -103,15 +116,24 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="50">
+                    android:layout_weight="45">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="test"
-                        android:textSize="16dp"
-                        android:layout_marginTop="4dp"
+                        android:textSize="14dp"
+                        android:layout_marginTop="20dp"
                         android:id="@+id/adapter_type2_name"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="test test test test test "
+                        android:textSize="12dp"
+                        android:layout_marginTop="38dp"
+                        android:id="@+id/adapter_type2_des"
                         />
 
                 </RelativeLayout>
@@ -119,7 +141,60 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="35">
+                    android:layout_weight="27">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/black_call"
+                        android:id="@+id/adapter_type2_call_rl"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Call"
+                            android:textSize="12dp"
+                            android:id="@+id/adapter_type2_call_tv"
+                            android:textColor="@color/colorBlack"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:visibility="gone"
+                        android:background="@drawable/whtsapp"
+                        android:id="@+id/adapter_type2_w_rl"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Whatsapp"
+                            android:textSize="12dp"
+                            android:id="@+id/adapter_type2_w_tv"
+                            android:textColor="@color/colorBlack"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
 
                 </RelativeLayout>
@@ -127,9 +202,6 @@
             </LinearLayout>
 
         </RelativeLayout>
-
-
-
 
     </RelativeLayout>
 

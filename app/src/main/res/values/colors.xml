@@ -7,7 +7,10 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorSilver">#9e9e9e</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorBlack22">#77000000</color>
+    <color name="colorBlack23">#88000000</color>
 
+    <color name="colorRed_red">#FF0000</color>
 
     <color name="colorBlue">#2196f3</color>
     <color name="bg_light_blue">#EBF5FF</color>
@@ -62,28 +65,37 @@
 
 
 
+    <color name="z0">#00ffafbd</color>
     <color name="roseanna1">#ffafbd</color>
+    <color name="roseanna15">#ffafbd</color>
     <color name="roseanna2">#ffc3a0</color>
 
-    <color name="lady_lips1">#fecfef</color>
+    <color name="lady_lips1">#77fecfef</color>
+    <color name="lady_lips15">#fecfef</color>
     <color name="lady_lips2">#ff9a9e</color>
 
-    <color name="sexy_blue1">#6dd5ed</color>
+    <color name="sexy_blue1">#776dd5ed</color>
+    <color name="sexy_blue15">#6dd5ed</color>
     <color name="sexy_blue2">#2193b0</color>
 
     <color name="purple_love1">#753a88</color>
+    <color name="purple_love15">#cc2b5e</color>
     <color name="purple_love2">#cc2b5e</color>
 
-    <color name="mauve1">#004e92</color>
+    <color name="mauve1">#77004e92</color>
+    <color name="mauve15">#004e92</color>
     <color name="mauve2">#000428</color>
 
-    <color name="frost1">#004e92</color>
+    <color name="frost1">#77004e92</color>
+    <color name="frost15">#004e92</color>
     <color name="frost2">#000428</color>
 
-    <color name="decent1">#c4e0e5</color>
+    <color name="decent1">#77c4e0e5</color>
+    <color name="decent15">#c4e0e5</color>
     <color name="decent2">#4ca1af</color>
 
-    <color name="aubergine1">#61045f</color>
+    <color name="aubergine1">#7761045f</color>
+    <color name="aubergine15">#61045f</color>
     <color name="aubergine2">#aa076b</color>
 
 
