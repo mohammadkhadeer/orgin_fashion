@@ -1,7 +1,9 @@
 package com.fashion.rest.view.fragments;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +36,7 @@ public class FragmentCategoryItems extends Fragment {
         super.onAttach(context);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class FragmentCategoryItems extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void createItems() {
         dealsArrayList = fillAllItemDepCatArrayL(categoryStr,getActivity());
         recyclerView_items.setHasFixedSize(true);

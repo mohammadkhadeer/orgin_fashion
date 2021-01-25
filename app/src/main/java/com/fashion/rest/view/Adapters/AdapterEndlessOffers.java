@@ -260,8 +260,9 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
         if(mod>0)
         {
           cardView.setVisibility(View.GONE);
-          relativeLayoutNoMoreItem.setVisibility(View.VISIBLE);
-          changeFont(context);
+          // this well show to us no more items
+          //relativeLayoutNoMoreItem.setVisibility(View.VISIBLE);
+          //changeFont(context);
         }else {
           AddShineEffect(relativeLayout, shinImageView);
           AddShineEffect(relativeLayout2, shinImageView2);

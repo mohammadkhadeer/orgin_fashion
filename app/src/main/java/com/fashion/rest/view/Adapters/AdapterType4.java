@@ -49,16 +49,6 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
         changeFont(holder,context);
         fillText(holder,context,position);
         actionListenerToCard(holder,context,position);
-        actionListenerToAddToCart(holder,context,position);
-    }
-
-    private void actionListenerToAddToCart(ViewHolder holder, final Context context, final int position) {
-        holder.buttonAddToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //passItem.onClicked(dealsArrayL.get(position));
-            }
-        });
     }
 
     private void actionListenerToCard(ViewHolder holder, final Context context, final int position) {
@@ -81,14 +71,14 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
 
     private void fillText(ViewHolder holder, Context context, int position) {
         holder.nameTV.setText(dealsArrayL.get(position).getName());
-        holder.desTV.setText(dealsArrayL.get(position).getDes());
+        //holder.desTV.setText(dealsArrayL.get(position).getDes());
         holder.priceTV.setText(String.valueOf(dealsArrayL.get(position).getPrice().getNewPrice()));
         holder.oldPrice.setText(String.valueOf(dealsArrayL.get(position).getPrice().getOldPrice()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {
         holder.nameTV.setTypeface(Functions.changeFontGeneral(context));
-        holder.desTV.setTypeface(Functions.changeFontGeneral(context));
+        //holder.desTV.setTypeface(Functions.changeFontGeneral(context));
         holder.priceTV.setTypeface(Functions.changeFontGeneral(context));
         holder.oldPrice.setTypeface(Functions.changeFontGeneral(context));
         holder.oldPrice.setPaintFlags(holder.priceTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
@@ -97,7 +87,7 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
     private void fillImage(Context context, ViewHolder holder, int position) {
         //product image
         Picasso.get()
-                .load(dealsArrayL.get(position).getImage1())
+                .load(dealsArrayL.get(position).getImage())
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
@@ -115,14 +105,14 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
         TextView nameTV,desTV,priceTV,oldPrice;
         public ViewHolder(View itemView) {
             super(itemView);
-            nameTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_name_TV);
-            desTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_des_TV);
-            priceTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_meal_price_TV);
-            oldPrice = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_meal_old_price_TV);
-            imageView = (ImageView) itemView.findViewById(R.id.adapter_suggested_to_you_IV) ;
-            contRL = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_to_you_cont) ;
-            coverRL = (RelativeLayout) itemView.findViewById(R.id.cover_adapter_set) ;
-            buttonAddToCart = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_call_button);
+            nameTV = (TextView) itemView.findViewById(R.id.adapter_type4_pName);
+            //desTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_des_TV);
+            priceTV = (TextView) itemView.findViewById(R.id.adapter_type4_price_TV);
+            oldPrice = (TextView) itemView.findViewById(R.id.adapter_type4_old_price_TV);
+            imageView = (ImageView) itemView.findViewById(R.id.adapter_type4_price_IV) ;
+            //contRL = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_to_you_cont) ;
+            coverRL = (RelativeLayout) itemView.findViewById(R.id.cover_adapter_type4_set) ;
+            //buttonAddToCart = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_call_button);
         }
 
     }

@@ -18,7 +18,7 @@ item table we saved before user used app can tke its init items
 */
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME="  al_sartawi.db";
+    public static final String DATABASE_NAME="fashion.db";
 
     public static final String TABLE_CART="cart_table";
     public static final String COL_ID="ID";
@@ -32,6 +32,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_NUMBER_OF_ITEM_IN_THE_CART="NUMBER_OF_ITEM_IN_THE_CART";
 
 
+    public static final String TABLE_CITY="city_table";
+    public static final String COL_C_ID="ID";
+    public static final String CITY_EN="CITY_EN";
+    public static final String CITY_LOCAL="CITY_LOCAL";
+    public static final String NEIGHBORHOOD_EN="NEIGHBORHOOD_EN";
+    public static final String NEIGHBORHOOD_LOCAL="NEIGHBORHOOD_LOCAL";
+
+
 
 
     public DBHelper(Context context) {
@@ -43,11 +51,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("create table "+TABLE_CART +" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "IMAGE_ID TEXT" + ",IMAGE_PATH TEXT" + ",NAME TEXT" + ",DES TEXT"  + ",PRICE TEXT"  + ",PRICE_N TEXT"  + ",PRICE_O TEXT" + ",NUMBER_OF_ITEM_IN_THE_CART TEXT)");
+        db.execSQL("create table "+TABLE_CITY +" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "CITY_EN TEXT" + ",CITY_LOCAL TEXT" + ",NEIGHBORHOOD_EN TEXT" + ",NEIGHBORHOOD_LOCAL TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_CART);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_CITY);
 
         onCreate(db);
     }
@@ -69,6 +80,23 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COL_NUMBER_OF_ITEM_IN_THE_CART,numberOfItems);
 
         long result= db.insert(TABLE_CART,null,contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean insertCities(String cityEn,String cityLocal,String neighborhoodEn
+            ,String neighborhoodLocal)
+    {
+        SQLiteDatabase db =this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CITY_EN,cityEn);
+        contentValues.put(CITY_LOCAL,cityLocal);
+        contentValues.put(NEIGHBORHOOD_EN,neighborhoodEn);
+        contentValues.put(NEIGHBORHOOD_LOCAL,neighborhoodLocal);
+
+        long result= db.insert(TABLE_CITY,null,contentValues);
         if(result == -1)
             return false;
         else
@@ -103,6 +131,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor descendingCities(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_CITY, null, null,
+                null, null, null, COL_ID + " DESC", null);
+        return cursor;
+    }
+
     //////////////////////////////////////update/////////////////////
 
     public void updateItemNumberInCart(String numberOfItems,String itemName)
@@ -129,6 +164,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+
     //////////////////////////////////////delete data "single row" ////////////////
 
     public Integer deleteItemFromCart(String itemName){
@@ -138,9 +174,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //////////////////////////////////////delete data "All line" ////////////////
 
-    public void deleteAllCartItems(){
+    public void deleteAllCities(){
         SQLiteDatabase db =this.getWritableDatabase();
         db.execSQL("DELETE FROM cart_table"); //delete all rows in a table
+        db.close();
+    }
+
+    public void deleteAllCartItems(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        db.execSQL("DELETE FROM city_table"); //delete all rows in a table
         db.close();
     }
 

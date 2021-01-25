@@ -6,6 +6,8 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.fashion.rest.R;
+import com.fashion.rest.model.Area;
+import com.fashion.rest.model.City;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.ListItem;
 import com.fashion.rest.model.OffersGradientsWithTextColor;
@@ -14,6 +16,221 @@ import com.fashion.rest.model.Price;
 import java.util.ArrayList;
 
 public class FillItem {
+
+    public static ArrayList<Area> fillAreas(Context context) {
+        ArrayList<Area> listArrayL = new ArrayList<Area>();
+
+
+        listArrayL.add(new Area("Acacia Avenues","Acacia Avenues"));
+        listArrayL.add(new Area("Academic City","Academic City"));
+        listArrayL.add(new Area("Al Aweer","Al Aweer"));
+        listArrayL.add(new Area("Al Badaa","Al Badaa"));
+        listArrayL.add(new Area("Al Barari","Al Barari"));
+        listArrayL.add(new Area("Al Barsha","Al Barsha"));
+        listArrayL.add(new Area("Al Furjan","Al Furjan"));
+        listArrayL.add(new Area("Al Garhoud","Al Garhoud"));
+
+        return listArrayL;
+    }
+
+    public static ArrayList<City> fillCityArrayL(Context context) {
+        ArrayList<City> listArrayL = new ArrayList<City>();
+
+
+        listArrayL.add(new City("Dubai","Dubai"));
+        listArrayL.add(new City("Abu Dhabi","Abu Dhabi"));
+        listArrayL.add(new City("Sharjah","Sharjah"));
+        listArrayL.add(new City("Al Ain","Al Ain"));
+        listArrayL.add(new City("Ajman","Ajman"));
+        listArrayL.add(new City("Ras Al Khaimah","Ras Al Khaimah"));
+        listArrayL.add(new City("Um Al Quwain","Um Al Quwain"));
+        listArrayL.add(new City("Fujairah","Fujairah"));
+
+        return listArrayL;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static ArrayList<Deal> fillEndlessItemDepCatArrayL2(ArrayList<Deal> dealArrayL, Context context,int xxx) {
+        //ArrayList<Deal> dealArrayL = new ArrayList<Deal>();
+        String image0 = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/5.jpg?alt=media&token=62e84817-bf98-427a-9574-62f3bdde6e63";
+        String image1 = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
+        String image2 ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/123.jpg?alt=media&token=0c082f00-3ea9-47c5-8f1f-62b0bc90a9aa";
+        String image ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/1234.webp?alt=media&token=be6f0a3d-7ecd-4cc3-a8a6-2c5acccab08d";
+
+        if (xxx==1)
+        {
+            for (int i=0;i<24;i++)
+            {
+                int x = 10*dealArrayL.size();
+                Price price1 = new Price(x,99,180);
+
+                OffersGradientsWithTextColor offersGradientsWithTextColor = null;
+                if (i==0)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("mauve","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==1)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("frost","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==2)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("sexy_blue","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image2,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==3)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("purple_love","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==4)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==5)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("lady_lips","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==6)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("decent","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==7)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("aubergine","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+
+
+
+                if (i==8)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("mauve","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==9)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("frost","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==10)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("sexy_blue","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image2,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==11)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("purple_love","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==12)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==13)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("lady_lips","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==14)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("decent","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==15)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("aubergine","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+
+
+                if (i==16)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("mauve","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==17)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("frost","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==18)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("sexy_blue","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image2,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==19)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("purple_love","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==20)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==21)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("lady_lips","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==22)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("decent","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==23)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("aubergine","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+
+                //dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+
+            }
+        }else{
+            for (int i=0;i<1;i++)
+            {
+                int x = 20*dealArrayL.size();
+                Price price1 = new Price(x,99,180);
+
+                OffersGradientsWithTextColor offersGradientsWithTextColor = null;
+                if (i==0)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("mauve","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==1)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("frost","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==2)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("sexy_blue","#000000");
+                    dealArrayL.add(new Deal(R.drawable.s2,image2,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+                if (i==3)
+                {
+                    offersGradientsWithTextColor = new OffersGradientsWithTextColor("purple_love","#FFFFFF");
+                    dealArrayL.add(new Deal(R.drawable.s2,image0,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+                }
+
+                //dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
+
+            }
+        }
+
+        //Log.i("TAG TAG TAG TAG",String.valueOf(dealArrayL.size()));
+
+        return dealArrayL;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static ArrayList<Deal> fillEndlessItemDepCatArrayL(ArrayList<Deal> dealArrayL, Context context) {
@@ -69,7 +286,7 @@ public class FillItem {
                 offersGradientsWithTextColor = new OffersGradientsWithTextColor("aubergine","#FFFFFF");
                 dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
             }
-            
+
             //dealArrayL.add(new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor));
 
         }
@@ -82,9 +299,9 @@ public class FillItem {
         ArrayList<ListItem> listArrayL = new ArrayList<ListItem>();
 
 
-        listArrayL.add(new ListItem("type3"));
         listArrayL.add(new ListItem("type2"));
-        listArrayL.add(new ListItem("type2"));
+        listArrayL.add(new ListItem("type4"));
+        listArrayL.add(new ListItem("type4"));
         listArrayL.add(new ListItem("type2"));
 
 

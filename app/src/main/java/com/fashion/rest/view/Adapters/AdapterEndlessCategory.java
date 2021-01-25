@@ -132,29 +132,28 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
 
   public class ViewHolder extends BaseViewHolderUser {
     ImageView imageView;
-    RelativeLayout coverRL,cont1,cont2,cont3,cont4;
-    TextView nameTV,desTV,priceTV,oldPrice;
-    RecyclerView recyclerViewT2,recyclerViewT3,recyclerViewT4;
+    RelativeLayout coverRL,cont2,cont4,see_all_type2_rl,see_all_type4_rl;
+    TextView nameTV,type2_cat_name_TV,oldPrice,type4_cat_name_TV;
+    RecyclerView recyclerViewT2,recyclerViewT4;
 
     ViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
 
 
-      imageView = (ImageView) itemView.findViewById(R.id.type1_IV) ;
+//      imageView = (ImageView) itemView.findViewById(R.id.type1_IV) ;
       nameTV = (TextView) itemView.findViewById(R.id.adapter_name_TV);
-//      desTV = (TextView) itemView.findViewById(R.id.adapter_des_TV);
-//      priceTV = (TextView) itemView.findViewById(R.id.adapter_price_TV);
+      type2_cat_name_TV = (TextView) itemView.findViewById(R.id.type2_cat_name_TV);
+      type4_cat_name_TV = (TextView) itemView.findViewById(R.id.type4_cat_name_TV);
 //      oldPrice = (TextView) itemView.findViewById(R.id.adapter_old_price_TV);
       coverRL = (RelativeLayout) itemView.findViewById(R.id.cover_typ1);
 
-      cont1 = (RelativeLayout) itemView.findViewById(R.id.container_type1_rl);
       cont2 = (RelativeLayout) itemView.findViewById(R.id.container_type2_rl);
-      cont3 = (RelativeLayout) itemView.findViewById(R.id.container_type3_rl);
       cont4 = (RelativeLayout) itemView.findViewById(R.id.container_type4_rl);
+      see_all_type2_rl = (RelativeLayout) itemView.findViewById(R.id.see_all_type2_rl);
+      see_all_type4_rl = (RelativeLayout) itemView.findViewById(R.id.see_all_type4_rl);
 
       recyclerViewT2 = (RecyclerView) itemView.findViewById(R.id.type2_RV);
-      recyclerViewT3 = (RecyclerView) itemView.findViewById(R.id.type3_RV);
 
       recyclerViewT4 = (RecyclerView) itemView.findViewById(R.id.type4_RV);
     }
@@ -163,53 +162,24 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
 
     }
 
-    MainFragment mainFragment;
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void onBind(int position) {
       super.onBind(position);
 
-      if (getObject(position).getListType().equals("type1"))
-      {
-        //Log.i("TAG",getObject(position).getListType());
-            cont1.setVisibility(View.VISIBLE);
-            cont2.setVisibility(View.GONE);
-            cont3.setVisibility(View.GONE);
-            cont4.setVisibility(View.GONE);
-            fill(imageView,nameTV,coverRL,getObject(position),context);
-      }
       if (getObject(position).getListType().equals("type2"))
       {
-        //Log.i("TAG",getObject(position).getListType());
-        cont1.setVisibility(View.GONE);
             cont2.setVisibility(View.VISIBLE);
-            cont3.setVisibility(View.GONE);
             cont4.setVisibility(View.GONE);
-            fillCaseItem(recyclerViewT2,context);
-        Log.i("TAGH","im here now: ");
-        //fillType2(recyclerViewT2,context,position);
+            fillCaseItem(recyclerViewT2,context,type2_cat_name_TV,see_all_type2_rl);
       }
-      if (getObject(position).getListType().equals("type3"))
-      {
-        //Log.i("TAG",getObject(position).getListType());
-        cont1.setVisibility(View.GONE);
-            cont2.setVisibility(View.GONE);
-            cont3.setVisibility(View.VISIBLE);
-            cont4.setVisibility(View.GONE);
-            fillCase3Item(recyclerViewT3,context);
-      }
+
       if (getObject(position).getListType().equals("type4"))
       {
-        //Log.i("TAG",getObject(position).getListType());
-        cont1.setVisibility(View.GONE);
             cont2.setVisibility(View.GONE);
-            cont3.setVisibility(View.GONE);
             cont4.setVisibility(View.VISIBLE);
-            fillCase4Item(recyclerViewT4,context);
+            fillCase4Item(recyclerViewT4,context,type4_cat_name_TV,see_all_type4_rl);
       }
 
-
-      //fillCaseItem(imageView,nameTV,coverRL,getObject(position),context);
     }
 
   }

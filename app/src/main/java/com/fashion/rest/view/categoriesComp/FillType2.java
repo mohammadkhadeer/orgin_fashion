@@ -5,6 +5,11 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.view.Adapters.AdapterType2;
 import java.util.ArrayList;
@@ -16,8 +21,18 @@ public class FillType2 {
     public static ArrayList<Deal> dealsArrayList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void fillCaseItem(RecyclerView recyclerView, Context context) {
+    public static void fillCaseItem(RecyclerView recyclerView, Context context, TextView catName, RelativeLayout seeAllType2) {
         createRVSuggested(recyclerView, context);
+        actionListenerToSeeAll(seeAllType2,context);
+    }
+
+    private static void actionListenerToSeeAll(RelativeLayout seeAllType2, final Context context) {
+        seeAllType2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"see all ..",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

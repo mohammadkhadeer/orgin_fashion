@@ -17,24 +17,31 @@ import android.widget.TextView;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.Area;
+import com.fashion.rest.model.City;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.MultiArea;
+import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.presnter.PassObject;
-import com.fashion.rest.view.activity.Cart;
+import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentFilter;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentHomeScreen;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentNotification;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentProfile;
+import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults;
+import com.fashion.rest.view.fragments.fragmentHomeMainScreen.PopUp;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
-import static com.fashion.rest.functions.FunctionCart.numberOfItemsOnCartNow;
 import static com.fashion.rest.functions.FunctionCart.updateNumberOfItemInCartAndInsertToDataBase;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
-public class MainActivity extends AppCompatActivity implements PassObject {
+public class MainActivity extends AppCompatActivity implements PassObject
+        , PassCityAndArea , PopUp.PassSelectedAreas {
     private TextView appNameTV;
     BottomBar bottomBar;
     EditText searchEdt;
@@ -52,9 +59,13 @@ public class MainActivity extends AppCompatActivity implements PassObject {
 
     SharedPreferences SharedPreferences;
     SharedPreferences.Editor Editor;
-    RelativeLayout cartRL;
+    RelativeLayout cartRL,cont_all_filter_rl,cont_all_main_comp;
 
     private static final int UPDATE_CART_FROM_MAIN_SCREEN = 100;
+
+    FragmentFilter fragmentFilter = new FragmentFilter();
+    FragmentResults fragmentResults = new FragmentResults();
+    int resultOnTheTop=0,filterOnTheTop=0;
 
         @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,19 +82,44 @@ public class MainActivity extends AppCompatActivity implements PassObject {
         //writeOnDataBase();
         //readFromDataBase();
         moveBetweenFragment();
-        actionListenerToCart();
+        actionListenerToFilter();
 
     }
 
-    private void actionListenerToCart() {
+    public void removeFilterFragment(){
+        filterOnTheTop =0;
+        cont_all_filter_rl.setVisibility(View.GONE);
+        cont_all_main_comp.setVisibility(View.VISIBLE);
+    }
+
+    public void removeFilterFragmentAndShowResult(){
+        cont_all_main_comp.setVisibility(View.GONE);
+        handelResultFragment();
+    }
+
+    private void handelResultFragment() {
+        resultOnTheTop =1;
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_all_filter, fragmentResults)
+                .commit();
+    }
+
+    private void actionListenerToFilter() {
             cartRL.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, Cart.class);
-                    startActivityForResult(intent , UPDATE_CART_FROM_MAIN_SCREEN);
-                    overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                    handelFilterFragment();
+                    filterOnTheTop =1;
+                    cont_all_main_comp.setVisibility(View.GONE);
+                    cont_all_filter_rl.setVisibility(View.VISIBLE);
                 }
             });
+    }
+
+    private void handelFilterFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_all_filter, fragmentFilter)
+                .commit();
     }
 
     public static void setLocale(Activity context) {
@@ -118,6 +154,9 @@ public class MainActivity extends AppCompatActivity implements PassObject {
         appNameTV =(TextView) findViewById(R.id.app_name_tv);
         searchEdt = (EditText) findViewById(R.id.searchEdt);
         cartRL = (RelativeLayout) findViewById(R.id.main_screen_cart_rl);
+        cont_all_filter_rl = (RelativeLayout) findViewById(R.id.cont_all_filter_rl);
+        cont_all_main_comp = (RelativeLayout) findViewById(R.id.cont_all_main_comp);
+
     }
 
     private void BottomBarMenu() {
@@ -203,5 +242,34 @@ public class MainActivity extends AppCompatActivity implements PassObject {
         if (requestCode == UPDATE_CART_FROM_MAIN_SCREEN && resultCode == RESULT_OK && data != null) {
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (resultOnTheTop==1 || filterOnTheTop ==1)
+        {
+            resultOnTheTop =0;
+            filterOnTheTop =0;
+            cont_all_filter_rl.setVisibility(View.GONE);
+            cont_all_main_comp.setVisibility(View.VISIBLE);
+        }else{
+            finish();
+        }
+    }
+
+    @Override
+    public void PassCity(City city) {
+
+    }
+
+    @Override
+    public void PassArea(Area area) {
+
+    }
+
+    //FragmentFilter fragmentFilter = new FragmentFilter();
+    @Override
+    public void passSelected(ArrayList<MultiArea> multiAreasArrayList) {
+        fragmentFilter.passSelected(multiAreasArrayList);
     }
 }

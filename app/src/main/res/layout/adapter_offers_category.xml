@@ -12,19 +12,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/container_type1_rl">
-
-        <include
-            layout="@layout/content_type1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/container_type2_rl">
 
         <include
@@ -35,18 +22,6 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/container_type3_rl">
-
-        <include
-            layout="@layout/content_type3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

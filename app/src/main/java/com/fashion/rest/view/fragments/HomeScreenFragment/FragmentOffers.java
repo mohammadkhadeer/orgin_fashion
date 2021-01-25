@@ -28,11 +28,12 @@ import java.util.List;
 
 import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
 import static com.fashion.rest.utils.PaginationListener.PAGE_START;
+import static com.fashion.rest.view.categoriesComp.FillType3.fillCase3Item;
 
 
 public class FragmentOffers extends Fragment{
     View view;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView,recyclerViewCat;
     AdapterOffers adapterOffers;
     RecyclerView.LayoutManager layoutManager;
     public ArrayList<Deal> dealsArrayList = new ArrayList<>();
@@ -81,6 +82,7 @@ public class FragmentOffers extends Fragment{
         inti();
         createRV();
         actionListenerToRV();
+        fillCase3Item(recyclerViewCat,getActivity());
 
         //createRVSuggested();
         return view;
@@ -191,6 +193,8 @@ public class FragmentOffers extends Fragment{
 
     private void inti() {
         recyclerView = (RecyclerView) view.findViewById(R.id.offer_RV);
+        recyclerViewCat = (RecyclerView) view.findViewById(R.id.type3_RV);
+
     }
 
 }

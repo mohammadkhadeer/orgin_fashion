@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="100dp"
-    android:layout_height="320dp"
+    android:layout_width="230dp"
+    android:layout_height="255dp"
     android:layout_marginBottom="4dp"
     android:layout_marginLeft="8dp"
     android:layout_marginTop="4dp"
@@ -19,160 +19,176 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="275dp"
-            android:id="@+id/cover_adapter_set"
+            android:layout_height="255dp"
+            android:id="@+id/cover_adapter_type4_set"
             />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            app:cardCornerRadius="8dp"
+            android:background="@drawable/remove_card"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/adapter_type4_price_IV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                />
+
+        </android.support.v7.widget.CardView>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="194dp"
             android:weightSum="100">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="60">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
 
-                <ImageView
-                    android:id="@+id/adapter_suggested_to_you_IV"
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="21">
+
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    />
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="2dp"
+                    app:cardCornerRadius="6dp"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <ProgressBar
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+
+                    <ImageView
+                        android:id="@+id/adapter_type2_IV_store"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/test_l"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        />
+
+                </android.support.v7.widget.CardView>
 
             </RelativeLayout>
 
-
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"/>
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="40">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_marginTop="4dp"
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/adapter_suggested_to_you_name_TV"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="8dp"
-                        android:text="test"
-                        android:textSize="15dp"
-                        android:layout_marginStart="12dp"
+                        android:text="Company name"
+                        android:textSize="13dp"
+                        android:id="@+id/adapter_type2_name"
                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/adapter_suggested_to_you_des_TV"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_marginLeft="20dp"
-                        android:text="test test test test test test test test test test test test"
-                        android:textSize="14dp"
-                        android:layout_marginStart="12dp"
+                        android:text="Product name"
+                        android:textSize="12dp"
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/adapter_type4_pName"
                         />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="38dp"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/adapter_suggested_to_you_meal_price_TV"
+                            android:id="@+id/adapter_type4_price_TV"
                             android:textColor="@color/colorGreen"
-                            android:layout_marginLeft="20dp"
-                            android:textSize="14dp"
+                            android:textSize="12dp"
                             android:text="120 JOD"
-                            android:layout_marginStart="12dp"
                             />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/adapter_suggested_to_you_meal_old_price_TV"
+                            android:id="@+id/adapter_type4_old_price_TV"
                             android:textColor="@color/colorSilver"
                             android:layout_marginLeft="20dp"
-                            android:textSize="12dp"
+                            android:textSize="11dp"
                             android:text="130 JOD"
                             android:layout_marginStart="12dp"
                             />
 
                     </LinearLayout>
 
+                </RelativeLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+            </RelativeLayout>
 
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            app:cardCornerRadius="12dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginBottom="4dp"
-                            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="27">
 
-                            <RelativeLayout
-                                android:layout_width="180dp"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:paddingTop="6dp"
-                                android:paddingBottom="6dp"
-                                android:id="@+id/adapter_suggested_call_button"
-                                android:background="@drawable/message"
-                                >
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/add_to_cart"
-                                    android:layout_marginLeft="1dp"
-                                    android:layout_marginStart="6dp"
-                                    android:textSize="18dp"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/colorBlue7"
-                                    android:layout_centerHorizontal="true"
-                                    android:id="@+id/adapter_suggested_call_tv"/>
 
-                            </RelativeLayout>
+            </RelativeLayout>
 
-                        </android.support.v7.widget.CardView>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_marginTop="6dp"
-                                android:layout_marginLeft="1dp"
-                                android:background="@drawable/item_favu"
-                                android:layout_marginStart="8dp"
-                                />
-
-                        </RelativeLayout>
-                    </LinearLayout>
-
-                </LinearLayout>
 
             </RelativeLayout>
 
         </LinearLayout>
 
-
-
     </RelativeLayout>
 
-
-
-</android.support.v7.widget.CardView>
+</RelativeLayout>

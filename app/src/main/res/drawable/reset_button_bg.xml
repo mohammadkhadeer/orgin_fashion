@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:state_pressed="true"
+        >
+
+
+        <shape
+            android:shape="rectangle">
+
+            <!-- view background color -->
+            <solid
+                android:color="@color/colorSilver2" >
+            </solid>
+
+
+        </shape>
+
+
+    </item><!-- pressed -->
+
+    <item
+        android:state_focused="true"
+        >
+
+
+        <shape
+            android:shape="rectangle">
+
+            <!-- view background color -->
+            <solid
+                android:color="@color/colorSilver2" >
+            </solid>
+
+
+        </shape>
+
+
+    </item><!-- focused -->
+
+    <item>
+        <shape
+            android:shape="rectangle">
+
+            <!-- view background color -->
+            <solid
+                android:color="@color/colorSilver" >
+            </solid>
+
+
+        </shape>
+
+    </item><!-- default -->
+
+
+</selector>

@@ -205,4 +205,10 @@
     <string name="member">لست عضوا بعد</string>
     <string name="sinup">انشاء حساب</string>
     <string name="skip">تخطي</string>
+    <string name="show_results">أظهر النتائج</string>
+    <string name="see_all_areas">رؤية كل المناطق</string>
+    <string name="just_search">بحث</string>
+    <string name="reset">إعادة تعيين</string>
+    <string name="select">تحديد</string>
+
 </resources>

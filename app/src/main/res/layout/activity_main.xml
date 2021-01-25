@@ -6,110 +6,194 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="89dp"
-        android:fitsSystemWindows="true"
-        android:background="@color/colorWhite">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="4dp"
-            android:weightSum="100">
+        android:layout_height="match_parent"
+        android:id="@+id/cont_all_main_comp">
 
         <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="80">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="25dp"
-                android:id="@+id/app_name_tv"
-                android:textColor="@color/colorBlack_"
-                android:text="@string/app_name"
-                android:layout_marginLeft="16dp"
-                />
-
-        </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:id="@+id/main_screen_cart_rl"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_weight="20">
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="45dp"
-            android:weightSum="100">
+            android:layout_height="45dp"
+            android:fitsSystemWindows="true"
+            android:background="@color/colorWhite">
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="95">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:weightSum="100">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:background="@drawable/search">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="80">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="25dp"
+                        android:id="@+id/app_name_tv"
+                        android:textColor="@color/colorBlack_"
+                        android:text="@string/app_name"
+                        android:layout_marginLeft="16dp"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/main_screen_cart_rl"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:layout_weight="20">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/filter"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="45dp"
+                android:weightSum="100">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="95">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/search">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="100">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="10">
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:alpha="0.6"
+                                    android:background="@mipmap/search"
+                                    />
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:focusableInTouchMode="true"
+                                android:layout_weight="90">
+
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height     ="44dp"
+                                    android:layout_centerVertical="true"
+                                    android:textCursorDrawable="@drawable/c"
+                                    android:hint="@string/search"
+                                    android:id="@+id/searchEdt"
+                                    android:background="@null"
+                                    />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:weightSum="100">
 
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="10">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:alpha="0.6"
-                                android:background="@mipmap/search"
-                                />
-
+                            android:layout_weight="5">
 
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:focusableInTouchMode="true"
-                            android:layout_weight="90">
+                            android:layout_weight="45">
 
-
-                            <EditText
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height     ="44dp"
-                                android:layout_centerVertical="true"
-                                android:textCursorDrawable="@drawable/c"
-                                android:hint="@string/search"
-                                android:id="@+id/searchEdt"
-                                android:background="@null"
-                                />
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/switch_logo"
+                                    />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5">
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="45">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="30dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/male"
+                                    />
+
+                            </RelativeLayout>
 
                         </RelativeLayout>
 
@@ -117,111 +201,44 @@
 
                 </RelativeLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="0dp"
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="45dp">
+
+            <include
+                layout="@layout/content_main"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="5">
+                />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
-                    android:weightSum="100">
+        </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="5">
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="45">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:background="@drawable/switch_logo"
-                                />
-
-                        </RelativeLayout>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="5">
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="45">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:layout_width="25dp"
-                                android:layout_height="30dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:background="@drawable/male"
-                                />
-
-                        </RelativeLayout>
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
+        <com.roughike.bottombar.BottomBar
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            app:bb_tabXmlResource="@xml/bottombar_tabs_on_main_screen" />
 
     </RelativeLayout>
-
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="90dp">
+        android:id="@+id/cont_all_filter_rl">
 
-        <include
-            layout="@layout/content_main"
+        <FrameLayout
+            android:id="@+id/container_all_filter"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
-
-
-
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_tabs_on_main_screen" />
-
-
 
 
 </RelativeLayout>

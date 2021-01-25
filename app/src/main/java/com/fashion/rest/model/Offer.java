@@ -10,6 +10,7 @@ public class Offer {
     String arDesStr,enDesStr;
     String subCategoryStr,restaurantsImageStr,restaurantsNameStr,restaurantsOpenAtStr,restaurantsCloseAtStr
             ,restaurantsCityStr,neighborhoodStr,restaurantsAddressLinkStr,restaurantsIDStr;
+
     public Offer(){}
 
     public Offer(String imagePathStr, String categoryStr, String mailTypeStr, int offerOrNotInt, int newPriceInt, String timeStampStr, int priceInt, String arNameStr, String enNameStr, String arDesStr, String enDesStr, String subCategoryStr,String restaurantsImageStr, String restaurantsNameStr, String restaurantsOpenAtStr, String restaurantsCloseAtStr, String restaurantsCityStr, String neighborhoodStr, String restaurantsAddressLinkStr, String restaurantsIDStr) {

@@ -44,4 +44,8 @@
         <item name="android:textColor">@color/colorBlue2</item>
     </style>
 
+    <style name="checkBox">
+        <item name="colorAccent">@color/colorBlue7</item>
+    </style>
+
 </resources>

@@ -185,6 +185,43 @@ public class Functions {
         return dealArrayL;
     }
 
+
+    public static ArrayList<Deal> fillSetArrayL2(ArrayList<Deal> dealArrayL, Context context) {
+        dealArrayL = new ArrayList<Deal>();
+
+        OffersGradientsWithTextColor offersGradientsWithTextColor = new OffersGradientsWithTextColor("roseanna","#000000");
+
+        String image ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/6.jpg?alt=media&token=78cb86eb-9226-4709-a36d-9e4a1e7c82b5";
+        String image1 ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/Screen%20Shot%202021-01-16%20at%2010.08.13%20AM.png?alt=media&token=127194a2-fe0a-4c2e-bb92-948e61b29349";
+
+        Price price1 = new Price(180,99,180);
+        Price price2 = new Price(170,99,170);
+        Price price3 = new Price(160,99,160);
+
+        Deal deal1 = new Deal(R.drawable.s2,image,context.getResources().getString(R.string.QiaoKai),context.getResources().getString(R.string.QiaoKai_des),price1,offersGradientsWithTextColor);
+        Deal deal2 = new Deal(R.drawable.s3,image,context.getResources().getString(R.string.Embellished),context.getResources().getString(R.string.Embellished_des),price2,offersGradientsWithTextColor);
+        Deal deal3 = new Deal(R.drawable.s1,image,context.getResources().getString(R.string.Jewellery),context.getResources().getString(R.string.Jewellery_des),price3,offersGradientsWithTextColor);
+
+        dealArrayL.add(deal1);
+        dealArrayL.add(deal2);
+        dealArrayL.add(deal3);
+        dealArrayL.add(deal1);
+        dealArrayL.add(deal2);
+        dealArrayL.add(deal3);
+        dealArrayL.add(deal1);
+        dealArrayL.add(deal2);
+        dealArrayL.add(deal3);
+        dealArrayL.add(deal1);
+        dealArrayL.add(deal2);
+        dealArrayL.add(deal3);
+        dealArrayL.add(deal1);
+        dealArrayL.add(deal2);
+        dealArrayL.add(deal3);
+
+        return dealArrayL;
+    }
+
+
     public static ArrayList<String> fillImgArrayL() {
         ArrayList<String> ImgArrayL = new ArrayList<String>();
 

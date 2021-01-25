@@ -3,7 +3,9 @@ package com.fashion.rest.view.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,6 +46,7 @@ public class FragmentSuggested extends Fragment implements AdapterSet.PassItem{
         super.onAttach(context);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,6 +85,7 @@ public class FragmentSuggested extends Fragment implements AdapterSet.PassItem{
         relativeLayout = (RelativeLayout) view.findViewById(R.id.see_all_suggested_rl);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void createRVSuggested() {
         dealsArrayList = fillAllItemDepCatArrayL(cat,getActivity());
         recyclerView.setNestedScrollingEnabled(false);

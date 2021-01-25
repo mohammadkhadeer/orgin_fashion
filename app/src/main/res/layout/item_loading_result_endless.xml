@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    >
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="95dp"
+      android:id="@+id/adapter_show_user_item_cv"
+      android:visibility="visible"
+      android:layout_marginLeft="4dp"
+      android:layout_marginRight="4dp"
+      android:layout_marginBottom="5dp"
+      android:layout_marginTop="5dp"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+      <RelativeLayout
+          android:layout_width="150dp"
+          android:layout_height="25dp"
+          android:visibility="gone"
+          android:id="@+id/adapter_show_user_item_item_image_load_rl"
+          android:layout_marginTop="0.5dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginStart="10dp"
+          >
+
+        <ImageView
+            android:id="@+id/adapter_show_user_item_item_image_load"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="-50dp"
+            android:layout_height="30dp"
+            android:src="@color/colorSilver_"
+            />
+
+        <ImageView
+            android:id="@+id/adapter_show_user_item_item_image_shin"
+            android:layout_width="30dp"
+            android:layout_marginLeft="-30dp"
+            android:layout_height="200dp"
+            android:src="@drawable/shine" />
+
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="6dp"
+          >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:id="@+id/adapter_show_user_item_item_image_load_rl2"
+              android:layout_marginLeft="0.5dp"
+              android:layout_marginStart="10dp"
+              android:layout_marginEnd="10dp"
+              >
+
+            <ImageView
+                android:id="@+id/adapter_show_user_item_item_image_load2"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="-50dp"
+                android:layout_height="60dp"
+                android:src="@color/colorSilver_"
+                />
+
+            <ImageView
+                android:id="@+id/adapter_show_user_item_item_image_shin2"
+                android:layout_width="160dp"
+                android:layout_marginLeft="-50dp"
+                android:layout_height="60dp"
+                android:src="@drawable/shine" />
+
+          </RelativeLayout>
+
+
+          <RelativeLayout
+              android:layout_width="160dp"
+              android:layout_height="60dp"
+              android:id="@+id/adapter_show_user_item_item_image_load_rl3"
+              android:layout_marginLeft="0.5dp"
+              android:visibility="gone"
+              >
+
+            <ImageView
+                android:id="@+id/adapter_show_user_item_item_image_load3"
+                android:layout_width="160dp"
+                android:layout_marginLeft="-50dp"
+                android:layout_height="60dp"
+                android:src="@color/colorSilver_"
+                />
+
+            <ImageView
+                android:id="@+id/adapter_show_user_item_item_image_shin3"
+                android:layout_width="160dp"
+                android:layout_marginLeft="-50dp"
+                android:layout_height="60dp"
+                android:src="@drawable/shine" />
+
+          </RelativeLayout>
+
+        </LinearLayout>
+
+
+      </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <RelativeLayout
+          android:layout_width="250dp"
+          android:layout_height="25dp"
+          android:id="@+id/adapter_show_user_item_item_image_load_rl4"
+          android:layout_marginTop="16dp"
+          android:visibility="gone"
+          android:layout_marginLeft="0.5dp"
+          android:layout_marginStart="10dp"
+          >
+
+        <ImageView
+            android:id="@+id/adapter_show_user_item_item_image_load4"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="-50dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            android:src="@color/colorSilver_"
+            />
+
+        <ImageView
+            android:id="@+id/adapter_show_user_item_item_image_shin4"
+            android:layout_width="50dp"
+            android:layout_marginLeft="-50dp"
+            android:layout_height="25dp"
+            android:src="@drawable/shine" />
+
+      </RelativeLayout>
+
+    </LinearLayout>
+
+  </RelativeLayout>
+
+
+</RelativeLayout>

@@ -44,6 +44,7 @@
     <string name="pizza_h">Pizza hut</string>
     <string name="subway">Subway</string>
 
+    <string name="show_results">Show results</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="see_all">See All</string>
 
@@ -63,7 +64,11 @@
     <string name="sinup">Sin Up</string>
 
     <string name="skip">Skip</string>
+    <string name="just_search">Search</string>
+    <string name="reset">Reset</string>
+    <string name="select">Select</string>
 
+    <string name="see_all_areas">See all areas</string>
     <string name="filter">Filter</string>
     <string name="storing">Storing</string>
     <string name="all">All</string>
