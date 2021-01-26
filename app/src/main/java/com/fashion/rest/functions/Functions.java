@@ -13,6 +13,7 @@ import com.fashion.rest.model.FastFood;
 import com.fashion.rest.model.Notification;
 import com.fashion.rest.model.OffersGradientsWithTextColor;
 import com.fashion.rest.model.Price;
+import com.fashion.rest.model.SubCategory;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -87,27 +88,6 @@ public class Functions {
         return typeFace;
     }
 
-    public static ArrayList<Category> fillOptionsArrayL(ArrayList<Category> categoryArrayL, Context context) {
-        categoryArrayL = new ArrayList<Category>();
-
-        Category category1 = new Category(context.getResources().getString(R.string.set),R.drawable.m1);
-        Category category2 = new Category(context.getResources().getString(R.string.bracelets),R.drawable.m2);
-        Category category3 = new Category(context.getResources().getString(R.string.necklaces),R.drawable.m3);
-        Category category4 = new Category(context.getResources().getString(R.string.rings),R.drawable.m4);
-        Category category5 = new Category(context.getResources().getString(R.string.foot_anklet),R.drawable.m5);
-        Category category6 = new Category(context.getResources().getString(R.string.earring),R.drawable.m6);
-
-
-        categoryArrayL.add(category1);
-        categoryArrayL.add(category2);
-        categoryArrayL.add(category3);
-        categoryArrayL.add(category4);
-        categoryArrayL.add(category5);
-        categoryArrayL.add(category6);
-
-        return categoryArrayL;
-    }
-
     public static ArrayList<String> fillMeanArrayL(ArrayList<String> meanArrayL, Context context) {
         meanArrayL = new ArrayList<String>();
 
@@ -128,6 +108,63 @@ public class Functions {
         return meanArrayL;
     }
 
+    public static ArrayList<SubCategory> fillSubCatArrayL(Context context) {
+        ArrayList<SubCategory> subCategoryArrayL = new ArrayList<SubCategory>();
+
+        SubCategory cat1 = new SubCategory("SubCategory 1","category 2"," "," "," "," ");
+        SubCategory cat2 = new SubCategory("SubCategory 2","category 2"," "," "," "," ");
+        SubCategory cat3 = new SubCategory("SubCategory 3","category 2"," "," "," "," ");
+        SubCategory cat4 = new SubCategory("SubCategory 4","category 2"," "," "," "," ");
+        SubCategory cat5 = new SubCategory("SubCategory 5","category 2"," "," "," "," ");
+        SubCategory cat6 = new SubCategory("SubCategory 6","category 2"," "," "," "," ");
+        SubCategory cat7 = new SubCategory("SubCategory 7","category 2"," "," "," "," ");
+        SubCategory cat8 = new SubCategory("SubCategory 8","category 2"," "," "," "," ");
+        SubCategory cat9 = new SubCategory("SubCategory 9","category 2"," "," "," "," ");
+        SubCategory cat10 = new SubCategory("SubCategory 10","category 2"," "," "," "," ");
+
+
+        subCategoryArrayL.add(cat1);
+        subCategoryArrayL.add(cat2);
+        subCategoryArrayL.add(cat3);
+        subCategoryArrayL.add(cat4);
+        subCategoryArrayL.add(cat5);
+        subCategoryArrayL.add(cat6);
+        subCategoryArrayL.add(cat7);
+        subCategoryArrayL.add(cat8);
+        subCategoryArrayL.add(cat9);
+        subCategoryArrayL.add(cat10);
+
+        return subCategoryArrayL;
+    }
+
+    public static ArrayList<Category> fillCatArrayL(Context context) {
+        ArrayList<Category> categoryArrayL = new ArrayList<Category>();
+
+        Category cat1 = new Category("category 1","category 2"," "," "," "," ");
+        Category cat2 = new Category("category 2","category 2"," "," "," "," ");
+        Category cat3 = new Category("category 3","category 2"," "," "," "," ");
+        Category cat4 = new Category("category 4","category 2"," "," "," "," ");
+        Category cat5 = new Category("category 5","category 2"," "," "," "," ");
+        Category cat6 = new Category("category 6","category 2"," "," "," "," ");
+        Category cat7 = new Category("category 7","category 2"," "," "," "," ");
+        Category cat8 = new Category("category 8","category 2"," "," "," "," ");
+        Category cat9 = new Category("category 9","category 2"," "," "," "," ");
+        Category cat10 = new Category("category 10","category 2"," "," "," "," ");
+
+
+        categoryArrayL.add(cat1);
+        categoryArrayL.add(cat2);
+        categoryArrayL.add(cat3);
+        categoryArrayL.add(cat4);
+        categoryArrayL.add(cat5);
+        categoryArrayL.add(cat6);
+        categoryArrayL.add(cat7);
+        categoryArrayL.add(cat8);
+        categoryArrayL.add(cat9);
+        categoryArrayL.add(cat10);
+
+        return categoryArrayL;
+    }
 
     public static ArrayList<FastFood> fillFastFoodArrayL(ArrayList<FastFood> fastFoodArrayL, Context context) {
         fastFoodArrayL = new ArrayList<FastFood>();

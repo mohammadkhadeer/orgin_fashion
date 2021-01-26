@@ -15,6 +15,10 @@
     <string name="english">English</string>
     <string name="language">Language</string>
 
+    <string name="price">Price</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+
 
     <string name="set">Sets</string>
     <string name="bracelets">Bracelets</string>

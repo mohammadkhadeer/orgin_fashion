@@ -13,24 +13,26 @@ import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
 import com.fashion.rest.model.Category;
+import com.fashion.rest.model.MultiArea;
+import com.fashion.rest.model.SubCategory;
 
 import java.util.ArrayList;
 
-public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHolder>{
+public class AdapterSubCategory extends RecyclerView.Adapter<AdapterSubCategory.ViewHolder>{
 
     private final Context context;
 //    List<Offer> mList = new ArrayList<>();
-    ArrayList<Category> catArrayL = new ArrayList<>();
-    PassCategory passCat;
-    public AdapterCategory
-            (Context context,ArrayList<Category> catArrayL,PassCategory passCat)
+    ArrayList<SubCategory> subCatArrayL = new ArrayList<>();
+    PassSubCategory passSubCat;
+    public AdapterSubCategory
+            (Context context,ArrayList<SubCategory> subCatArrayL,PassSubCategory passSubCat)
                 {
                     this.context = context;
-                    this.catArrayL = catArrayL;
-                    this.passCat = passCat;
+                    this.subCatArrayL = subCatArrayL;
+                    this.passSubCat = passSubCat;
                 }
 
-    public AdapterCategory.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)
+    public AdapterSubCategory.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)
     {
         View view = LayoutInflater.from(viewGroup.getContext()).
                 inflate(R.layout.adapter_filter_city_and_areas, viewGroup, false);
@@ -38,11 +40,11 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
     }
 
     public void removeArea(Area area) {
-        for (int i=0;i<catArrayL.size();i++)
+        for (int i=0;i<subCatArrayL.size();i++)
         {
-            if (area.getName_en().equals(catArrayL.get(i).getCategory_en()))
+            if (area.getName_en().equals(subCatArrayL.get(i).getSub_category_en()))
             {
-                catArrayL.remove(i);
+                subCatArrayL.remove(i);
                 notifyItemRemoved(i);
                 break;
             }
@@ -50,7 +52,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(final AdapterCategory.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final AdapterSubCategory.ViewHolder holder, final int position) {
 
         changeFont(holder,context);
         fillText(holder,context,position);
@@ -61,14 +63,14 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
         holder.cover_relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                passCat.onClickedCategory(catArrayL.get(position));
+                passSubCat.onClickedSubCategory(subCatArrayL.get(position));
             }
         });
     }
 
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.cityOrAreaTV.setText(catArrayL.get(position).getCategory_en());
+        holder.cityOrAreaTV.setText(subCatArrayL.get(position).getSub_category_en());
     }
 
     private void changeFont(ViewHolder holder, Context context) {
@@ -77,13 +79,17 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
 
     @Override
     public int getItemCount() {
-        return catArrayL.size();
+        return subCatArrayL.size();
     }
 
-    public interface PassCategory {
-        void onClickedCategory(Category category);
+    public interface PassSubCategory {
+        void onClickedSubCategory(SubCategory subCategory);
     }
 
+    public void filterList(ArrayList<SubCategory> filterdNames) {
+        this.subCatArrayL = filterdNames;
+        notifyDataSetChanged();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView cityOrAreaTV;

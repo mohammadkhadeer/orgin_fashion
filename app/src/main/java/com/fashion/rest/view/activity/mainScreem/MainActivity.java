@@ -18,9 +18,11 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
+import com.fashion.rest.model.Category;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.MultiArea;
+import com.fashion.rest.model.SubCategory;
 import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentFilter;
@@ -29,6 +31,7 @@ import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentNotificati
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentProfile;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.PopUp;
+import com.fashion.rest.view.fragments.fragmentHomeMainScreen.PopUpCategory;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabReselectListener;
@@ -41,7 +44,7 @@ import static com.fashion.rest.functions.FunctionCart.updateNumberOfItemInCartAn
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class MainActivity extends AppCompatActivity implements PassObject
-        , PassCityAndArea , PopUp.PassSelectedAreas {
+        , PassCityAndArea , PopUp.PassSelectedAreas , PopUpCategory.PassSelectedSubCategory {
     private TextView appNameTV;
     BottomBar bottomBar;
     EditText searchEdt;
@@ -267,9 +270,19 @@ public class MainActivity extends AppCompatActivity implements PassObject
 
     }
 
+    @Override
+    public void PassCat(Category category) {
+
+    }
+
     //FragmentFilter fragmentFilter = new FragmentFilter();
     @Override
     public void passSelected(ArrayList<MultiArea> multiAreasArrayList) {
         fragmentFilter.passSelected(multiAreasArrayList);
+    }
+
+    @Override
+    public void passSelectedSubCategory(SubCategory subCategory) {
+        fragmentFilter.passSelectedSubCategory(subCategory);
     }
 }
