@@ -1,6 +1,7 @@
 package com.fashion.rest.view.fragments.HomeScreenFragment;
 
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,14 +14,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fashion.rest.R;
+import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.utils.PaginationListener;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
 import com.fashion.rest.view.Adapters.AdapterOffers;
+import com.fashion.rest.view.activity.AllCategory;
+import com.fashion.rest.view.activity.SplashScreen;
 
 
 import java.util.ArrayList;
@@ -50,6 +56,9 @@ public class FragmentOffers extends Fragment{
 
     LinearLayoutManager mLayoutManager;
     AdapterEndlessOffers adapterEndlessOffers ;
+
+    RelativeLayout see_all_cat_rl;
+    TextView see_all_cat_tv;
 
     int numberOfObjectNow = 0;
 
@@ -81,11 +90,33 @@ public class FragmentOffers extends Fragment{
         suggestedItemsArrayListTest = new ArrayList<>();
         inti();
         createRV();
+        changeFont();
         actionListenerToRV();
+        actionListenerToSeeAllCat();
         fillCase3Item(recyclerViewCat,getActivity());
 
         //createRVSuggested();
         return view;
+    }
+
+    private void changeFont() {
+        see_all_cat_tv.setTypeface(Functions.changeFontGeneral(getActivity()));
+    }
+
+    private void actionListenerToSeeAllCat() {
+        see_all_cat_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToAllCatActivity();
+            }
+        });
+    }
+
+    private void moveToAllCatActivity() {
+
+        Intent intent = new Intent(getActivity(), AllCategory.class);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }
 
     private void actionListenerToRV() {
@@ -194,7 +225,8 @@ public class FragmentOffers extends Fragment{
     private void inti() {
         recyclerView = (RecyclerView) view.findViewById(R.id.offer_RV);
         recyclerViewCat = (RecyclerView) view.findViewById(R.id.type3_RV);
-
+        see_all_cat_rl = (RelativeLayout) view.findViewById(R.id.see_all_cat_rl);
+        see_all_cat_tv = (TextView) view.findViewById(R.id.see_all_cat_tv);
     }
 
 }

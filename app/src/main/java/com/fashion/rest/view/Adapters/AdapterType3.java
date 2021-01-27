@@ -17,6 +17,7 @@ import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.view.activity.ItemDetails;
+import com.fashion.rest.view.activity.SubCategory;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -56,12 +57,9 @@ public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("itemID",dealsArrayL.get(position).getName());
-                bundle.putString("itemName",dealsArrayL.get(position).getName());
-                bundle.putString("cat",cat);
-                bundle.putString("from","cat");
+                bundle.putString("cat_name",cat);
 
-                Intent intent = new Intent(context, ItemDetails.class);
+                Intent intent = new Intent(context, SubCategory.class);
                 intent.putExtras(bundle);
                 ((Activity)context).startActivity(intent);
                 ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);

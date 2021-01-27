@@ -48,6 +48,7 @@
     <string name="pizza_h">Pizza hut</string>
     <string name="subway">Subway</string>
 
+    <string name="category">Category</string>
     <string name="show_results">Show results</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="see_all">See All</string>

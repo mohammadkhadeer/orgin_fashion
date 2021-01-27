@@ -137,6 +137,56 @@ public class Functions {
         return subCategoryArrayL;
     }
 
+    public static ArrayList<Category> fillCat2ArrayL(Context context) {
+        ArrayList<Category> categoryArrayL = new ArrayList<Category>();
+        String image ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/watch.png?alt=media&token=4043c029-0cb9-4fff-907d-1047bc233419";
+
+        Category cat1 = new Category("category 1","category 2",image," "," "," ");
+        Category cat2 = new Category("category 2","category 2",image," "," "," ");
+        Category cat3 = new Category("category 3","category 2",image," "," "," ");
+        Category cat4 = new Category("category 4","category 2",image," "," "," ");
+        Category cat5 = new Category("category 5","category 2",image," "," "," ");
+        Category cat6 = new Category("category 6","category 2",image," "," "," ");
+        Category cat7 = new Category("category 7","category 2",image," "," "," ");
+        Category cat8 = new Category("category 8","category 2",image," "," "," ");
+        Category cat9 = new Category("category 9","category 2",image," "," "," ");
+        Category cat10 = new Category("category 10","category 2",image," "," "," ");
+        Category cat11 = new Category("category 11","category 2",image," "," "," ");
+        Category cat12 = new Category("category 12","category 2",image," "," "," ");
+        Category cat13 = new Category("category 13","category 2",image," "," "," ");
+        Category cat14 = new Category("category 14","category 2",image," "," "," ");
+        Category cat15 = new Category("category 15","category 2",image," "," "," ");
+        Category cat16 = new Category("category 16","category 2",image," "," "," ");
+        Category cat17 = new Category("category 17","category 2",image," "," "," ");
+        Category cat18 = new Category("category 18","category 2",image," "," "," ");
+        Category cat19 = new Category("category 19","category 2",image," "," "," ");
+        Category cat20 = new Category("category 20","category 2",image," "," "," ");
+
+
+        categoryArrayL.add(cat1);
+        categoryArrayL.add(cat2);
+        categoryArrayL.add(cat3);
+        categoryArrayL.add(cat4);
+        categoryArrayL.add(cat5);
+        categoryArrayL.add(cat6);
+        categoryArrayL.add(cat7);
+        categoryArrayL.add(cat8);
+        categoryArrayL.add(cat9);
+        categoryArrayL.add(cat10);
+        categoryArrayL.add(cat11);
+        categoryArrayL.add(cat12);
+        categoryArrayL.add(cat13);
+        categoryArrayL.add(cat14);
+        categoryArrayL.add(cat15);
+        categoryArrayL.add(cat16);
+        categoryArrayL.add(cat17);
+        categoryArrayL.add(cat18);
+        categoryArrayL.add(cat19);
+        categoryArrayL.add(cat20);
+
+        return categoryArrayL;
+    }
+
     public static ArrayList<Category> fillCatArrayL(Context context) {
         ArrayList<Category> categoryArrayL = new ArrayList<Category>();
 

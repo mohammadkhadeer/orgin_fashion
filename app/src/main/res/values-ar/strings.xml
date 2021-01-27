@@ -214,5 +214,6 @@
     <string name="price">السعر</string>
     <string name="from">من</string>
     <string name="to">الى</string>
+    <string name="category">الفئات</string>
 
 </resources>
