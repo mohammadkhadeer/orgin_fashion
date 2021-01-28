@@ -215,5 +215,6 @@
     <string name="from">من</string>
     <string name="to">الى</string>
     <string name="category">الفئات</string>
+    <string name="log_out">تسجيل خروج</string>
 
 </resources>

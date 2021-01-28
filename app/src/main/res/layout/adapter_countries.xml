@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/countries_cover_rl"
+        android:background="?android:attr/selectableItemBackground"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="21">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        app:civ_border_color="@color/colorRed"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        android:layout_marginStart="4dp"
+                        android:layout_centerVertical="true"
+                        app:civ_shadow_radius="0"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        app:civ_shadow_color="#8BC34A"
+                        android:background="@drawable/circl_silver_bg"
+                        android:id="@+id/country_image"
+                        />
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="40">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price"
+                    android:layout_centerVertical="true"
+                    android:textSize="17dp"
+                    android:textColor="@color/colorBlack"
+                    android:id="@+id/country_id"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/fragment_car_options_RL"
+                android:layout_weight="26">
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

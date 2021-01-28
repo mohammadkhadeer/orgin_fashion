@@ -1,7 +1,9 @@
 package com.fashion.rest.presnter;
 
 import com.fashion.rest.model.Areas;
+import com.fashion.rest.model.City;
 import com.fashion.rest.model.Comment;
+import com.fashion.rest.model.Countries;
 import com.fashion.rest.model.Post;
 import com.fashion.rest.model.Test;
 
@@ -28,4 +30,13 @@ public interface JsonPlaceHolderApi {
 
     @GET(".")
     Call<List<Areas>> getAreas();
+
+    @GET(".")
+    Call<Integer> getNumberOfCount();
+
+    @GET(".")
+    Call<List<Countries>> getCountries();
+
+    @GET(".")
+    Call<List<City>> getCities();
 }

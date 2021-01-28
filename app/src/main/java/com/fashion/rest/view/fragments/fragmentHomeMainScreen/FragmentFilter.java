@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fashion.rest.R;
+import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
 import com.fashion.rest.model.Category;

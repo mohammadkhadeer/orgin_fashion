@@ -7,15 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:fitsSystemWindows="true"
-    tools:context=".view.activity.SplashScreen">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:background="@drawable/t1"
-        android:layout_height="310dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        />
+    tools:context=".view.activity.SelectCountryActivity">
 
     <FrameLayout
         android:id="@+id/container_countries"

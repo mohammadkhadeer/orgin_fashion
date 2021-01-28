@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.view.activity.Language;
+import com.fashion.rest.view.activity.Setting;
 
 
 public class FragmentProfileMenu extends Fragment {
@@ -49,7 +50,7 @@ public class FragmentProfileMenu extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("from","setting");
 
-                Intent intent = new Intent(getActivity(), Language.class);
+                Intent intent = new Intent(getActivity(), Setting.class);
 //                intent.putExtras(bundle);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.slide_up, R.anim.no_animation);

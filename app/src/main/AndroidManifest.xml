@@ -12,8 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.ResultActivity"
+        <activity android:name=".view.activity.SelectCountryActivity"
             android:theme="@style/AppTheme23"></activity>
+        <activity android:name=".view.activity.Setting" />
+        <activity
+            android:name=".view.activity.ResultActivity"
+            android:theme="@style/AppTheme23" />
         <activity
             android:name=".view.activity.SubCategory"
             android:theme="@style/AppTheme23" />

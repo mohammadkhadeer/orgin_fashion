@@ -1,11 +1,13 @@
 package com.fashion.rest.functions;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.fashion.rest.R;
+import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.model.Area;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.Deal;
@@ -14,37 +16,42 @@ import com.fashion.rest.model.OffersGradientsWithTextColor;
 import com.fashion.rest.model.Price;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import static com.fashion.rest.database.DataBaseInstance.getDataBaseInstance;
 
 public class FillItem {
 
     public static ArrayList<Area> fillAreas(Context context) {
         ArrayList<Area> listArrayL = new ArrayList<Area>();
 
+        Cursor res = getDataBaseInstance(context).descendingNeighborhood();
 
-        listArrayL.add(new Area("Acacia Avenues","Acacia Avenues"));
-        listArrayL.add(new Area("Academic City","Academic City"));
-        listArrayL.add(new Area("Al Aweer","Al Aweer"));
-        listArrayL.add(new Area("Al Badaa","Al Badaa"));
-        listArrayL.add(new Area("Al Barari","Al Barari"));
-        listArrayL.add(new Area("Al Barsha","Al Barsha"));
-        listArrayL.add(new Area("Al Furjan","Al Furjan"));
-        listArrayL.add(new Area("Al Garhoud","Al Garhoud"));
-
+        while (res.moveToNext()) {
+            listArrayL.add(new Area(res.getString(3).replace("\n", ""),
+                    res.getString(4).replace("\n", "")
+            ));
+        }
+        Collections.sort(listArrayL, new Comparator<Area>() {
+            @Override
+            public int compare(Area lhs, Area rhs) {
+                return lhs.getName_en().compareTo(rhs.getName_en());
+            }
+        });
         return listArrayL;
     }
 
     public static ArrayList<City> fillCityArrayL(Context context) {
         ArrayList<City> listArrayL = new ArrayList<City>();
+        Cursor res = getDataBaseInstance(context).descendingCities();
 
-
-        listArrayL.add(new City("Dubai","Dubai"));
-        listArrayL.add(new City("Abu Dhabi","Abu Dhabi"));
-        listArrayL.add(new City("Sharjah","Sharjah"));
-        listArrayL.add(new City("Al Ain","Al Ain"));
-        listArrayL.add(new City("Ajman","Ajman"));
-        listArrayL.add(new City("Ras Al Khaimah","Ras Al Khaimah"));
-        listArrayL.add(new City("Um Al Quwain","Um Al Quwain"));
-        listArrayL.add(new City("Fujairah","Fujairah"));
+        while (res.moveToNext()) {
+            listArrayL.add(new City(res.getString(1).replace("\n", ""),
+                    res.getString(2).replace("\n", "")
+            ));
+        }
+        Collections.reverse(listArrayL);
 
         return listArrayL;
     }
