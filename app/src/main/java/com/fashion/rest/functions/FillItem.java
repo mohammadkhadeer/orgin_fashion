@@ -23,15 +23,17 @@ import static com.fashion.rest.database.DataBaseInstance.getDataBaseInstance;
 
 public class FillItem {
 
-    public static ArrayList<Area> fillAreas(Context context) {
+    public static ArrayList<Area> fillAreas(Context context,String city) {
         ArrayList<Area> listArrayL = new ArrayList<Area>();
 
         Cursor res = getDataBaseInstance(context).descendingNeighborhood();
 
         while (res.moveToNext()) {
-            listArrayL.add(new Area(res.getString(3).replace("\n", ""),
-                    res.getString(4).replace("\n", "")
-            ));
+            if (city.equals(res.getString(1).replace("\n", ""))) {
+                listArrayL.add(new Area(res.getString(3).replace("\n", ""),
+                        res.getString(4).replace("\n", "")
+                ));
+            }
         }
         Collections.sort(listArrayL, new Comparator<Area>() {
             @Override

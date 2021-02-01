@@ -1,4 +1,4 @@
-package com.fashion.rest.view.fragments;
+package com.fashion.rest.view.fragments.fragmentItemDetails;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,28 +20,39 @@ import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.view.Adapters.AdapterSet;
+import com.fashion.rest.view.Adapters.AdapterType2;
+import com.fashion.rest.view.Adapters.AdapterType4;
 import com.fashion.rest.view.activity.CategoryItem;
 
 import java.util.ArrayList;
 
 import static com.fashion.rest.functions.FillItem.fillAllItemDepCatArrayL;
+import static com.fashion.rest.functions.Functions.fillSetArrayL;
+import static com.fashion.rest.functions.Functions.fillSetArrayL2;
 
 
-public class FragmentSuggested extends Fragment implements AdapterSet.PassItem{
+public class SLFullImageAndImagePng extends Fragment {
     View view;
     RecyclerView recyclerView;
-    AdapterSet adapterSet;
+    TextView headerTV,full_image_and_see_all_TV;
+    RelativeLayout relativeLayout;
+    String cat,cat_type;
+
+    public SLFullImageAndImagePng(){}
+
+    AdapterType2 adapterType2;
     RecyclerView.LayoutManager layoutManager;
     public ArrayList<Deal> dealsArrayList = new ArrayList<>();
-    TextView headerTV;
-    RelativeLayout relativeLayout;
-    String cat;
-    public FragmentSuggested(){}
+
+    AdapterType4 adapterType4;
+    RecyclerView.LayoutManager layoutManagerFull;
+    public ArrayList<Deal> dealsFullArrayList = new ArrayList<>();
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
             cat = getArguments().getString("cat");
+            cat_type = getArguments().getString("cat_type");
         }
         super.onAttach(context);
     }
@@ -50,13 +61,44 @@ public class FragmentSuggested extends Fragment implements AdapterSet.PassItem{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_suggested, container, false);
+        view= inflater.inflate(R.layout.fragment_full_image_and_image_png, container, false);
         inti();
-        Toast.makeText(getActivity(),"here" + "In suggested",Toast.LENGTH_LONG).show();
-        createRVSuggested();
         changeFont();
+
+        if (cat_type.equals("png_image"))
+            createPngCase();
+        if (cat_type.equals("full_image"))
+            createFullImageCase();
+
         actionListenerToSeeAll();
         return view;
+    }
+
+    private void createFullImageCase() {
+        dealsFullArrayList = fillSetArrayL2(dealsArrayList,getActivity());
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setHasFixedSize(true);
+        layoutManagerFull = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView.setLayoutManager(layoutManagerFull);
+        adapterType4 =new AdapterType4(getActivity()
+                ,dealsFullArrayList,"category");
+        recyclerView.setAdapter(adapterType4);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void createPngCase() {
+        dealsArrayList = fillSetArrayL(dealsArrayList,getActivity());
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView.setLayoutManager(layoutManager);
+        adapterType2 =new AdapterType2(getActivity()
+                ,dealsArrayList,"category");
+        recyclerView.setAdapter(adapterType2);
     }
 
     private void actionListenerToSeeAll() {
@@ -64,6 +106,7 @@ public class FragmentSuggested extends Fragment implements AdapterSet.PassItem{
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
+                //bundle.putString("category",getActivity().getResources().getString(R.string.set));
                 bundle.putString("category",getActivity().getResources().getString(R.string.set));
                 bundle.putString("from","see_all");
 
@@ -76,31 +119,15 @@ public class FragmentSuggested extends Fragment implements AdapterSet.PassItem{
     }
 
     private void changeFont() {
-        headerTV.setTypeface(Functions.changeFontCategory(getActivity()));
+        headerTV.setTypeface(Functions.changeFontGeneral(getActivity()));
+        full_image_and_see_all_TV.setTypeface(Functions.changeFontGeneral(getActivity()));
     }
 
     private void inti() {
         recyclerView = (RecyclerView) view.findViewById(R.id.suggested_RV);
         headerTV = (TextView) view.findViewById(R.id.suggested_TV);
+        full_image_and_see_all_TV = (TextView) view.findViewById(R.id.full_image_and_see_all_TV);
         relativeLayout = (RelativeLayout) view.findViewById(R.id.see_all_suggested_rl);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void createRVSuggested() {
-        dealsArrayList = fillAllItemDepCatArrayL(cat,getActivity());
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.HORIZONTAL, false);
-
-        recyclerView.setLayoutManager(layoutManager);
-        adapterSet =new AdapterSet(getActivity()
-                ,dealsArrayList,cat,this);
-        recyclerView.setAdapter(adapterSet);
-    }
-
-    @Override
-    public void onClicked(Deal deal) {
-
-    }
 }

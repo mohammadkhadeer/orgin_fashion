@@ -14,10 +14,13 @@
     <string name="arabic">Arabic</string>
     <string name="english">English</string>
     <string name="language">Language</string>
+    <string name="vist_websaite">Visit website</string>
+    <string name="see_in_google_maps">See in google maps</string>
 
     <string name="price">Price</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="call">Call</string>
 
 
     <string name="set">Sets</string>

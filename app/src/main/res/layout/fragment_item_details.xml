@@ -22,6 +22,20 @@
             android:layout_height="wrap_content" />
 
         <FrameLayout
+            android:id="@+id/container_location"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/container_store_details"
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
             android:id="@+id/container_suggested"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="8dp"

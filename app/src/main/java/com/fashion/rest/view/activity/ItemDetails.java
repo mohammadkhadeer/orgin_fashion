@@ -20,6 +20,7 @@ import com.fashion.rest.functions.Functions;
 import com.fashion.rest.view.fragments.FragmentAddToCart;
 import com.fashion.rest.view.fragments.FragmentImageSlider;
 import com.fashion.rest.view.fragments.FragmentItemDetails;
+import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentContact;
 
 public class ItemDetails extends AppCompatActivity {
     Toolbar toolbar;
@@ -29,9 +30,11 @@ public class ItemDetails extends AppCompatActivity {
     LinearLayout show_item_details_header;
     FragmentImageSlider fragmentImageSlider = new FragmentImageSlider();
     FragmentItemDetails fragmentItemDetails = new FragmentItemDetails();
-    FragmentAddToCart fragmentAddToCart = new FragmentAddToCart();
+    FragmentContact fragmentContact = new FragmentContact();
 
-    String cat;
+    String itemID,itemName,cat,cat_type,from;
+    String storeNameStr, storeImage, website_link;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,24 +44,35 @@ public class ItemDetails extends AppCompatActivity {
         inti();
         titleActionBar();
         intiImageSlider();
-        SuggestedFragment();
-        AddToCartFragment();
+        ItemDetailsFragment();
+        contactFragment();
     }
 
-    private void AddToCartFragment() {
+    private void contactFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container_add_to_cart, fragmentAddToCart)
+                .replace(R.id.container_contact, fragmentContact)
                 .commit();
     }
 
     private void getInfoFromCat() {
         Bundle bundle = getIntent().getExtras();
+        itemID =bundle.getString("itemID");
+        itemName =bundle.getString("itemName");
         cat =bundle.getString("cat");
+        cat_type =bundle.getString("cat_type");
+        from =bundle.getString("from");
     }
 
-    private void SuggestedFragment() {
+    private void ItemDetailsFragment() {
+        storeNameStr = "Lacoste";
+        storeImage = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/lacoste-logo.png?alt=media&token=3f7d0317-11d6-4b6d-9763-4c3e3eec08e4";
+        website_link = "https://www.farfetch.com/ae/shopping/men/lacoste/items.aspx?utm_source=google&utm_medium=cpc&utm_keywordid=123323324&pid=google_search&af_channel=Search&c=658279425&af_c_id=658279425&af_siteid=&af_keywords=kwd-88551300&af_adset_id=35964967809&af_ad_id=492268062138&af_sub1=123323324&is_retargeting=true";
         Bundle bundle = new Bundle();
         bundle.putString("cat", cat);
+        bundle.putString("cat_type", cat_type);
+        bundle.putString("storeNameStr", storeNameStr);
+        bundle.putString("storeImage", storeImage);
+        bundle.putString("website_link", website_link);
 
         fragmentItemDetails.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
@@ -156,7 +170,7 @@ public class ItemDetails extends AppCompatActivity {
             //change size new price
             //itemNewPriceTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
 
-            itemNewPriceTV.setText("199"
+            itemNewPriceTV.setText("99"
                     +" "+getResources().getString(R.string.jod));
             //fill old price
             itemPriceTV.setText("250"

@@ -83,7 +83,10 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
         String cat =notificationCompsArrayL.get(position).getCat();
 
         Bundle bundle = new Bundle();
-        bundle.putString("cat",cat);
+        bundle.putString("itemID","itemID");
+        bundle.putString("itemName","itemName");
+        bundle.putString("cat","offers");
+        bundle.putString("cat_type","png_image");
         bundle.putString("from","not");
 
         Intent intent = new Intent(context, ItemDetails.class);

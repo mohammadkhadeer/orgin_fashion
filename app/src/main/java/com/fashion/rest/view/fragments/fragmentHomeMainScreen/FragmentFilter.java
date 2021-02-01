@@ -291,12 +291,12 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         //need if to check language
         city_name_result.setText(city.getName_en());
         city_name_con_result.setVisibility(View.VISIBLE);
-        createAllAreasRV();
+        createAllAreasRV(city);
     }
 
-    private void createAllAreasRV() {
+    private void createAllAreasRV(City city) {
         all_areasRV.setVisibility(View.VISIBLE);
-        areaArrayList = fillAreas(getActivity());
+        areaArrayList = fillAreas(getActivity(),city.getName_en());
         all_areasRV.setNestedScrollingEnabled(false);
         all_areasRV.setHasFixedSize(true);
         layoutManagerArea = new LinearLayoutManager(getActivity(),

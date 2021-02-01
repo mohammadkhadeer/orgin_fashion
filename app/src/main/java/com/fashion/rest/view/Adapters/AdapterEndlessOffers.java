@@ -131,7 +131,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
 
   public class ViewHolder extends BaseViewHolderUser {
     ImageView imageView;
-    RelativeLayout coverRL,callRL;
+    RelativeLayout coverRL,callRL,cover_offers;
     TextView nameTV,desTV,priceTV,oldPrice,callTV,whatsApp;
 
     ViewHolder(View itemView) {
@@ -141,8 +141,9 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
       desTV = (TextView) itemView.findViewById(R.id.adapter_type2_des);
 //      priceTV = (TextView) itemView.findViewById(R.id.adapter_price_TV);
 //      oldPrice = (TextView) itemView.findViewById(R.id.adapter_old_price_TV);
-      imageView = (ImageView) itemView.findViewById(R.id.adapter_IV) ;
-      coverRL = (RelativeLayout) itemView.findViewById(R.id.cont_rl_offers) ;
+      imageView = (ImageView) itemView.findViewById(R.id.adapter_IV);
+      coverRL = (RelativeLayout) itemView.findViewById(R.id.cont_rl_offers);
+      cover_offers= (RelativeLayout) itemView.findViewById(R.id.cover_offers) ;
       callRL = (RelativeLayout) itemView.findViewById(R.id.adapter_type2_call_rl) ;
       callTV = (TextView) itemView.findViewById(R.id.adapter_type2_call_tv);
       whatsApp = (TextView) itemView.findViewById(R.id.adapter_type2_w_tv);
@@ -161,7 +162,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
       changeFont(context);
       changeOffersGradientsAndTextColorCases(coverRL,position,context,getObject(position),nameTV,desTV,callRL,callTV,whatsApp);
       callFunction(callRL,context);
-      //actionListenerToGoShowItemDetails(context, coverRL, position);
+      actionListenerToGoShowItemDetails(context, cover_offers, position);
 
     }
 
@@ -193,14 +194,17 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
     cardButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Toast.makeText(context,"here" + dealItemsList.get(position).getName(),Toast.LENGTH_SHORT).show();
-//        Bundle bundle = new Bundle();
-//
-//        bundle.putString("from", "search");
-//        Intent intent = new Intent(context, ItemDetails.class);
-//        intent.putExtras(bundle);
-//        ((Activity) context).startActivity(intent);
-//        ((Activity) context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+        Bundle bundle = new Bundle();
+        bundle.putString("itemID","itemID");
+        bundle.putString("itemName","itemName");
+        bundle.putString("cat","offers");
+        bundle.putString("cat_type","offers");
+        bundle.putString("from","offers");
+
+        Intent intent = new Intent(context, ItemDetails.class);
+        intent.putExtras(bundle);
+        ((Activity)context).startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
       }
     });
   }

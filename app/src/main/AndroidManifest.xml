@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.fashion.rest">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+
 
     <application
         android:allowBackup="true"
@@ -11,9 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAVVeBZ4ra11TGUWcScjWTwJpHKAC-XnlY"/>
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+
         <activity android:name=".view.activity.SelectCountryActivity"
             android:theme="@style/AppTheme23"></activity>
+
         <activity android:name=".view.activity.Setting" />
         <activity
             android:name=".view.activity.ResultActivity"

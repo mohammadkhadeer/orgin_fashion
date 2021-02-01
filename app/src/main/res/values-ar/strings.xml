@@ -216,5 +216,8 @@
     <string name="to">الى</string>
     <string name="category">الفئات</string>
     <string name="log_out">تسجيل خروج</string>
+    <string name="call">اتصال</string>
+    <string name="vist_websaite">زور موقعهم</string>
+    <string name="see_in_google_maps">مشاهدة في خرائط قوقل</string>
 
 </resources>

@@ -59,6 +59,7 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
                 bundle.putString("itemID",dealsArrayL.get(position).getName());
                 bundle.putString("itemName",dealsArrayL.get(position).getName());
                 bundle.putString("cat",cat);
+                bundle.putString("cat_type","full_image");
                 bundle.putString("from","cat");
 
                 Intent intent = new Intent(context, ItemDetails.class);

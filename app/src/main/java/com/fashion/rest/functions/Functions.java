@@ -311,17 +311,18 @@ public class Functions {
 
     public static ArrayList<String> fillImgArrayL() {
         ArrayList<String> ImgArrayL = new ArrayList<String>();
+        String image ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/1234.webp?alt=media&token=be6f0a3d-7ecd-4cc3-a8a6-2c5acccab08d";
 
-        String image = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/meal_image%2Fms.jpg?alt=media&token=9d6bb813-8dce-4785-ae83-c1a9e268b3f2";
         String image1 ="https://firebasestorage.googleapis.com/v0/b/test-c434c.appspot.com/o/Screen%20Shot%202020-10-22%20at%2012.28.40%20PM.pn" +
                 "g?alt=media&token=9bb719a5-ccae-492f-9091-db5a0c559465";
         String image2 = "https://firebasestorage.googleapis.com/v0/b/test-c434c.appspot.com/o/Screen%20Shot%202020-10-22%20at%2012.29" +
                 ".01%20PM.png?alt=media&token=9c0f6a72-5fdd-4151-a37b-fba462b8fd16";
-        String image3 = "https://firebasestorage.googleapis.com/v0/b/test-c434c.appspot.com/o/Screen%20Shot%202020-10-22%20at%2012.28.16%20PM.png?alt=media&token=16b5e6ff-8ab9-4af7-b764-3eeb44159bcf";
+        String image3 ="https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/123.jpg?alt=media&token=0c082f00-3ea9-47c5-8f1f-62b0bc90a9aa";
         String image4 = "https://firebasestorage.googleapis.com/v0/b/test-c434c.appspot.com/o/Screen%20Shot%202020-10-22%20at%2012.29.12%20PM.png?alt=media&token=88b6f628-4878-4e05-8f89-c876c3fc4205";
-        ImgArrayL.add(image1);
+
+        ImgArrayL.add(image);
         ImgArrayL.add(image3);
-        ImgArrayL.add(image4);
+        ImgArrayL.add(image);
 
         return ImgArrayL;
     }
