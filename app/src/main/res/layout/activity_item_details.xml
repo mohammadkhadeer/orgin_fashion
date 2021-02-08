@@ -209,4 +209,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/fullImageCont">
+
+        <FrameLayout
+            android:id="@+id/container_full_image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+
 </android.support.design.widget.CoordinatorLayout>

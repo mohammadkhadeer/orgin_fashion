@@ -23,6 +23,7 @@ import com.fashion.rest.view.Adapters.AdapterSet;
 import com.fashion.rest.view.Adapters.AdapterType2;
 import com.fashion.rest.view.Adapters.AdapterType4;
 import com.fashion.rest.view.activity.CategoryItem;
+import com.fashion.rest.view.activity.ResultActivity;
 
 import java.util.ArrayList;
 
@@ -105,13 +106,13 @@ public class SLFullImageAndImagePng extends Fragment {
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                //bundle.putString("category",getActivity().getResources().getString(R.string.set));
-                bundle.putString("category",getActivity().getResources().getString(R.string.set));
-                bundle.putString("from","see_all");
+//                Bundle bundle = new Bundle();
+//                //bundle.putString("category",getActivity().getResources().getString(R.string.set));
+//                bundle.putString("category",getActivity().getResources().getString(R.string.set));
+//                bundle.putString("from","see_all");
 
-                Intent intent = new Intent(getActivity(), CategoryItem.class);
-                intent.putExtras(bundle);
+                Intent intent = new Intent(getActivity(), ResultActivity.class);
+                //intent.putExtras(bundle);
                 ((Activity)getActivity()).startActivity(intent);
                 ((Activity)getActivity()).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
             }

@@ -1,5 +1,6 @@
 package com.fashion.rest.view.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,10 @@ import android.widget.TextView;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.SlidImage;
+import com.fashion.rest.presnter.ImageClicked;
+import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.view.Adapters.SlidingImage_Adapter;
+import com.fashion.rest.view.activity.ItemDetails;
 
 import java.util.ArrayList;
 
@@ -45,6 +50,7 @@ public class FragmentImageSlider extends Fragment implements SlidingImage_Adapte
     RelativeLayout relativeLayout;
 
     TextView itemPriceTV,oldPriceTV,itemNewPriceTV;
+    ImageClicked imageClickedP;
 
     @Override
     public void onAttach(Context context) {
@@ -57,6 +63,18 @@ public class FragmentImageSlider extends Fragment implements SlidingImage_Adapte
 
         }
         super.onAttach(context);
+        if (context instanceof ImageClicked) {
+            imageClickedP = (ImageClicked) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement FragmentAListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        imageClickedP = null;
     }
 
     @Override
@@ -68,6 +86,7 @@ public class FragmentImageSlider extends Fragment implements SlidingImage_Adapte
         AddShineEffect(relativeLayout,shinImageView);
 
         fillImageList();
+
         return view;
     }
 
@@ -171,5 +190,7 @@ public class FragmentImageSlider extends Fragment implements SlidingImage_Adapte
     @Override
     public void onImageClicked(Boolean clicked) {
         //createPopUp(getActivity(),view,images,imageModelArrayList);
+        Log.i("TAG","onImageClicked : ");
+        imageClickedP.imageClicked("test onImageClicked");
     }
 }

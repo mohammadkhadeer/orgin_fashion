@@ -8,9 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fashion.rest.R;
+import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentFullImageSlider;
 import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentLocation;
 import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentStoreInfo;
 import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentSuggested;
+
+import java.util.ArrayList;
+
+import static com.fashion.rest.functions.Functions.fillImgArrayL;
 
 public class FragmentItemDetails extends Fragment {
     View view;

@@ -13,16 +13,25 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.presnter.ImageClicked;
+import com.fashion.rest.view.Adapters.SlidingImage_Adapter;
 import com.fashion.rest.view.fragments.FragmentAddToCart;
 import com.fashion.rest.view.fragments.FragmentImageSlider;
 import com.fashion.rest.view.fragments.FragmentItemDetails;
 import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentContact;
+import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentFullImageSlider;
 
-public class ItemDetails extends AppCompatActivity {
+import java.util.ArrayList;
+
+import static com.fashion.rest.functions.Functions.fillImgArrayL;
+
+public class ItemDetails extends AppCompatActivity implements ImageClicked {
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout appbar;
@@ -31,9 +40,13 @@ public class ItemDetails extends AppCompatActivity {
     FragmentImageSlider fragmentImageSlider = new FragmentImageSlider();
     FragmentItemDetails fragmentItemDetails = new FragmentItemDetails();
     FragmentContact fragmentContact = new FragmentContact();
+    FragmentFullImageSlider fragmentFullImageSlider = new FragmentFullImageSlider();
 
     String itemID,itemName,cat,cat_type,from;
     String storeNameStr, storeImage, website_link;
+    int fullImageOnTheTop =0;
+
+    RelativeLayout fullImageCont;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +57,10 @@ public class ItemDetails extends AppCompatActivity {
         inti();
         titleActionBar();
         intiImageSlider();
+        handelFragmentFullImage();
         ItemDetailsFragment();
         contactFragment();
+
     }
 
     private void contactFragment() {
@@ -101,6 +116,7 @@ public class ItemDetails extends AppCompatActivity {
         itemNewPriceTV = (TextView) findViewById(R.id.show_item_details_new_price);
         show_item_details_header = (LinearLayout) findViewById(R.id.show_item_details_header);
         title = (TextView) findViewById(R.id.show_item_details_title);
+        fullImageCont = (RelativeLayout) findViewById(R.id.fullImageCont);
     }
 
     private void titleActionBar() {
@@ -176,6 +192,39 @@ public class ItemDetails extends AppCompatActivity {
             itemPriceTV.setText("250"
                     +" "+getResources().getString(R.string.jod));
 
+        }
+    }
+
+    @Override
+    public void imageClicked(String test) {
+        fullImageCont.setVisibility(View.VISIBLE);
+        fullImageOnTheTop =1;
+    }
+
+
+    public void handelFragmentFullImage() {
+        ArrayList<String> images = new ArrayList<>();
+        images = fillImgArrayL();
+
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("allImage", images);
+
+
+        fragmentFullImageSlider.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_full_image_slider, fragmentFullImageSlider)
+                .commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (fullImageOnTheTop==1)
+        {
+            fullImageOnTheTop =0;
+            fullImageCont.setVisibility(View.GONE);
+        }else{
+            fragmentFullImageSlider.diestroyAsynk();
+            finish();
         }
     }
 }
