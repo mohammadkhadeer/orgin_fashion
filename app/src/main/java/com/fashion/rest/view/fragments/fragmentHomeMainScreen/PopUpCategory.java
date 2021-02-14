@@ -18,6 +18,7 @@ import com.fashion.rest.R;
 import com.fashion.rest.model.Area;
 import com.fashion.rest.model.MultiArea;
 import com.fashion.rest.model.SubCategory;
+import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.view.Adapters.AdapterMultiArea;
 import com.fashion.rest.view.Adapters.AdapterSubCategory;
@@ -37,7 +38,7 @@ public class PopUpCategory extends DialogFragment implements AdapterSubCategoryS
     Dialog dialog;
     PassSelectedSubCategory passSelectedSubCategory;
 
-    public void showDialog(Activity activity, ArrayList<SubCategory> subCategory,Context context){
+    public void showDialog(Activity activity, ArrayList<Sub_Cat> subCategory,Context context){
         dialog = new Dialog(activity);
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -60,7 +61,7 @@ public class PopUpCategory extends DialogFragment implements AdapterSubCategoryS
         dialog.setCanceledOnTouchOutside(true);
     }
 
-    private void actionListenerToSearchEdt(final ArrayList<SubCategory> subCategory) {
+    private void actionListenerToSearchEdt(final ArrayList<Sub_Cat> subCategory) {
         searchEdt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
@@ -92,10 +93,10 @@ public class PopUpCategory extends DialogFragment implements AdapterSubCategoryS
         });
     }
 
-    private void filter(String text,ArrayList<SubCategory> subCategory) {
-        ArrayList<SubCategory> multiAreasArrayList2  = new ArrayList<SubCategory>();
-        for (SubCategory subCategory1 : subCategory) {
-            if (subCategory1.getSub_category_en().toLowerCase().contains(text.toLowerCase())) {
+    private void filter(String text,ArrayList<Sub_Cat> subCategory) {
+        ArrayList<Sub_Cat> multiAreasArrayList2  = new ArrayList<Sub_Cat>();
+        for (Sub_Cat subCategory1 : subCategory) {
+            if (subCategory1.getName_en().toLowerCase().contains(text.toLowerCase())) {
                 multiAreasArrayList2.add(subCategory1);
             }
         }
@@ -110,7 +111,7 @@ public class PopUpCategory extends DialogFragment implements AdapterSubCategoryS
         cancelIV.setVisibility(View.VISIBLE);
     }
 
-    private void createRV(ArrayList<SubCategory> subCategoryArrayList,Context context) {
+    private void createRV(ArrayList<Sub_Cat> subCategoryArrayList,Context context) {
         recyclerView.setHasFixedSize(true);
         GridLayoutManager mLayoutManager = new GridLayoutManager(context, 1);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -127,12 +128,12 @@ public class PopUpCategory extends DialogFragment implements AdapterSubCategoryS
     }
 
     @Override
-    public void onClickedSubCategory(SubCategory subCategory) {
+    public void onClickedSubCategory(Sub_Cat subCategory) {
         passSelectedSubCategory.passSelectedSubCategory(subCategory);
         dialog.dismiss();
     }
 
     public interface PassSelectedSubCategory{
-        void passSelectedSubCategory(SubCategory subCategory);
+        void passSelectedSubCategory(Sub_Cat subCategory);
     }
 }

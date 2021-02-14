@@ -23,6 +23,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+
 public class AdapterCities extends RecyclerView.Adapter<AdapterCities.ViewHolder>{
 
     private final Context context;
@@ -63,7 +65,7 @@ public class AdapterCities extends RecyclerView.Adapter<AdapterCities.ViewHolder
 
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.cityOrAreaTV.setText(cities.get(position).getName_en());
+        holder.cityOrAreaTV.setText(getTextEngOrLocal(cities.get(position).getName_en(),cities.get(position).getName_local()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {

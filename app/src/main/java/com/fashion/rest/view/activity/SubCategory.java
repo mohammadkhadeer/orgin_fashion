@@ -8,12 +8,16 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.fashion.rest.R;
+import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.Adapters.AdapterSubCategorySeeAll;
 
 import java.util.ArrayList;
@@ -24,32 +28,47 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
 
     AdapterSubCategorySeeAll adapterSubCategorySeeAll;
     RecyclerView recyclerView;
-    ArrayList<com.fashion.rest.model.SubCategory> subCategoriesArrayL = new ArrayList<>();
     EditText searchEdt;
     RelativeLayout cancelRL;
     ImageView cancelIV;
+    TextView sub_cat_title;
     String cat_name;
+    ArrayList<Sub_Cat> sub_catArrayList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_category);
 
         statusBarColor();
+        sub_catArrayList = new ArrayList<>();
         getInfoFromCat();
         inti();
-        fillEditText();
+        changeFont();
+        fillSubCategoryTitle();
         createRV();
         actionListenerToSearchEdt();
         actionListenerToRemoveTextInSearchEdt();
     }
 
-    private void fillEditText() {
+    private void fillSubCategoryTitle() {
+        sub_cat_title.setText(cat_name);
+    }
 
+    private void changeFont() {
+        sub_cat_title.setTypeface(Functions.changeFontGeneral(this));
     }
 
     private void getInfoFromCat() {
         Bundle bundle = getIntent().getExtras();
         cat_name =bundle.getString("cat_name");
+        sub_catArrayList = (ArrayList<Sub_Cat>) getIntent().getSerializableExtra("sub_cat");
+        Log.i("TAG sub cat ", String.valueOf(sub_catArrayList.size()));
+
+        for (int i=0;i<sub_catArrayList.size();i++)
+        {
+            Log.i("TAG sub cat ",sub_catArrayList.get(i).getName_en());
+        }
     }
 
     private void actionListenerToRemoveTextInSearchEdt() {
@@ -85,9 +104,9 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
     }
 
     private void filter(String text) {
-        ArrayList<com.fashion.rest.model.SubCategory> multiAreasArrayList2  = new ArrayList<com.fashion.rest.model.SubCategory>();
-        for (com.fashion.rest.model.SubCategory subCategory1 : subCategoriesArrayL) {
-            if (subCategory1.getSub_category_en().toLowerCase().contains(text.toLowerCase())) {
+        ArrayList<Sub_Cat> multiAreasArrayList2  = new ArrayList<Sub_Cat>();
+        for (Sub_Cat subCategory1 : sub_catArrayList) {
+            if (subCategory1.getName_en().toLowerCase().contains(text.toLowerCase())) {
                 multiAreasArrayList2.add(subCategory1);
             }
         }
@@ -103,11 +122,10 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
     }
 
     private void createRV() {
-        subCategoriesArrayL = fillSubCatArrayL(getApplicationContext());
         recyclerView.setHasFixedSize(true);
         GridLayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
         recyclerView.setLayoutManager(mLayoutManager);
-        adapterSubCategorySeeAll = new AdapterSubCategorySeeAll(getApplicationContext(), subCategoriesArrayL,this);
+        adapterSubCategorySeeAll = new AdapterSubCategorySeeAll(getApplicationContext(), sub_catArrayList,this);
         recyclerView.setAdapter(adapterSubCategorySeeAll);
     }
 
@@ -116,6 +134,7 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
         searchEdt = (EditText) findViewById(R.id.fragment_car_options_searchEdt);
         cancelRL = (RelativeLayout) findViewById(R.id.fragment_car_options_RL);
         cancelIV = (ImageView) findViewById(R.id.fragment_car_options_ImageV);
+        sub_cat_title = (TextView) findViewById(R.id.sub_cat_title);
     }
 
     private void statusBarColor() {
@@ -123,7 +142,7 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
     }
 
     @Override
-    public void onClickedSubCategory(com.fashion.rest.model.SubCategory subCategory) {
+    public void onClickedSubCategory(Sub_Cat subCategory) {
         moveToResultActivity();
     }
 

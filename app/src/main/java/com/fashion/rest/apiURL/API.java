@@ -4,7 +4,7 @@ public class API {
     public static String apiName ;
 
     public static String apiURLBase(){
-        String apiName ="http://46.101.235.217/api";
+        String apiName ="http://46.101.235.217/api/";
         return apiName ;
     }
 
@@ -45,6 +45,12 @@ public class API {
     public static String apiAreas(String countryId){
         String apiName ="http://46.101.235.217/api/areas/by-country/"+countryId+"/";
         return apiName;
+    }
+
+    public static String apiCat(){
+        String apiName ="";
+        apiName =apiURLBase() + "/categories/";
+        return "http://46.101.235.217/api/categories/";
     }
 
 }

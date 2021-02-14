@@ -15,17 +15,20 @@ import com.fashion.rest.model.Area;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.MultiArea;
 import com.fashion.rest.model.SubCategory;
+import com.fashion.rest.model.Sub_Cat;
 
 import java.util.ArrayList;
+
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AdapterSubCategory extends RecyclerView.Adapter<AdapterSubCategory.ViewHolder>{
 
     private final Context context;
 //    List<Offer> mList = new ArrayList<>();
-    ArrayList<SubCategory> subCatArrayL = new ArrayList<>();
+    ArrayList<Sub_Cat> subCatArrayL = new ArrayList<>();
     PassSubCategory passSubCat;
     public AdapterSubCategory
-            (Context context,ArrayList<SubCategory> subCatArrayL,PassSubCategory passSubCat)
+            (Context context,ArrayList<Sub_Cat> subCatArrayL,PassSubCategory passSubCat)
                 {
                     this.context = context;
                     this.subCatArrayL = subCatArrayL;
@@ -42,7 +45,7 @@ public class AdapterSubCategory extends RecyclerView.Adapter<AdapterSubCategory.
     public void removeArea(Area area) {
         for (int i=0;i<subCatArrayL.size();i++)
         {
-            if (area.getName_en().equals(subCatArrayL.get(i).getSub_category_en()))
+            if (area.getName_en().equals(subCatArrayL.get(i).getName_en()))
             {
                 subCatArrayL.remove(i);
                 notifyItemRemoved(i);
@@ -70,7 +73,7 @@ public class AdapterSubCategory extends RecyclerView.Adapter<AdapterSubCategory.
 
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.cityOrAreaTV.setText(subCatArrayL.get(position).getSub_category_en());
+        holder.cityOrAreaTV.setText(getTextEngOrLocal(subCatArrayL.get(position).getName_en(),subCatArrayL.get(position).getName_local()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {
@@ -83,10 +86,10 @@ public class AdapterSubCategory extends RecyclerView.Adapter<AdapterSubCategory.
     }
 
     public interface PassSubCategory {
-        void onClickedSubCategory(SubCategory subCategory);
+        void onClickedSubCategory(Sub_Cat subCategory);
     }
 
-    public void filterList(ArrayList<SubCategory> filterdNames) {
+    public void filterList(ArrayList<Sub_Cat> filterdNames) {
         this.subCatArrayL = filterdNames;
         notifyDataSetChanged();
     }

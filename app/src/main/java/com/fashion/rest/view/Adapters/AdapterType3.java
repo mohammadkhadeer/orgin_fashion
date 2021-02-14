@@ -15,24 +15,29 @@ import android.widget.TextView;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.activity.ItemDetails;
 import com.fashion.rest.view.activity.SubCategory;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
+import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
 
     private final Context context;
-//    List<Offer> mList = new ArrayList<>();
-    ArrayList<Deal> dealsArrayL = new ArrayList<>();
+    ArrayList<Categories> categoriesArrayList = new ArrayList<>();
     String cat;
     public AdapterType3
-            (Context context,ArrayList<Deal> dealsArrayL,String cat)
+            (Context context,ArrayList<Categories> categoriesArrayList,String cat)
                 {
                      this.context = context;
-                    this.dealsArrayL = dealsArrayL;
+                    this.categoriesArrayList = categoriesArrayList;
                     this.cat = cat;
                 }
 
@@ -57,10 +62,11 @@ public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("cat_name",cat);
+                bundle.putString("cat_name",getTextEngOrLocal(categoriesArrayList.get(position).getName(),categoriesArrayList.get(position).getName_local()));
 
                 Intent intent = new Intent(context, SubCategory.class);
                 intent.putExtras(bundle);
+                intent.putExtra("sub_cat", categoriesArrayList.get(position).getSub_catArrayList());
                 ((Activity)context).startActivity(intent);
                 ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
             }
@@ -68,51 +74,36 @@ public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
     }
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.nameTV.setText(dealsArrayL.get(position).getName());
-//        holder.desTV.setText(dealsArrayL.get(position).getDes());
-//        holder.priceTV.setText(String.valueOf(dealsArrayL.get(position).getPrice().getNewPrice()));
-//        holder.oldPrice.setText(String.valueOf(dealsArrayL.get(position).getPrice().getOldPrice()));
+        holder.nameTV.setText(getTextEngOrLocal(categoriesArrayList.get(position).getName(),categoriesArrayList.get(position).getName_local()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {
         holder.nameTV.setTypeface(Functions.changeFontGeneral(context));
-//        holder.desTV.setTypeface(Functions.changeFontGeneral(context));
-//        holder.priceTV.setTypeface(Functions.changeFontGeneral(context));
-//        holder.oldPrice.setTypeface(Functions.changeFontGeneral(context));
-//        holder.oldPrice.setPaintFlags(holder.priceTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     private void fillImage(Context context, ViewHolder holder, int position) {
-        //product image
-//        Picasso.get()
-//                .load(dealsArrayL.get(position).getImage1())
-//                .fit()
-//                .centerCrop()
-//                .into(holder.imageView);
-
+        Picasso.get()
+                .load(apiURLBase()+"/"+categoriesArrayList.get(position).getFlag().getUrl())
+                .fit()
+                .centerCrop()
+                .into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return dealsArrayL.size();
+        return categoriesArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        RelativeLayout contRL,coverRL,buttonAddToCart;
-        TextView nameTV,desTV,priceTV,oldPrice;
+        RelativeLayout coverRL;
+        TextView nameTV;
         public ViewHolder(View itemView) {
             super(itemView);
             nameTV = (TextView) itemView.findViewById(R.id.type3_tv);
-//            desTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_des_TV);
-//            priceTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_meal_price_TV);
-//            oldPrice = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_meal_old_price_TV);
-//            imageView = (ImageView) itemView.findViewById(R.id.adapter_suggested_to_you_IV) ;
-//            contRL = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_to_you_cont) ;
+            imageView = (ImageView) itemView.findViewById(R.id.cat_image) ;
               coverRL = (RelativeLayout) itemView.findViewById(R.id.cover_adapter_set) ;
-//            buttonAddToCart = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_call_button);
         }
-
     }
 
 }

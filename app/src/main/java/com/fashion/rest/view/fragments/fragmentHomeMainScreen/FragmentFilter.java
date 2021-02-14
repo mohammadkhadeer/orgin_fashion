@@ -3,7 +3,9 @@ package com.fashion.rest.view.fragments.fragmentHomeMainScreen;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,10 +22,13 @@ import com.fashion.rest.R;
 import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
+import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.MultiArea;
 import com.fashion.rest.model.SubCategory;
+import com.fashion.rest.model.Sub_Cat;
+import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.view.Adapters.AdapterAreas;
 import com.fashion.rest.view.Adapters.AdapterCategory;
@@ -33,11 +38,19 @@ import com.fashion.rest.view.Adapters.AdapterSubCategory;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import static com.fashion.rest.functions.FillItem.fillAreas;
 import static com.fashion.rest.functions.FillItem.fillCityArrayL;
 import static com.fashion.rest.functions.Functions.fillCatArrayL;
 import static com.fashion.rest.functions.Functions.fillSubCatArrayL;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 
 
 public class FragmentFilter extends Fragment implements AdapterCities.PassCity
@@ -63,7 +76,8 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
     AdapterCategory adapterCategory;
     RecyclerView.LayoutManager layoutManagerCat;
 
-    public ArrayList<SubCategory> subCatArrayList = new ArrayList<>();
+    public ArrayList<Categories> subCatArrayList = new ArrayList<>();
+    public ArrayList<Sub_Cat> subCatArrayListNew = new ArrayList<>();
     RecyclerView sub_catRV;
     AdapterSubCategory adapterSubCategory;
     RecyclerView.LayoutManager layoutManagerSubCat;
@@ -80,6 +94,11 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
     PassCityAndArea passCity;
 
+    JsonPlaceHolderApi jsonPlaceHolderApi;
+    Retrofit retrofit;
+    public ArrayList<Categories> categoriesArrayList = new ArrayList<>();
+
+
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
@@ -92,12 +111,18 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
             throw new RuntimeException(context.toString()
                     + " must implement FragmentAListener");
         }
+        intiRet();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         passCity = null;
+    }
+
+    private void intiRet() {
+        retrofit = getCategories();
+        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
 
@@ -108,14 +133,37 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         inti();
         changeFont();
         createCitiesRV();
-        createCatRV();
+        getCategoriesList();
         actionListener();
 
         return view;
     }
 
+    private void getCategoriesList() {
+        categoriesArrayList = new ArrayList<>();
+        Call<List<Categories>> call = jsonPlaceHolderApi.getCategories();
+        call.enqueue(new Callback<List<Categories>>() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onResponse(Call<List<Categories>> call, Response<List<Categories>> response) {
+                if (!response.isSuccessful())
+                { return; }
+                List<Categories> countriesL = response.body();
+
+                for (Categories categories:countriesL)
+                {
+                    categoriesArrayList.add(categories);
+                }
+                createCatRV();
+            }
+            @Override
+            public void onFailure(Call<List<Categories>> call, Throwable t) {
+                Log.i("TAG Error",t.getMessage());
+            }
+        });
+    }
+
     private void createCatRV() {
-        catArrayList = fillCatArrayL(getActivity());
         catRV.setNestedScrollingEnabled(false);
         catRV.setHasFixedSize(true);
         layoutManagerCat = new LinearLayoutManager(getActivity(),
@@ -123,7 +171,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
         catRV.setLayoutManager(layoutManagerCat);
         adapterCategory = new AdapterCategory(getActivity()
-                , catArrayList, this);
+                , categoriesArrayList, this);
         catRV.setAdapter(adapterCategory);
     }
 
@@ -166,7 +214,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
             @Override
             public void onClick(View v) {
                 PopUpCategory popUpCategory = new PopUpCategory();
-                popUpCategory.showDialog(getActivity(), subCatArrayList, getActivity());
+                popUpCategory.showDialog(getActivity(), subCatArrayListNew, getActivity());
             }
         });
     }
@@ -289,7 +337,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         //after that create all areas in this city in "all areas recycler view" under a city relative layout
         cityRV.setVisibility(View.GONE);
         //need if to check language
-        city_name_result.setText(city.getName_en());
+        city_name_result.setText(getTextEngOrLocal(city.getName_en(),city.getName_local()));
         city_name_con_result.setVisibility(View.VISIBLE);
         createAllAreasRV(city);
     }
@@ -440,18 +488,18 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
     }
 
     @Override
-    public void onClickedCategory(Category category) {
+    public void onClickedCategory(Categories category) {
         cat_name_con_result.setVisibility(View.VISIBLE);
         //need if to check language
-        cat_name_result.setText(category.getCategory_en());
+        cat_name_result.setText(getTextEngOrLocal(category.getName(),category.getName_local()));
         catRV.setVisibility(View.GONE);
 
-        createSubCategory();
+        createSubCategory(category);
     }
 
-    private void createSubCategory() {
+    private void createSubCategory(Categories category) {
         sub_catRV.setVisibility(View.VISIBLE);
-        subCatArrayList = fillSubCatArrayL(getActivity());
+        //subCatArrayList = fillSubCatArrayL(getActivity());
         sub_catRV.setNestedScrollingEnabled(false);
         sub_catRV.setHasFixedSize(true);
         layoutManagerSubCat = new LinearLayoutManager(getActivity(),
@@ -459,23 +507,23 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
         sub_catRV.setLayoutManager(layoutManagerSubCat);
         adapterSubCategory = new AdapterSubCategory(getActivity()
-                , subCatArrayList, this);
+                , category.getSub_catArrayList(), this);
         sub_catRV.setAdapter(adapterSubCategory);
     }
 
     @Override
-    public void onClickedSubCategory(SubCategory subCategory) {
+    public void onClickedSubCategory(Sub_Cat subCategory) {
         sub_catRV.setVisibility(View.GONE);
         sub_cat_name_con_result.setVisibility(View.VISIBLE);
         //need if to check language
-        sub_cat_name_result.setText(subCategory.getSub_category_en());
+        sub_cat_name_result.setText(getTextEngOrLocal(subCategory.getName_en(),subCategory.getName_local()));
     }
 
-    public void passSelectedSubCategory(SubCategory subCategory) {
+    public void passSelectedSubCategory(Sub_Cat subCategory) {
         //when user select subCategory from Pop up
         sub_catRV.setVisibility(View.GONE);
         sub_cat_name_con_result.setVisibility(View.VISIBLE);
         //need if to check language
-        sub_cat_name_result.setText(subCategory.getSub_category_en());
+        sub_cat_name_result.setText(subCategory.getName_en());
     }
 }

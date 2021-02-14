@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/adapter_filter_card"
+        android:background="?android:attr/selectableItemBackground"
         android:layout_marginBottom="1dp"
         >
 
@@ -22,23 +23,66 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorBlack"
-                    android:textStyle="bold"
-                    android:text="test text"
-                    android:id="@+id/adapter_city_and_areas_text_view"
-                    />
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="15">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:id="@+id/sub_cat_image"
+                            android:background="@color/new_selver"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="70">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="16dp"
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold"
+                            android:text="test text"
+                            android:id="@+id/adapter_city_and_areas_text_view"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10">
+
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:id="@+id/adapter_car_options_split_TV"
                     android:layout_marginTop="8dp"
-                    android:background="@color/colorBlack2"/>
+                    />
             </LinearLayout>
 
         </RelativeLayout>

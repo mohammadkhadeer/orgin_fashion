@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Category;
@@ -17,10 +18,19 @@ import com.fashion.rest.model.SubCategory;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class Functions {
+
+    public static String getTextEngOrLocal(String eng,String local) {
+        if (Locale.getDefault().getLanguage().equals("en"))
+            return eng;
+            else
+                return local;
+    }
+
     private static final int PAGE_SIZEH = 8;
 
     public static int nowNumberOfObject(int x , int y) {

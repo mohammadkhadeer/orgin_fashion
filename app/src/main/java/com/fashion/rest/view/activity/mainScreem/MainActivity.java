@@ -23,6 +23,7 @@ import com.fashion.rest.model.City;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.MultiArea;
 import com.fashion.rest.model.SubCategory;
+import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentFilter;
@@ -282,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements PassObject
     }
 
     @Override
-    public void passSelectedSubCategory(SubCategory subCategory) {
+    public void passSelectedSubCategory(Sub_Cat subCategory) {
         fragmentFilter.passSelectedSubCategory(subCategory);
     }
 }

@@ -12,18 +12,21 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
+import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Category;
 
 import java.util.ArrayList;
+
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHolder>{
 
     private final Context context;
 //    List<Offer> mList = new ArrayList<>();
-    ArrayList<Category> catArrayL = new ArrayList<>();
+    ArrayList<Categories> catArrayL = new ArrayList<>();
     PassCategory passCat;
     public AdapterCategory
-            (Context context,ArrayList<Category> catArrayL,PassCategory passCat)
+            (Context context,ArrayList<Categories> catArrayL,PassCategory passCat)
                 {
                     this.context = context;
                     this.catArrayL = catArrayL;
@@ -40,7 +43,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
     public void removeArea(Area area) {
         for (int i=0;i<catArrayL.size();i++)
         {
-            if (area.getName_en().equals(catArrayL.get(i).getCategory_en()))
+            if (area.getName_en().equals(catArrayL.get(i).getName()))
             {
                 catArrayL.remove(i);
                 notifyItemRemoved(i);
@@ -68,7 +71,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
 
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.cityOrAreaTV.setText(catArrayL.get(position).getCategory_en());
+        holder.cityOrAreaTV.setText(getTextEngOrLocal(catArrayL.get(position).getName(),catArrayL.get(position).getName_local()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {
@@ -81,7 +84,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ViewHo
     }
 
     public interface PassCategory {
-        void onClickedCategory(Category category);
+        void onClickedCategory(Categories category);
     }
 
 
