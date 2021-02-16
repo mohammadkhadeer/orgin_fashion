@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -22,6 +23,9 @@ import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.view.Adapters.AdapterMultiArea;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
+import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class PopUp extends DialogFragment implements AdapterMultiArea.PassSelected {
     public ArrayList<MultiArea> multiAreasArrayList = new ArrayList<>();
@@ -51,7 +55,7 @@ public class PopUp extends DialogFragment implements AdapterMultiArea.PassSelect
 
         inti(dialog);
         createRV(availableAreas,context);
-        actionListenerToSearchEdt();
+        actionListenerToSearchEdt(context);
         actionListenerToRemoveTextInSearchEdt();
         actionListenerToResetAndNextButton(dialog);
 
@@ -59,7 +63,7 @@ public class PopUp extends DialogFragment implements AdapterMultiArea.PassSelect
         dialog.setCanceledOnTouchOutside(true);
     }
 
-    private void actionListenerToSearchEdt() {
+    private void actionListenerToSearchEdt(final Context context) {
         searchEdt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
@@ -76,7 +80,7 @@ public class PopUp extends DialogFragment implements AdapterMultiArea.PassSelect
 
             @Override
             public void afterTextChanged(Editable editable) {
-                filter(editable.toString());
+                filter(editable.toString(),context);
             }
 
         });
@@ -127,14 +131,20 @@ public class PopUp extends DialogFragment implements AdapterMultiArea.PassSelect
         });
     }
 
-    private void filter(String text) {
-        ArrayList<MultiArea> multiAreasArrayList2  = new ArrayList<MultiArea>();
-        for (MultiArea carOption : multiAreasArrayList) {
-            if (carOption.getArea_en().toLowerCase().contains(text.toLowerCase())) {
-                multiAreasArrayList2.add(carOption);
+    private void filter(String text,Context context) {
+        ArrayList<MultiArea> multiAreasArrayList2 = new ArrayList<MultiArea>();
+        for (MultiArea area : multiAreasArrayList) {
+            if (Locale.getDefault().getLanguage().equals("en")) {
+                if (area.getArea_en().toLowerCase().contains(text.toLowerCase())) {
+                    multiAreasArrayList2.add(area);
+                }
+            }else {
+                if (area.getArea_local().toLowerCase().contains(text.toLowerCase())) {
+                    multiAreasArrayList2.add(area);
+                }
             }
+            adapterMultiArea.filterList(multiAreasArrayList2);
         }
-        adapterMultiArea.filterList(multiAreasArrayList2);
     }
 
     private void makeCancelTitleIVGONE() {

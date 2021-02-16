@@ -228,7 +228,7 @@ public class SplashScreen extends AppCompatActivity {
 //        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 //        Call<List<Comment>> call = jsonPlaceHolderApi.getComment(api1(3));
 //        call.enqueue(new Callback<List<Comment>>() {
-//            @Override
+//            @Override 544496417
 //            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
 //                if (!response.isSuccessful())
 //                {

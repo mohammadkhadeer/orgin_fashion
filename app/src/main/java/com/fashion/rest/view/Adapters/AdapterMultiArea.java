@@ -16,6 +16,8 @@ import com.fashion.rest.model.MultiArea;
 
 import java.util.ArrayList;
 
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+
 public class AdapterMultiArea extends RecyclerView.Adapter<AdapterMultiArea.ViewHolder> {
 
     private final Context context;
@@ -39,7 +41,7 @@ public class AdapterMultiArea extends RecyclerView.Adapter<AdapterMultiArea.View
     @Override
     public void onBindViewHolder(final AdapterMultiArea.ViewHolder holder, final int position) {
 
-        holder.modelTV.setText(carOptionsArrayL.get(position).getArea_en());
+        holder.modelTV.setText(getTextEngOrLocal(carOptionsArrayL.get(position).getArea_en(),carOptionsArrayL.get(position).getArea_local()));
         checkIfAlredyCheckedOrNot(holder,position);
         actionListenerOption(holder,position);
         changeFont(holder);

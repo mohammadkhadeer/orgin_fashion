@@ -25,6 +25,7 @@ import com.fashion.rest.view.Adapters.AdapterSubCategory;
 import com.fashion.rest.view.Adapters.AdapterSubCategorySeeAll;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PopUpCategory extends DialogFragment implements AdapterSubCategorySeeAll.PassSubCategory {
     RecyclerView recyclerView;
@@ -96,9 +97,17 @@ public class PopUpCategory extends DialogFragment implements AdapterSubCategoryS
     private void filter(String text,ArrayList<Sub_Cat> subCategory) {
         ArrayList<Sub_Cat> multiAreasArrayList2  = new ArrayList<Sub_Cat>();
         for (Sub_Cat subCategory1 : subCategory) {
-            if (subCategory1.getName_en().toLowerCase().contains(text.toLowerCase())) {
-                multiAreasArrayList2.add(subCategory1);
+            if (Locale.getDefault().getLanguage().equals("en"))
+            {
+                if (subCategory1.getName_en().toLowerCase().contains(text.toLowerCase())) {
+                    multiAreasArrayList2.add(subCategory1);
+                }
+            }else{
+                if (subCategory1.getName_local().toLowerCase().contains(text.toLowerCase())) {
+                    multiAreasArrayList2.add(subCategory1);
+                }
             }
+
         }
         adapterSubCategorySeeAll.filterList(multiAreasArrayList2);
     }

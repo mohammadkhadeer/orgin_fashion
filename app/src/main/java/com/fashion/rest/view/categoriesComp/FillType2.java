@@ -11,9 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.Home;
 import com.fashion.rest.view.Adapters.AdapterType2;
 import java.util.ArrayList;
 import static com.fashion.rest.functions.Functions.fillSetArrayL;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class FillType2 {
     static AdapterType2 adapterType2;
@@ -21,9 +23,14 @@ public class FillType2 {
     public static ArrayList<Deal> dealsArrayList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void fillCaseItem(RecyclerView recyclerView, Context context, TextView catName, RelativeLayout seeAllType2) {
+    public static void fillCaseItem(RecyclerView recyclerView, Context context, TextView catName, RelativeLayout seeAllType2, Home home) {
+        fillText(context,catName,home);
         createRVSuggested(recyclerView, context);
         actionListenerToSeeAll(seeAllType2,context);
+    }
+
+    private static void fillText(Context context, TextView catName,Home home) {
+        catName.setText(getTextEngOrLocal(home.getSub_cat().getName_en(),home.getSub_cat().getName_local()));
     }
 
     private static void actionListenerToSeeAll(RelativeLayout seeAllType2, final Context context) {

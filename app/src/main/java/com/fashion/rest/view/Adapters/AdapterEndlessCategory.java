@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.Home;
 import com.fashion.rest.model.ListItem;
 import com.fashion.rest.utils.BaseViewHolderUser;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
@@ -36,6 +37,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.view.categoriesComp.FillType1.fill;
 import static com.fashion.rest.view.categoriesComp.FillType2.fillCaseItem;
 import static com.fashion.rest.view.categoriesComp.FillType3.fillCase3Item;
@@ -47,12 +49,12 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
   private static final int VIEW_TYPE_NORMAL = 1;
   private boolean isLoaderVisible = false;
 
-  private List<ListItem> dealItemsList;
+  private List<Home> homeItemsList;
   Context context;
   String comeFrom;
 
-  public AdapterEndlessCategory(List<ListItem> postItems, Context context, String comeFrom) {
-    this.dealItemsList = postItems;
+  public AdapterEndlessCategory(List<Home> homeItemsList, Context context, String comeFrom) {
+    this.homeItemsList = homeItemsList;
     this.context = context;
     this.comeFrom = comeFrom;
   }
@@ -93,7 +95,7 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
   @Override
   public int getItemViewType(int position) {
     if (isLoaderVisible) {
-      return position == dealItemsList.size() - 1 ? VIEW_TYPE_LOADING : VIEW_TYPE_NORMAL;
+      return position == homeItemsList.size() - 1 ? VIEW_TYPE_LOADING : VIEW_TYPE_NORMAL;
     } else {
       return VIEW_TYPE_NORMAL;
     }
@@ -101,33 +103,33 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
 
   @Override
   public int getItemCount() {
-    return dealItemsList == null ? 0 : dealItemsList.size();
+    return homeItemsList == null ? 0 : homeItemsList.size();
   }
 
-  public void addItems(List<ListItem> postItems) {
-    dealItemsList.addAll(postItems);
+  public void addItems(List<Home> postItems) {
+    homeItemsList.addAll(postItems);
     notifyDataSetChanged();
   }
 
   public void addLoading() {
     isLoaderVisible = true;
-    dealItemsList.add(new ListItem());
-    notifyItemInserted(dealItemsList.size() - 1);
+    homeItemsList.add(new Home());
+    notifyItemInserted(homeItemsList.size() - 1);
   }
 
   public void removeLoading() {
     isLoaderVisible = false;
     ////////////here
-    int position = dealItemsList.size() - 1;
-    ListItem item = getItem(position);
+    int position = homeItemsList.size() - 1;
+    Home item = getItem(position);
     if (item != null) {
-      dealItemsList.remove(position);
+      homeItemsList.remove(position);
       notifyItemRemoved(position);
     }
   }
 
-  ListItem getItem(int position) {
-    return dealItemsList.get(position);
+  Home getItem(int position) {
+    return homeItemsList.get(position);
   }
 
   public class ViewHolder extends BaseViewHolderUser {
@@ -166,18 +168,18 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
     public void onBind(int position) {
       super.onBind(position);
 
-      if (getObject(position).getListType().equals("type2"))
+      if (getObject(position).getSub_cat().getAppearance().equals("1"))
       {
             cont2.setVisibility(View.VISIBLE);
             cont4.setVisibility(View.GONE);
-            fillCaseItem(recyclerViewT2,context,type2_cat_name_TV,see_all_type2_rl);
+            fillCaseItem(recyclerViewT2,context,type2_cat_name_TV,see_all_type2_rl,homeItemsList.get(position));
       }
 
-      if (getObject(position).getListType().equals("type4"))
+      if (getObject(position).getSub_cat().getAppearance().equals("2"))
       {
             cont2.setVisibility(View.GONE);
             cont4.setVisibility(View.VISIBLE);
-            fillCase4Item(recyclerViewT4,context,type4_cat_name_TV,see_all_type4_rl);
+            fillCase4Item(recyclerViewT4,context,type4_cat_name_TV,see_all_type4_rl,homeItemsList.get(position));
       }
 
     }
@@ -185,12 +187,12 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
   }
 
   private void fillText(TextView nameTV, int position, Context context) {
-    nameTV.setText(String.valueOf(getObject(position).getListType()));
+    nameTV.setText(getTextEngOrLocal(getObject(position).getSub_cat().getName_en(),getObject(position).getSub_cat().getName_local()));
 //    nameTV.setText(String.valueOf(position));
   }
 
-  private ListItem getObject(int position){
-    ListItem item = dealItemsList.get(position);
+  private Home getObject(int position){
+    Home item = homeItemsList.get(position);
     return item;
   }
 
@@ -232,8 +234,8 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
 
     public void onBind(int position) {
       super.onBind(position);
-      int a= dealItemsList.size()-1, x = 0,mod=0;
-      if (4 == dealItemsList.size())
+      int a= homeItemsList.size()-1, x = 0,mod=0;
+      if (4 == homeItemsList.size())
       {
         x= 0;
         mod = 0;
@@ -241,7 +243,7 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
         x= a/4;
         mod = a % 4;
       }
-      if (dealItemsList.size() ==1)
+      if (homeItemsList.size() ==1)
       {
         cardView.setVisibility(View.GONE);
       }else {

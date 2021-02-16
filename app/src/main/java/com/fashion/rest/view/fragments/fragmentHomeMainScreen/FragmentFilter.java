@@ -214,7 +214,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
             @Override
             public void onClick(View v) {
                 PopUpCategory popUpCategory = new PopUpCategory();
-                popUpCategory.showDialog(getActivity(), subCatArrayListNew, getActivity());
+                popUpCategory.showDialog(getActivity(), categoriesArrayList.get(0).getSub_catArrayList(), getActivity());
             }
         });
     }

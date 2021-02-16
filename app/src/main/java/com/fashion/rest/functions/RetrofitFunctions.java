@@ -7,6 +7,7 @@ import static com.fashion.rest.apiURL.API.apiAreas;
 import static com.fashion.rest.apiURL.API.apiCat;
 import static com.fashion.rest.apiURL.API.apiCities;
 import static com.fashion.rest.apiURL.API.apiCountries;
+import static com.fashion.rest.apiURL.API.apiHome;
 import static com.fashion.rest.apiURL.API.apiNumberOfCountries;
 
 public class RetrofitFunctions {
@@ -50,6 +51,15 @@ public class RetrofitFunctions {
     public static Retrofit getCategories() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiCat())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    public static Retrofit getHome() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(apiHome())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

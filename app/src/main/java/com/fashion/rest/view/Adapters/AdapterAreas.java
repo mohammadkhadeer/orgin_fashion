@@ -16,6 +16,8 @@ import com.fashion.rest.model.City;
 
 import java.util.ArrayList;
 
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+
 public class AdapterAreas extends RecyclerView.Adapter<AdapterAreas.ViewHolder>{
 
     private final Context context;
@@ -68,7 +70,7 @@ public class AdapterAreas extends RecyclerView.Adapter<AdapterAreas.ViewHolder>{
 
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.cityOrAreaTV.setText(areaArrayL.get(position).getName_en());
+        holder.cityOrAreaTV.setText(getTextEngOrLocal(areaArrayL.get(position).getName_en(),areaArrayL.get(position).getName_local()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {

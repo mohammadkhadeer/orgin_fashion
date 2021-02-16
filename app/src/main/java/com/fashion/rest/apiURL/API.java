@@ -53,4 +53,9 @@ public class API {
         return "http://46.101.235.217/api/categories/";
     }
 
+    public static String apiHome(){
+        String apiName ="http://46.101.235.217/api/homes/";
+        return apiName;
+    }
+
 }

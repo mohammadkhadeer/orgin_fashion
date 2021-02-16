@@ -5,6 +5,7 @@ import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.Comment;
 import com.fashion.rest.model.Countries;
+import com.fashion.rest.model.Home;
 import com.fashion.rest.model.Post;
 import com.fashion.rest.model.Test;
 
@@ -12,8 +13,10 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface JsonPlaceHolderApi {
@@ -43,4 +46,15 @@ public interface JsonPlaceHolderApi {
 
     @GET(".")
     Call<List<Categories>> getCategories();
+
+    @GET(".")
+    Call <List<Home>> getHome(@Query("_start") int start,
+                              @Query("_limit") int end
+    );
+
+    @GET(".")
+    Call<List<Home>> getHome2();
+
+    @GET("{page}&_limit=4/") //
+    Call<List<Home>> listGallery(@Path("page") int page);
 }
