@@ -7,14 +7,15 @@ import com.google.gson.annotations.SerializedName;
 
 
 public class Sub_Cat implements Parcelable {
-    String name_en,name_local,appearance;
+    String name_en,name_local,appearance,id;
     @SerializedName("image")
     Flag flag;
 
-    public Sub_Cat(String name_en, String name_local, String appearance, Flag flag) {
+    public Sub_Cat(String name_en, String name_local, String appearance,String id, Flag flag) {
         this.name_en = name_en;
         this.name_local = name_local;
         this.appearance = appearance;
+        this.id = id;
         this.flag = flag;
     }
 
@@ -22,6 +23,7 @@ public class Sub_Cat implements Parcelable {
         name_en = in.readString();
         name_local = in.readString();
         appearance = in.readString();
+        id = in.readString();
         flag =  in.readParcelable(Flag.class.getClassLoader());
     }
 
@@ -36,6 +38,14 @@ public class Sub_Cat implements Parcelable {
             return new Sub_Cat[size];
         }
     };
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName_en() {
         return name_en;
@@ -79,6 +89,7 @@ public class Sub_Cat implements Parcelable {
         dest.writeString(name_en);
         dest.writeString(name_local);
         dest.writeString(appearance);
+        dest.writeString(id);
         dest.writeParcelable(flag, flags);
     }
 }

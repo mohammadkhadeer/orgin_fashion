@@ -62,7 +62,7 @@ public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("cat_name",getTextEngOrLocal(categoriesArrayList.get(position).getName(),categoriesArrayList.get(position).getName_local()));
+                bundle.putString("cat_name",getTextEngOrLocal(context,categoriesArrayList.get(position).getName(),categoriesArrayList.get(position).getName_local()));
 
                 Intent intent = new Intent(context, SubCategory.class);
                 intent.putExtras(bundle);
@@ -74,7 +74,7 @@ public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
     }
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.nameTV.setText(getTextEngOrLocal(categoriesArrayList.get(position).getName(),categoriesArrayList.get(position).getName_local()));
+        holder.nameTV.setText(getTextEngOrLocal(context,categoriesArrayList.get(position).getName(),categoriesArrayList.get(position).getName_local()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {

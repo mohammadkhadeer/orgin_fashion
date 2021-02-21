@@ -169,7 +169,7 @@ public class PopUp extends DialogFragment implements AdapterMultiArea.PassSelect
         multiAreasArrayList = new ArrayList<>();
         for (int i=0;i<availableAreas.size();i++)
         {
-            MultiArea multiArea = new MultiArea(availableAreas.get(i).getName_en(),availableAreas.get(i).getName_local(),0);
+            MultiArea multiArea = new MultiArea(availableAreas.get(i).getName_en(),availableAreas.get(i).getName_local(),availableAreas.get(i).getId(),0);
             multiAreasArrayList.add(multiArea);
         }
         return multiAreasArrayList;

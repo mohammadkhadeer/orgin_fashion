@@ -119,7 +119,7 @@ public class SplashScreen extends AppCompatActivity {
                 for (City city:citiesL)
                 {
                     // save cities info in DP
-                    dbHelper.insertCities(city.getName_en(),city.getName_local());
+                    dbHelper.insertCities(city.getIdServer(),city.getName_en(),city.getName_local());
                 }
                 getAreas();
             }
@@ -145,7 +145,7 @@ public class SplashScreen extends AppCompatActivity {
                 for (Areas area:areasL)
                 {
                     // save areas info in DP
-                    dbHelper.insertNeighborhood(area.getCity().getName_en(),area.getCity().getName_local(),area.getName_en(),area.getName_local());
+                    dbHelper.insertNeighborhood(area.getIdServer(),area.getCity().getName_en(),area.getCity().getName_local(),area.getName_en(),area.getName_local());
                 }
                 timer();
             }

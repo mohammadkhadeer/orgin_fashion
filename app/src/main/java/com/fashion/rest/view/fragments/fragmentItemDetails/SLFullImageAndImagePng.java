@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.view.Adapters.AdapterSet;
 import com.fashion.rest.view.Adapters.AdapterType2;
 import com.fashion.rest.view.Adapters.AdapterType4;
@@ -43,11 +44,11 @@ public class SLFullImageAndImagePng extends Fragment {
 
     AdapterType2 adapterType2;
     RecyclerView.LayoutManager layoutManager;
-    public ArrayList<Deal> dealsArrayList = new ArrayList<>();
+    public ArrayList<ItemTest> dealsArrayList = new ArrayList<>();
 
     AdapterType4 adapterType4;
     RecyclerView.LayoutManager layoutManagerFull;
-    public ArrayList<Deal> dealsFullArrayList = new ArrayList<>();
+    public ArrayList<ItemTest> dealsFullArrayList = new ArrayList<>();
 
     @Override
     public void onAttach(Context context) {
@@ -76,7 +77,7 @@ public class SLFullImageAndImagePng extends Fragment {
     }
 
     private void createFullImageCase() {
-        dealsFullArrayList = fillSetArrayL2(dealsArrayList,getActivity());
+        //dealsFullArrayList = fillSetArrayL2(dealsArrayList,getActivity());
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         layoutManagerFull = new LinearLayoutManager(getActivity(),
@@ -90,7 +91,7 @@ public class SLFullImageAndImagePng extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void createPngCase() {
-        dealsArrayList = fillSetArrayL(dealsArrayList,getActivity());
+        //dealsArrayList = fillSetArrayL(dealsArrayList,getActivity());
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity(),

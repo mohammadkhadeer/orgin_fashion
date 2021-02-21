@@ -187,7 +187,7 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
   }
 
   private void fillText(TextView nameTV, int position, Context context) {
-    nameTV.setText(getTextEngOrLocal(getObject(position).getSub_cat().getName_en(),getObject(position).getSub_cat().getName_local()));
+    nameTV.setText(getTextEngOrLocal(context,getObject(position).getSub_cat().getName_en(),getObject(position).getSub_cat().getName_local()));
 //    nameTV.setText(String.valueOf(position));
   }
 

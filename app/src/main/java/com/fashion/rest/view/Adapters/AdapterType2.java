@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +17,23 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+
 public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
 
     private final Context context;
 //    List<Offer> mList = new ArrayList<>();
-    ArrayList<Deal> dealsArrayL = new ArrayList<>();
+    ArrayList<ItemTest> dealsArrayL = new ArrayList<>();
     String cat;
     public AdapterType2
-            (Context context,ArrayList<Deal> dealsArrayL,String cat)
+            (Context context,ArrayList<ItemTest> dealsArrayL,String cat)
                 {
                      this.context = context;
                     this.dealsArrayL = dealsArrayL;
@@ -72,9 +77,9 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
     }
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.nameTV.setText(dealsArrayL.get(position).getName());
-        holder.priceTV.setText(String.valueOf(dealsArrayL.get(position).getPrice().getNewPrice()));
-        holder.oldPrice.setText(String.valueOf(dealsArrayL.get(position).getPrice().getOldPrice()));
+        holder.nameTV.setText(getTextEngOrLocal(context,dealsArrayL.get(position).getName(),dealsArrayL.get(position).getName()));
+        holder.priceTV.setText(String.valueOf(dealsArrayL.get(position).getDiscountPrice()));
+        holder.oldPrice.setText(String.valueOf(dealsArrayL.get(position).getPrice()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {
@@ -85,9 +90,11 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
     }
 
     private void fillImage(Context context, ViewHolder holder, int position) {
-        //product image
+        //product image   apiURLBase()+dealsArrayL.get(position).getFlag().getUrl()
+        //
+        String image =apiURLBase()+dealsArrayL.get(position).getFlagArrayL().get(0).getUrl();
         Picasso.get()
-                .load(dealsArrayL.get(position).getImage())
+                .load(image)
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);

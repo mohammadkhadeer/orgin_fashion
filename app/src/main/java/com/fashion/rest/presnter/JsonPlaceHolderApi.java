@@ -6,6 +6,7 @@ import com.fashion.rest.model.City;
 import com.fashion.rest.model.Comment;
 import com.fashion.rest.model.Countries;
 import com.fashion.rest.model.Home;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Post;
 import com.fashion.rest.model.Test;
 
@@ -57,4 +58,9 @@ public interface JsonPlaceHolderApi {
 
     @GET("{page}&_limit=4/") //
     Call<List<Home>> listGallery(@Path("page") int page);
+
+    @GET(".")
+    Call <List<ItemTest>> getAllItems(@Query("_start") int start,
+                                      @Query("_limit") int end
+    );
 }

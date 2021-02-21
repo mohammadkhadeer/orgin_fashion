@@ -337,7 +337,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         //after that create all areas in this city in "all areas recycler view" under a city relative layout
         cityRV.setVisibility(View.GONE);
         //need if to check language
-        city_name_result.setText(getTextEngOrLocal(city.getName_en(),city.getName_local()));
+        city_name_result.setText(getTextEngOrLocal(getActivity(),city.getName_en(),city.getName_local()));
         city_name_con_result.setVisibility(View.VISIBLE);
         createAllAreasRV(city);
     }
@@ -445,7 +445,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         } else {
             if (multiAreasArrayList.size() != 0) {
                 for (int i = 0; i < multiAreasArrayList.size(); i++) {
-                    Area area = new Area(multiAreasArrayList.get(i).getArea_en(), multiAreasArrayList.get(i).getArea_local());
+                    Area area = new Area(multiAreasArrayList.get(i).getArea_en(), multiAreasArrayList.get(i).getArea_local(),multiAreasArrayList.get(i).getId());
                     selectedAreaArrayList.add(i, area);
                 }
                 adapterSelectedAreas.notifyDataSetChanged();
@@ -457,7 +457,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
     private void removeSelectedAreaFromAreaArrayListAndAreaAdapterCase2(ArrayList<MultiArea> multiAreasArrayList) {
         if (multiAreasArrayList.size() != 0) {
             for (int i = 0; i < multiAreasArrayList.size(); i++) {
-                Area area = new Area(multiAreasArrayList.get(i).getArea_en(), multiAreasArrayList.get(i).getArea_local());
+                Area area = new Area(multiAreasArrayList.get(i).getArea_en(), multiAreasArrayList.get(i).getArea_local(), multiAreasArrayList.get(i).getId());
                 removeAreaFromAllArrayList(area);
                 adapterAreas.removeArea(area);
                 adapterAreas.notifyDataSetChanged();
@@ -468,7 +468,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
     private void createSelectedAreaCase2RV(ArrayList<MultiArea> multiAreasArrayList) {
         if (multiAreasArrayList.size() != 0) {
             for (int i = 0; i < multiAreasArrayList.size(); i++) {
-                Area area = new Area(multiAreasArrayList.get(i).getArea_en(), multiAreasArrayList.get(i).getArea_local());
+                Area area = new Area(multiAreasArrayList.get(i).getArea_en(), multiAreasArrayList.get(i).getArea_local(),multiAreasArrayList.get(i).getId());
                 selectedAreaArrayList.add(i, area);
             }
 
@@ -491,7 +491,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
     public void onClickedCategory(Categories category) {
         cat_name_con_result.setVisibility(View.VISIBLE);
         //need if to check language
-        cat_name_result.setText(getTextEngOrLocal(category.getName(),category.getName_local()));
+        cat_name_result.setText(getTextEngOrLocal(getActivity(),category.getName(),category.getName_local()));
         catRV.setVisibility(View.GONE);
 
         createSubCategory(category);
@@ -516,7 +516,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         sub_catRV.setVisibility(View.GONE);
         sub_cat_name_con_result.setVisibility(View.VISIBLE);
         //need if to check language
-        sub_cat_name_result.setText(getTextEngOrLocal(subCategory.getName_en(),subCategory.getName_local()));
+        sub_cat_name_result.setText(getTextEngOrLocal(getActivity(),subCategory.getName_en(),subCategory.getName_local()));
     }
 
     public void passSelectedSubCategory(Sub_Cat subCategory) {

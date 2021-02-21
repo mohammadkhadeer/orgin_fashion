@@ -65,7 +65,7 @@ public class AdapterCities extends RecyclerView.Adapter<AdapterCities.ViewHolder
 
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.cityOrAreaTV.setText(getTextEngOrLocal(cities.get(position).getName_en(),cities.get(position).getName_local()));
+        holder.cityOrAreaTV.setText(getTextEngOrLocal(context,cities.get(position).getName_en(),cities.get(position).getName_local()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {

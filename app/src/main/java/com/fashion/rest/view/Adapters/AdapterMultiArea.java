@@ -41,7 +41,7 @@ public class AdapterMultiArea extends RecyclerView.Adapter<AdapterMultiArea.View
     @Override
     public void onBindViewHolder(final AdapterMultiArea.ViewHolder holder, final int position) {
 
-        holder.modelTV.setText(getTextEngOrLocal(carOptionsArrayL.get(position).getArea_en(),carOptionsArrayL.get(position).getArea_local()));
+        holder.modelTV.setText(getTextEngOrLocal(context,carOptionsArrayL.get(position).getArea_en(),carOptionsArrayL.get(position).getArea_local()));
         checkIfAlredyCheckedOrNot(holder,position);
         actionListenerOption(holder,position);
         changeFont(holder);

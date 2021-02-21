@@ -69,7 +69,7 @@ public class AdapterSelectedAreas extends RecyclerView.Adapter<AdapterSelectedAr
 
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.selectedAreaTV.setText(getTextEngOrLocal(areaArrayL.get(position).getName_en(),areaArrayL.get(position).getName_local()));
+        holder.selectedAreaTV.setText(getTextEngOrLocal(context,areaArrayL.get(position).getName_en(),areaArrayL.get(position).getName_local()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {

@@ -24,8 +24,9 @@ import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class Functions {
 
-    public static String getTextEngOrLocal(String eng,String local) {
-        if (Locale.getDefault().getLanguage().equals("en"))
+    public static String getTextEngOrLocal(Context context,String eng,String local) {
+//        if (Locale.getDefault().getLanguage().equals("en"))
+        if (getLanguageFromSP(context).equals("en"))
             return eng;
             else
                 return local;

@@ -29,9 +29,11 @@ public class FillItem {
         Cursor res = getDataBaseInstance(context).descendingNeighborhood();
 
         while (res.moveToNext()) {
-            if (city.equals(res.getString(1).replace("\n", ""))) {
-                listArrayL.add(new Area(res.getString(3).replace("\n", ""),
-                        res.getString(4).replace("\n", "")
+            // idOnServer col 1 ... city_en_name col 2 ... city_local_name col 3 ... area_en_name col 4 ... area_local_name col 5
+            if (city.equals(res.getString(2).replace("\n", ""))) {
+                listArrayL.add(new Area(res.getString(4).replace("\n", ""),
+                        res.getString(5).replace("\n", ""),
+                        res.getString(1).replace("\n", "")
                 ));
             }
         }
@@ -49,8 +51,10 @@ public class FillItem {
         Cursor res = getDataBaseInstance(context).descendingCities();
 
         while (res.moveToNext()) {
-            listArrayL.add(new City(res.getString(1).replace("\n", ""),
-                    res.getString(2).replace("\n", "")
+            // name_en col 2 .... name_local col 3 ... idOnServer 1
+            listArrayL.add(new City(res.getString(2).replace("\n", ""),
+                    res.getString(3).replace("\n", ""),
+                    res.getString(1).replace("\n", "")
             ));
         }
         Collections.reverse(listArrayL);

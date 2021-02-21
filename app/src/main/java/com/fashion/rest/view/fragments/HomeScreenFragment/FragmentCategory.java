@@ -18,6 +18,7 @@ import com.fashion.rest.R;
 import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.Home;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.ListItem;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassObject;
@@ -37,6 +38,7 @@ import static com.fashion.rest.apiURL.API.apiHome;
 import static com.fashion.rest.functions.FillItem.fillEndlessItemListArrayL;
 import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 import static com.fashion.rest.functions.RetrofitFunctions.getHome;
+import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 
 public class FragmentCategory extends Fragment{
     View view;
@@ -52,7 +54,7 @@ public class FragmentCategory extends Fragment{
     public static final int PAGE_START = 1;
     private int currentPage = PAGE_START;
     private boolean isLastPage = false;
-    private int totalPage = 10;
+    private int totalPage = 50000;
     private boolean isLoading = false;
 
     GridLayoutManager mLayoutManager;
@@ -95,9 +97,7 @@ public class FragmentCategory extends Fragment{
 
         inti();
         createRV();
-        //actionListenerToRV();
 
-        //createRVSuggested();
         return view;
     }
 
@@ -165,7 +165,8 @@ public class FragmentCategory extends Fragment{
                     suggestedItemsArrayListTest.add(home);
                     suggestedItemsArrayListDO.add(home);
                 }
-
+                // 3'er el if tb3at el pagenation kolha 7dd el braket
+                Log.i("TAG",String.valueOf(suggestedItemsArrayListTest.size()));
                 if (currentPage != PAGE_START) adapterEndlessCategory.removeLoading();
                 adapterEndlessCategory.addItems(suggestedItemsArrayListTest);
                 if (currentPage < totalPage) {

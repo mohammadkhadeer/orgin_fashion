@@ -73,7 +73,7 @@ public class AdapterSubCategory extends RecyclerView.Adapter<AdapterSubCategory.
 
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.cityOrAreaTV.setText(getTextEngOrLocal(subCatArrayL.get(position).getName_en(),subCatArrayL.get(position).getName_local()));
+        holder.cityOrAreaTV.setText(getTextEngOrLocal(context,subCatArrayL.get(position).getName_en(),subCatArrayL.get(position).getName_local()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {

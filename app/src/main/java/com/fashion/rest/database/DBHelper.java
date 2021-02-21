@@ -34,6 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_NEIGHBORHOOD="neighborhoodEn_table";
     public static final String COL_C_ID="ID";
+    public static final String COL_SERVER_ID="COL_SERVER_ID";
     public static final String CITY_EN="CITY_EN";
     public static final String CITY_LOCAL="CITY_LOCAL";
     public static final String NEIGHBORHOOD_EN="NEIGHBORHOOD_EN";
@@ -41,6 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_CITY="city_table";
     public static final String COL_CITY_ID="ID";
+    public static final String COL_CITY_SERVER_ID="COL_CITY_SERVER_ID";
     public static final String CITY_NAME_EN="CITY_NAME_EN";
     public static final String CITY_NAME_LOCAL="CITY_NAME_LOCAL";
 
@@ -55,9 +57,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("create table "+TABLE_CART +" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "IMAGE_ID TEXT" + ",IMAGE_PATH TEXT" + ",NAME TEXT" + ",DES TEXT"  + ",PRICE TEXT"  + ",PRICE_N TEXT"  + ",PRICE_O TEXT" + ",NUMBER_OF_ITEM_IN_THE_CART TEXT)");
         db.execSQL("create table "+TABLE_NEIGHBORHOOD +" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "CITY_EN TEXT" + ",CITY_LOCAL TEXT" + ",NEIGHBORHOOD_EN TEXT" + ",NEIGHBORHOOD_LOCAL TEXT)");
+                "COL_SERVER_ID TEXT" + ",CITY_EN TEXT" + ",CITY_LOCAL TEXT" + ",NEIGHBORHOOD_EN TEXT" + ",NEIGHBORHOOD_LOCAL TEXT)");
         db.execSQL("create table "+TABLE_CITY +" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "CITY_NAME_EN TEXT" + ",CITY_NAME_LOCAL TEXT)");
+                "COL_CITY_SERVER_ID TEXT" + ",CITY_NAME_EN TEXT" +",CITY_NAME_LOCAL TEXT)");
     }
 
     @Override
@@ -92,11 +94,12 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertNeighborhood(String cityEn,String cityLocal,String neighborhoodEn
+    public boolean insertNeighborhood(String idServer,String cityEn,String cityLocal,String neighborhoodEn
             ,String neighborhoodLocal)
     {
         SQLiteDatabase db =this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_SERVER_ID,idServer);
         contentValues.put(CITY_EN,cityEn);
         contentValues.put(CITY_LOCAL,cityLocal);
         contentValues.put(NEIGHBORHOOD_EN,neighborhoodEn);
@@ -109,10 +112,11 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertCities(String cityEn,String cityLocal)
+    public boolean insertCities(String idServer,String cityEn,String cityLocal)
     {
         SQLiteDatabase db =this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_CITY_SERVER_ID,idServer);
         contentValues.put(CITY_NAME_EN,cityEn);
         contentValues.put(CITY_NAME_LOCAL,cityLocal);
 
