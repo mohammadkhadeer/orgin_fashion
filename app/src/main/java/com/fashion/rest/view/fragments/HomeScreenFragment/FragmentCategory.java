@@ -113,7 +113,7 @@ public class FragmentCategory extends Fragment{
                     doApiCall();
 
                 }
-            }, 500);
+            }, 100);
         }
         controler =1;
         handelControler();
@@ -127,7 +127,7 @@ public class FragmentCategory extends Fragment{
                 controler =0;
 
             }
-        }, 1000);
+        }, 150);
     }
 
     private void createRV() {
@@ -165,16 +165,29 @@ public class FragmentCategory extends Fragment{
                     suggestedItemsArrayListTest.add(home);
                     suggestedItemsArrayListDO.add(home);
                 }
-                // 3'er el if tb3at el pagenation kolha 7dd el braket
-                Log.i("TAG",String.valueOf(suggestedItemsArrayListTest.size()));
-                if (currentPage != PAGE_START) adapterEndlessCategory.removeLoading();
-                adapterEndlessCategory.addItems(suggestedItemsArrayListTest);
-                if (currentPage < totalPage) {
+
+                if (currentPage != PAGE_START && suggestedItemsArrayListTest.size()!=0) adapterEndlessCategory.removeLoading();
+                if (suggestedItemsArrayListTest.size()!=0)
+                {
+                    adapterEndlessCategory.addItems(suggestedItemsArrayListTest);
+                }
+                if (suggestedItemsArrayListTest.size()!=0) {
                     adapterEndlessCategory.addLoading();
                     isLoading = false;
                 } else {
                     isLastPage = true;
                 }
+
+//                // 3'er el if tb3at el pagenation kolha 7dd el braket
+//                Log.i("TAG",String.valueOf(suggestedItemsArrayListTest.size()));
+//                if (currentPage != PAGE_START) adapterEndlessCategory.removeLoading();
+//                adapterEndlessCategory.addItems(suggestedItemsArrayListTest);
+//                if (currentPage < totalPage) {
+//                    adapterEndlessCategory.addLoading();
+//                    isLoading = false;
+//                } else {
+//                    isLastPage = true;
+//                }
 
             }
 

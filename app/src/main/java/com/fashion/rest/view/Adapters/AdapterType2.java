@@ -77,7 +77,7 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
     }
 
     private void fillText(ViewHolder holder, Context context, int position) {
-        holder.nameTV.setText(getTextEngOrLocal(context,dealsArrayL.get(position).getName(),dealsArrayL.get(position).getName()));
+        holder.nameTV.setText(getTextEngOrLocal(context,dealsArrayL.get(position).getName(),dealsArrayL.get(position).getName_local()));
         holder.priceTV.setText(String.valueOf(dealsArrayL.get(position).getDiscountPrice()));
         holder.oldPrice.setText(String.valueOf(dealsArrayL.get(position).getPrice()));
     }

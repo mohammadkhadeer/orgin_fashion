@@ -1,5 +1,8 @@
 package com.fashion.rest.view.activity;
 
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 import com.fashion.rest.R;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.sharedPreferences.Language.saveLanguageInSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;
@@ -74,11 +78,7 @@ public class Language extends AppCompatActivity {
                     linearLayoutEng.setBackgroundDrawable(dd);
                     saveLanguageInSP(getApplicationContext(),sharedPreferences,editor,"ar");
 
-                    Intent intent = new Intent(Language.this, Login.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-                    finish();
+                    restartApp();
                 }else{
                     fun();
                 }
@@ -98,11 +98,7 @@ public class Language extends AppCompatActivity {
                     linearLayoutArabic.setBackgroundDrawable(dd);
                     saveLanguageInSP(getApplicationContext(),sharedPreferences,editor,"en");
 
-                    Intent intent = new Intent(Language.this, Login.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-                    finish();
+                    restartApp();
                 }else{
                     Drawable d = getResources().getDrawable(R.drawable.language_por);
                     Drawable dd = getResources().getDrawable(R.drawable.language_without_por);
@@ -110,11 +106,8 @@ public class Language extends AppCompatActivity {
                     linearLayoutArabic.setBackgroundDrawable(dd);
                     saveLanguageInSP(getApplicationContext(),sharedPreferences,editor,"en");
                     //Toast.makeText(getApplicationContext(),getLanguageFromSP(getApplicationContext()),Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Language.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-                    finish();
+
+                    restartApp();
                 }
             }
         });
@@ -128,11 +121,8 @@ public class Language extends AppCompatActivity {
             public void onClick(View v) {
                 saveLanguageInSP(getApplicationContext(),sharedPreferences,editor,"ar");
                 Toast.makeText(getApplicationContext(),getLanguageFromSP(getApplicationContext()),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Language.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-                finish();
+
+                restartApp();
             }
         });
         radioButtonEnglish.setOnClickListener(new View.OnClickListener() {
@@ -140,11 +130,8 @@ public class Language extends AppCompatActivity {
             public void onClick(View v) {
                 saveLanguageInSP(getApplicationContext(),sharedPreferences,editor,"en");
                 Toast.makeText(getApplicationContext(),getLanguageFromSP(getApplicationContext()),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Language.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-                finish();
+
+                restartApp();
             }
         });    }
 
@@ -155,13 +142,30 @@ public class Language extends AppCompatActivity {
         linearLayoutEng.setBackgroundDrawable(dd);
         saveLanguageInSP(getApplicationContext(),sharedPreferences,editor,"ar");
 //                Toast.makeText(getApplicationContext(),getLanguageFromSP(getApplicationContext()),Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(Language.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-        finish();
-    }
 
+        restartApp();
+    }
+    private void restartApp(){
+//        Intent intent = new Intent(Language.this, Login.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
+//        overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+//        finish();
+
+//        Intent mStartActivity = new Intent(Language.this, SplashScreen.class);
+//        int mPendingIntentId = 123456;
+//        PendingIntent mPendingIntent = PendingIntent.getActivity(Language.this, mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+//        AlarmManager mgr = (AlarmManager)getApplicationContext().getSystemService(Language.this.ALARM_SERVICE);
+//        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+//        System.exit(0);
+
+        Intent intent = new Intent(Language.this, SplashScreen.class);
+        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+
+        Runtime.getRuntime().exit(0);
+    }
     private void init() {
         radioButtonArabic = (RadioButton) findViewById(R.id.radioButton);
         radioButtonEnglish = (RadioButton) findViewById(R.id.radioButton2);

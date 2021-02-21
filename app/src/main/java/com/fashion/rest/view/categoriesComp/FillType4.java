@@ -65,10 +65,7 @@ public class FillType4 {
 
                 for (int i=0;i<homeList.size();i++)
                 {
-//                    Log.i("TTT",homeList.get(i).getName());
-//                    Log.i("GGG",homeList.get(i).getDescription());
-//                    Log.i("GGG",homeList.get(i).getPrice());
-//                    Log.i("GGG",homeList.get(i).getDiscountPrice());
+
                 }
                 createRVSuggested(recyclerView, context,homeList);
 
