@@ -86,6 +86,7 @@ public class FragmentOffers extends Fragment{
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
+    //fill categories
     private void getCategoriesList() {
         categoriesArrayList = new ArrayList<>();
         Call<List<Categories>> call = jsonPlaceHolderApi.getCategories();

@@ -143,12 +143,17 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
 
     @Override
     public void onClickedSubCategory(Sub_Cat subCategory) {
-        moveToResultActivity();
+        moveToResultActivity(subCategory);
     }
 
-    private void moveToResultActivity() {
+    private void moveToResultActivity(Sub_Cat subCategory) {
+        Bundle bundle = new Bundle();
+        bundle.putString("sub_cat_id",subCategory.getId());
+        bundle.putString("cat_id",subCategory.getCategory_id());
+
         Intent intent = new Intent(this, ResultActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtras(bundle);
         startActivity(intent);
         overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }

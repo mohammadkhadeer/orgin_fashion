@@ -55,7 +55,7 @@ public class FillType4 {
         fillText(context,home,catName);
         intiRetrofit(home);
         getItemsFromServer(recyclerView,context,lodaingRVT4);
-        actionListenerToSeeAll(seeAllType4,context);
+        actionListenerToSeeAll(seeAllType4,context,home);
     }
 
     private static void createLodaingRV(RecyclerView lodaingRVT4, Context context) {
@@ -100,7 +100,7 @@ public class FillType4 {
     }
 
     private static void intiRetrofit(Home home) {
-        retrofit2 = getItems(home.getSub_cat().getId());
+        retrofit2 = getItems(home.getSub_cat().getId(),home.getSub_cat().getCategory_id());
         jsonPlaceHolderApi2 = retrofit2.create(JsonPlaceHolderApi.class);
     }
 
@@ -108,18 +108,19 @@ public class FillType4 {
         catName.setText(getTextEngOrLocal(context,home.getSub_cat().getName_en(),home.getSub_cat().getName_local()));
     }
 
-    private static void actionListenerToSeeAll(RelativeLayout seeAllType2, final Context context) {
+    private static void actionListenerToSeeAll(RelativeLayout seeAllType2, final Context context, final Home home) {
         seeAllType2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveToResultActivity(context);
+                moveToResultActivity(context,home);
             }
         });
     }
 
-    private static void moveToResultActivity(Context context) {
+    private static void moveToResultActivity(Context context, Home home) {
         Bundle bundle = new Bundle();
-        bundle.putString("from","cat");
+        bundle.putString("sub_cat_id",home.getSub_cat().getId());
+        bundle.putString("cat_id",home.getSub_cat().getCategory_id());
 
         Intent intent = new Intent(context, ResultActivity.class);
         intent.putExtras(bundle);

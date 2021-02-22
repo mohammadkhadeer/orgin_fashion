@@ -8,14 +8,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class Sub_Cat implements Parcelable {
     String name_en,name_local,appearance,id;
+    @SerializedName("category")
+    String category_id;
     @SerializedName("image")
     Flag flag;
 
-    public Sub_Cat(String name_en, String name_local, String appearance,String id, Flag flag) {
+    public Sub_Cat(String name_en, String name_local, String appearance, String id, String category_id, Flag flag) {
         this.name_en = name_en;
         this.name_local = name_local;
         this.appearance = appearance;
         this.id = id;
+        this.category_id = category_id;
         this.flag = flag;
     }
 
@@ -24,7 +27,8 @@ public class Sub_Cat implements Parcelable {
         name_local = in.readString();
         appearance = in.readString();
         id = in.readString();
-        flag =  in.readParcelable(Flag.class.getClassLoader());
+        category_id = in.readString();
+        flag = in.readParcelable(Flag.class.getClassLoader());
     }
 
     public static final Creator<Sub_Cat> CREATOR = new Creator<Sub_Cat>() {
@@ -38,14 +42,6 @@ public class Sub_Cat implements Parcelable {
             return new Sub_Cat[size];
         }
     };
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName_en() {
         return name_en;
@@ -71,6 +67,22 @@ public class Sub_Cat implements Parcelable {
         this.appearance = appearance;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
+    }
+
     public Flag getFlag() {
         return flag;
     }
@@ -90,6 +102,7 @@ public class Sub_Cat implements Parcelable {
         dest.writeString(name_local);
         dest.writeString(appearance);
         dest.writeString(id);
+        dest.writeString(category_id);
         dest.writeParcelable(flag, flags);
     }
 }

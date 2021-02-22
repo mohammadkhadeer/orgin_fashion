@@ -75,7 +75,12 @@ public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
     }
 
     private void moveToShowResultActivity(Sub_Cat sub_cat) {
+        Bundle bundle = new Bundle();
+        bundle.putString("sub_cat_id",sub_cat.getId());
+        bundle.putString("cat_id",sub_cat.getCategory_id());
+
         Intent intent = new Intent(context, ResultActivity.class);
+        intent.putExtras(bundle);
         ((Activity)context).startActivity(intent);
         ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }

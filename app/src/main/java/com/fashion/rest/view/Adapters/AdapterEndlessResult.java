@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.ListItem;
 import com.fashion.rest.utils.BaseViewHolderUser;
 
@@ -35,12 +36,12 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
   private static final int VIEW_TYPE_NORMAL = 1;
   private boolean isLoaderVisible = false;
 
-  private List<Deal> dealItemsList;
+  private List<ItemTest> dealItemsList;
   Context context;
   String comeFrom;
   int pageNumber;
 
-  public AdapterEndlessResult(List<Deal> postItems, Context context, String comeFrom,int pageNumber) {
+  public AdapterEndlessResult(List<ItemTest> postItems, Context context, String comeFrom,int pageNumber) {
     this.dealItemsList = postItems;
     this.context = context;
     this.comeFrom = comeFrom;
@@ -94,14 +95,14 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
     return dealItemsList == null ? 0 : dealItemsList.size();
   }
 
-  public void addItems(List<Deal> postItems) {
+  public void addItems(List<ItemTest> postItems) {
     dealItemsList.addAll(postItems);
     notifyDataSetChanged();
   }
 
   public void addLoading() {
     isLoaderVisible = true;
-    dealItemsList.add(new Deal());
+    dealItemsList.add(new ItemTest());
     notifyItemInserted(dealItemsList.size() - 1);
   }
 
@@ -109,14 +110,14 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
     isLoaderVisible = false;
     ////////////here
     int position = dealItemsList.size() - 1;
-    Deal deal = getItem(position);
+    ItemTest deal = getItem(position);
     if (deal != null) {
       dealItemsList.remove(position);
       notifyItemRemoved(position);
     }
   }
 
-  Deal getItem(int position) {
+  ItemTest getItem(int position) {
     return dealItemsList.get(position);
   }
 
@@ -158,8 +159,8 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
     }
   }
 
-  private Deal getObject(int position){
-    Deal item = dealItemsList.get(position);
+  private ItemTest getObject(int position){
+    ItemTest item = dealItemsList.get(position);
     return item;
   }
 

@@ -15,27 +15,30 @@ import android.widget.Toast;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.view.Adapters.AdapterSet;
 import com.fashion.rest.view.Adapters.AdapterType2;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.fillSetArrayL;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class FillResultsType1 {
 
-    public static void fillItemCase1(Deal deal,Context context,ImageView imageView,TextView name,TextView price,TextView oldPrice,RelativeLayout offerCover,TextView offerPer) {
+    public static void fillItemCase1(ItemTest deal, Context context, ImageView imageView, TextView name, TextView price, TextView oldPrice, RelativeLayout offerCover, TextView offerPer) {
         fillImage(context,imageView,deal);
-        fillTV(deal,name);
+        fillTV(deal,name,context);
         fillOffer(offerCover,offerPer);
         fillPrice(price,oldPrice,deal);
         changeFont(context,name,price,oldPrice,offerPer);
     }
 
-    private static void fillPrice(TextView price, TextView oldPrice, Deal deal) {
-        price.setText(String.valueOf(deal.getPrice().getPrice()));
-        oldPrice.setText(String.valueOf(deal.getPrice().getOldPrice()));
+    private static void fillPrice(TextView price, TextView oldPrice, ItemTest deal) {
+        price.setText(String.valueOf(deal.getDiscountPrice()));
+        oldPrice.setText(String.valueOf(deal.getPrice()));
     }
 
     private static void fillOffer(RelativeLayout offerCover, TextView offerPer) {
@@ -44,14 +47,14 @@ public class FillResultsType1 {
         offerPer.setText("40%");
     }
 
-    private static void fillTV(Deal deal, TextView name) {
-        name.setText(String.valueOf(deal.getName()));
+    private static void fillTV(ItemTest itemTest, TextView name,Context context) {
+        name.setText(getTextEngOrLocal(context,itemTest.getName(),itemTest.getName_local()));
     }
 
-    private static void fillImage(Context context, ImageView imageView, Deal deal) {
+    private static void fillImage(Context context, ImageView imageView, ItemTest itemTest) {
         //product image
         Picasso.get()
-                .load(deal.getImage())
+                .load(apiURLBase()+itemTest.getFlagArrayL().get(0).getUrl())
                 .fit()
                 .centerCrop()
                 .into(imageView);

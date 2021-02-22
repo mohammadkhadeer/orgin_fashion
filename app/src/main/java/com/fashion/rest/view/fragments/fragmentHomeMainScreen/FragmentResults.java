@@ -23,21 +23,32 @@ import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.Home;
+import com.fashion.rest.model.ItemTest;
+import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
 import com.fashion.rest.view.Adapters.AdapterEndlessResult;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import static com.fashion.rest.functions.FillItem.fillAllItemDepCatArrayL;
 import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
 import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL2;
+import static com.fashion.rest.functions.RetrofitFunctions.getItems;
+import static com.fashion.rest.functions.RetrofitFunctions.getItemsWithAllFilter;
 
 
 public class FragmentResults extends Fragment {
-    public ArrayList<Deal> dealsArrayList = new ArrayList<>();
-    public ArrayList<Deal> suggestedItemsArrayListTest;
-    public ArrayList<Deal> suggestedItemsArrayListDO;
+    public ArrayList<ItemTest> dealsArrayList = new ArrayList<>();
+    public ArrayList<ItemTest> suggestedItemsArrayListTest;
+    public ArrayList<ItemTest> suggestedItemsArrayListDO;
 
     public static final int PAGE_START = 1;
     private int currentPage = PAGE_START;
@@ -47,6 +58,8 @@ public class FragmentResults extends Fragment {
 
     LinearLayoutManager mLayoutManager;
     AdapterEndlessResult adapterEndlessResult ;
+    static JsonPlaceHolderApi jsonPlaceHolderApi;
+    static Retrofit retrofit;
 
     public FragmentResults() {
     }
@@ -55,12 +68,21 @@ public class FragmentResults extends Fragment {
     RecyclerView results_RV;
     NestedScrollView nestedScrollView;
 
+    String cat_id,sub_cat_id;
+
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
-//            phoneNumber = getArguments().getString("phoneN");
+            cat_id = getArguments().getString("cat_id");
+            sub_cat_id = getArguments().getString("sub_cat_id");
         }
         super.onAttach(context);
+        intiRetrofit();
+    }
+
+    private void intiRetrofit() {
+        retrofit = getItemsWithAllFilter(sub_cat_id,cat_id);
+        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -81,65 +103,32 @@ public class FragmentResults extends Fragment {
     private void actionListenerToNestedScroll() {
         nestedScrollView.getViewTreeObserver().addOnScrollChangedListener(new
                                                                                   ViewTreeObserver.OnScrollChangedListener() {
+                                                                                      @RequiresApi(api = Build.VERSION_CODES.M)
                                                                                       @Override
                                                                                       public void onScrollChanged() {
                                                                                           View view = (View) nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1);
                                                                                           int diff = (view.getBottom() - (nestedScrollView.getHeight() + nestedScrollView.getScrollY()));
                                                                                           if (diff == 0) {
-                                                                                              new Handler().postDelayed(new Runnable() {
+//                                                                                              new Handler().postDelayed(new Runnable() {
+//
+//                                                                                                  @RequiresApi(api = Build.VERSION_CODES.M)
+//                                                                                                  @Override
+//                                                                                                  public void run() {
+//
+//                                                                                                  }
+//                                                                                              }, 2000);
 
-                                                                                                  @RequiresApi(api = Build.VERSION_CODES.M)
-                                                                                                  @Override
-                                                                                                  public void run() {
-                                                                                                      Log.i("TAG BAG","currentPage: "+String.valueOf(currentPage));
-                                                                                                      currentPage ++;
-                                                                                                      isLoading = true;
-                                                                                                      doApiCall();
-                                                                                                  }
-                                                                                              }, 2000);
-
+                                                                                              currentPage ++;
+                                                                                              isLoading = true;
+                                                                                              doApiCall();
                                                                                           }
                                                                                       }
                                                                                   });
     }
 
-//    private void actionListenerToRV() {
-//        results_RV.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//            }
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//                if (!isLoading) {
-//
-//                    if (mLayoutManager != null && mLayoutManager.findLastCompletelyVisibleItemPosition() == suggestedItemsArrayListDO.size() - 1) {
-//                        //bottom of list!
-//                        Toast.makeText(getActivity(),"TAG !" +String.valueOf(currentPage)+ " Load more ...",Toast.LENGTH_SHORT).show();
-//
-//                        new Handler().postDelayed(new Runnable() {
-//
-//                            @RequiresApi(api = Build.VERSION_CODES.M)
-//                            @Override
-//                            public void run() {
-//                                Log.i("TAG BAG","currentPage: "+String.valueOf(currentPage));
-//                                doApiCall();
-//
-//                            }
-//                        }, 2000);
-//                        currentPage ++;
-//                        isLoading = true;
-//
-//                    }
-//                }
-//            }
-//        });
-//    }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void createRV() {
-        adapterEndlessResult = new AdapterEndlessResult(new ArrayList<Deal>(),getActivity(),"call",currentPage);
+        adapterEndlessResult = new AdapterEndlessResult(new ArrayList<ItemTest>(),getActivity(),"call",currentPage);
         results_RV.setHasFixedSize(true);
         results_RV.setNestedScrollingEnabled(false);
 
@@ -154,20 +143,40 @@ public class FragmentResults extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
+        Log.i("TAG","doApiCall");
         suggestedItemsArrayListTest = new ArrayList<>();
-        suggestedItemsArrayListTest = fillEndlessItemDepCatArrayL2(suggestedItemsArrayListTest,getActivity(),currentPage);
-        suggestedItemsArrayListDO = fillEndlessItemDepCatArrayL2(suggestedItemsArrayListDO,getActivity(),currentPage);
-//        suggestedItemsArrayListTest.addAll(suggestedItemsArrayListDO);
+        Call<List<ItemTest>> callHome = jsonPlaceHolderApi.getAllItems(0,15);
+        callHome.enqueue(new Callback<List<ItemTest>>() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onResponse(Call<List<ItemTest>> call, Response<List<ItemTest>> response) {
+                if (!response.isSuccessful())
+                { return; }
+                List<ItemTest> itemsList = response.body();
+                Log.i("TAG","itemsList");
+                Log.i("TAG",String.valueOf(itemsList.size()));
 
-        //fill here
-        if (currentPage != PAGE_START) adapterEndlessResult.removeLoading();
-        adapterEndlessResult.addItems(suggestedItemsArrayListTest);
-        if (currentPage < totalPage) {
-            adapterEndlessResult.addLoading();
-            isLoading = false;
-        } else {
-            isLastPage = true;
-        }
+                suggestedItemsArrayListTest.addAll(itemsList);
+                suggestedItemsArrayListDO.addAll(itemsList);
+
+                if (currentPage != PAGE_START && suggestedItemsArrayListTest.size()!=0) adapterEndlessResult.removeLoading();
+                if (suggestedItemsArrayListTest.size()!=0)
+                {
+                    adapterEndlessResult.addItems(suggestedItemsArrayListTest);
+                }
+                if (suggestedItemsArrayListTest.size()!=0) {
+                    adapterEndlessResult.addLoading();
+                    isLoading = false;
+                } else {
+                    isLastPage = true;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ItemTest>> call, Throwable t) {
+                Log.i("TAG Error",t.getMessage());
+            }
+        });
     }
 
     private void inti() {
