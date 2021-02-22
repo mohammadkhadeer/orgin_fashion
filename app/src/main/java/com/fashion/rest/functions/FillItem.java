@@ -52,9 +52,9 @@ public class FillItem {
 
         while (res.moveToNext()) {
             // name_en col 2 .... name_local col 3 ... idOnServer 1
-            Log.i("TAG 1",res.getString(1).replace("\n", ""));
-            Log.i("TAG 2",res.getString(2).replace("\n", ""));
-            Log.i("TAG 3",res.getString(3).replace("\n", ""));
+//            Log.i("TAG 1",res.getString(1).replace("\n", ""));
+//            Log.i("TAG 2",res.getString(2).replace("\n", ""));
+//            Log.i("TAG 3",res.getString(3).replace("\n", ""));
 
             listArrayL.add(new City(res.getString(2).replace("\n", ""),
                     res.getString(3).replace("\n", ""),

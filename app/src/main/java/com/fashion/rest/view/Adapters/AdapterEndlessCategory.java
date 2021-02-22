@@ -136,7 +136,7 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
     ImageView imageView;
     RelativeLayout coverRL,cont2,cont4,see_all_type2_rl,see_all_type4_rl;
     TextView nameTV,type2_cat_name_TV,oldPrice,type4_cat_name_TV;
-    RecyclerView recyclerViewT2,recyclerViewT4;
+    RecyclerView recyclerViewT2,recyclerViewT4,lodaingRVT2,lodaingRVT4;
 
     ViewHolder(View itemView) {
       super(itemView);
@@ -156,7 +156,9 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
       see_all_type4_rl = (RelativeLayout) itemView.findViewById(R.id.see_all_type4_rl);
 
       recyclerViewT2 = (RecyclerView) itemView.findViewById(R.id.type2_RV);
+      lodaingRVT2 = (RecyclerView) itemView.findViewById(R.id.lodaingRV);
 
+      lodaingRVT4 = (RecyclerView) itemView.findViewById(R.id.lodaingRVT4);
       recyclerViewT4 = (RecyclerView) itemView.findViewById(R.id.type4_RV);
     }
 
@@ -172,14 +174,14 @@ public class AdapterEndlessCategory extends RecyclerView.Adapter<BaseViewHolderU
       {
             cont2.setVisibility(View.VISIBLE);
             cont4.setVisibility(View.GONE);
-            fillCaseItem(recyclerViewT2,context,type2_cat_name_TV,see_all_type2_rl,homeItemsList.get(position));
+            fillCaseItem(recyclerViewT2,context,type2_cat_name_TV,see_all_type2_rl,homeItemsList.get(position),lodaingRVT2);
       }
 
       if (getObject(position).getSub_cat().getAppearance().equals("2"))
       {
             cont2.setVisibility(View.GONE);
             cont4.setVisibility(View.VISIBLE);
-            fillCase4Item(recyclerViewT4,context,type4_cat_name_TV,see_all_type4_rl,homeItemsList.get(position));
+            fillCase4Item(recyclerViewT4,context,type4_cat_name_TV,see_all_type4_rl,homeItemsList.get(position),lodaingRVT4);
       }
 
     }

@@ -2,6 +2,7 @@ package com.fashion.rest.view.fragments.fragmentHomeMainScreen;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import com.fashion.rest.view.Adapters.AdapterCategory;
 import com.fashion.rest.view.Adapters.AdapterCities;
 import com.fashion.rest.view.Adapters.AdapterSelectedAreas;
 import com.fashion.rest.view.Adapters.AdapterSubCategory;
+import com.fashion.rest.view.activity.ResultActivity;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
 
 import java.util.ArrayList;
@@ -278,8 +280,13 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         showResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) getActivity()).removeFilterFragmentAndShowResult();
-                getActivity().getFragmentManager().popBackStack();
+                //move to ResultActivity
+                Intent intent = new Intent(getActivity(), ResultActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+//                ((MainActivity) getActivity()).removeFilterFragmentAndShowResult();
+//                getActivity().getFragmentManager().popBackStack();
             }
         });
     }
