@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.View;
 
 import com.fashion.rest.R;
+import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.CustomCategory;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.Adapters.AdapterAllCategory;
 import com.fashion.rest.view.Adapters.AdapterType3;
 
@@ -31,7 +33,7 @@ public class AllCategory extends AppCompatActivity {
     NestedScrollView nestedScrollView;
 
     AdapterAllCategory adapterAllCategory;
-    public ArrayList<Category> allCategoriesArrayList = new ArrayList<>();
+    public ArrayList<Categories> allCategoriesArrayList = new ArrayList<>();
     public ArrayList<CustomCategory> customCategoriesArrayList = new ArrayList<>();
     LinearLayoutManager mLayoutManager;
 
@@ -47,7 +49,9 @@ public class AllCategory extends AppCompatActivity {
     }
 
     private void createAllCategoryRV() {
-        allCategoriesArrayList = fillCat2ArrayL(getApplicationContext());
+        allCategoriesArrayList = new ArrayList<>();
+        getInfoFromCat();
+
         customCategoriesArrayList = fillCustomCategory();
         all_cat_RV.setNestedScrollingEnabled(false);
         all_cat_RV.setHasFixedSize(true);
@@ -62,9 +66,19 @@ public class AllCategory extends AppCompatActivity {
         all_cat_RV.setAdapter(adapterAllCategory);
     }
 
+    private void getInfoFromCat() {
+        allCategoriesArrayList = (ArrayList<Categories>) getIntent().getSerializableExtra("categories");
+        //Log.i("TAG sub cat ", String.valueOf(sub_catArrayList.size()));
+
+//        for (int i=0;i<sub_catArrayList.size();i++)
+//        {
+//            Log.i("TAG sub cat ",sub_catArrayList.get(i).getName_en());
+//        }
+    }
+
     private ArrayList<CustomCategory> fillCustomCategory() {
         ArrayList<CustomCategory> customCategoriesInternalArrayList = new ArrayList<>();
-        ArrayList<Category> smallArrayL = new ArrayList<>();
+        ArrayList<Categories> smallArrayL = new ArrayList<>();
         for (int i =0;i<allCategoriesArrayList.size();i++)
         {
             if(i % 3 == 0) {
@@ -94,7 +108,6 @@ public class AllCategory extends AppCompatActivity {
 
             }
         }
-        Log.i("TAG", String.valueOf(customCategoriesInternalArrayList.size()));
         return customCategoriesInternalArrayList;
     }
 

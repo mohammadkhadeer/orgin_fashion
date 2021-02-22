@@ -160,11 +160,11 @@ public class Language extends AppCompatActivity {
 //        System.exit(0);
 
         Intent intent = new Intent(Language.this, SplashScreen.class);
-        intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
 
-        Runtime.getRuntime().exit(0);
+        //Runtime.getRuntime().exit(0);
     }
     private void init() {
         radioButtonArabic = (RadioButton) findViewById(R.id.radioButton);

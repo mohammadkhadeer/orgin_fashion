@@ -63,12 +63,12 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
         Bundle bundle = getIntent().getExtras();
         cat_name =bundle.getString("cat_name");
         sub_catArrayList = (ArrayList<Sub_Cat>) getIntent().getSerializableExtra("sub_cat");
-        Log.i("TAG sub cat ", String.valueOf(sub_catArrayList.size()));
+        //Log.i("TAG sub cat ", String.valueOf(sub_catArrayList.size()));
 
-        for (int i=0;i<sub_catArrayList.size();i++)
-        {
-            Log.i("TAG sub cat ",sub_catArrayList.get(i).getName_en());
-        }
+//        for (int i=0;i<sub_catArrayList.size();i++)
+//        {
+//            Log.i("TAG sub cat ",sub_catArrayList.get(i).getName_en());
+//        }
     }
 
     private void actionListenerToRemoveTextInSearchEdt() {

@@ -1,6 +1,7 @@
 package com.fashion.rest.view.fragments.HomeScreenFragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,7 +21,9 @@ import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.utils.PaginationListener;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
@@ -32,7 +35,13 @@ import com.fashion.rest.view.activity.SplashScreen;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
+import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 import static com.fashion.rest.utils.PaginationListener.PAGE_START;
 import static com.fashion.rest.view.categoriesComp.FillType3.fillCase3Item;
 
@@ -61,23 +70,45 @@ public class FragmentOffers extends Fragment{
     TextView see_all_cat_tv;
 
     int numberOfObjectNow = 0;
+    JsonPlaceHolderApi jsonPlaceHolderApi;
+    Retrofit retrofit;
+    public ArrayList<Categories> categoriesArrayList = new ArrayList<>();
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof PassObject) {
-//            passObject = (PassObject) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement FragmentAListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        passObject = null;
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        intiRet();
+        getCategoriesList();
+    }
+
+    private void intiRet() {
+        retrofit = getCategories();
+        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+    }
+
+    private void getCategoriesList() {
+        categoriesArrayList = new ArrayList<>();
+        Call<List<Categories>> call = jsonPlaceHolderApi.getCategories();
+        call.enqueue(new Callback<List<Categories>>() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onResponse(Call<List<Categories>> call, Response<List<Categories>> response) {
+                if (!response.isSuccessful())
+                { return; }
+                List<Categories> countriesL = response.body();
+
+                for (Categories categories:countriesL)
+                {
+                    categoriesArrayList.add(categories);
+                }
+                fillCase3Item(recyclerViewCat,getActivity(),categoriesArrayList);
+            }
+            @Override
+            public void onFailure(Call<List<Categories>> call, Throwable t) {
+                Log.i("TAG Error",t.getMessage());
+            }
+        });
+    }
 
     public FragmentOffers(){}
 
@@ -93,7 +124,6 @@ public class FragmentOffers extends Fragment{
         changeFont();
         actionListenerToRV();
         actionListenerToSeeAllCat();
-        fillCase3Item(recyclerViewCat,getActivity());
 
         //createRVSuggested();
         return view;
@@ -115,6 +145,7 @@ public class FragmentOffers extends Fragment{
     private void moveToAllCatActivity() {
 
         Intent intent = new Intent(getActivity(), AllCategory.class);
+        intent.putExtra("categories", categoriesArrayList);
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }
@@ -130,16 +161,6 @@ public class FragmentOffers extends Fragment{
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-//                Log.i("TAG BAG","isLoading: "+String.valueOf(isLoading));
-//                Log.i("TAG BAG","mLayoutManager.findLastCompletelyVisibleItemPosition(): "+String.valueOf(mLayoutManager.findLastCompletelyVisibleItemPosition()));
-//                Log.i("TAG BAG","suggestedItemsArrayListDO.size() - 1: "+String.valueOf(suggestedItemsArrayListDO.size() - 1));
-//
-//                if (mLayoutManager != null)
-//                {
-//                    Log.i("TAG BAG","mLayoutManager: NOT NOT ~NOT null");
-//                }else{
-//                    Log.i("TAG BAG","mLayoutManager:Null");
-//                }
                 if (!isLoading) {
 
                     if (mLayoutManager != null && mLayoutManager.findLastCompletelyVisibleItemPosition() == suggestedItemsArrayListDO.size() - 1) {
@@ -164,33 +185,6 @@ public class FragmentOffers extends Fragment{
             }
         });
 
-//        recyclerView.addOnScrollListener(new PaginationListener(mLayoutManager) {
-//            @Override
-//            protected void loadMoreItems() {
-//                isLoading = true;
-//                currentPage++;
-//                Toast.makeText(getActivity(),"TAG !" +String.valueOf(currentPage)+ " Load more ...",Toast.LENGTH_SHORT).show();
-//                new Handler().postDelayed(new Runnable() {
-//
-//                    @Override
-//                    public void run() {
-//
-//                        doApiCall();
-//
-//                    }
-//                }, 2000);
-//            }
-//
-//            @Override
-//            public boolean isLastPage() {
-//                return isLastPage;
-//            }
-//
-//            @Override
-//            public boolean isLoading() {
-//                return isLoading;
-//            }
-//        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

@@ -501,7 +501,8 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         cat_name_result.setText(getTextEngOrLocal(getActivity(),category.getName(),category.getName_local()));
         catRV.setVisibility(View.GONE);
 
-        createSubCategory(category);
+        if (category.getSub_catArrayList().size() >1)
+            createSubCategory(category);
     }
 
     private void createSubCategory(Categories category) {

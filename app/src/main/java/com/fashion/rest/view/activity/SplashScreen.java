@@ -166,7 +166,7 @@ public class SplashScreen extends AppCompatActivity {
                     Intent intent = new Intent(SplashScreen.this, com.fashion.rest.view.activity.Language.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-                    finish();
+                    finishAffinity();
                 }else{
                     if (getLoginOrNotFromSP(getApplicationContext()) == null || getLoginOrNotFromSP(getApplicationContext()).equals("") || !getLoginOrNotFromSP(getApplicationContext()).equals("1"))
                     {
@@ -174,12 +174,12 @@ public class SplashScreen extends AppCompatActivity {
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-                        finish();
+                        finishAffinity();
                     }else {
                         Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-                        finish();
+                        finishAffinity();
                     }
                 }
             }

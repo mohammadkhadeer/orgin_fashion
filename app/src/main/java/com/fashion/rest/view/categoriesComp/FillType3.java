@@ -34,48 +34,15 @@ public class FillType3 {
 
     static AdapterType3 adapterType3;
     static RecyclerView.LayoutManager layoutManager;
-    public static ArrayList<Categories> categoriesArrayList = new ArrayList<>();
-
-    static JsonPlaceHolderApi jsonPlaceHolderApi;
-    static Retrofit retrofit;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void fillCase3Item(RecyclerView recyclerView, Context context) {
-        intiRet();
-        getCategoriesList(recyclerView,context);
-    }
+    public static void fillCase3Item(RecyclerView recyclerView, Context context,ArrayList<Categories> categoriesArrayList) {
 
-    private static void intiRet() {
-        retrofit = getCategories();
-        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-    }
-
-    private static void getCategoriesList(final RecyclerView recyclerView, final Context context) {
-        categoriesArrayList = new ArrayList<>();
-        Call<List<Categories>> call = jsonPlaceHolderApi.getCategories();
-        call.enqueue(new Callback<List<Categories>>() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onResponse(Call<List<Categories>> call, Response<List<Categories>> response) {
-                if (!response.isSuccessful())
-                { return; }
-                List<Categories> countriesL = response.body();
-
-                for (Categories categories:countriesL)
-                {
-                    categoriesArrayList.add(categories);
-                }
-                createRVSuggested(recyclerView, context);
-            }
-            @Override
-            public void onFailure(Call<List<Categories>> call, Throwable t) {
-                Log.i("TAG Error",t.getMessage());
-            }
-        });
+        createRVSuggested(recyclerView, context,categoriesArrayList);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void createRVSuggested(RecyclerView recyclerView, Context context) {
+    public static void createRVSuggested(RecyclerView recyclerView, Context context,ArrayList<Categories> categoriesArrayList) {
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(context,

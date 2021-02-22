@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +17,20 @@ import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.CustomCategory;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.activity.ItemDetails;
+import com.fashion.rest.view.activity.ResultActivity;
 import com.fashion.rest.view.activity.SubCategory;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.ViewHolder>{
 
@@ -100,12 +107,14 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("cat_name",allCatArrayL.get(position).getCustomCategory().get(0).getCategory_en());
+                        bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getName(),allCatArrayL.get(position).getCustomCategory().get(0).getName_local()));
 
-                        Intent intent = new Intent(context, com.fashion.rest.view.activity.SubCategory.class);
-                        intent.putExtras(bundle);
-                        ((Activity)context).startActivity(intent);
-                        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                        if (allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().size() >1)
+                            moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList());
+                        else
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
+
+
                     }
                 });
 
@@ -116,12 +125,12 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("cat_name",allCatArrayL.get(position).getCustomCategory().get(0).getCategory_en());
+                        bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getName(),allCatArrayL.get(position).getCustomCategory().get(0).getName_local()));
 
-                        Intent intent = new Intent(context, com.fashion.rest.view.activity.SubCategory.class);
-                        intent.putExtras(bundle);
-                        ((Activity)context).startActivity(intent);
-                        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                        if (allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().size() >1)
+                            moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList());
+                        else
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
                     }
                 });
 
@@ -129,12 +138,12 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("cat_name",allCatArrayL.get(position).getCustomCategory().get(0).getCategory_en());
+                        bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(1).getName(),allCatArrayL.get(position).getCustomCategory().get(1).getName_local()));
 
-                        Intent intent = new Intent(context, com.fashion.rest.view.activity.SubCategory.class);
-                        intent.putExtras(bundle);
-                        ((Activity)context).startActivity(intent);
-                        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                        if (allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().size() >1)
+                            moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList());
+                        else
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
                     }
                 });
 
@@ -145,12 +154,12 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("cat_name",allCatArrayL.get(position).getCustomCategory().get(0).getCategory_en());
+                        bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getName(),allCatArrayL.get(position).getCustomCategory().get(0).getName_local()));
 
-                        Intent intent = new Intent(context, com.fashion.rest.view.activity.SubCategory.class);
-                        intent.putExtras(bundle);
-                        ((Activity)context).startActivity(intent);
-                        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                        if (allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().size() >1)
+                            moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList());
+                        else
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
                     }
                 });
 
@@ -158,12 +167,12 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("cat_name",allCatArrayL.get(position).getCustomCategory().get(0).getCategory_en());
+                        bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(1).getName(),allCatArrayL.get(position).getCustomCategory().get(1).getName_local()));
 
-                        Intent intent = new Intent(context, com.fashion.rest.view.activity.SubCategory.class);
-                        intent.putExtras(bundle);
-                        ((Activity)context).startActivity(intent);
-                        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                        if (allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().size() >1)
+                            moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList());
+                        else
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
                     }
                 });
 
@@ -171,31 +180,45 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("cat_name",allCatArrayL.get(position).getCustomCategory().get(0).getCategory_en());
+                        bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(2).getName(),allCatArrayL.get(position).getCustomCategory().get(2).getName_local()));
 
-                        Intent intent = new Intent(context, com.fashion.rest.view.activity.SubCategory.class);
-                        intent.putExtras(bundle);
-                        ((Activity)context).startActivity(intent);
-                        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                        if (allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().size() >1)
+                            moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList());
+                        else
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
                     }
                 });
             }
         }
     }
 
+    private void moveToShowResultActivity(Categories categories) {
+        Intent intent = new Intent(context, ResultActivity.class);
+        ((Activity)context).startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+    }
+
+    private void moveToSubCategory(Bundle bundle, ArrayList<Sub_Cat> sub_catArrayList) {
+        Intent intent = new Intent(context, com.fashion.rest.view.activity.SubCategory.class);
+        intent.putExtras(bundle);
+        intent.putExtra("sub_cat", sub_catArrayList);
+        ((Activity)context).startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+    }
+
     private void fillText(ViewHolder holder, Context context, int position) {
         if (allCatArrayL.get(position).getCustomCategory().size() != 0) {
             if (allCatArrayL.get(position).getCustomCategory().size() == 1) {
-                holder.custom_category_tv1_position1.setText(allCatArrayL.get(position).getCustomCategory().get(0).getCategory_en());
+                holder.custom_category_tv1_position1.setText(getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getName(),allCatArrayL.get(position).getCustomCategory().get(0).getName_local()));
             }
             if (allCatArrayL.get(position).getCustomCategory().size() == 2) {
-                holder.custom_category_tv1_position1.setText(allCatArrayL.get(position).getCustomCategory().get(0).getCategory_en());
-                holder.custom_category_tv2_position2.setText(allCatArrayL.get(position).getCustomCategory().get(1).getCategory_en());
+                holder.custom_category_tv1_position1.setText(getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getName(),allCatArrayL.get(position).getCustomCategory().get(0).getName_local()));
+                holder.custom_category_tv2_position2.setText(getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(1).getName(),allCatArrayL.get(position).getCustomCategory().get(1).getName_local()));
             }
             if (allCatArrayL.get(position).getCustomCategory().size() == 3) {
-                holder.custom_category_tv1_position1.setText(allCatArrayL.get(position).getCustomCategory().get(0).getCategory_en());
-                holder.custom_category_tv2_position2.setText(allCatArrayL.get(position).getCustomCategory().get(1).getCategory_en());
-                holder.custom_category_tv2_position3.setText(allCatArrayL.get(position).getCustomCategory().get(2).getCategory_en());
+                holder.custom_category_tv1_position1.setText(getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getName(),allCatArrayL.get(position).getCustomCategory().get(0).getName_local()));
+                holder.custom_category_tv2_position2.setText(getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(1).getName(),allCatArrayL.get(position).getCustomCategory().get(1).getName_local()));
+                holder.custom_category_tv2_position3.setText(getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(2).getName(),allCatArrayL.get(position).getCustomCategory().get(2).getName_local()));
             }
         }
     }
@@ -211,39 +234,39 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
         if (allCatArrayL.get(position).getCustomCategory().size() != 0) {
             if (allCatArrayL.get(position).getCustomCategory().size() == 1) {
                 Picasso.get()
-                        .load(allCatArrayL.get(position).getCustomCategory().get(0).getCategory_image())
+                        .load(apiURLBase()+allCatArrayL.get(position).getCustomCategory().get(0).getFlag().getUrl())
                         .fit()
                         .centerCrop()
                         .into(holder.custom_category_image1_position1);
             }
             if (allCatArrayL.get(position).getCustomCategory().size() == 2) {
                 Picasso.get()
-                        .load(allCatArrayL.get(position).getCustomCategory().get(0).getCategory_image())
+                        .load(apiURLBase()+allCatArrayL.get(position).getCustomCategory().get(0).getFlag().getUrl())
                         .fit()
                         .centerCrop()
                         .into(holder.custom_category_image1_position1);
 
                 Picasso.get()
-                        .load(allCatArrayL.get(position).getCustomCategory().get(1).getCategory_image())
+                        .load(apiURLBase()+allCatArrayL.get(position).getCustomCategory().get(1).getFlag().getUrl())
                         .fit()
                         .centerCrop()
                         .into(holder.custom_category_image2_position2);
             }
             if (allCatArrayL.get(position).getCustomCategory().size() == 3) {
                 Picasso.get()
-                        .load(allCatArrayL.get(position).getCustomCategory().get(0).getCategory_image())
+                        .load(apiURLBase()+allCatArrayL.get(position).getCustomCategory().get(0).getFlag().getUrl())
                         .fit()
                         .centerCrop()
                         .into(holder.custom_category_image1_position1);
 
                 Picasso.get()
-                        .load(allCatArrayL.get(position).getCustomCategory().get(1).getCategory_image())
+                        .load(apiURLBase()+allCatArrayL.get(position).getCustomCategory().get(1).getFlag().getUrl())
                         .fit()
                         .centerCrop()
                         .into(holder.custom_category_image2_position2);
 
                 Picasso.get()
-                        .load(allCatArrayL.get(position).getCustomCategory().get(2).getCategory_image())
+                        .load(apiURLBase()+allCatArrayL.get(position).getCustomCategory().get(2).getFlag().getUrl())
                         .fit()
                         .centerCrop()
                         .into(holder.custom_category_image3_position3);

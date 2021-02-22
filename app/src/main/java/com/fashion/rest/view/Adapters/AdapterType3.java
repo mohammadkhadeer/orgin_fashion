@@ -19,6 +19,7 @@ import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.activity.ItemDetails;
+import com.fashion.rest.view.activity.ResultActivity;
 import com.fashion.rest.view.activity.SubCategory;
 import com.squareup.picasso.Picasso;
 
@@ -64,13 +65,27 @@ public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
                 Bundle bundle = new Bundle();
                 bundle.putString("cat_name",getTextEngOrLocal(context,categoriesArrayList.get(position).getName(),categoriesArrayList.get(position).getName_local()));
 
-                Intent intent = new Intent(context, SubCategory.class);
-                intent.putExtras(bundle);
-                intent.putExtra("sub_cat", categoriesArrayList.get(position).getSub_catArrayList());
-                ((Activity)context).startActivity(intent);
-                ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                if (categoriesArrayList.get(position).getSub_catArrayList().size() >1)
+                    moveToSubCategory(bundle,categoriesArrayList.get(position).getSub_catArrayList());
+                else
+                    moveToShowResultActivity(categoriesArrayList.get(position).getSub_catArrayList().get(0));
+
             }
         });
+    }
+
+    private void moveToShowResultActivity(Sub_Cat sub_cat) {
+        Intent intent = new Intent(context, ResultActivity.class);
+        ((Activity)context).startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+    }
+
+    private void moveToSubCategory(Bundle bundle, ArrayList<Sub_Cat> sub_catArrayList) {
+        Intent intent = new Intent(context, SubCategory.class);
+        intent.putExtras(bundle);
+        intent.putExtra("sub_cat", sub_catArrayList);
+        ((Activity)context).startActivity(intent);
+        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }
 
     private void fillText(ViewHolder holder, Context context, int position) {
