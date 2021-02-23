@@ -11,6 +11,7 @@ import static com.fashion.rest.apiURL.API.apiHome;
 import static com.fashion.rest.apiURL.API.apiItems;
 import static com.fashion.rest.apiURL.API.apiItemsWithAllFilter;
 import static com.fashion.rest.apiURL.API.apiNumberOfCountries;
+import static com.fashion.rest.apiURL.API.apiOffers;
 
 public class RetrofitFunctions {
 
@@ -80,6 +81,15 @@ public class RetrofitFunctions {
     public static Retrofit getItemsWithAllFilter(String subCategoryID,String category_id) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiItemsWithAllFilter(subCategoryID,category_id))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    public static Retrofit getOffers(String date) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(apiOffers(date))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

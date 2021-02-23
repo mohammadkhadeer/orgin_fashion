@@ -3,7 +3,7 @@ package com.fashion.rest.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Store {
-    @SerializedName("flag")
+    @SerializedName("photo")
     Flag flag;
     String name,id;
 

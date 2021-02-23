@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
-import com.fashion.rest.model.Offer;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentCategory;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentOffers;
 import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentTest;
@@ -20,7 +19,6 @@ import java.util.List;
 public class FragmentHomeScreen extends Fragment{
 
     View view;
-    List<Offer> mList = new ArrayList<>();
     public ArrayList<Deal> dealsArrayList = new ArrayList<>();
 
     FragmentOffers fragmentOffers = new FragmentOffers();

@@ -7,6 +7,7 @@ import com.fashion.rest.model.Comment;
 import com.fashion.rest.model.Countries;
 import com.fashion.rest.model.Home;
 import com.fashion.rest.model.ItemTest;
+import com.fashion.rest.model.Offer;
 import com.fashion.rest.model.Post;
 import com.fashion.rest.model.Test;
 
@@ -62,5 +63,10 @@ public interface JsonPlaceHolderApi {
     @GET(".")
     Call <List<ItemTest>> getAllItems(@Query("_start") int start,
                                       @Query("_limit") int end
+    );
+
+    @GET(".")
+    Call<List<Offer>> getOffers(@Query("_start") int start,
+                                @Query("_limit") int end
     );
 }

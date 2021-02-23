@@ -1,198 +1,126 @@
 package com.fashion.rest.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+
 public class Offer {
-    //must to set delivery area
-    String imagePathStr,categoryStr,mailTypeStr;
-    int offerOrNotInt,newPriceInt;
-    String timeStampStr;
-    int priceInt;
-    String arNameStr,enNameStr;
-    String arDesStr,enDesStr;
-    String subCategoryStr,restaurantsImageStr,restaurantsNameStr,restaurantsOpenAtStr,restaurantsCloseAtStr
-            ,restaurantsCityStr,neighborhoodStr,restaurantsAddressLinkStr,restaurantsIDStr;
+    @SerializedName("Photo")
+    ArrayList<Flag> flagArrayL;
+    String name,name_local,description,description_local,price,discountPrice,promo_code,valide,color,secondaryColor;
+    @SerializedName("id")
+    String item_id;
 
     public Offer(){}
 
-    public Offer(String imagePathStr, String categoryStr, String mailTypeStr, int offerOrNotInt, int newPriceInt, String timeStampStr, int priceInt, String arNameStr, String enNameStr, String arDesStr, String enDesStr, String subCategoryStr,String restaurantsImageStr, String restaurantsNameStr, String restaurantsOpenAtStr, String restaurantsCloseAtStr, String restaurantsCityStr, String neighborhoodStr, String restaurantsAddressLinkStr, String restaurantsIDStr) {
-        this.imagePathStr = imagePathStr;
-        this.categoryStr = categoryStr;
-        this.mailTypeStr = mailTypeStr;
-        this.offerOrNotInt = offerOrNotInt;
-        this.newPriceInt = newPriceInt;
-        this.timeStampStr = timeStampStr;
-        this.priceInt = priceInt;
-        this.arNameStr = arNameStr;
-        this.enNameStr = enNameStr;
-        this.arDesStr = arDesStr;
-        this.enDesStr = enDesStr;
-        this.subCategoryStr = subCategoryStr;
-        this.restaurantsNameStr = restaurantsNameStr;
-        this.restaurantsImageStr = restaurantsImageStr;
-        this.restaurantsOpenAtStr = restaurantsOpenAtStr;
-        this.restaurantsCloseAtStr = restaurantsCloseAtStr;
-        this.restaurantsCityStr = restaurantsCityStr;
-        this.neighborhoodStr = neighborhoodStr;
-        this.restaurantsAddressLinkStr = restaurantsAddressLinkStr;
-        this.restaurantsIDStr = restaurantsIDStr;
+    public Offer(ArrayList<Flag> flagArrayL, String name, String name_local, String description, String description_local, String price, String discountPrice, String promo_code, String valide, String start_color, String end_color, String item_id) {
+        this.flagArrayL = flagArrayL;
+        this.name = name;
+        this.name_local = name_local;
+        this.description = description;
+        this.description_local = description_local;
+        this.price = price;
+        this.discountPrice = discountPrice;
+        this.promo_code = promo_code;
+        this.valide = valide;
+        this.color = start_color;
+        this.secondaryColor = end_color;
+        this.item_id = item_id;
     }
 
-    public String getRestaurantsImageStr() {
-        return restaurantsImageStr;
+    public ArrayList<Flag> getFlagArrayL() {
+        return flagArrayL;
     }
 
-    public void setRestaurantsImageStr(String restaurantsImageStr) {
-        this.restaurantsImageStr = restaurantsImageStr;
+    public void setFlagArrayL(ArrayList<Flag> flagArrayL) {
+        this.flagArrayL = flagArrayL;
     }
 
-    public String getImagePathStr() {
-        return imagePathStr;
+    public String getName() {
+        return name;
     }
 
-    public void setImagePathStr(String imagePathStr) {
-        this.imagePathStr = imagePathStr;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCategoryStr() {
-        return categoryStr;
+    public String getName_local() {
+        return name_local;
     }
 
-    public void setCategoryStr(String categoryStr) {
-        this.categoryStr = categoryStr;
+    public void setName_local(String name_local) {
+        this.name_local = name_local;
     }
 
-    public String getMailTypeStr() {
-        return mailTypeStr;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMailTypeStr(String mailTypeStr) {
-        this.mailTypeStr = mailTypeStr;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getOfferOrNotInt() {
-        return offerOrNotInt;
+    public String getDescription_local() {
+        return description_local;
     }
 
-    public void setOfferOrNotInt(int offerOrNotInt) {
-        this.offerOrNotInt = offerOrNotInt;
+    public void setDescription_local(String description_local) {
+        this.description_local = description_local;
     }
 
-    public int getNewPriceInt() {
-        return newPriceInt;
+    public String getPrice() {
+        return price;
     }
 
-    public void setNewPriceInt(int newPriceInt) {
-        this.newPriceInt = newPriceInt;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public String getTimeStampStr() {
-        return timeStampStr;
+    public String getDiscountPrice() {
+        return discountPrice;
     }
 
-    public void setTimeStampStr(String timeStampStr) {
-        this.timeStampStr = timeStampStr;
+    public void setDiscountPrice(String discountPrice) {
+        this.discountPrice = discountPrice;
     }
 
-    public int getPriceInt() {
-        return priceInt;
+    public String getPromo_code() {
+        return promo_code;
     }
 
-    public void setPriceInt(int priceInt) {
-        this.priceInt = priceInt;
+    public void setPromo_code(String promo_code) {
+        this.promo_code = promo_code;
     }
 
-    public String getArNameStr() {
-        return arNameStr;
+    public String getValide() {
+        return valide;
     }
 
-    public void setArNameStr(String arNameStr) {
-        this.arNameStr = arNameStr;
+    public void setValide(String valide) {
+        this.valide = valide;
     }
 
-    public String getEnNameStr() {
-        return enNameStr;
+    public String getStart_color() {
+        return color;
     }
 
-    public void setEnNameStr(String enNameStr) {
-        this.enNameStr = enNameStr;
+    public void setStart_color(String start_color) {
+        this.color = start_color;
     }
 
-    public String getArDesStr() {
-        return arDesStr;
+    public String getEnd_color() {
+        return secondaryColor;
     }
 
-    public void setArDesStr(String arDesStr) {
-        this.arDesStr = arDesStr;
+    public void setEnd_color(String end_color) {
+        this.secondaryColor = end_color;
     }
 
-    public String getEnDesStr() {
-        return enDesStr;
+    public String getItem_id() {
+        return item_id;
     }
 
-    public void setEnDesStr(String enDesStr) {
-        this.enDesStr = enDesStr;
-    }
-
-    public String getSubCategoryStr() {
-        return subCategoryStr;
-    }
-
-    public void setSubCategoryStr(String subCategoryStr) {
-        this.subCategoryStr = subCategoryStr;
-    }
-
-    public String getRestaurantsNameStr() {
-        return restaurantsNameStr;
-    }
-
-    public void setRestaurantsNameStr(String restaurantsNameStr) {
-        this.restaurantsNameStr = restaurantsNameStr;
-    }
-
-    public String getRestaurantsOpenAtStr() {
-        return restaurantsOpenAtStr;
-    }
-
-    public void setRestaurantsOpenAtStr(String restaurantsOpenAtStr) {
-        this.restaurantsOpenAtStr = restaurantsOpenAtStr;
-    }
-
-    public String getRestaurantsCloseAtStr() {
-        return restaurantsCloseAtStr;
-    }
-
-    public void setRestaurantsCloseAtStr(String restaurantsCloseAtStr) {
-        this.restaurantsCloseAtStr = restaurantsCloseAtStr;
-    }
-
-    public String getRestaurantsCityStr() {
-        return restaurantsCityStr;
-    }
-
-    public void setRestaurantsCityStr(String restaurantsCityStr) {
-        this.restaurantsCityStr = restaurantsCityStr;
-    }
-
-    public String getNeighborhoodStr() {
-        return neighborhoodStr;
-    }
-
-    public void setNeighborhoodStr(String neighborhoodStr) {
-        this.neighborhoodStr = neighborhoodStr;
-    }
-
-    public String getRestaurantsAddressLinkStr() {
-        return restaurantsAddressLinkStr;
-    }
-
-    public void setRestaurantsAddressLinkStr(String restaurantsAddressLinkStr) {
-        this.restaurantsAddressLinkStr = restaurantsAddressLinkStr;
-    }
-
-    public String getRestaurantsIDStr() {
-        return restaurantsIDStr;
-    }
-
-    public void setRestaurantsIDStr(String restaurantsIDStr) {
-        this.restaurantsIDStr = restaurantsIDStr;
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
     }
 }

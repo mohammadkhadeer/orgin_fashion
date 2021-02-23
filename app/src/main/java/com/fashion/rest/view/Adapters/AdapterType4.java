@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,11 +95,20 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
         //product image   apiURLBase()+dealsArrayL.get(position).getFlag().getUrl()
         //
         String image =apiURLBase()+dealsArrayL.get(position).getFlagArrayL().get(0).getUrl();
+        //String storeIm =apiURLBase()+dealsArrayL.get(position).getStore().getFlag().getUrl();
+        //Log.i("TAG",storeIm);
+
         Picasso.get()
                 .load(image)
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
+
+//        Picasso.get()
+//                .load(storeIm)
+//                .fit()
+//                .centerCrop()
+//                .into(holder.store_im);
 
     }
 
@@ -108,7 +118,7 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        ImageView imageView,store_im;
         RelativeLayout contRL,coverRL,buttonAddToCart;
         TextView nameTV,desTV,priceTV,oldPrice;
         public ViewHolder(View itemView) {
@@ -118,6 +128,7 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
             priceTV = (TextView) itemView.findViewById(R.id.adapter_type4_price_TV);
             oldPrice = (TextView) itemView.findViewById(R.id.adapter_type4_old_price_TV);
             imageView = (ImageView) itemView.findViewById(R.id.adapter_type4_price_IV) ;
+            store_im = (ImageView) itemView.findViewById(R.id.store_im) ;
             //contRL = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_to_you_cont) ;
             coverRL = (RelativeLayout) itemView.findViewById(R.id.cover_adapter_type4_set) ;
             //buttonAddToCart = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_call_button);

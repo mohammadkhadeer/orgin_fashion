@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.Offer;
 import com.fashion.rest.utils.BaseViewHolderUser;
 import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
@@ -35,6 +36,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 
+import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.view.categoriesComp.Functions.callFunction;
 import static com.fashion.rest.view.categoriesComp.Functions.changeOffersGradientsAndTextColorCases;
 
@@ -44,11 +46,11 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
   private static final int VIEW_TYPE_NORMAL = 1;
   private boolean isLoaderVisible = false;
 
-  private List<Deal> dealItemsList;
+  private List<Offer> dealItemsList;
   Context context;
   String comeFrom;
 
-  public AdapterEndlessOffers(List<Deal> postItems, Context context, String comeFrom) {
+  public AdapterEndlessOffers(List<Offer> postItems, Context context, String comeFrom) {
     this.dealItemsList = postItems;
     this.context = context;
     this.comeFrom = comeFrom;
@@ -97,14 +99,14 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
     return dealItemsList == null ? 0 : dealItemsList.size();
   }
 
-  public void addItems(List<Deal> postItems) {
+  public void addItems(List<Offer> postItems) {
     dealItemsList.addAll(postItems);
     notifyDataSetChanged();
   }
 
   public void addLoading() {
     isLoaderVisible = true;
-    dealItemsList.add(new Deal());
+    dealItemsList.add(new Offer());
     notifyItemInserted(dealItemsList.size() - 1);
   }
 
@@ -112,7 +114,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
     isLoaderVisible = false;
     ////////////here
     int position = dealItemsList.size() - 1;
-    Deal item = getItem(position);
+    Offer item = getItem(position);
     if (item != null) {
       dealItemsList.remove(position);
       notifyItemRemoved(position);
@@ -125,7 +127,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
     notifyDataSetChanged();
   }
 
-  Deal getItem(int position) {
+  Offer getItem(int position) {
     return dealItemsList.get(position);
   }
 
@@ -177,15 +179,15 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
                          int position, Context context) {
 
     Picasso.get()
-            .load(getObject(position).getImage())
+            .load(apiURLBase()+getObject(position).getFlagArrayL().get(0).getUrl())
             .fit()
             .centerCrop()
             .into(itemImage);
 
   }
 
-  private Deal getObject(int position){
-    Deal item = dealItemsList.get(position);
+  private Offer getObject(int position){
+    Offer item = dealItemsList.get(position);
     return item;
   }
 
@@ -246,7 +248,6 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
 
     public void onBind(int position) {
       super.onBind(position);
-      Log.i("TAN","Size: "+String.valueOf(dealItemsList.size()));
       int a= dealItemsList.size()-1, x = 0,mod=0;
       if (8 == dealItemsList.size())
       {

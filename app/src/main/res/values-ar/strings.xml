@@ -219,5 +219,6 @@
     <string name="call">اتصال</string>
     <string name="vist_websaite">زور موقعهم</string>
     <string name="see_in_google_maps">مشاهدة في خرائط قوقل</string>
+    <string name="select_category_message">رجاءا حدد الفئة الفرعية</string>
 
 </resources>

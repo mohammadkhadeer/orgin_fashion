@@ -13,6 +13,7 @@
 
     <string name="arabic">Arabic</string>
     <string name="english">English</string>
+    <string name="select_category_message">Please select sub category</string>
     <string name="language">Language</string>
     <string name="vist_websaite">Visit website</string>
     <string name="see_in_google_maps">See in google maps</string>

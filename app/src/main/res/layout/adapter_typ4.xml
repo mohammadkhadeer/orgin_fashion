@@ -94,7 +94,7 @@
 
 
                     <ImageView
-                        android:id="@+id/adapter_type2_IV_store"
+                        android:id="@+id/store_im"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/test_l"

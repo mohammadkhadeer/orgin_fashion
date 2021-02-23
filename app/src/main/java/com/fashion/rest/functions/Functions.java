@@ -16,13 +16,26 @@ import com.fashion.rest.model.OffersGradientsWithTextColor;
 import com.fashion.rest.model.Price;
 import com.fashion.rest.model.SubCategory;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class Functions {
+
+    public static String getIOs() {
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
+        df.setTimeZone(tz);
+        String nowAsISO = df.format(new Date());
+        return nowAsISO;
+    }
+
 
     public static String getTextEngOrLocal(Context context,String eng,String local) {
 //        if (Locale.getDefault().getLanguage().equals("en"))

@@ -143,7 +143,6 @@ public class FragmentResults extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
-        Log.i("TAG","doApiCall");
         suggestedItemsArrayListTest = new ArrayList<>();
         Call<List<ItemTest>> callHome = jsonPlaceHolderApi.getAllItems(0,15);
         callHome.enqueue(new Callback<List<ItemTest>>() {
@@ -153,8 +152,8 @@ public class FragmentResults extends Fragment {
                 if (!response.isSuccessful())
                 { return; }
                 List<ItemTest> itemsList = response.body();
-                Log.i("TAG","itemsList");
-                Log.i("TAG",String.valueOf(itemsList.size()));
+//                Log.i("TAG","itemsList");
+//                Log.i("TAG",String.valueOf(itemsList.size()));
 
                 suggestedItemsArrayListTest.addAll(itemsList);
                 suggestedItemsArrayListDO.addAll(itemsList);

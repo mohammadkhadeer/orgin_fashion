@@ -34,8 +34,6 @@ public class Type3Fragment extends Fragment {
     LinearLayoutManager mLayoutManager;
     AdapterEndlessOffers adapterEndlessOffers ;
 
-    String categoryType="Type 333 333 333 333 Fragment";
-
     public Type3Fragment(){}
 
     @Override
@@ -45,8 +43,6 @@ public class Type3Fragment extends Fragment {
         inti();
         createRV();
         actionListenerToRV();
-
-        Log.i("CategoryType From Fragment Fragment Fragment",categoryType);
 
         return view;
     }
@@ -89,7 +85,7 @@ public class Type3Fragment extends Fragment {
     }
 
     private void createRV() {
-        adapterEndlessOffers = new AdapterEndlessOffers(new ArrayList<Deal>(),getActivity(),"call");
+        //adapterEndlessOffers = new AdapterEndlessOffers(new ArrayList<Deal>(),getActivity(),"call");
         recyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -100,17 +96,17 @@ public class Type3Fragment extends Fragment {
 
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        suggestedItemsArrayListTest = fillEndlessItemDepCatArrayL(suggestedItemsArrayListTest,getActivity());
-        suggestedItemsArrayListDO = fillEndlessItemDepCatArrayL(suggestedItemsArrayListDO,getActivity());
-        //fill here
-        if (currentPage != PAGE_START) adapterEndlessOffers.removeLoading();
-        adapterEndlessOffers.addItems(suggestedItemsArrayListTest);
-        if (currentPage < totalPage) {
-            adapterEndlessOffers.addLoading();
-            isLoading = false;
-        } else {
-            isLastPage = true;
-        }
+//        suggestedItemsArrayListTest = fillEndlessItemDepCatArrayL(suggestedItemsArrayListTest,getActivity());
+//        suggestedItemsArrayListDO = fillEndlessItemDepCatArrayL(suggestedItemsArrayListDO,getActivity());
+//        //fill here
+//        if (currentPage != PAGE_START) adapterEndlessOffers.removeLoading();
+//        adapterEndlessOffers.addItems(suggestedItemsArrayListTest);
+//        if (currentPage < totalPage) {
+//            adapterEndlessOffers.addLoading();
+//            isLoading = false;
+//        } else {
+//            isLastPage = true;
+//        }
     }
 
     private void inti() {

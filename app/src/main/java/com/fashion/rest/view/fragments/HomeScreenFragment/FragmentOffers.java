@@ -23,6 +23,7 @@ import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.utils.PaginationListener;
@@ -40,8 +41,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
+import static com.fashion.rest.functions.Functions.getIOs;
 import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
+import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
 import static com.fashion.rest.utils.PaginationListener.PAGE_START;
 import static com.fashion.rest.view.categoriesComp.FillType3.fillCase3Item;
 
@@ -51,9 +55,10 @@ public class FragmentOffers extends Fragment{
     RecyclerView recyclerView,recyclerViewCat;
     AdapterOffers adapterOffers;
     RecyclerView.LayoutManager layoutManager;
-    public ArrayList<Deal> dealsArrayList = new ArrayList<>();
-    public ArrayList<Deal> suggestedItemsArrayListTest;
-    public ArrayList<Deal> suggestedItemsArrayListDO;
+
+    public ArrayList<Offer> dealsArrayList = new ArrayList<>();
+    public ArrayList<Offer> suggestedItemsArrayListTest;
+    public ArrayList<Offer> suggestedItemsArrayListDO;
 
     PassObject passObject;
 
@@ -70,8 +75,8 @@ public class FragmentOffers extends Fragment{
     TextView see_all_cat_tv;
 
     int numberOfObjectNow = 0;
-    JsonPlaceHolderApi jsonPlaceHolderApi;
-    Retrofit retrofit;
+    JsonPlaceHolderApi jsonPlaceHolderApi,jsonPlaceHolderApiOffers;
+    Retrofit retrofit,retrofitOffers;
     public ArrayList<Categories> categoriesArrayList = new ArrayList<>();
 
     @Override
@@ -84,6 +89,9 @@ public class FragmentOffers extends Fragment{
     private void intiRet() {
         retrofit = getCategories();
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        retrofitOffers = getOffers(getIOs());
+        jsonPlaceHolderApiOffers = retrofitOffers.create(JsonPlaceHolderApi.class);
     }
 
     //fill categories
@@ -152,32 +160,36 @@ public class FragmentOffers extends Fragment{
     }
 
     private void actionListenerToRV() {
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (!isLoading) {
 
-                    if (mLayoutManager != null && mLayoutManager.findLastCompletelyVisibleItemPosition() == suggestedItemsArrayListDO.size() - 1) {
+                    if (mLayoutManager != null && mLayoutManager.findLastCompletelyVisibleItemPosition() == suggestedItemsArrayListDO.size() - 1&& suggestedItemsArrayListTest.size() !=0) {
                         //bottom of list!
                         Toast.makeText(getActivity(),"TAG !" +String.valueOf(currentPage)+ " Load more ...",Toast.LENGTH_SHORT).show();
 
-                        new Handler().postDelayed(new Runnable() {
+//                        new Handler().postDelayed(new Runnable() {
+//
+//                            @RequiresApi(api = Build.VERSION_CODES.M)
+//                            @Override
+//                            public void run() {
+//
+//
+//                            }
+//                        }, 2000);
 
-                            @RequiresApi(api = Build.VERSION_CODES.M)
-                            @Override
-                            public void run() {
-                                Log.i("TAG BAG","currentPage: "+String.valueOf(currentPage));
-                                doApiCall();
+                        Log.i("TAG BAG","currentPage: "+String.valueOf(currentPage));
+                        Log.i("TAG BAG","suggestedItemsArrayListTest: "+String.valueOf(suggestedItemsArrayListTest.size()));
+                        doApiCall();
 
-                            }
-                        }, 2000);
                         currentPage ++;
                         isLoading = true;
 
@@ -190,7 +202,7 @@ public class FragmentOffers extends Fragment{
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void createRV() {
-        adapterEndlessOffers = new AdapterEndlessOffers(new ArrayList<Deal>(),getActivity(),"call");
+        adapterEndlessOffers = new AdapterEndlessOffers(new ArrayList<Offer>(),getActivity(),"call");
         recyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -202,19 +214,46 @@ public class FragmentOffers extends Fragment{
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        suggestedItemsArrayListTest = fillEndlessItemDepCatArrayL(suggestedItemsArrayListTest,getActivity());
-        suggestedItemsArrayListDO = fillEndlessItemDepCatArrayL(suggestedItemsArrayListDO,getActivity());
-//        suggestedItemsArrayListTest.addAll(suggestedItemsArrayListDO);
+        Call<List<Offer>> call = jsonPlaceHolderApiOffers.getOffers(suggestedItemsArrayListTest.size(),8);
+        call.enqueue(new Callback<List<Offer>>() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onResponse(Call<List<Offer>> call, Response<List<Offer>> response) {
+                if (!response.isSuccessful())
+                { return; }
+                List<Offer> offerList = response.body();
 
-        //fill here
-        if (currentPage != PAGE_START) adapterEndlessOffers.removeLoading();
-        adapterEndlessOffers.addItems(suggestedItemsArrayListTest);
-        if (currentPage < totalPage) {
-            adapterEndlessOffers.addLoading();
-            isLoading = false;
-        } else {
-            isLastPage = true;
-        }
+                for (Offer offer:offerList)
+                {
+                    suggestedItemsArrayListTest.add(offer);
+                    suggestedItemsArrayListDO.add(offer);
+//                    Log.i("TAG",apiURLBase()+offer.getFlagArrayL().get(0).getUrl());
+//                    Log.i("TAG",offer.getName());
+//                    Log.i("TAG",offer.getDescription());
+//                    Log.i("TAG",offer.getName_local());
+//                    Log.i("TAG",offer.getDescription_local());
+                }
+                Log.i("TAG in do",String.valueOf(suggestedItemsArrayListTest.size()));
+
+
+                if (currentPage != PAGE_START && suggestedItemsArrayListTest.size()!=0) adapterEndlessOffers.removeLoading();
+                if (suggestedItemsArrayListTest.size()!=0)
+                {
+                    adapterEndlessOffers.addItems(suggestedItemsArrayListTest);
+                }
+                if (suggestedItemsArrayListTest.size()!=0) {
+                    adapterEndlessOffers.addLoading();
+                    isLoading = false;
+                } else {
+                    isLastPage = true;
+                }
+
+            }
+            @Override
+            public void onFailure(Call<List<Offer>> call, Throwable t) {
+                Log.i("TAG Error",t.getMessage());
+            }
+        });
     }
 
     private void inti() {

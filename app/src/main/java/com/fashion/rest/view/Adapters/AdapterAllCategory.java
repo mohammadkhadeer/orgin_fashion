@@ -110,11 +110,14 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getName(),allCatArrayL.get(position).getCustomCategory().get(0).getName_local()));
 
                         if (allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().size() >1)
+                        {
                             moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList());
-                        else
-                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
-
-
+                        }
+                        else{
+                            bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getId());
+                            bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getCategory_id());
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
+                        }
                     }
                 });
 
@@ -128,9 +131,15 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getName(),allCatArrayL.get(position).getCustomCategory().get(0).getName_local()));
 
                         if (allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().size() >1)
+                        {
                             moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList());
-                        else
-                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
+                        }
+                        else{
+                            bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getId());
+                            bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getCategory_id());
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
+                        }
+
                     }
                 });
 
@@ -141,9 +150,14 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(1).getName(),allCatArrayL.get(position).getCustomCategory().get(1).getName_local()));
 
                         if (allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().size() >1)
+                        {
                             moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList());
-                        else
-                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
+                        } else{
+                            bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getId());
+                            bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getCategory_id());
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
+                        }
+
                     }
                 });
 
@@ -157,9 +171,14 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getName(),allCatArrayL.get(position).getCustomCategory().get(0).getName_local()));
 
                         if (allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().size() >1)
+                        {
                             moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList());
-                        else
-                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
+                        } else{
+                            bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getId());
+                            bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getCategory_id());
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
+                        }
+
                     }
                 });
 
@@ -170,9 +189,13 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(1).getName(),allCatArrayL.get(position).getCustomCategory().get(1).getName_local()));
 
                         if (allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().size() >1)
+                        {
                             moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList());
-                        else
-                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
+                        }else{
+                            bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getId());
+                            bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getCategory_id());
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
+                        }
                     }
                 });
 
@@ -180,20 +203,25 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
+                        bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().get(2).getId());
+                        bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().get(2).getCategory_id());
                         bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(2).getName(),allCatArrayL.get(position).getCustomCategory().get(2).getName_local()));
 
                         if (allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().size() >1)
+                        {
                             moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList());
-                        else
-                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0));
+                        }else {
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
+                        }
                     }
                 });
             }
         }
     }
 
-    private void moveToShowResultActivity(Categories categories) {
+    private void moveToShowResultActivity(Categories categories,Bundle bundle) {
         Intent intent = new Intent(context, ResultActivity.class);
+        intent.putExtras(bundle);
         ((Activity)context).startActivity(intent);
         ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }

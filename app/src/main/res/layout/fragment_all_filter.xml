@@ -554,6 +554,7 @@
                         android:layout_centerVertical="true"
                         android:background="@drawable/message"
                         android:paddingTop="6dp"
+                        android:alpha="0.6"
                         android:paddingBottom="6dp">
 
                         <TextView

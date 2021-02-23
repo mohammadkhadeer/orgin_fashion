@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.database.DBHelper;
@@ -100,7 +101,8 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
     Retrofit retrofit;
     public ArrayList<Categories> categoriesArrayList = new ArrayList<>();
 
-
+    int makeUserCanSeeTheResult=0;
+    static Sub_Cat generalSub_category;
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
@@ -225,6 +227,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         cancel_selected_sub_cat_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                freezeShowResult();
                 sub_catRV.setVisibility(View.VISIBLE);
                 sub_cat_name_con_result.setVisibility(View.GONE);
             }
@@ -235,6 +238,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         cancel_selected_cat_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                freezeShowResult();
                 cat_name_con_result.setVisibility(View.GONE);
                 catRV.setVisibility(View.VISIBLE);
 
@@ -281,10 +285,24 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
             @Override
             public void onClick(View v) {
                 //move to ResultActivity
-                Intent intent = new Intent(getActivity(), ResultActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                if (makeUserCanSeeTheResult !=0)
+                {
+                    Log.i("TAG",generalSub_category.getId());
+                    Log.i("TAG",generalSub_category.getCategory_id());
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("sub_cat_id",generalSub_category.getId());
+                    bundle.putString("cat_id",generalSub_category.getCategory_id());
+
+                    Intent intent = new Intent(getActivity(), ResultActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                }else{
+                    Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.select_category_message),Toast.LENGTH_SHORT).show();
+                }
+
 //                ((MainActivity) getActivity()).removeFilterFragmentAndShowResult();
 //                getActivity().getFragmentManager().popBackStack();
             }
@@ -503,6 +521,12 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
         if (category.getSub_catArrayList().size() >1)
             createSubCategory(category);
+        else{
+            generalSub_category = new Sub_Cat(category.getSub_catArrayList().get(0).getName_en(),category.getSub_catArrayList().get(0).getName_local(),category.getSub_catArrayList().get(0).getAppearance()
+                    ,category.getSub_catArrayList().get(0).getId(),category.getSub_catArrayList().get(0).getCategory_id(),category.getSub_catArrayList().get(0).getFlag());
+
+            activeShowResult();
+        }
     }
 
     private void createSubCategory(Categories category) {
@@ -521,6 +545,12 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
     @Override
     public void onClickedSubCategory(Sub_Cat subCategory) {
+        //when user select sub_category from list
+        activeShowResult();
+
+        generalSub_category = new Sub_Cat(subCategory.getName_en(),subCategory.getName_local(),subCategory.getAppearance()
+                ,subCategory.getId(),subCategory.getCategory_id(),subCategory.getFlag());
+
         sub_catRV.setVisibility(View.GONE);
         sub_cat_name_con_result.setVisibility(View.VISIBLE);
         //need if to check language
@@ -529,9 +559,23 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
     public void passSelectedSubCategory(Sub_Cat subCategory) {
         //when user select subCategory from Pop up
+        activeShowResult();
+        generalSub_category = new Sub_Cat(subCategory.getName_en(),subCategory.getName_local(),subCategory.getAppearance()
+                                          ,subCategory.getId(),subCategory.getCategory_id(),subCategory.getFlag());
+
         sub_catRV.setVisibility(View.GONE);
         sub_cat_name_con_result.setVisibility(View.VISIBLE);
         //need if to check language
         sub_cat_name_result.setText(subCategory.getName_en());
+    }
+
+    private void activeShowResult(){
+        makeUserCanSeeTheResult =1;
+        showResult.setAlpha(1);
+    }
+
+    private void freezeShowResult(){
+        makeUserCanSeeTheResult =0;
+        showResult.setAlpha((float) 0.6);
     }
 }

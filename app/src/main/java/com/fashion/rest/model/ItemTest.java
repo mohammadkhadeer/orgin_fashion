@@ -8,6 +8,7 @@ public class ItemTest {
     @SerializedName("Photo")
     ArrayList<Flag> flagArrayL;
     String name,name_local,description,description_local,price,discountPrice;
+
     public ItemTest(){}
 
     public ItemTest(ArrayList<Flag> flagArrayL, String name, String name_local, String description, String description_local, String price, String discountPrice) {
