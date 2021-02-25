@@ -174,7 +174,6 @@ public class FragmentOffers extends Fragment{
 
                     if (mLayoutManager != null && mLayoutManager.findLastCompletelyVisibleItemPosition() == suggestedItemsArrayListDO.size() - 1&& suggestedItemsArrayListTest.size() !=0) {
                         //bottom of list!
-                        Toast.makeText(getActivity(),"TAG !" +String.valueOf(currentPage)+ " Load more ...",Toast.LENGTH_SHORT).show();
 
 //                        new Handler().postDelayed(new Runnable() {
 //
@@ -186,8 +185,6 @@ public class FragmentOffers extends Fragment{
 //                            }
 //                        }, 2000);
 
-                        Log.i("TAG BAG","currentPage: "+String.valueOf(currentPage));
-                        Log.i("TAG BAG","suggestedItemsArrayListTest: "+String.valueOf(suggestedItemsArrayListTest.size()));
                         doApiCall();
 
                         currentPage ++;
@@ -214,7 +211,7 @@ public class FragmentOffers extends Fragment{
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        Call<List<Offer>> call = jsonPlaceHolderApiOffers.getOffers(suggestedItemsArrayListTest.size(),8);
+        Call<List<Offer>> call = jsonPlaceHolderApiOffers.getOffers(suggestedItemsArrayListDO.size(),8);
         call.enqueue(new Callback<List<Offer>>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -233,8 +230,6 @@ public class FragmentOffers extends Fragment{
 //                    Log.i("TAG",offer.getName_local());
 //                    Log.i("TAG",offer.getDescription_local());
                 }
-                Log.i("TAG in do",String.valueOf(suggestedItemsArrayListTest.size()));
-
 
                 if (currentPage != PAGE_START && suggestedItemsArrayListTest.size()!=0) adapterEndlessOffers.removeLoading();
                 if (suggestedItemsArrayListTest.size()!=0)

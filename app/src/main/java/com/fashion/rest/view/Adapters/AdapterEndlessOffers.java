@@ -20,6 +20,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.view.categoriesComp.Functions.callFunction;
 import static com.fashion.rest.view.categoriesComp.Functions.changeOffersGradientsAndTextColorCases;
 
@@ -66,7 +68,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_offers_endless, parent, false));
       case VIEW_TYPE_LOADING:
         return new ProgressHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading_h, parent, false));
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading_h_2, parent, false));
       default:
         return null;
     }
@@ -132,7 +134,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
   }
 
   public class ViewHolder extends BaseViewHolderUser {
-    ImageView imageView;
+    ImageView imageView,store_image_offer;
     RelativeLayout coverRL,callRL,cover_offers;
     TextView nameTV,desTV,priceTV,oldPrice,callTV,whatsApp;
 
@@ -144,6 +146,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
 //      priceTV = (TextView) itemView.findViewById(R.id.adapter_price_TV);
 //      oldPrice = (TextView) itemView.findViewById(R.id.adapter_old_price_TV);
       imageView = (ImageView) itemView.findViewById(R.id.adapter_IV);
+      store_image_offer = (ImageView) itemView.findViewById(R.id.store_image_offer);
       coverRL = (RelativeLayout) itemView.findViewById(R.id.cont_rl_offers);
       cover_offers= (RelativeLayout) itemView.findViewById(R.id.cover_offers) ;
       callRL = (RelativeLayout) itemView.findViewById(R.id.adapter_type2_call_rl) ;
@@ -159,8 +162,8 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
     public void onBind(int position) {
       super.onBind(position);
 
-      fillImage(imageView, position, context);
-      fillText(nameTV,position,context);
+      fillImage(imageView, position, context,store_image_offer);
+      fillText(nameTV,position,context,desTV);
       changeFont(context);
       changeOffersGradientsAndTextColorCases(coverRL,position,context,getObject(position),nameTV,desTV,callRL,callTV,whatsApp);
       callFunction(callRL,context);
@@ -170,19 +173,26 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
 
   }
 
-  private void fillText(TextView nameTV, int position, Context context) {
-    nameTV.setText(String.valueOf(getObject(position).getName()));
+  private void fillText(TextView nameTV, int position, Context context, TextView desTV) {
+    nameTV.setText(String.valueOf(getTextEngOrLocal(context,getObject(position).getName(),getObject(position).getName_local())));
+    desTV.setText(String.valueOf(getTextEngOrLocal(context,getObject(position).getDescription(),getObject(position).getDescription_local())));
 //    nameTV.setText(String.valueOf(position));
   }
 
   private void fillImage(ImageView itemImage,
-                         int position, Context context) {
+                         int position, Context context, ImageView store_image_offer) {
 
     Picasso.get()
             .load(apiURLBase()+getObject(position).getFlagArrayL().get(0).getUrl())
             .fit()
             .centerCrop()
             .into(itemImage);
+
+//    Picasso.get()
+//            .load(apiURLBase()+getObject(position).getStore().getFlag().getUrl())
+//            .fit()
+//            .centerCrop()
+//            .into(itemImage);
 
   }
 
@@ -213,32 +223,35 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
 
 
   public class ProgressHolder extends BaseViewHolderUser {
-    CardView cardView;
-    ImageView shinImageView,imageView,shinImageView2,imageView2,shinImageView3,imageView3
-            ,shinImageView4,imageView4;
-    TextView textViewNoMoreMessage;
-    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,relativeLayout4,relativeLayoutNoMoreItem;
+    ProgressBar progressBar;
+//    CardView cardView;
+//    ImageView shinImageView,imageView,shinImageView2,imageView2,shinImageView3,imageView3
+//            ,shinImageView4,imageView4;
+//    TextView textViewNoMoreMessage;
+//    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,relativeLayout4,relativeLayoutNoMoreItem,adapter_loading;
     ProgressHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
-      cardView = (CardView) itemView.findViewById(R.id.adapter_show_user_item_cv);
-      relativeLayoutNoMoreItem = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_no_more_cv);
-      textViewNoMoreMessage = (TextView) itemView.findViewById(R.id.adapter_show_user_no_more_tv);
-      shinImageView = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_shin);
-      imageView = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_load);
-      relativeLayout = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_item_image_load_rl);
-
-      shinImageView2 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_shin2);
-      imageView2 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_load2);
-      relativeLayout2 = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_item_image_load_rl2);
-
-      shinImageView3 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_shin3);
-      imageView3 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_load3);
-      relativeLayout3 = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_item_image_load_rl3);
-
-      shinImageView4 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_shin4);
-      imageView4 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_load4);
-      relativeLayout4 = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_item_image_load_rl4);
+      progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
+//      cardView = (CardView) itemView.findViewById(R.id.adapter_show_user_item_cv);
+//      relativeLayoutNoMoreItem = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_no_more_cv);
+//      textViewNoMoreMessage = (TextView) itemView.findViewById(R.id.adapter_show_user_no_more_tv);
+//      shinImageView = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_shin);
+//      imageView = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_load);
+//      relativeLayout = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_item_image_load_rl);
+//
+//      shinImageView2 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_shin2);
+//      imageView2 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_load2);
+//      relativeLayout2 = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_item_image_load_rl2);
+//
+//      shinImageView3 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_shin3);
+//      imageView3 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_load3);
+//      relativeLayout3 = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_item_image_load_rl3);
+//
+//      shinImageView4 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_shin4);
+//      imageView4 = (ImageView) itemView.findViewById(R.id.adapter_show_user_item_item_image_load4);
+//      relativeLayout4 = (RelativeLayout) itemView.findViewById(R.id.adapter_show_user_item_item_image_load_rl4);
+//      adapter_loading = (RelativeLayout) itemView.findViewById(R.id.adapter_loading);
     }
 
     @Override
@@ -259,20 +272,22 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
       }
       if (dealItemsList.size() ==1)
       {
-        cardView.setVisibility(View.GONE);
-        relativeLayoutNoMoreItem.setVisibility(View.GONE);
+//        adapter_loading.setVisibility(View.GONE);
+//        relativeLayoutNoMoreItem.setVisibility(View.GONE);
       }else {
         if(mod>0)
         {
-          cardView.setVisibility(View.GONE);
+          progressBar.setVisibility(View.GONE);
+//          adapter_loading.setVisibility(View.GONE);
           // this well show to us no more items
           //relativeLayoutNoMoreItem.setVisibility(View.VISIBLE);
           //changeFont(context);
         }else {
-          AddShineEffect(relativeLayout, shinImageView);
-          AddShineEffect(relativeLayout2, shinImageView2);
-          AddShineEffect(relativeLayout3, shinImageView3);
-          AddShineEffect(relativeLayout4, shinImageView4);
+          progressBar.setVisibility(View.VISIBLE);
+//          AddShineEffect(relativeLayout, shinImageView);
+//          AddShineEffect(relativeLayout2, shinImageView2);
+//          AddShineEffect(relativeLayout3, shinImageView3);
+//          AddShineEffect(relativeLayout4, shinImageView4);
         }
       }
     }
@@ -280,27 +295,27 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
   private void changeFont(Context context) {
 //    textView.setTypeface(Functions.changeFontGeneral(context));
   }
-  String loadedOrDownloading="downloading";
-
-  private void AddShineEffect(final RelativeLayout father, final ImageView child) {
-    new Handler().postDelayed(new Runnable() {
-
-      @Override
-      public void run() {
-        animationEffect(father,child);
-        if (loadedOrDownloading.equals("downloading"))
-          AddShineEffect(father,child);
-      }
-    }, 400);
-  }
-
-  private void animationEffect(RelativeLayout father, ImageView child) {
-    Animation animation = new TranslateAnimation(0,
-            father.getWidth()+child.getWidth(),0, 0);
-    animation.setDuration(550);
-    animation.setFillAfter(false);
-    animation.setInterpolator(new AccelerateDecelerateInterpolator());
-    child.startAnimation(animation);
-  }
+//  String loadedOrDownloading="downloading";
+//
+//  private void AddShineEffect(final RelativeLayout father, final ImageView child) {
+//    new Handler().postDelayed(new Runnable() {
+//
+//      @Override
+//      public void run() {
+//        animationEffect(father,child);
+//        if (loadedOrDownloading.equals("downloading"))
+//          AddShineEffect(father,child);
+//      }
+//    }, 400);
+//  }
+//
+//  private void animationEffect(RelativeLayout father, ImageView child) {
+//    Animation animation = new TranslateAnimation(0,
+//            father.getWidth()+child.getWidth(),0, 0);
+//    animation.setDuration(550);
+//    animation.setFillAfter(false);
+//    animation.setInterpolator(new AccelerateDecelerateInterpolator());
+//    child.startAnimation(animation);
+//  }
 
 }

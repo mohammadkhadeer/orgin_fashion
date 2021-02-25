@@ -92,17 +92,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             >
+
                             <ProgressBar
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"/>
+                                android:layout_width="10dp"
+                                android:layout_height="16dp"
+                                android:layout_centerInParent="true" />
 
                         </RelativeLayout>
 
 
                         <ImageView
-                            android:id="@+id/adapter_type2_IV_store"
+                            android:id="@+id/store_image_offer"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/test_l"

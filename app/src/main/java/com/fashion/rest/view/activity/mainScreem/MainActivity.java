@@ -22,7 +22,6 @@ import com.fashion.rest.model.Category;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.MultiArea;
-import com.fashion.rest.model.SubCategory;
 import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.presnter.PassObject;

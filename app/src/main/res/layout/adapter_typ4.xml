@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:text="Company name"
                         android:textSize="13dp"
-                        android:id="@+id/adapter_type2_name"
+                        android:id="@+id/store_name"
                         />
 
                     <TextView

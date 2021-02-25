@@ -50,7 +50,7 @@ public class ProfileDetailsInfo extends Fragment {
 
     private void fillImageUser() {
         Picasso.get()
-                .load(R.drawable.moha)
+                .load(R.drawable.item_favu)
                 .fit()
                 .centerCrop()
                 .into(userImageIV);

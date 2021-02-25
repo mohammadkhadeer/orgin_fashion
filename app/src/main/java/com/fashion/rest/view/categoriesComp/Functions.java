@@ -70,8 +70,8 @@ public class Functions {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private static void setGradients(RelativeLayout coverRL, Offer object, Context context) {
-        String startColor ="#"+object.getStart_color();
-        String endColor ="#"+object.getEnd_color();
+        String startColor ="#"+object.getColor();
+        String endColor ="#"+object.getSecondaryColor();
         int color = Color.parseColor(startColor);
         int color2 = Color.parseColor(endColor);
         int color3 = Color.parseColor("#00ffafbd");

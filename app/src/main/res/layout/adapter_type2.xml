@@ -84,8 +84,8 @@
                                 android:layout_centerVertical="true"
                                 android:layout_centerHorizontal="true"
                                 android:textColor="@color/colorWhite"
-                                android:textStyle="bold"
                                 android:textSize="11dp"
+                                android:id="@+id/per"
                                 android:text="40%"/>
 
                         </RelativeLayout>

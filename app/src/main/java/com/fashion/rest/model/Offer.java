@@ -7,13 +7,14 @@ import java.util.ArrayList;
 public class Offer {
     @SerializedName("Photo")
     ArrayList<Flag> flagArrayL;
+
     String name,name_local,description,description_local,price,discountPrice,promo_code,valide,color,secondaryColor;
     @SerializedName("id")
     String item_id;
 
     public Offer(){}
 
-    public Offer(ArrayList<Flag> flagArrayL, String name, String name_local, String description, String description_local, String price, String discountPrice, String promo_code, String valide, String start_color, String end_color, String item_id) {
+    public Offer(ArrayList<Flag> flagArrayL, String name, String name_local, String description, String description_local, String price, String discountPrice, String promo_code, String valide, String color, String secondaryColor, String item_id) {
         this.flagArrayL = flagArrayL;
         this.name = name;
         this.name_local = name_local;
@@ -23,8 +24,8 @@ public class Offer {
         this.discountPrice = discountPrice;
         this.promo_code = promo_code;
         this.valide = valide;
-        this.color = start_color;
-        this.secondaryColor = end_color;
+        this.color = color;
+        this.secondaryColor = secondaryColor;
         this.item_id = item_id;
     }
 
@@ -100,20 +101,20 @@ public class Offer {
         this.valide = valide;
     }
 
-    public String getStart_color() {
+    public String getColor() {
         return color;
     }
 
-    public void setStart_color(String start_color) {
-        this.color = start_color;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public String getEnd_color() {
+    public String getSecondaryColor() {
         return secondaryColor;
     }
 
-    public void setEnd_color(String end_color) {
-        this.secondaryColor = end_color;
+    public void setSecondaryColor(String secondaryColor) {
+        this.secondaryColor = secondaryColor;
     }
 
     public String getItem_id() {

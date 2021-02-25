@@ -77,9 +77,10 @@ public class FillType4 {
             public void onResponse(Call<List<ItemTest>> call, Response<List<ItemTest>> response) {
                 if (!response.isSuccessful())
                 { return; }
-                List<ItemTest> homeList = response.body();
+                List<ItemTest> itemsList = response.body();
+
                 hideLoading(loadingRV);
-                createRVSuggested(recyclerView, context,homeList);
+                createRVSuggested(recyclerView, context,itemsList);
             }
 
             @Override

@@ -1,11 +1,8 @@
 package com.fashion.rest.view.fragments.HomeScreenFragment;
 
-
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,16 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fashion.rest.R;
-import com.fashion.rest.model.Categories;
-import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.Home;
-import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.ListItem;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.view.Adapters.AdapterEndlessCategory;
-import com.fashion.rest.view.Adapters.AdapterOffers;
-import com.fashion.rest.view.Adapters.AdapterType2;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,37 +24,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.fashion.rest.apiURL.API.apiHome;
-import static com.fashion.rest.functions.FillItem.fillEndlessItemListArrayL;
-import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 import static com.fashion.rest.functions.RetrofitFunctions.getHome;
-import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 
 public class FragmentCategory extends Fragment{
     View view;
     RecyclerView recyclerView;
-    AdapterOffers adapterOffers;
-    RecyclerView.LayoutManager layoutManager;
     public ArrayList<ListItem> dealsArrayList = new ArrayList<>();
     public ArrayList<Home> suggestedItemsArrayListTest;
     public ArrayList<Home> suggestedItemsArrayListDO;
-
     PassObject passObject;
-
     public static final int PAGE_START = 1;
     private int currentPage = PAGE_START;
     private boolean isLastPage = false;
     private int totalPage = 50000;
     private boolean isLoading = false;
-
     GridLayoutManager mLayoutManager;
     AdapterEndlessCategory adapterEndlessCategory ;
-
     int controler;
-    public ArrayList<Home> homeArrayList = new ArrayList<>();
-
     JsonPlaceHolderApi jsonPlaceHolderApi;
     Retrofit retrofit;
 
@@ -77,8 +56,6 @@ public class FragmentCategory extends Fragment{
         }
         retrofit = getHome();
     }
-
-
 
     @Override
     public void onDetach() {

@@ -74,12 +74,14 @@ public class FillType2 {
                 if (!response.isSuccessful())
                 { return; }
                 List<ItemTest> itemsList = response.body();
+
                 hideLoading(loadingRV);
                 createRVSuggested(recyclerView, context,itemsList);
             }
 
             @Override
             public void onFailure(Call<List<ItemTest>> call, Throwable t) {
+                Log.i("TAG","getItemsFromServer  in error");
                 Log.i("TAG Error",t.getMessage());
             }
         });

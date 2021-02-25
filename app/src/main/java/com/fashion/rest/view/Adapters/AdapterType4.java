@@ -77,6 +77,7 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
 
     private void fillText(ViewHolder holder, Context context, int position) {
         holder.nameTV.setText(getTextEngOrLocal(context,dealsArrayL.get(position).getName(),dealsArrayL.get(position).getName_local()));
+        holder.store_name.setText(getTextEngOrLocal(context,dealsArrayL.get(position).getStore().getName(),dealsArrayL.get(position).getStore().getName_local()));
         //holder.desTV.setText(dealsArrayL.get(position).getDes());
         holder.priceTV.setText(String.valueOf(dealsArrayL.get(position).getDiscountPrice()));
         holder.oldPrice.setText(String.valueOf(dealsArrayL.get(position).getPrice()));
@@ -84,6 +85,7 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
 
     private void changeFont(ViewHolder holder, Context context) {
         holder.nameTV.setTypeface(Functions.changeFontGeneral(context));
+        holder.store_name.setTypeface(Functions.changeFontGeneral(context));
         //holder.desTV.setTypeface(Functions.changeFontGeneral(context));
         holder.priceTV.setTypeface(Functions.changeFontGeneral(context));
         holder.oldPrice.setTypeface(Functions.changeFontGeneral(context));
@@ -95,7 +97,7 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
         //product image   apiURLBase()+dealsArrayL.get(position).getFlag().getUrl()
         //
         String image =apiURLBase()+dealsArrayL.get(position).getFlagArrayL().get(0).getUrl();
-        //String storeIm =apiURLBase()+dealsArrayL.get(position).getStore().getFlag().getUrl();
+        String storeIm =apiURLBase()+dealsArrayL.get(position).getStore().getFlag().getUrl();
         //Log.i("TAG",storeIm);
 
         Picasso.get()
@@ -104,11 +106,11 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
                 .centerCrop()
                 .into(holder.imageView);
 
-//        Picasso.get()
-//                .load(storeIm)
-//                .fit()
-//                .centerCrop()
-//                .into(holder.store_im);
+        Picasso.get()
+                .load(storeIm)
+                .fit()
+                .centerCrop()
+                .into(holder.store_im);
 
     }
 
@@ -120,10 +122,11 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView,store_im;
         RelativeLayout contRL,coverRL,buttonAddToCart;
-        TextView nameTV,desTV,priceTV,oldPrice;
+        TextView nameTV,desTV,priceTV,oldPrice,store_name;
         public ViewHolder(View itemView) {
             super(itemView);
             nameTV = (TextView) itemView.findViewById(R.id.adapter_type4_pName);
+            store_name = (TextView) itemView.findViewById(R.id.store_name);
             //desTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_des_TV);
             priceTV = (TextView) itemView.findViewById(R.id.adapter_type4_price_TV);
             oldPrice = (TextView) itemView.findViewById(R.id.adapter_type4_old_price_TV);

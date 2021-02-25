@@ -80,12 +80,20 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
         holder.nameTV.setText(getTextEngOrLocal(context,dealsArrayL.get(position).getName(),dealsArrayL.get(position).getName_local()));
         holder.priceTV.setText(String.valueOf(dealsArrayL.get(position).getDiscountPrice()));
         holder.oldPrice.setText(String.valueOf(dealsArrayL.get(position).getPrice()));
+        Log.i("TAG",String.valueOf(dealsArrayL.get(position).getPrice()));
+        Log.i("TAG",String.valueOf(dealsArrayL.get(position).getDiscountPrice()));
+        int a = Integer.parseInt(dealsArrayL.get(position).getPrice());
+        int b = Integer.parseInt(dealsArrayL.get(position).getDiscountPrice());
+        int x = (int) (((double) a / (double) b) * 100);
+        int z = x-100;
+        holder.per.setText(String.valueOf(z)+"%");
     }
 
     private void changeFont(ViewHolder holder, Context context) {
         holder.nameTV.setTypeface(Functions.changeFontGeneral(context));
         holder.priceTV.setTypeface(Functions.changeFontGeneral(context));
         holder.oldPrice.setTypeface(Functions.changeFontGeneral(context));
+        holder.per.setTypeface(Functions.changeFontBold(context));
         holder.oldPrice.setPaintFlags(holder.priceTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
@@ -109,10 +117,11 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         RelativeLayout coverRL;
-        TextView nameTV,priceTV,oldPrice;
+        TextView nameTV,priceTV,oldPrice,per;
         public ViewHolder(View itemView) {
             super(itemView);
             nameTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_name_TV);
+            per = (TextView) itemView.findViewById(R.id.per);
             priceTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_meal_price_TV);
             oldPrice = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_meal_old_price_TV);
             imageView = (ImageView) itemView.findViewById(R.id.adapter_suggested_to_you_IV) ;
