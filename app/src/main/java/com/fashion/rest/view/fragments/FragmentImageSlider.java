@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 
 import com.fashion.rest.R;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.SlidImage;
 import com.fashion.rest.presnter.ImageClicked;
 import com.fashion.rest.presnter.PassCityAndArea;
@@ -30,7 +31,9 @@ import com.fashion.rest.view.activity.ItemDetails;
 
 import java.util.ArrayList;
 
+import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.fillImgArrayL;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 
 public class FragmentImageSlider extends Fragment implements SlidingImage_Adapter.ImageClicked{
@@ -46,20 +49,25 @@ public class FragmentImageSlider extends Fragment implements SlidingImage_Adapte
     private ArrayList<SlidImage> imageModelArrayList;
     private ArrayList<String> images;
     ImageView imageView,shinImageView;
-    String itemIV,cat,price,priceE,newPrice;
+    String price="250",priceE="1",newPrice="199",itemIV,cat;
     RelativeLayout relativeLayout;
 
     TextView itemPriceTV,oldPriceTV,itemNewPriceTV;
     ImageClicked imageClickedP;
+    ItemTest itemTest;
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
-            itemIV = getArguments().getString("itemName");
+            itemTest = (ItemTest) getArguments().getParcelable("item_object");
+            itemIV = getTextEngOrLocal(getActivity(),itemTest.getName(),itemTest.getName_local());
+            cat = getTextEngOrLocal(getActivity(),itemTest.getSub_cat().getName_en(),itemTest.getSub_cat().getName_local());
+
+//            itemIV = getArguments().getString("itemName");
             cat = getArguments().getString("cat");
             priceE = "1";
-            price = "250";
-            newPrice = "199";
+            price = itemTest.getPrice();
+            newPrice = itemTest.getDiscountPrice();
 
         }
         super.onAttach(context);
@@ -91,12 +99,13 @@ public class FragmentImageSlider extends Fragment implements SlidingImage_Adapte
     }
 
     private void fillPrice() {
+        String aed = getActivity().getResources().getString(R.string.aed);
         if (priceE.equals("0"))
         {
             itemPriceTV.setVisibility(View.VISIBLE);
             oldPriceTV.setVisibility(View.GONE);
             itemNewPriceTV.setText(price
-                    +" "+"JOD"+"   ");
+                    +" "+aed+"   ");
             //itemPriceTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
             //set new price empty to stay design
             itemPriceTV.setText("");
@@ -115,17 +124,21 @@ public class FragmentImageSlider extends Fragment implements SlidingImage_Adapte
             //itemNewPriceTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
 
             itemNewPriceTV.setText(newPrice
-                    +" "+"JOD");
+                    +" "+aed);
             //fill old price
             itemPriceTV.setText(price
-                    +" "+"JOD");
+                    +" "+aed);
 
         }
     }
 
     private void fillImageList() {
         images = new ArrayList<>();
-        images = fillImgArrayL();
+        for (int i=0;i<itemTest.getFlagArrayL().size();i++)
+        {
+            images.add(apiURLBase()+itemTest.getFlagArrayL().get(i).getUrl());
+        }
+        //images = fillImgArrayL();
         fillSlider();
     }
 

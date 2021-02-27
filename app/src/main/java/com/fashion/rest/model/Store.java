@@ -1,8 +1,11 @@
 package com.fashion.rest.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Store {
+public class Store implements Parcelable {
     @SerializedName("photo")
     Flag flag;
     String name,id,name_local,phone_number;
@@ -14,6 +17,26 @@ public class Store {
         this.name_local = name_local;
         this.phone_number = phone_number;
     }
+
+    protected Store(Parcel in) {
+        flag = in.readParcelable(Flag.class.getClassLoader());
+        name = in.readString();
+        id = in.readString();
+        name_local = in.readString();
+        phone_number = in.readString();
+    }
+
+    public static final Creator<Store> CREATOR = new Creator<Store>() {
+        @Override
+        public Store createFromParcel(Parcel in) {
+            return new Store(in);
+        }
+
+        @Override
+        public Store[] newArray(int size) {
+            return new Store[size];
+        }
+    };
 
     public Flag getFlag() {
         return flag;
@@ -53,5 +76,19 @@ public class Store {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(flag, flags);
+        dest.writeString(name);
+        dest.writeString(id);
+        dest.writeString(name_local);
+        dest.writeString(phone_number);
     }
 }

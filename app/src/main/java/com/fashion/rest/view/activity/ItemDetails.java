@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.Categories;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.presnter.ImageClicked;
 import com.fashion.rest.view.Adapters.SlidingImage_Adapter;
 import com.fashion.rest.view.fragments.FragmentAddToCart;
@@ -29,6 +32,7 @@ import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentFullImageSlid
 
 import java.util.ArrayList;
 
+import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.fillImgArrayL;
 
 public class ItemDetails extends AppCompatActivity implements ImageClicked {
@@ -42,11 +46,11 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
     FragmentContact fragmentContact = new FragmentContact();
     FragmentFullImageSlider fragmentFullImageSlider = new FragmentFullImageSlider();
 
-    String itemID,itemName,cat,cat_type,from;
     String storeNameStr, storeImage, website_link;
     int fullImageOnTheTop =0;
 
     RelativeLayout fullImageCont;
+    ItemTest itemTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +74,13 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
     }
 
     private void getInfoFromCat() {
-        Bundle bundle = getIntent().getExtras();
-        itemID =bundle.getString("itemID");
-        itemName =bundle.getString("itemName");
-        cat =bundle.getString("cat");
-        cat_type =bundle.getString("cat_type");
-        from =bundle.getString("from");
+        itemTest = (ItemTest) getIntent().getParcelableExtra("item_object");
+        //Log.i("TAG sub cat ", String.valueOf(sub_catArrayList.size()));
+
+//        for (int i=0;i<sub_catArrayList.size();i++)
+//        {
+//            Log.i("TAG ItemTest ",itemTest.getName());
+//        }
     }
 
     private void ItemDetailsFragment() {
@@ -83,8 +88,8 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
         storeImage = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/lacoste-logo.png?alt=media&token=3f7d0317-11d6-4b6d-9763-4c3e3eec08e4";
         website_link = "https://www.farfetch.com/ae/shopping/men/lacoste/items.aspx?utm_source=google&utm_medium=cpc&utm_keywordid=123323324&pid=google_search&af_channel=Search&c=658279425&af_c_id=658279425&af_siteid=&af_keywords=kwd-88551300&af_adset_id=35964967809&af_ad_id=492268062138&af_sub1=123323324&is_retargeting=true";
         Bundle bundle = new Bundle();
-        bundle.putString("cat", cat);
-        bundle.putString("cat_type", cat_type);
+        bundle.putString("cat", "cat");
+        bundle.putString("cat_type", "cat_type");
         bundle.putString("storeNameStr", storeNameStr);
         bundle.putString("storeImage", storeImage);
         bundle.putString("website_link", website_link);
@@ -97,8 +102,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
 
     private void intiImageSlider() {
         Bundle bundle = new Bundle();
-        bundle.putString("itemName", "Bracelets name");
-        bundle.putString("cat", "Bracelets");
+        bundle.putParcelable("item_object", itemTest);
 
         fragmentImageSlider.setArguments(bundle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -204,7 +208,11 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
 
     public void handelFragmentFullImage() {
         ArrayList<String> images = new ArrayList<>();
-        images = fillImgArrayL();
+        for (int i=0;i<itemTest.getFlagArrayL().size();i++)
+        {
+            images.add(apiURLBase()+itemTest.getFlagArrayL().get(i).getUrl());
+        }
+        //images = fillImgArrayL();
 
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("allImage", images);

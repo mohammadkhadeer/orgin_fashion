@@ -1,29 +1,59 @@
 package com.fashion.rest.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class ItemTest {
+public class ItemTest implements Parcelable {
     @SerializedName("Photo")
     ArrayList<Flag> flagArrayL;
     @SerializedName("store")
     Store store;
+    @SerializedName("sub_category")
+    Sub_Cat sub_cat;
     String name,name_local,description,description_local,price,discountPrice;
 
 
     public ItemTest(){}
 
-    public ItemTest(ArrayList<Flag> flagArrayL, Store store, String name, String name_local, String description, String description_local, String price, String discountPrice) {
+    public ItemTest(ArrayList<Flag> flagArrayL, Store store, Sub_Cat sub_cat, String name, String name_local, String description, String description_local, String price, String discountPrice) {
         this.flagArrayL = flagArrayL;
-        this.name = name;
         this.store = store;
+        this.sub_cat = sub_cat;
+        this.name = name;
         this.name_local = name_local;
         this.description = description;
         this.description_local = description_local;
         this.price = price;
         this.discountPrice = discountPrice;
     }
+
+    protected ItemTest(Parcel in) {
+        flagArrayL = in.createTypedArrayList(Flag.CREATOR);
+        store = in.readParcelable(Store.class.getClassLoader());
+        sub_cat = in.readParcelable(Sub_Cat.class.getClassLoader());
+        name = in.readString();
+        name_local = in.readString();
+        description = in.readString();
+        description_local = in.readString();
+        price = in.readString();
+        discountPrice = in.readString();
+    }
+
+    public static final Creator<ItemTest> CREATOR = new Creator<ItemTest>() {
+        @Override
+        public ItemTest createFromParcel(Parcel in) {
+            return new ItemTest(in);
+        }
+
+        @Override
+        public ItemTest[] newArray(int size) {
+            return new ItemTest[size];
+        }
+    };
 
     public ArrayList<Flag> getFlagArrayL() {
         return flagArrayL;
@@ -39,6 +69,14 @@ public class ItemTest {
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public Sub_Cat getSub_cat() {
+        return sub_cat;
+    }
+
+    public void setSub_cat(Sub_Cat sub_cat) {
+        this.sub_cat = sub_cat;
     }
 
     public String getName() {
@@ -87,5 +125,23 @@ public class ItemTest {
 
     public void setDiscountPrice(String discountPrice) {
         this.discountPrice = discountPrice;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(flagArrayL);
+        dest.writeParcelable(store, flags);
+        dest.writeParcelable(sub_cat, flags);
+        dest.writeString(name);
+        dest.writeString(name_local);
+        dest.writeString(description);
+        dest.writeString(description_local);
+        dest.writeString(price);
+        dest.writeString(discountPrice);
     }
 }
