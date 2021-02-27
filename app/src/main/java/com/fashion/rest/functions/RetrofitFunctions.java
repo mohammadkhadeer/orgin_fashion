@@ -4,6 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.fashion.rest.apiURL.API.apiAreas;
+import static com.fashion.rest.apiURL.API.apiBrand;
 import static com.fashion.rest.apiURL.API.apiCat;
 import static com.fashion.rest.apiURL.API.apiCities;
 import static com.fashion.rest.apiURL.API.apiCountries;
@@ -90,6 +91,15 @@ public class RetrofitFunctions {
     public static Retrofit getOffers(String date) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiOffers(date))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    public static Retrofit getBrand() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(apiBrand())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

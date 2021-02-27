@@ -9,6 +9,7 @@
     android:id="@+id/all_cat_nested"
     tools:context=".view.activity.ResultActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -44,13 +45,20 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="70">
+            android:layout_weight="45">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/category"
+                    android:layout_centerVertical="true"
+                    android:textSize="17dp"
+                    android:textColor="@color/colorBlack"
+                    android:id="@+id/sub_category_name_tv"/>
 
             </RelativeLayout>
 
@@ -59,17 +67,40 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="15">
+            android:layout_weight="1">
 
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="38">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Result_number"
+                android:textSize="17dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/result_number_tv"
+                android:textColor="@color/colorBlack"
+                android:layout_centerHorizontal="true"/>
 
         </RelativeLayout>
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/brand"/>
+
     <FrameLayout
         android:id="@+id/container_result_activity"
         android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:layout_height="match_parent" />
+
 
 </RelativeLayout>

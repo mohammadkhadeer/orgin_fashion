@@ -80,4 +80,10 @@ public class API {
         return apiName;
     }
 
+    public static String apiBrand(){
+        String apiName ="http://46.101.235.217/api/brands/";
+//        Log.i("TAG",apiName);
+        return apiName;
+    }
+
 }

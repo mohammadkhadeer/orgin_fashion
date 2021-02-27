@@ -1,10 +1,12 @@
 package com.fashion.rest.presnter;
 
 import com.fashion.rest.model.Areas;
+import com.fashion.rest.model.Brand;
 import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.Comment;
 import com.fashion.rest.model.Countries;
+import com.fashion.rest.model.Flag;
 import com.fashion.rest.model.Home;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
@@ -69,4 +71,7 @@ public interface JsonPlaceHolderApi {
     Call<List<Offer>> getOffers(@Query("_start") int start,
                                 @Query("_limit") int end
     );
+
+    @GET(".")
+    Call<List<Brand>> getBrand();
 }
