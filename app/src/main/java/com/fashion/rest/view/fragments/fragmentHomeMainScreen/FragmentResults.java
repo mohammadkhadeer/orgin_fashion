@@ -22,6 +22,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fashion.rest.R;
+import com.fashion.rest.model.Categories;
+import com.fashion.rest.model.CustomCategory;
+import com.fashion.rest.model.CustomItems;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.Home;
 import com.fashion.rest.model.ItemTest;
@@ -46,9 +49,9 @@ import static com.fashion.rest.functions.RetrofitFunctions.getItemsWithAllFilter
 
 
 public class FragmentResults extends Fragment {
-    public ArrayList<ItemTest> dealsArrayList = new ArrayList<>();
-    public ArrayList<ItemTest> suggestedItemsArrayListTest;
-    public ArrayList<ItemTest> suggestedItemsArrayListDO;
+    public ArrayList<CustomItems> dealsArrayList = new ArrayList<>();
+    public ArrayList<CustomItems> suggestedItemsArrayListTest;
+    public ArrayList<CustomItems> suggestedItemsArrayListDO;
 
     public static final int PAGE_START = 1;
     private int currentPage = PAGE_START;
@@ -108,7 +111,7 @@ public class FragmentResults extends Fragment {
                                                                                       public void onScrollChanged() {
                                                                                           View view = (View) nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1);
                                                                                           int diff = (view.getBottom() - (nestedScrollView.getHeight() + nestedScrollView.getScrollY()));
-                                                                                          if (diff == 0) {
+                                                                                          if (diff == 150) {
 //                                                                                              new Handler().postDelayed(new Runnable() {
 //
 //                                                                                                  @RequiresApi(api = Build.VERSION_CODES.M)
@@ -128,11 +131,11 @@ public class FragmentResults extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void createRV() {
-        adapterEndlessResult = new AdapterEndlessResult(new ArrayList<ItemTest>(),getActivity(),"call",currentPage);
+        adapterEndlessResult = new AdapterEndlessResult(new ArrayList<CustomItems>(),getActivity(),"call",currentPage);
         results_RV.setHasFixedSize(true);
         results_RV.setNestedScrollingEnabled(false);
 
-        mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        mLayoutManager = new GridLayoutManager(getActivity(), 1);
         //mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -144,7 +147,7 @@ public class FragmentResults extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        Call<List<ItemTest>> callHome = jsonPlaceHolderApi.getAllItems(0,15);
+        Call<List<ItemTest>> callHome = jsonPlaceHolderApi.getAllItems(0,16);
         callHome.enqueue(new Callback<List<ItemTest>>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -155,8 +158,8 @@ public class FragmentResults extends Fragment {
 //                Log.i("TAG","itemsList");
 //                Log.i("TAG",String.valueOf(itemsList.size()));
 
-                suggestedItemsArrayListTest.addAll(itemsList);
-                suggestedItemsArrayListDO.addAll(itemsList);
+                suggestedItemsArrayListTest.addAll(fillCustomItems(itemsList));
+                suggestedItemsArrayListDO.addAll(fillCustomItems(itemsList));
 
                 if (currentPage != PAGE_START && suggestedItemsArrayListTest.size()!=0) adapterEndlessResult.removeLoading();
                 if (suggestedItemsArrayListTest.size()!=0)
@@ -176,6 +179,42 @@ public class FragmentResults extends Fragment {
                 Log.i("TAG Error",t.getMessage());
             }
         });
+    }
+
+    private ArrayList<CustomItems> fillCustomItems(List<ItemTest> itemsList) {
+
+        ArrayList<CustomItems> customItemsArrayList = new ArrayList<>();
+        ArrayList<ItemTest> smallArrayL = new ArrayList<>();
+        for (int i =0;i<itemsList.size();i++)
+        {
+            if(i % 2 == 0) {
+                smallArrayL = new ArrayList<>();
+                if (i==0)
+                {
+                    for (int j=0;j<2;j++)
+                    {
+                        if (i+j < itemsList.size())
+                        {
+                            smallArrayL.add(itemsList.get(i+j));
+                        }
+                    }
+                    CustomItems customItems = new CustomItems(smallArrayL);
+                    customItemsArrayList.add(customItems);
+                }else{
+                    for (int j=0;j<2;j++)
+                    {
+                        if (i+j < itemsList.size())
+                        {
+                            smallArrayL.add(itemsList.get(i+j));
+                        }
+                    }
+                    CustomItems customItems = new CustomItems(smallArrayL);
+                    customItemsArrayList.add(customItems);
+                }
+
+            }
+        }
+        return customItemsArrayList;
     }
 
     private void inti() {

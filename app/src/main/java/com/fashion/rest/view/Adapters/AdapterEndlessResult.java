@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fashion.rest.R;
+import com.fashion.rest.model.CustomItems;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.ListItem;
@@ -36,12 +37,12 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
   private static final int VIEW_TYPE_NORMAL = 1;
   private boolean isLoaderVisible = false;
 
-  private List<ItemTest> dealItemsList;
+  private List<CustomItems> dealItemsList;
   Context context;
   String comeFrom;
   int pageNumber;
 
-  public AdapterEndlessResult(List<ItemTest> postItems, Context context, String comeFrom,int pageNumber) {
+  public AdapterEndlessResult(List<CustomItems> postItems, Context context, String comeFrom,int pageNumber) {
     this.dealItemsList = postItems;
     this.context = context;
     this.comeFrom = comeFrom;
@@ -95,14 +96,14 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
     return dealItemsList == null ? 0 : dealItemsList.size();
   }
 
-  public void addItems(List<ItemTest> postItems) {
+  public void addItems(List<CustomItems> postItems) {
     dealItemsList.addAll(postItems);
     notifyDataSetChanged();
   }
 
   public void addLoading() {
     isLoaderVisible = true;
-    dealItemsList.add(new ItemTest());
+    dealItemsList.add(new CustomItems());
     notifyItemInserted(dealItemsList.size() - 1);
   }
 
@@ -110,29 +111,30 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
     isLoaderVisible = false;
     ////////////here
     int position = dealItemsList.size() - 1;
-    ItemTest deal = getItem(position);
+    CustomItems deal = getItem(position);
     if (deal != null) {
       dealItemsList.remove(position);
       notifyItemRemoved(position);
     }
   }
 
-  ItemTest getItem(int position) {
+  CustomItems getItem(int position) {
     return dealItemsList.get(position);
   }
 
   public class ViewHolder extends BaseViewHolderUser {
-    RelativeLayout cont1,cont2,offerRL;
-    ImageView imageView;
-    LinearLayout coverRL;
-    TextView nameTV,priceTV,oldPrice,offerTV;
+    RelativeLayout cont1,cont2,offerRL,offerRL2;
+    ImageView imageView,imageView2;
+    LinearLayout coverRL,coverRL2;
+    TextView nameTV,priceTV,oldPrice,offerTV,nameTV2,priceTV2,oldPrice2,offerTV2;
 
     ViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
 
-      cont1 = (RelativeLayout) itemView.findViewById(R.id.container_result_type1_rl);
-      cont2 = (RelativeLayout) itemView.findViewById(R.id.container_type4_rl);
+      cont1 = (RelativeLayout) itemView.findViewById(R.id.container_result_type1_rl_1);
+      cont2 = (RelativeLayout) itemView.findViewById(R.id.container_result_type1_rl_2);
+
       offerRL = (RelativeLayout) itemView.findViewById(R.id.adapter_result_type1_offer_rl);
 
       offerTV = (TextView) itemView.findViewById(R.id.adapter_result_type1_offer_TV);
@@ -143,6 +145,17 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
       imageView = (ImageView) itemView.findViewById(R.id.adapter_result_type1_IV) ;
 
       coverRL = (LinearLayout) itemView.findViewById(R.id.cover_adapter_result_type1) ;
+
+      offerRL2 = (RelativeLayout) itemView.findViewById(R.id.adapter_result_type12_offer_rl);
+
+      offerTV2 = (TextView) itemView.findViewById(R.id.adapter_result_type12_offer_TV);
+      nameTV2 = (TextView) itemView.findViewById(R.id.adapter_result_type12_name_TV);
+      priceTV2 = (TextView) itemView.findViewById(R.id.adapter_result_type12_price_TV);
+      oldPrice2 = (TextView) itemView.findViewById(R.id.adapter_result_type12_old_price_TV);
+
+      imageView2 = (ImageView) itemView.findViewById(R.id.adapter_result_type12_IV) ;
+
+      coverRL2 = (LinearLayout) itemView.findViewById(R.id.cover_adapter_result_type12) ;
     }
 
     protected void clear() {
@@ -153,14 +166,21 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
       super.onBind(position);
 
       cont1.setVisibility(View.VISIBLE);
-      cont2.setVisibility(View.GONE);
 
-      fillItemCase1(getObject(position),context,imageView,nameTV,priceTV,oldPrice,offerRL,offerTV);
+      if(getObject(position).getCustomItems().size() ==1)
+      {
+        fillItemCase1(getObject(position).getCustomItems().get(0),context,imageView,nameTV,priceTV,oldPrice,offerRL,offerTV);
+      }else{
+        fillItemCase1(getObject(position).getCustomItems().get(0),context,imageView,nameTV,priceTV,oldPrice,offerRL,offerTV);
+        fillItemCase1(getObject(position).getCustomItems().get(1),context,imageView2,nameTV2,priceTV2,oldPrice2,offerRL2,offerTV2);
+      }
+
     }
+
   }
 
-  private ItemTest getObject(int position){
-    ItemTest item = dealItemsList.get(position);
+  private CustomItems getObject(int position){
+    CustomItems item = dealItemsList.get(position);
     return item;
   }
 

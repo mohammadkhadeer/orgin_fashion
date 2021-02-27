@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:orientation="vertical"
-        android:id="@+id/cover_adapter_result_type1"
+        android:id="@+id/cover_adapter_result_type12"
         android:weightSum="100">
 
         <RelativeLayout
@@ -28,7 +28,7 @@
                 app:cardCornerRadius="6dp">
 
                 <ImageView
-                    android:id="@+id/adapter_result_type1_IV"
+                    android:id="@+id/adapter_result_type12_IV"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
@@ -69,7 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:layout_marginTop="24dp"
-                        android:id="@+id/adapter_result_type1_offer_rl"
+                        android:id="@+id/adapter_result_type12_offer_rl"
                         >
 
                         <TextView
@@ -78,7 +78,7 @@
                             android:layout_centerVertical="true"
                             android:layout_centerHorizontal="true"
                             android:textColor="@color/colorWhite"
-                            android:id="@+id/adapter_result_type1_offer_TV"
+                            android:id="@+id/adapter_result_type12_offer_TV"
                             android:textStyle="bold"
                             android:textSize="11dp"
                             />
@@ -97,7 +97,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/adapter_result_type1_name_TV"
+                    android:id="@+id/adapter_result_type12_name_TV"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="8dp"
@@ -114,7 +114,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/adapter_result_type1_price_TV"
+                        android:id="@+id/adapter_result_type12_price_TV"
                         android:textColor="@color/colorGreen"
                         android:layout_marginLeft="20dp"
                         android:textSize="14dp"
@@ -124,7 +124,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/adapter_result_type1_old_price_TV"
+                        android:id="@+id/adapter_result_type12_old_price_TV"
                         android:textColor="@color/colorSilver"
                         android:layout_marginLeft="20dp"
                         android:textSize="12dp"
