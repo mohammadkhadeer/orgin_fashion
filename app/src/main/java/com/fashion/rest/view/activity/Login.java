@@ -3,6 +3,8 @@ package com.fashion.rest.view.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +19,7 @@ import static com.fashion.rest.sharedPreferences.LoginInfo.saveLoginInSP;
 public class Login extends AppCompatActivity {
 
     Button login;
-    RelativeLayout fb,g,skip;
+    RelativeLayout fb,g,skip,background_iv;
     SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
 
@@ -28,11 +30,25 @@ public class Login extends AppCompatActivity {
 
         statusBarColor();
         inti();
-        actionListenerToLogin();
+        //actionListenerToLogin();
+        //setBackgroundColor();
         actionListenerToFB();
         actionListenerToG();
         actionListenerToSkip();
     }
+
+//    private void setBackgroundColor() {
+//        String startColor ="#"+object.getColor();
+//        String endColor ="#"+object.getSecondaryColor();
+//        int color = Color.parseColor(startColor);
+//        int color2 = Color.parseColor(endColor);
+//        int color3 = Color.parseColor("#00ffafbd");
+//
+//        GradientDrawable drawable = new GradientDrawable(
+//                GradientDrawable.Orientation.BOTTOM_TOP, new int[] {color ,color2,color3
+//        });
+//        coverRL.setBackground(drawable);
+//    }
 
     private void actionListenerToSkip() {
         skip.setOnClickListener(new View.OnClickListener() {
@@ -63,15 +79,15 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void actionListenerToLogin() {
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveLoginInSP(getApplicationContext(),sharedPreferences,editor,"1");
-                moveToMainScreen();
-            }
-        });
-    }
+//    private void actionListenerToLogin() {
+//        login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                saveLoginInSP(getApplicationContext(),sharedPreferences,editor,"1");
+//                moveToMainScreen();
+//            }
+//        });
+//    }
 
     private void moveToMainScreen() {
         Intent intent = new Intent(Login.this, MainActivity.class);
@@ -82,7 +98,8 @@ public class Login extends AppCompatActivity {
     }
 
     private void inti() {
-        login = (Button) findViewById(R.id.login);
+        //login = (Button) findViewById(R.id.login);
+        background_iv= (RelativeLayout) findViewById(R.id.background_iv);
         fb = (RelativeLayout) findViewById(R.id.fb);
         fb = (RelativeLayout) findViewById(R.id.fb);
         g = (RelativeLayout) findViewById(R.id.g);

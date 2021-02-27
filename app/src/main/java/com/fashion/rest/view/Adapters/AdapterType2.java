@@ -80,13 +80,14 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
         holder.nameTV.setText(getTextEngOrLocal(context,dealsArrayL.get(position).getName(),dealsArrayL.get(position).getName_local()));
         holder.priceTV.setText(String.valueOf(dealsArrayL.get(position).getDiscountPrice()));
         holder.oldPrice.setText(String.valueOf(dealsArrayL.get(position).getPrice()));
-        Log.i("TAG",String.valueOf(dealsArrayL.get(position).getPrice()));
-        Log.i("TAG",String.valueOf(dealsArrayL.get(position).getDiscountPrice()));
+
         int a = Integer.parseInt(dealsArrayL.get(position).getPrice());
         int b = Integer.parseInt(dealsArrayL.get(position).getDiscountPrice());
-        int x = (int) (((double) a / (double) b) * 100);
-        int z = x-100;
-        holder.per.setText(String.valueOf(z)+"%");
+        int x =  a -  b;
+        double z = (((double)x/(double)a));
+        double y = z*100;
+        int xx = (int) y;
+        holder.per.setText(String.valueOf(xx)+"%");
     }
 
     private void changeFont(ViewHolder holder, Context context) {
