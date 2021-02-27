@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,8 +77,11 @@ public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
 
     private void moveToShowResultActivity(Sub_Cat sub_cat) {
         Bundle bundle = new Bundle();
+        Log.i("TAG sub_cat_id",sub_cat.getId());
+        Log.i("TAG cat_id",sub_cat.getCategory_id());
         bundle.putString("sub_cat_id",sub_cat.getId());
         bundle.putString("cat_id",sub_cat.getCategory_id());
+        bundle.putString("sub_cat_name",getTextEngOrLocal(context,sub_cat.getName_en(),sub_cat.getName_local()));
 
         Intent intent = new Intent(context, ResultActivity.class);
         intent.putExtras(bundle);

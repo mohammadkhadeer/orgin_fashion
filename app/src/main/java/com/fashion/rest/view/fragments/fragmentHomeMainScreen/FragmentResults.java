@@ -84,6 +84,8 @@ public class FragmentResults extends Fragment {
     }
 
     private void intiRetrofit() {
+        Log.i("TAG sub_cat_id",sub_cat_id);
+        Log.i("TAG cat_id",cat_id);
         retrofit = getItemsWithAllFilter(sub_cat_id,cat_id);
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }

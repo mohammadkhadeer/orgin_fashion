@@ -37,6 +37,8 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
     private final Context context;
 //    List<Offer> mList = new ArrayList<>();
     ArrayList<CustomCategory> allCatArrayL = new ArrayList<>();
+    // add to static page
+    String color ="2364C2";
     public AdapterAllCategory
             (Context context,ArrayList<CustomCategory> allCatArrayL)
                 {
@@ -79,20 +81,25 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
     }
 
     private void fillThertPor(Context context, int position, ViewHolder holder) {
-        int color = Color.parseColor("#2364C2");
+        String color_1 = "#"+color;
+        int color = Color.parseColor(color_1);
 
         holder.cat_por2_position3_rl.setBackgroundColor(color);
     }
 
     private void fillSectPor(Context context, int position, ViewHolder holder) {
-        int color = Color.parseColor("#2364C2");
+        String color_1 = "#"+color;
+
+        int color = Color.parseColor(color_1);
 
         holder.cat_por1_position2_rl.setBackgroundColor(color);
         holder.cat_por2_position2_rl.setBackgroundColor(color);
     }
 
     private void fillFirstPor(Context context, int position, ViewHolder holder) {
-        int color = Color.parseColor("#2364C2");
+        String color_1 = "#"+color;
+
+        int color = Color.parseColor(color_1);
 
         holder.cat_por1_position1_rl.setBackgroundColor(color);
         holder.cat_por2_position1_rl.setBackgroundColor(color);

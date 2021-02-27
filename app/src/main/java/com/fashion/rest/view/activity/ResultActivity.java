@@ -37,7 +37,7 @@ import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 public class ResultActivity extends AppCompatActivity {
 
     FragmentResults fragmentResults = new FragmentResults();
-    String cat_id,sub_cat_id;
+    String cat_id,sub_cat_id,sub_cat_name;
     ImageView backIV,brand_iv;
     RelativeLayout back_rl;
     TextView sub_category_name_tv,result_number_tv;
@@ -53,12 +53,17 @@ public class ResultActivity extends AppCompatActivity {
 
         getInfoFromCat();
         inti();
+        fillSubCategoryName();
         getImageBrand();
         changeFont();
         fillResultNumber();
         fillBackImageViewDepLanguage();
         actionListenerToBack();
         handelResultFragment();
+    }
+
+    private void fillSubCategoryName() {
+        sub_category_name_tv.setText(sub_cat_name);
     }
 
     private void getImageBrand() {
@@ -135,6 +140,8 @@ public class ResultActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         sub_cat_id =bundle.getString("sub_cat_id");
         cat_id =bundle.getString("cat_id");
+        sub_cat_name =bundle.getString("sub_cat_name");
+
         //sub_catArrayList = (ArrayList<Sub_Cat>) getIntent().getSerializableExtra("sub_cat");
     }
 

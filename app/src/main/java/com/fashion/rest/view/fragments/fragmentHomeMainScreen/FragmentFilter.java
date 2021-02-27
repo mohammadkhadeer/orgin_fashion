@@ -287,12 +287,10 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
                 //move to ResultActivity
                 if (makeUserCanSeeTheResult !=0)
                 {
-                    Log.i("TAG",generalSub_category.getId());
-                    Log.i("TAG",generalSub_category.getCategory_id());
-
                     Bundle bundle = new Bundle();
                     bundle.putString("sub_cat_id",generalSub_category.getId());
                     bundle.putString("cat_id",generalSub_category.getCategory_id());
+                    bundle.putString("sub_cat_name",getTextEngOrLocal(getActivity(),generalSub_category.getName_en(),generalSub_category.getName_local()));
 
                     Intent intent = new Intent(getActivity(), ResultActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

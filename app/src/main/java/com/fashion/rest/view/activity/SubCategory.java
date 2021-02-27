@@ -23,6 +23,7 @@ import com.fashion.rest.view.Adapters.AdapterSubCategorySeeAll;
 import java.util.ArrayList;
 
 import static com.fashion.rest.functions.Functions.fillSubCatArrayL;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class SubCategory extends AppCompatActivity implements AdapterSubCategorySeeAll.PassSubCategory{
 
@@ -150,6 +151,7 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
         Bundle bundle = new Bundle();
         bundle.putString("sub_cat_id",subCategory.getId());
         bundle.putString("cat_id",subCategory.getCategory_id());
+        bundle.putString("sub_cat_name",getTextEngOrLocal(this,subCategory.getName_en(),subCategory.getName_local()));
 
         Intent intent = new Intent(this, ResultActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -122,6 +122,7 @@ public class FillType4 {
         Bundle bundle = new Bundle();
         bundle.putString("sub_cat_id",home.getSub_cat().getId());
         bundle.putString("cat_id",home.getSub_cat().getCategory_id());
+        bundle.putString("sub_cat_name",getTextEngOrLocal(context,home.getSub_cat().getName_en(),home.getSub_cat().getName_local()));
 
         Intent intent = new Intent(context, ResultActivity.class);
         intent.putExtras(bundle);
