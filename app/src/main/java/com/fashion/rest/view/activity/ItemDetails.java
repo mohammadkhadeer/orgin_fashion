@@ -9,31 +9,26 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
-import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.presnter.ImageClicked;
-import com.fashion.rest.view.Adapters.SlidingImage_Adapter;
-import com.fashion.rest.view.fragments.FragmentAddToCart;
 import com.fashion.rest.view.fragments.FragmentImageSlider;
-import com.fashion.rest.view.fragments.FragmentItemDetails;
+import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentItemDetails;
 import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentContact;
 import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentFullImageSlider;
 
 import java.util.ArrayList;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
-import static com.fashion.rest.functions.Functions.fillImgArrayL;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class ItemDetails extends AppCompatActivity implements ImageClicked {
     Toolbar toolbar;
@@ -46,7 +41,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
     FragmentContact fragmentContact = new FragmentContact();
     FragmentFullImageSlider fragmentFullImageSlider = new FragmentFullImageSlider();
 
-    String storeNameStr, storeImage, website_link;
+    String storeNameStr, storeImage, website_link,from;
     int fullImageOnTheTop =0;
 
     RelativeLayout fullImageCont;
@@ -64,10 +59,13 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
         handelFragmentFullImage();
         ItemDetailsFragment();
         contactFragment();
-
     }
 
     private void contactFragment() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("item_object", itemTest);
+
+        fragmentContact.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_contact, fragmentContact)
                 .commit();
@@ -75,12 +73,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
 
     private void getInfoFromCat() {
         itemTest = (ItemTest) getIntent().getParcelableExtra("item_object");
-        //Log.i("TAG sub cat ", String.valueOf(sub_catArrayList.size()));
-
-//        for (int i=0;i<sub_catArrayList.size();i++)
-//        {
-//            Log.i("TAG ItemTest ",itemTest.getName());
-//        }
+        from = getIntent().getStringExtra("from");
     }
 
     private void ItemDetailsFragment() {
@@ -93,6 +86,8 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
         bundle.putString("storeNameStr", storeNameStr);
         bundle.putString("storeImage", storeImage);
         bundle.putString("website_link", website_link);
+        bundle.putString("from", from);
+        bundle.putParcelable("item_object", itemTest);
 
         fragmentItemDetails.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
@@ -128,7 +123,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
         setSupportActionBar(toolbar);
 
         fillPrice();
-        title.setText(getResources().getString(R.string.item_name));
+        title.setText(getTextEngOrLocal(this,itemTest.getName(),itemTest.getName_local()));
         title.setTypeface(Functions.changeFontGeneral(getApplicationContext()));
 
         appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -142,7 +137,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
                 }
                 if (scrollRange + verticalOffset == 0) {
                     show_item_details_header.setVisibility(View.VISIBLE);
-                    collapsingToolbarLayout.setTitle(getResources().getString(R.string.item_name));
+                    collapsingToolbarLayout.setTitle(getTextEngOrLocal(getApplicationContext(),itemTest.getName(),itemTest.getName_local()));
 
                     statusBarColor();
                     isVisible = true;
@@ -167,12 +162,13 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
 
     private void fillPrice() {
         String priceEdit="1";
+        String aed = getResources().getString(R.string.aed);
         if (priceEdit.equals("0"))
         {
             itemPriceTV.setVisibility(View.VISIBLE);
             oldPriceTV.setVisibility(View.GONE);
-            itemNewPriceTV.setText("123"
-                    +" "+getResources().getString(R.string.jod));
+            itemNewPriceTV.setText(itemTest.getPrice()
+                    +" "+aed);
             //itemPriceTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
             //set new price empty to stay design
             itemPriceTV.setText("");
@@ -181,7 +177,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
             itemPriceTV.setVisibility(View.GONE);
             oldPriceTV.setVisibility(View.VISIBLE);
 
-            oldPriceTV.setText("123");
+            oldPriceTV.setText(itemTest.getPrice());
             //change text color
             oldPriceTV.setTextColor(getResources().getColor(R.color.colorWhite));
             //set line above old price
@@ -190,11 +186,11 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
             //change size new price
             //itemNewPriceTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
 
-            itemNewPriceTV.setText("99"
-                    +" "+getResources().getString(R.string.jod));
+            itemNewPriceTV.setText(itemTest.getDiscountPrice()
+                    +" "+aed);
             //fill old price
-            itemPriceTV.setText("250"
-                    +" "+getResources().getString(R.string.jod));
+            itemPriceTV.setText(itemTest.getPrice()
+                    +" "+aed);
 
         }
     }

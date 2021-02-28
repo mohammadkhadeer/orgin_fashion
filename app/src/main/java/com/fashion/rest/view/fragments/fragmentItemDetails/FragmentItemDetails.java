@@ -1,4 +1,4 @@
-package com.fashion.rest.view.fragments;
+package com.fashion.rest.view.fragments.fragmentItemDetails;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,14 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fashion.rest.R;
-import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentFullImageSlider;
-import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentLocation;
-import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentStoreInfo;
-import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentSuggested;
-
-import java.util.ArrayList;
-
-import static com.fashion.rest.functions.Functions.fillImgArrayL;
+import com.fashion.rest.model.ItemTest;
 
 public class FragmentItemDetails extends Fragment {
     View view;
@@ -25,17 +18,19 @@ public class FragmentItemDetails extends Fragment {
     FragmentLocation fragmentLocation = new FragmentLocation();
 
     public FragmentItemDetails(){}
-    String categoryStr,cat_type;
-    String storeNameStr, storeImage, website_link;
+    String cat_type;
+    String storeNameStr, storeImage, website_link,from;
+    ItemTest itemTest;
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
-            categoryStr = getArguments().getString("cat");
             cat_type = getArguments().getString("cat_type");
             storeNameStr = getArguments().getString("storeNameStr");
             storeImage = getArguments().getString("storeImage");
             website_link = getArguments().getString("website_link");
+            from = getArguments().getString("from");
+            itemTest = (ItemTest) getArguments().getParcelable("item_object");
         }
         super.onAttach(context);
 
@@ -54,8 +49,7 @@ public class FragmentItemDetails extends Fragment {
 
     private void handelFragmentLocation() {
         Bundle bundle = new Bundle();
-        bundle.putString("lat", categoryStr);
-        bundle.putString("lng", categoryStr);
+        bundle.putParcelable("item_object", itemTest);
 
 
         fragmentLocation.setArguments(bundle);
@@ -66,11 +60,8 @@ public class FragmentItemDetails extends Fragment {
 
     private void fragmentStoreDetails() {
         Bundle bundle = new Bundle();
-        bundle.putString("cat", categoryStr);
-        bundle.putString("cat", categoryStr);
-        bundle.putString("storeNameStr", storeNameStr);
-        bundle.putString("storeImage", storeImage);
         bundle.putString("website_link", website_link);
+        bundle.putParcelable("item_object", itemTest);
 
         fragmentStoreInfo.setArguments(bundle);
         getActivity().getSupportFragmentManager().beginTransaction()
@@ -81,9 +72,9 @@ public class FragmentItemDetails extends Fragment {
     private void fragmentGeneralDetails() {
         String offer_link = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/55.jpeg?alt=media&token=76fda7fb-1b1a-44e0-af9d-fad2cd341761";
         Bundle bundle = new Bundle();
-        bundle.putString("cat", categoryStr);
         bundle.putString("cat_type", cat_type);
         bundle.putString("offer_link", offer_link);
+        bundle.putParcelable("item_object", itemTest);
 
         fragmentItemGeneralDetails.setArguments(bundle);
 
@@ -94,8 +85,8 @@ public class FragmentItemDetails extends Fragment {
 
     private void fragmentSuggestedDetails() {
         Bundle bundle = new Bundle();
-        bundle.putString("cat", categoryStr);
-        bundle.putString("cat_type", cat_type);
+        bundle.putParcelable("item_object", itemTest);
+        bundle.putString("from", from);
 
         fragmentSuggested.setArguments(bundle);
         getActivity().getSupportFragmentManager().beginTransaction()

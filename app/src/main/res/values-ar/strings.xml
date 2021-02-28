@@ -171,7 +171,7 @@
     <string name="jod">د.أ</string>
     <string name="Cuff_Bracelet">سوارة اليد للسرطاوي</string>
     <string name="Cuff_Bracelet_des">"اسوارة نسائية منحوته على الطراز الايطالي المميز ستكون هدية رائعة "</string>
-    <string name="offer_4">خصم يصل لغاية %  ٤٠</string>
+    <string name="offer_4">خصم يصل لغاية</string>
     <string name="Processing_Time_con">٢-٥ ايام عمل</string>
     <string name="Shipping_Time">وقت التوصيل</string>
     <string name="Processing_Time">"وقت العمل "</string>
@@ -222,5 +222,6 @@
     <string name="select_category_message">رجاءا حدد الفئة الفرعية</string>
     <string name="Result_number">عدد النتائج</string>
     <string name="aed">د.أ</string>
+    <string name="no_more_items">لا يوجد المزيد من العناصر في</string>
 
 </resources>

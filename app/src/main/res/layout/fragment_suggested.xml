@@ -8,11 +8,32 @@
     android:background="@color/colorWhite"
     tools:context=".view.fragments.fragmentHomeMainScreen.FragmentNotification">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/cont_no_more_items_rl_sf"
+        android:visibility="visible"
+        android:layout_marginBottom="60dp"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:textColor="@color/colorBlue7"
+            android:id="@+id/no_more_items_sf"
+            android:text="@string/no_more_items"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
     <FrameLayout
         android:id="@+id/container_full_image_and_image_png"
         android:layout_marginTop="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
 
 </RelativeLayout>
 

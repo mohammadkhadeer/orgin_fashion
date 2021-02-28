@@ -9,6 +9,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,11 @@ import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.Home;
 import com.fashion.rest.model.ItemTest;
+import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.Adapters.AdapterSet;
 import com.fashion.rest.view.Adapters.AdapterType2;
 import com.fashion.rest.view.Adapters.AdapterType4;
@@ -27,10 +31,18 @@ import com.fashion.rest.view.activity.CategoryItem;
 import com.fashion.rest.view.activity.ResultActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import static com.fashion.rest.functions.FillItem.fillAllItemDepCatArrayL;
 import static com.fashion.rest.functions.Functions.fillSetArrayL;
 import static com.fashion.rest.functions.Functions.fillSetArrayL2;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 
 
 public class SLFullImageAndImagePng extends Fragment {
@@ -38,23 +50,24 @@ public class SLFullImageAndImagePng extends Fragment {
     RecyclerView recyclerView;
     TextView headerTV,full_image_and_see_all_TV;
     RelativeLayout relativeLayout;
-    String cat,cat_type;
+    String cat_type;
 
     public SLFullImageAndImagePng(){}
 
     AdapterType2 adapterType2;
     RecyclerView.LayoutManager layoutManager;
-    public ArrayList<ItemTest> dealsArrayList = new ArrayList<>();
+    public ArrayList<ItemTest> itemsArrayList = new ArrayList<>();
 
     AdapterType4 adapterType4;
     RecyclerView.LayoutManager layoutManagerFull;
-    public ArrayList<ItemTest> dealsFullArrayList = new ArrayList<>();
+    ItemTest itemTest;
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
-            cat = getArguments().getString("cat");
-            cat_type = getArguments().getString("cat_type");
+            itemTest = (ItemTest) getArguments().getParcelable("item_object");
+            itemsArrayList = getArguments().getParcelableArrayList("items_list");
+            cat_type = itemTest.getSub_cat().getAppearance();
         }
         super.onAttach(context);
     }
@@ -66,10 +79,9 @@ public class SLFullImageAndImagePng extends Fragment {
         view= inflater.inflate(R.layout.fragment_full_image_and_image_png, container, false);
         inti();
         changeFont();
-
-        if (cat_type.equals("png_image"))
+        if (cat_type.equals("1"))
             createPngCase();
-        if (cat_type.equals("full_image"))
+        if (cat_type.equals("2"))
             createFullImageCase();
 
         actionListenerToSeeAll();
@@ -85,7 +97,7 @@ public class SLFullImageAndImagePng extends Fragment {
 
         recyclerView.setLayoutManager(layoutManagerFull);
         adapterType4 =new AdapterType4(getActivity()
-                ,dealsFullArrayList,"category");
+                ,itemsArrayList,"category");
         recyclerView.setAdapter(adapterType4);
     }
 
@@ -99,7 +111,7 @@ public class SLFullImageAndImagePng extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
         adapterType2 =new AdapterType2(getActivity()
-                ,dealsArrayList,"category");
+                ,itemsArrayList,"category");
         recyclerView.setAdapter(adapterType2);
     }
 
@@ -107,13 +119,13 @@ public class SLFullImageAndImagePng extends Fragment {
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bundle bundle = new Bundle();
-//                //bundle.putString("category",getActivity().getResources().getString(R.string.set));
-//                bundle.putString("category",getActivity().getResources().getString(R.string.set));
-//                bundle.putString("from","see_all");
+                Bundle bundle = new Bundle();
+                bundle.putString("sub_cat_id",itemTest.getSub_cat().getId());
+                bundle.putString("cat_id",itemTest.getSub_cat().getCategory_id());
+                bundle.putString("sub_cat_name",getTextEngOrLocal(getActivity(),itemTest.getSub_cat().getName_en(),itemTest.getSub_cat().getName_local()));
 
                 Intent intent = new Intent(getActivity(), ResultActivity.class);
-                //intent.putExtras(bundle);
+                intent.putExtras(bundle);
                 ((Activity)getActivity()).startActivity(intent);
                 ((Activity)getActivity()).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
             }

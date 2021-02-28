@@ -53,6 +53,7 @@
     <string name="pizza_h">Pizza hut</string>
     <string name="subway">Subway</string>
 
+    <string name="no_more_items">No more items in</string>
     <string name="category">Category</string>
     <string name="Result_number">Results number</string>
     <string name="show_results">Show results</string>
@@ -251,7 +252,7 @@
     <string name="jod">JOD</string>
     <string name="Cuff_Bracelet">Cuff Bracelet Sculpture</string>
     <string name="Cuff_Bracelet_des">Women\'s Bracelet Bangles Cuff Bracelet Sculpture Ladies Ethnic Italian Gold Plated Bracelet Jewelry Gold For Party Gift</string>
-    <string name="offer_4">40 \% OFFER</string>
+    <string name="offer_4">OFFER</string>
 
     <string name="Processing_Time">Processing Time\:</string>
     <string name="Processing_Time_con"> 2\-5 business days</string>

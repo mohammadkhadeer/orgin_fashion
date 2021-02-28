@@ -57,17 +57,18 @@
                             android:layout_marginBottom="4dp"
                             android:layout_marginLeft="1dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="12dp"
+                            android:layout_marginStart="2dp"
                             >
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:layout_marginStart="8dp"
+                                android:layout_marginStart="2dp"
                                 android:layout_centerVertical="true"
                                 android:id="@+id/show_item_details_title"
                                 android:textColor="@color/colorWhite"
+                                android:textSize="15dp"
                                 android:text="@string/item_name"
                                 />
 
@@ -96,7 +97,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="1dp"
-                                    android:layout_marginStart="8dp"
+                                    android:layout_marginStart="4dp"
                                     android:layout_marginTop="4dp"
                                     android:orientation="horizontal"
                                     >
@@ -109,14 +110,15 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:background="@drawable/strike"
-                                            android:layout_marginLeft="3dp"
-                                            android:layout_marginRight="3dp"
+                                            android:layout_marginLeft="1dp"
+                                            android:layout_marginRight="1dp"
+                                            android:layout_marginStart="4dp"
                                             android:layout_marginBottom="3dp"
-                                            android:layout_marginTop="5dp"
-                                            android:textSize="15dp"
-                                            android:visibility="gone"
+                                            android:layout_marginTop="3dp"
+                                            android:textSize="13dp"
+                                            android:visibility="visible"
                                             android:textColor="@color/colorBlack6"
-                                            android:text="test text"
+                                            android:text="60"
                                             android:id="@+id/show_item_details_car_old_price"
                                             />
                                     </RelativeLayout>
@@ -130,9 +132,10 @@
                                             android:layout_height="wrap_content"
                                             android:background="@drawable/strike"
                                             android:layout_margin="5dp"
-                                            android:textSize="14dp"
+                                            android:textSize="15dp"
+                                            android:visibility="visible"
                                             android:textColor="@color/colorBlack6"
-                                            android:text="14455"
+                                            android:text=""
                                             android:id="@+id/show_item_details_car_price"
                                             />
                                     </RelativeLayout>
@@ -152,7 +155,9 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textSize="15dp"
-                                                android:layout_margin="3dp"
+                                                android:layout_marginTop="2dp"
+                                                android:layout_marginEnd="4dp"
+                                                android:layout_marginStart="4dp"
                                                 android:textColor="@color/colorWhite"
                                                 android:text="14999"
                                                 android:id="@+id/show_item_details_new_price"

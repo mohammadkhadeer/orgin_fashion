@@ -11,10 +11,16 @@ import com.fashion.rest.R;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.FastFood;
+import com.fashion.rest.model.Flag;
+import com.fashion.rest.model.ItemTest;
+import com.fashion.rest.model.Location;
 import com.fashion.rest.model.Notification;
+import com.fashion.rest.model.Offer;
 import com.fashion.rest.model.OffersGradientsWithTextColor;
 import com.fashion.rest.model.Price;
+import com.fashion.rest.model.Store;
 import com.fashion.rest.model.SubCategory;
+import com.fashion.rest.model.Sub_Cat;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -43,6 +49,38 @@ public class Functions {
             return eng;
             else
                 return local;
+    }
+
+    public static String calculatePercentage(String number1,String number2) {
+        int a = Integer.parseInt(number1);
+        int b = Integer.parseInt(number2);
+        int x =  a -  b;
+        double z = (((double)x/(double)a));
+        double y = z*100;
+        int xx = (int) y;
+        String bb = String.valueOf(xx)+"%";
+        return bb;
+    }
+
+    public static ItemTest convertOfferToItem(Offer offer) {
+        //must to add store info
+        String storeNameStr,storeImage,website_link;
+        storeNameStr = "Lacoste";
+        storeImage = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/lacoste-logo.png?alt=media&token=3f7d0317-11d6-4b6d-9763-4c3e3eec08e4";
+        website_link = "https://www.farfetch.com/ae/shopping/men/lacoste/items.aspx?utm_source=google&utm_medium=cpc&utm_keywordid=123323324&pid=google_search&af_channel=Search&c=658279425&af_c_id=658279425&af_siteid=&af_keywords=kwd-88551300&af_adset_id=35964967809&af_ad_id=492268062138&af_sub1=123323324&is_retargeting=true";
+        Flag flag = new Flag(storeImage);
+        Location location = new Location("25.2616938","55.3818661","id");
+        ArrayList<Location> locationsArrayL=new ArrayList<>();
+        locationsArrayL.add(location);
+        Store store = new Store(flag,storeNameStr,"id",storeNameStr,"0582402431",locationsArrayL);
+        Sub_Cat sub_cat=new Sub_Cat("name","test","offers","offers","offers",flag);
+        ItemTest itemTest = new ItemTest(
+                offer.getFlagArrayL()
+                ,store
+                ,sub_cat
+                ,offer.getName(),offer.getName_local(),offer.getDescription(),offer.getDescription_local(),offer.getPrice(),offer.getDiscountPrice(),offer.getItem_id()
+        );
+        return itemTest;
     }
 
     private static final int PAGE_SIZEH = 8;

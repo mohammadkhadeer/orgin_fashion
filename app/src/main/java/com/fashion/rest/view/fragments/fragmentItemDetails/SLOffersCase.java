@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
@@ -68,12 +69,14 @@ public class SLOffersCase extends Fragment {
 
     JsonPlaceHolderApi jsonPlaceHolderApiOffers;
     Retrofit retrofitOffers;
+    ItemTest itemTest;
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
             cat = getArguments().getString("cat");
             cat_type = getArguments().getString("cat_type");
+            itemTest = (ItemTest) getArguments().getParcelable("item_object");
         }
         super.onAttach(context);
     }
@@ -82,7 +85,7 @@ public class SLOffersCase extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_full_image_and_image_png, container, false);
+        view= inflater.inflate(R.layout.fragment_offer_suggeated, container, false);
         suggestedItemsArrayListDO = new ArrayList<>();
         suggestedItemsArrayListTest = new ArrayList<>();
 
@@ -166,8 +169,11 @@ public class SLOffersCase extends Fragment {
 
                 for (Offer offer:offerList)
                 {
-                    suggestedItemsArrayListTest.add(offer);
-                    suggestedItemsArrayListDO.add(offer);
+                    if (!offer.getName().equals(itemTest.getName()))
+                    {
+                        suggestedItemsArrayListTest.add(offer);
+                        suggestedItemsArrayListDO.add(offer);
+                    }
 //                    Log.i("TAG",apiURLBase()+offer.getFlagArrayL().get(0).getUrl());
 //                    Log.i("TAG",offer.getName());
 //                    Log.i("TAG",offer.getDescription());
@@ -198,20 +204,20 @@ public class SLOffersCase extends Fragment {
     }
 
     private void actionListenerToSeeAll() {
-        relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Bundle bundle = new Bundle();
-//                //bundle.putString("category",getActivity().getResources().getString(R.string.set));
-//                bundle.putString("category",getActivity().getResources().getString(R.string.set));
-//                bundle.putString("from","see_all");
-
-                Intent intent = new Intent(getActivity(), ResultActivity.class);
-                //intent.putExtras(bundle);
-                ((Activity)getActivity()).startActivity(intent);
-                ((Activity)getActivity()).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-            }
-        });
+//        relativeLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Bundle bundle = new Bundle();
+////                //bundle.putString("category",getActivity().getResources().getString(R.string.set));
+////                bundle.putString("category",getActivity().getResources().getString(R.string.set));
+////                bundle.putString("from","see_all");
+//
+//                Intent intent = new Intent(getActivity(), ResultActivity.class);
+//                //intent.putExtras(bundle);
+//                ((Activity)getActivity()).startActivity(intent);
+//                ((Activity)getActivity()).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+//            }
+//        });
     }
 
     private void changeFont() {
@@ -220,7 +226,7 @@ public class SLOffersCase extends Fragment {
     }
 
     private void inti() {
-        recyclerView = (RecyclerView) view.findViewById(R.id.suggested_RV);
+        recyclerView = (RecyclerView) view.findViewById(R.id.suggested_RV2);
         headerTV = (TextView) view.findViewById(R.id.suggested_TV);
         full_image_and_see_all_TV = (TextView) view.findViewById(R.id.full_image_and_see_all_TV);
         relativeLayout = (RelativeLayout) view.findViewById(R.id.see_all_suggested_rl);

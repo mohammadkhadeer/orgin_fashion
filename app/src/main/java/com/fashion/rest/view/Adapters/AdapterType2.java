@@ -24,6 +24,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.calculatePercentage;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
@@ -61,7 +62,6 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
         holder.coverRL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("TAG ItemTest ",dealsArrayL.get(position).getName());
                 Intent intent = new Intent(context, ItemDetails.class);
                 intent.putExtra("item_object", dealsArrayL.get(position));
                 ((Activity)context).startActivity(intent);
@@ -75,13 +75,8 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
         holder.priceTV.setText(String.valueOf(dealsArrayL.get(position).getDiscountPrice()));
         holder.oldPrice.setText(String.valueOf(dealsArrayL.get(position).getPrice()));
 
-        int a = Integer.parseInt(dealsArrayL.get(position).getPrice());
-        int b = Integer.parseInt(dealsArrayL.get(position).getDiscountPrice());
-        int x =  a -  b;
-        double z = (((double)x/(double)a));
-        double y = z*100;
-        int xx = (int) y;
-        holder.per.setText(String.valueOf(xx)+"%");
+
+        holder.per.setText(calculatePercentage(dealsArrayL.get(position).getPrice(),dealsArrayL.get(position).getDiscountPrice()));
     }
 
     private void changeFont(ViewHolder holder, Context context) {

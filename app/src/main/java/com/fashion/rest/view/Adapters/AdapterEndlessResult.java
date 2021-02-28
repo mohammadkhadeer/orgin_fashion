@@ -169,10 +169,10 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
 
       if(getObject(position).getCustomItems().size() ==1)
       {
-        fillItemCase1(getObject(position).getCustomItems().get(0),context,imageView,nameTV,priceTV,oldPrice,offerRL,offerTV);
+        fillItemCase1(getObject(position).getCustomItems().get(0),context,imageView,nameTV,priceTV,oldPrice,offerRL,offerTV,coverRL);
       }else{
-        fillItemCase1(getObject(position).getCustomItems().get(0),context,imageView,nameTV,priceTV,oldPrice,offerRL,offerTV);
-        fillItemCase1(getObject(position).getCustomItems().get(1),context,imageView2,nameTV2,priceTV2,oldPrice2,offerRL2,offerTV2);
+        fillItemCase1(getObject(position).getCustomItems().get(0),context,imageView,nameTV,priceTV,oldPrice,offerRL,offerTV,coverRL);
+        fillItemCase1(getObject(position).getCustomItems().get(1),context,imageView2,nameTV2,priceTV2,oldPrice2,offerRL2,offerTV2,coverRL2);
       }
 
     }

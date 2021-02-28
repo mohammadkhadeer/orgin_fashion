@@ -15,7 +15,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.ItemTest;
 import com.squareup.picasso.Picasso;
+
+import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 
 public class FragmentStoreInfo extends Fragment {
@@ -28,13 +32,15 @@ public class FragmentStoreInfo extends Fragment {
     TextView userNameTV;
     ImageView userImageIV;
     RelativeLayout fragment_store_info;
+    ItemTest itemTest;
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
-            storeNameStr = getArguments().getString("storeNameStr");
-            storeImage = getArguments().getString("storeImage");
             website_link = getArguments().getString("website_link");
+            itemTest = (ItemTest) getArguments().getParcelable("item_object");
+            storeNameStr = getTextEngOrLocal(getActivity(),itemTest.getStore().getName(),itemTest.getStore().getName_local());
+            storeImage = apiURLBase()+itemTest.getStore().getFlag().getUrl();
         }
         super.onAttach(context);
         //set userName in followID just as init value well need it to insert in

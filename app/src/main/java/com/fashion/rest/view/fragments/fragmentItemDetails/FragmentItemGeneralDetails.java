@@ -1,4 +1,4 @@
-package com.fashion.rest.view.fragments;
+package com.fashion.rest.view.fragments.fragmentItemDetails;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,24 +13,28 @@ import android.widget.TextView;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.ItemTest;
 import com.squareup.picasso.Picasso;
+
+import static com.fashion.rest.functions.Functions.calculatePercentage;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class FragmentItemGeneralDetails extends Fragment {
     View view;
     TextView title,des,offer;
-    String cat_type,cat,offer_link;
+    String cat_type,offer_link;
     RelativeLayout relativeLayout;
     ImageView offer_image;
 
     public FragmentItemGeneralDetails(){}
-
+    ItemTest itemTest;
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
-            cat = getArguments().getString("cat");
             cat_type = getArguments().getString("cat_type");
             offer_link = getArguments().getString("offer_link");
+            itemTest = (ItemTest) getArguments().getParcelable("item_object");
         }
         super.onAttach(context);
 
@@ -41,9 +45,16 @@ public class FragmentItemGeneralDetails extends Fragment {
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_item_general_details, container, false);
         inti();
+        fillTitleAndDesAndOfferPercentage();
         changeFont();
         showOffer();
         return view;
+    }
+
+    private void fillTitleAndDesAndOfferPercentage() {
+        title.setText(getTextEngOrLocal(getActivity(),itemTest.getName(),itemTest.getName_local()));
+        des.setText(getTextEngOrLocal(getActivity(),itemTest.getDescription(),itemTest.getDescription_local()));
+        offer.setText(calculatePercentage(itemTest.getPrice(),itemTest.getDiscountPrice())+" "+getActivity().getResources().getString(R.string.offer_4));
     }
 
     private void showOffer() {

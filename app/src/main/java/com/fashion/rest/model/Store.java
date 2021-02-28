@@ -5,17 +5,22 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class Store implements Parcelable {
     @SerializedName("photo")
     Flag flag;
     String name,id,name_local,phone_number;
+    @SerializedName("location")
+    ArrayList<Location> locationsArrayL;
 
-    public Store(Flag flag, String name, String id, String name_local, String phone_number) {
+    public Store(Flag flag, String name, String id, String name_local, String phone_number, ArrayList<Location> locationsArrayL) {
         this.flag = flag;
         this.name = name;
         this.id = id;
         this.name_local = name_local;
         this.phone_number = phone_number;
+        this.locationsArrayL = locationsArrayL;
     }
 
     protected Store(Parcel in) {
@@ -24,6 +29,7 @@ public class Store implements Parcelable {
         id = in.readString();
         name_local = in.readString();
         phone_number = in.readString();
+        locationsArrayL = in.createTypedArrayList(Location.CREATOR);
     }
 
     public static final Creator<Store> CREATOR = new Creator<Store>() {
@@ -78,6 +84,14 @@ public class Store implements Parcelable {
         this.phone_number = phone_number;
     }
 
+    public ArrayList<Location> getLocationsArrayL() {
+        return locationsArrayL;
+    }
+
+    public void setLocationsArrayL(ArrayList<Location> locationsArrayL) {
+        this.locationsArrayL = locationsArrayL;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -90,5 +104,6 @@ public class Store implements Parcelable {
         dest.writeString(id);
         dest.writeString(name_local);
         dest.writeString(phone_number);
+        dest.writeTypedList(locationsArrayL);
     }
 }

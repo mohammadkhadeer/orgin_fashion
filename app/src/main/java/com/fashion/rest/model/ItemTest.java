@@ -14,12 +14,12 @@ public class ItemTest implements Parcelable {
     Store store;
     @SerializedName("sub_category")
     Sub_Cat sub_cat;
-    String name,name_local,description,description_local,price,discountPrice;
+    String name,name_local,description,description_local,price,discountPrice,id;
 
 
     public ItemTest(){}
 
-    public ItemTest(ArrayList<Flag> flagArrayL, Store store, Sub_Cat sub_cat, String name, String name_local, String description, String description_local, String price, String discountPrice) {
+    public ItemTest(ArrayList<Flag> flagArrayL, Store store, Sub_Cat sub_cat, String name, String name_local, String description, String description_local, String price, String discountPrice, String id) {
         this.flagArrayL = flagArrayL;
         this.store = store;
         this.sub_cat = sub_cat;
@@ -29,6 +29,7 @@ public class ItemTest implements Parcelable {
         this.description_local = description_local;
         this.price = price;
         this.discountPrice = discountPrice;
+        this.id = id;
     }
 
     protected ItemTest(Parcel in) {
@@ -41,6 +42,7 @@ public class ItemTest implements Parcelable {
         description_local = in.readString();
         price = in.readString();
         discountPrice = in.readString();
+        id = in.readString();
     }
 
     public static final Creator<ItemTest> CREATOR = new Creator<ItemTest>() {
@@ -127,6 +129,14 @@ public class ItemTest implements Parcelable {
         this.discountPrice = discountPrice;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -143,5 +153,6 @@ public class ItemTest implements Parcelable {
         dest.writeString(description_local);
         dest.writeString(price);
         dest.writeString(discountPrice);
+        dest.writeString(id);
     }
 }

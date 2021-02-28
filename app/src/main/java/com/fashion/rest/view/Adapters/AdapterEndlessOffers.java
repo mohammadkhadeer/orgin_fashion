@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.utils.BaseViewHolderUser;
 import com.fashion.rest.view.activity.ItemDetails;
@@ -38,6 +39,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.convertOfferToItem;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.view.categoriesComp.Functions.callFunction;
 import static com.fashion.rest.view.categoriesComp.Functions.changeOffersGradientsAndTextColorCases;
@@ -206,12 +208,9 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
     cardButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        ItemTest itemTest = convertOfferToItem(getObject(position));
         Bundle bundle = new Bundle();
-        bundle.putString("itemID","itemID");
-        bundle.putString("itemName","itemName");
-        bundle.putString("cat","offers");
-        bundle.putString("cat_type","offers");
-        bundle.putString("from","offers");
+        bundle.putParcelable("item_object", itemTest);
 
         Intent intent = new Intent(context, ItemDetails.class);
         intent.putExtras(bundle);

@@ -12,6 +12,7 @@ public class Sub_Cat implements Parcelable {
     String category_id;
     @SerializedName("image")
     Flag flag;
+    public  Sub_Cat(){}
 
     public Sub_Cat(String name_en, String name_local, String appearance, String id, String category_id, Flag flag) {
         this.name_en = name_en;

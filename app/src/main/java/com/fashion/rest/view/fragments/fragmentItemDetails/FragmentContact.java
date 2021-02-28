@@ -4,12 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.fashion.rest.R;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.permission.CheckPermission;
 
 import static com.fashion.rest.functions.ItemDetailsFunctions.callAds;
@@ -23,16 +25,14 @@ public class FragmentContact extends Fragment {
 
     View view;
     RelativeLayout sendMessage, call;
-    String phoneNumber="0582402431",itemID,category;
     private static final int PHONE = 102;
+    ItemTest itemTest;
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
            // phoneNumber = getArguments().getString("phoneN");
-            itemID = getArguments().getString("itemID");
-            category = getArguments().getString("category");
-
+            itemTest = (ItemTest) getArguments().getParcelable("item_object");
         }
         super.onAttach(context);
 
@@ -57,7 +57,7 @@ public class FragmentContact extends Fragment {
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openWhatsApp(phoneNumber,getActivity());
+                openWhatsApp(itemTest.getStore().getPhone_number(),getActivity());
             }
         });
     }
@@ -65,7 +65,7 @@ public class FragmentContact extends Fragment {
     @SuppressLint("MissingPermission")
     private void callAdsHere() {
         if (CheckPermission.checkPermissionMethodToPhone(getActivity()) == true) {
-            callAds(getActivity(),phoneNumber);
+            callAds(getActivity(),itemTest.getStore().getPhone_number());
         }else{
             //Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.we_cant),Toast.LENGTH_SHORT).show();
         }

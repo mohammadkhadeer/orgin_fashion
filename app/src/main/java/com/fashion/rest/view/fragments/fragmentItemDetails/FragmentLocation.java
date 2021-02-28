@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.ItemTest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,7 +29,8 @@ import com.squareup.picasso.Picasso;
 
 
 public class FragmentLocation extends Fragment {
-    static final LatLng Your_Location = new LatLng(25.2616938, 55.3818661); //Your LatLong
+    static  LatLng Your_Location ;
+    static final LatLng Your_Location2= new LatLng(25.2616938, 55.3818661); //Your LatLong
     private GoogleMap mMap;
 
     SupportMapFragment supportMapFragment;
@@ -36,15 +39,16 @@ public class FragmentLocation extends Fragment {
     public FragmentLocation() {
     }
 
-    String lat, lng;
     View view;
-
+    ItemTest itemTest;
 //
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
-            lat = getArguments().getString("lat");
-            lng = getArguments().getString("lng");
+            itemTest = (ItemTest) getArguments().getParcelable("item_object");
+            float a=Float.parseFloat(itemTest.getStore().getLocationsArrayL().get(0).getLatitude());
+            float b=Float.parseFloat(itemTest.getStore().getLocationsArrayL().get(0).getLongitude());
+            Your_Location = new LatLng(a,b);
         }
         super.onAttach(context);
         //set userName in followID just as init value well need it to insert in
@@ -57,7 +61,7 @@ public class FragmentLocation extends Fragment {
         view = inflater.inflate(R.layout.fragment_location, container, false);
         init();
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
-        potLoaction();
+        potLocation();
 //        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
 //            @Override
 //            public void onMapReady(final GoogleMap map) {
@@ -97,7 +101,7 @@ public class FragmentLocation extends Fragment {
         fragment_location_see_in_google_maps = (RelativeLayout) view.findViewById(R.id.fragment_location_see_in_google_maps);
     }
 
-    private void potLoaction() {
+    private void potLocation() {
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
 
             @Override
