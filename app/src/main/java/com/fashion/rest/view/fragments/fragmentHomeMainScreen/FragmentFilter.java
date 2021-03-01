@@ -291,6 +291,9 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
                     bundle.putString("sub_cat_id",generalSub_category.getId());
                     bundle.putString("cat_id",generalSub_category.getCategory_id());
                     bundle.putString("sub_cat_name",getTextEngOrLocal(getActivity(),generalSub_category.getName_en(),generalSub_category.getName_local()));
+                    bundle.putString("from","filter");
+//                    bundle.putString("price_from",generalSub_category.getCategory_id());
+//                    bundle.putString("price_to",generalSub_category.getCategory_id());
 
                     Intent intent = new Intent(getActivity(), ResultActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

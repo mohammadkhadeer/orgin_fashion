@@ -37,7 +37,7 @@ import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 public class ResultActivity extends AppCompatActivity {
 
     FragmentResults fragmentResults = new FragmentResults();
-    String cat_id,sub_cat_id,sub_cat_name;
+    String cat_id,sub_cat_id,sub_cat_name,fromFilter;
     ImageView backIV,brand_iv;
     RelativeLayout back_rl;
     TextView sub_category_name_tv,result_number_tv;
@@ -59,6 +59,7 @@ public class ResultActivity extends AppCompatActivity {
         fillResultNumber();
         fillBackImageViewDepLanguage();
         actionListenerToBack();
+
         handelResultFragment();
     }
 
@@ -141,6 +142,7 @@ public class ResultActivity extends AppCompatActivity {
         sub_cat_id =bundle.getString("sub_cat_id");
         cat_id =bundle.getString("cat_id");
         sub_cat_name =bundle.getString("sub_cat_name");
+        fromFilter =bundle.getString("from");
 
         //sub_catArrayList = (ArrayList<Sub_Cat>) getIntent().getSerializableExtra("sub_cat");
     }
@@ -149,6 +151,12 @@ public class ResultActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("sub_cat_id",sub_cat_id);
         bundle.putString("cat_id",cat_id);
+
+        //pass price from and rice to and array of area
+        if (fromFilter != null && fromFilter.equals("filter"))
+        {
+            Log.i("TAG",fromFilter);
+        }
 
         fragmentResults.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()

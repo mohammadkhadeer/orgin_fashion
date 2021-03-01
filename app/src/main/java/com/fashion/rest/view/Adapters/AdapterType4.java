@@ -24,6 +24,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.actionListenerToFav;
+import static com.fashion.rest.functions.Functions.calculatePercentage;
+import static com.fashion.rest.functions.Functions.checkFavOrNot;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
@@ -54,6 +57,10 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
         changeFont(holder,context);
         fillText(holder,context,position);
         actionListenerToCard(holder,context,position);
+        holder.per_adapter_4.setText(calculatePercentage(dealsArrayL.get(position).getPrice(),dealsArrayL.get(position).getDiscountPrice()));
+        checkFavOrNot(dealsArrayL.get(position).getId(),context,holder.fav_or_not);
+        actionListenerToFav(dealsArrayL.get(position).getId(),dealsArrayL.get(position).getSub_cat().getId(),dealsArrayL.get(position).getSub_cat().getCategory_id()
+                ,context,holder.fav_or_not,holder.adapter4_v_RL);
     }
 
     private void actionListenerToCard(ViewHolder holder, final Context context, final int position) {
@@ -82,6 +89,7 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
         //holder.desTV.setTypeface(Functions.changeFontGeneral(context));
         holder.priceTV.setTypeface(Functions.changeFontGeneral(context));
         holder.oldPrice.setTypeface(Functions.changeFontGeneral(context));
+        holder.per_adapter_4.setTypeface(Functions.changeFontGeneral(context));
         holder.oldPrice.setPaintFlags(holder.priceTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
@@ -113,20 +121,23 @@ public class AdapterType4 extends RecyclerView.Adapter<AdapterType4.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView,store_im;
-        RelativeLayout contRL,coverRL,buttonAddToCart;
-        TextView nameTV,desTV,priceTV,oldPrice,store_name;
+        ImageView imageView,store_im,fav_or_not;
+        RelativeLayout contRL,coverRL,adapter4_v_RL;
+        TextView nameTV,desTV,priceTV,oldPrice,store_name,per_adapter_4;
         public ViewHolder(View itemView) {
             super(itemView);
             nameTV = (TextView) itemView.findViewById(R.id.adapter_type4_pName);
             store_name = (TextView) itemView.findViewById(R.id.store_name);
             //desTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_des_TV);
             priceTV = (TextView) itemView.findViewById(R.id.adapter_type4_price_TV);
+            per_adapter_4 = (TextView) itemView.findViewById(R.id.per_adapter_4);
             oldPrice = (TextView) itemView.findViewById(R.id.adapter_type4_old_price_TV);
             imageView = (ImageView) itemView.findViewById(R.id.adapter_type4_price_IV) ;
+            fav_or_not = (ImageView) itemView.findViewById(R.id.fav_or_not_adapter4) ;
             store_im = (ImageView) itemView.findViewById(R.id.store_im) ;
             //contRL = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_to_you_cont) ;
             coverRL = (RelativeLayout) itemView.findViewById(R.id.cover_adapter_type4_set) ;
+            adapter4_v_RL = (RelativeLayout) itemView.findViewById(R.id.adapter4_v_RL) ;
             //buttonAddToCart = (RelativeLayout) itemView.findViewById(R.id.adapter_suggested_call_button);
         }
 

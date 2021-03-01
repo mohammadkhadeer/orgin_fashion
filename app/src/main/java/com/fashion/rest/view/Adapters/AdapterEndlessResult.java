@@ -27,6 +27,8 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 
+import static com.fashion.rest.functions.Functions.actionListenerToFav;
+import static com.fashion.rest.functions.Functions.checkFavOrNot;
 import static com.fashion.rest.view.Adapters.resultTupe1.FillResultsType1.fillItemCase1;
 import static com.fashion.rest.view.categoriesComp.FillType2.fillCaseItem;
 import static com.fashion.rest.view.categoriesComp.FillType4.fillCase4Item;
@@ -123,8 +125,8 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
   }
 
   public class ViewHolder extends BaseViewHolderUser {
-    RelativeLayout cont1,cont2,offerRL,offerRL2;
-    ImageView imageView,imageView2;
+    RelativeLayout cont1,cont2,offerRL,offerRL2,adapter_result_v_RL1,adapter_result_v_RL2;
+    ImageView imageView,imageView2,fav_or_not_result1,fav_or_not_result2;
     LinearLayout coverRL,coverRL2;
     TextView nameTV,priceTV,oldPrice,offerTV,nameTV2,priceTV2,oldPrice2,offerTV2;
 
@@ -145,6 +147,8 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
       imageView = (ImageView) itemView.findViewById(R.id.adapter_result_type1_IV) ;
 
       coverRL = (LinearLayout) itemView.findViewById(R.id.cover_adapter_result_type1) ;
+      adapter_result_v_RL1 = (RelativeLayout) itemView.findViewById(R.id.adapter_result_v_RL1);
+      fav_or_not_result1 = (ImageView) itemView.findViewById(R.id.fav_or_not_result1) ;
 
       offerRL2 = (RelativeLayout) itemView.findViewById(R.id.adapter_result_type12_offer_rl);
 
@@ -156,6 +160,8 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
       imageView2 = (ImageView) itemView.findViewById(R.id.adapter_result_type12_IV) ;
 
       coverRL2 = (LinearLayout) itemView.findViewById(R.id.cover_adapter_result_type12) ;
+      adapter_result_v_RL2 = (RelativeLayout) itemView.findViewById(R.id.adapter_result_v_RL2);
+      fav_or_not_result2 = (ImageView) itemView.findViewById(R.id.fav_or_not_result2) ;
     }
 
     protected void clear() {
@@ -169,10 +175,30 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
 
       if(getObject(position).getCustomItems().size() ==1)
       {
+        //static method to use it in all the app
+        checkFavOrNot(getObject(position).getCustomItems().get(0).getId(),context,fav_or_not_result1);
+        actionListenerToFav(getObject(position).getCustomItems().get(0).getId(),getObject(position).getCustomItems().get(0).getSub_cat().getId()
+                ,getObject(position).getCustomItems().get(0).getSub_cat().getCategory_id()
+                ,context,fav_or_not_result1,adapter_result_v_RL1);
+
         fillItemCase1(getObject(position).getCustomItems().get(0),context,imageView,nameTV,priceTV,oldPrice,offerRL,offerTV,coverRL);
       }else{
+
         fillItemCase1(getObject(position).getCustomItems().get(0),context,imageView,nameTV,priceTV,oldPrice,offerRL,offerTV,coverRL);
+
+        checkFavOrNot(getObject(position).getCustomItems().get(0).getId(),context,fav_or_not_result1);
+        actionListenerToFav(getObject(position).getCustomItems().get(0).getId(),getObject(position).getCustomItems().get(0).getSub_cat().getId()
+                ,getObject(position).getCustomItems().get(0).getSub_cat().getCategory_id()
+                ,context,fav_or_not_result1,adapter_result_v_RL1);
+
         fillItemCase1(getObject(position).getCustomItems().get(1),context,imageView2,nameTV2,priceTV2,oldPrice2,offerRL2,offerTV2,coverRL2);
+
+        checkFavOrNot(getObject(position).getCustomItems().get(1).getId(),context,fav_or_not_result1);
+
+        actionListenerToFav(getObject(position).getCustomItems().get(1).getId(),getObject(position).getCustomItems().get(1).getSub_cat().getId()
+                ,getObject(position).getCustomItems().get(1).getSub_cat().getCategory_id()
+                ,context,fav_or_not_result2,adapter_result_v_RL2);
+
       }
 
     }

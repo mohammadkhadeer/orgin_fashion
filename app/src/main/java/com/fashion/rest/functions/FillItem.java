@@ -66,6 +66,15 @@ public class FillItem {
         return listArrayL;
     }
 
+    public static ArrayList<String> fillItemsIdInFavTable(Context context) {
+        ArrayList<String> item_id_ArrayL = new ArrayList<String>();
+        Cursor res = getDataBaseInstance(context).descendingFav();
+        while (res.moveToNext()) {
+            item_id_ArrayL.add(res.getString(1).replace("\n", ""));
+        }
+        return item_id_ArrayL;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static ArrayList<Deal> fillEndlessItemDepCatArrayL2(ArrayList<Deal> dealArrayL, Context context,int xxx) {
         //ArrayList<Deal> dealArrayL = new ArrayList<Deal>();

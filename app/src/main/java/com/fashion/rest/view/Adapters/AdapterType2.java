@@ -24,7 +24,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.actionListenerToFav;
 import static com.fashion.rest.functions.Functions.calculatePercentage;
+import static com.fashion.rest.functions.Functions.checkFavOrNot;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
@@ -55,6 +57,10 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
         changeFont(holder,context);
         fillText(holder,context,position);
         actionListenerToCard(holder,context,position);
+        //static method to use it in all the app
+        checkFavOrNot(dealsArrayL.get(position).getId(),context,holder.fav_imageView);
+        actionListenerToFav(dealsArrayL.get(position).getId(),dealsArrayL.get(position).getSub_cat().getId(),dealsArrayL.get(position).getSub_cat().getCategory_id()
+        ,context,holder.fav_imageView,holder.fav_button_relativeLayout);
     }
 
 
@@ -105,8 +111,8 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        RelativeLayout coverRL;
+        ImageView imageView,fav_imageView;
+        RelativeLayout coverRL,fav_button_relativeLayout;
         TextView nameTV,priceTV,oldPrice,per;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -115,7 +121,9 @@ public class AdapterType2 extends RecyclerView.Adapter<AdapterType2.ViewHolder>{
             priceTV = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_meal_price_TV);
             oldPrice = (TextView) itemView.findViewById(R.id.adapter_suggested_to_you_meal_old_price_TV);
             imageView = (ImageView) itemView.findViewById(R.id.adapter_suggested_to_you_IV) ;
+            fav_imageView = (ImageView) itemView.findViewById(R.id.fav_or_not) ;
             coverRL = (RelativeLayout) itemView.findViewById(R.id.cover_adapter_type2) ;
+            fav_button_relativeLayout = (RelativeLayout) itemView.findViewById(R.id.adapter2_v_RL) ;
         }
 
     }

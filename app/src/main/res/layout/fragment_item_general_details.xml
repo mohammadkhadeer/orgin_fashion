@@ -21,15 +21,101 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/title"
-                android:textSize="19dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/Cuff_Bracelet"
-                android:textColor="@color/colorBlack"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="65">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title"
+                        android:textSize="19dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Cuff_Bracelet"
+                        android:textColor="@color/colorBlack"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/adapter2_v_RL"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:layout_weight="35">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:id="@+id/share_general_details"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:layout_weight="33">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/share"
+                                android:alpha="0.5"
+                                />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:id="@+id/fav_general_details"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:layout_weight="33">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/fav_or_not_general"
+                                android:background="@drawable/item_favu"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:id="@+id/repo_general_details"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:layout_weight="33">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="29dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="3dp"
+                                android:background="@drawable/report"
+                                />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"

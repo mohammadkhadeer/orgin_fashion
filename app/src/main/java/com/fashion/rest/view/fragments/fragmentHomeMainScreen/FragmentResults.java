@@ -111,7 +111,7 @@ public class FragmentResults extends Fragment {
                                                                                       public void onScrollChanged() {
                                                                                           View view = (View) nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1);
                                                                                           int diff = (view.getBottom() - (nestedScrollView.getHeight() + nestedScrollView.getScrollY()));
-                                                                                          if (diff == 150) {
+                                                                                          if (diff == 0) {
 //                                                                                              new Handler().postDelayed(new Runnable() {
 //
 //                                                                                                  @RequiresApi(api = Build.VERSION_CODES.M)

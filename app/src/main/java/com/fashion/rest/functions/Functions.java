@@ -6,8 +6,12 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.fashion.rest.R;
+import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.FastFood;
@@ -30,6 +34,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import static com.fashion.rest.database.DataBaseInstance.getDataBaseInstance;
+import static com.fashion.rest.functions.FillItem.fillItemsIdInFavTable;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class Functions {
@@ -81,6 +87,50 @@ public class Functions {
                 ,offer.getName(),offer.getName_local(),offer.getDescription(),offer.getDescription_local(),offer.getPrice(),offer.getDiscountPrice(),offer.getItem_id()
         );
         return itemTest;
+    }
+
+    public static void checkFavOrNot(String item_id, Context context, ImageView imageView) {
+        ArrayList<String> item_id_ArrayL = fillItemsIdInFavTable(context);
+        for (int i=0;i<item_id_ArrayL.size();i++)
+        {
+            if (item_id_ArrayL.get(i).equals(item_id))
+                imageView.setImageResource(R.drawable.ic_favorites);
+        }
+    }
+
+    public static boolean checkFavOrNotInsertOrDelete(String item_id, Context context) {
+        ArrayList<String> item_id_ArrayL = fillItemsIdInFavTable(context);
+        boolean x=false;
+        int flag =0;
+        for (int i=0;i<item_id_ArrayL.size();i++)
+        {
+            if (item_id_ArrayL.get(i).equals(item_id))
+            {
+                flag =1;
+            }
+        }
+        if (flag ==0)
+            x =false;
+        else
+            x=true;
+        return x;
+    }
+
+    public static void actionListenerToFav(final String item_id, final String sub_cat_id, final String cat_id, final Context context, final ImageView imageView, RelativeLayout relativeLayout) {
+        final DBHelper db =getDataBaseInstance(context);
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView.setImageResource(R.drawable.ic_favorites);
+                if (checkFavOrNotInsertOrDelete(item_id,context))
+                {
+                    imageView.setImageResource(R.drawable.item_favu);
+                    db.deleteItemFromFav(item_id);
+                } else {
+                    db.insertItemToFav(item_id,sub_cat_id,cat_id);
+                }
+            }
+        });
     }
 
     private static final int PAGE_SIZEH = 8;

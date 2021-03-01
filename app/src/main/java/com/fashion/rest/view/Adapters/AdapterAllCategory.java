@@ -123,6 +123,9 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         else{
                             bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getId());
                             bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getCategory_id());
+                            bundle.putString("sub_cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getName_en()
+                                    ,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getName_local()));
+
                             moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
                         }
                     }
@@ -144,6 +147,9 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         else{
                             bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getId());
                             bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getCategory_id());
+                            bundle.putString("sub_cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getName_en()
+                                    ,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getName_local()));
+
                             moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
                         }
 
@@ -162,6 +168,11 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         } else{
                             bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getId());
                             bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getCategory_id());
+                            bundle.putString("sub_cat_name"
+                                    ,getTextEngOrLocal(context
+                                    ,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getName_en()
+                                    ,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getName_local()));
+
                             moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
                         }
 
@@ -183,6 +194,9 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         } else{
                             bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getId());
                             bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getCategory_id());
+                            bundle.putString("sub_cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getName_en()
+                                    ,allCatArrayL.get(position).getCustomCategory().get(0).getSub_catArrayList().get(0).getName_local()));
+
                             moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
                         }
 
@@ -201,6 +215,11 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         }else{
                             bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getId());
                             bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getCategory_id());
+                            bundle.putString("sub_cat_name"
+                                    ,getTextEngOrLocal(context
+                                            ,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getName_en()
+                                            ,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getName_local()));
+
                             moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
                         }
                     }
@@ -218,6 +237,10 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                         {
                             moveToSubCategory(bundle,allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList());
                         }else {
+                            bundle.putString("sub_cat_name"
+                                    ,getTextEngOrLocal(context
+                                            ,allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().get(0).getName_en()
+                                            ,allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().get(0).getName_local()));
                             moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
                         }
                     }

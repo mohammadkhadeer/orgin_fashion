@@ -41,6 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/fragment_profile_recent_v_RL"
+                        android:visibility="gone"
                         android:background="?android:attr/selectableItemBackground"
                         >
 
@@ -123,6 +124,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
+                        android:visibility="gone"
                         android:background="@color/colorSilver"
                         android:layout_marginLeft="80dp"
                         android:layout_marginStart="60dp"
@@ -131,6 +133,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:id="@+id/fragment_profile_recent_RL"
                         android:background="?android:attr/selectableItemBackground"
                         >
@@ -214,6 +217,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
+                        android:visibility="gone"
                         android:background="@color/colorSilver"
                         android:layout_marginLeft="80dp"
                         android:layout_marginStart="60dp"

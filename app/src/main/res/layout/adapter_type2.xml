@@ -15,14 +15,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/adapter_suggested_to_you_cont"
-        android:background="?android:attr/selectableItemBackground"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="275dp"
-            android:id="@+id/cover_adapter_type2"
             />
 
         <LinearLayout
@@ -43,6 +40,38 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="70">
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/adapter2_v_RL"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:layout_weight="30">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/fav_or_not"
+                            android:background="@drawable/item_favu"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </RelativeLayout>
 
@@ -153,6 +182,13 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/cover_adapter_type2"
+        android:background="?android:attr/selectableItemBackground">
 
+    </RelativeLayout>
 
 </RelativeLayout>

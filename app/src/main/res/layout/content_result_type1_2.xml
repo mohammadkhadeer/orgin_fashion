@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:orientation="vertical"
-        android:id="@+id/cover_adapter_result_type12"
         android:weightSum="100">
 
         <RelativeLayout
@@ -139,5 +138,43 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="70">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/adapter_result_v_RL2"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_weight="30">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/fav_or_not_result2"
+                android:background="@drawable/item_favu"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/cover_adapter_result_type12"
+        android:layout_marginTop="30dp"/>
 
 </RelativeLayout>

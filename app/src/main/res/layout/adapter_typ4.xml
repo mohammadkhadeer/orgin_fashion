@@ -14,13 +14,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/adapter_suggested_to_you_cont"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="255dp"
-            android:id="@+id/cover_adapter_type4_set"
             />
 
         <android.support.v7.widget.CardView
@@ -29,7 +27,6 @@
             app:cardCornerRadius="8dp"
             android:background="@drawable/remove_card"
             >
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -176,6 +173,25 @@
                 android:layout_height="match_parent"
                 android:layout_weight="27">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/offer"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="11dp"
+                        android:id="@+id/per_adapter_4"
+                        android:text="40%"/>
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
@@ -190,5 +206,49 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="25">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="45"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/adapter4_v_RL"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_weight="30">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/fav_or_not_adapter4"
+                android:background="@drawable/item_favu"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:id="@+id/cover_adapter_type4_set"
+        />
 
 </RelativeLayout>

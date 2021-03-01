@@ -46,6 +46,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String CITY_NAME_EN="CITY_NAME_EN";
     public static final String CITY_NAME_LOCAL="CITY_NAME_LOCAL";
 
+    public static final String TABLE_FAVORITE="favorite_table";
+    public static final String COL_FAVORITE_ID="ID";
+    public static final String COL_ITEM_SERVER_ID="COL_ITEM_SERVER_ID";
+    public static final String COL_SUB_CAT_ID="COL_SUB_CAT_ID";
+    public static final String COL_CATEGORY_ID="COL_CATEGORY_ID";
+
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -60,6 +66,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "COL_SERVER_ID TEXT" + ",CITY_EN TEXT" + ",CITY_LOCAL TEXT" + ",NEIGHBORHOOD_EN TEXT" + ",NEIGHBORHOOD_LOCAL TEXT)");
         db.execSQL("create table "+TABLE_CITY +" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "COL_CITY_SERVER_ID TEXT" + ",CITY_NAME_EN TEXT" +",CITY_NAME_LOCAL TEXT)");
+        db.execSQL("create table "+TABLE_FAVORITE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "COL_ITEM_SERVER_ID TEXT" + ",COL_SUB_CAT_ID TEXT" +",COL_CATEGORY_ID TEXT)");
     }
 
     @Override
@@ -67,6 +75,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_CART);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NEIGHBORHOOD);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_CITY);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_FAVORITE);
 
         onCreate(db);
     }
@@ -127,6 +136,21 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public boolean insertItemToFav(String item_id,String sub_cat_id,String cat_id)
+    {
+        SQLiteDatabase db =this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_ITEM_SERVER_ID,item_id);
+        contentValues.put(COL_SUB_CAT_ID,sub_cat_id);
+        contentValues.put(COL_CATEGORY_ID,cat_id);
+
+        long result= db.insert(TABLE_FAVORITE,null,contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
     ////////////////////tester to check if table EXISTS/////////
 
 //    public boolean doesTableExist() {
@@ -169,6 +193,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor descendingFav(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_FAVORITE, null, null,
+                null, null, null, COL_FAVORITE_ID + " DESC", null);
+        return cursor;
+    }
+
     //////////////////////////////////////update/////////////////////
 
     public void updateItemNumberInCart(String numberOfItems,String itemName)
@@ -203,6 +234,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_CART, " NAME = ?",new String[] {itemName});
     }
 
+    public Integer deleteItemFromFav(String itemName){
+        SQLiteDatabase db =this.getWritableDatabase();
+        return db.delete(TABLE_FAVORITE, " COL_ITEM_SERVER_ID = ?",new String[] {itemName});
+    }
+
     //////////////////////////////////////delete data "All line" ////////////////
 
     public void deleteAllNeighborhood(){
@@ -220,6 +256,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public void deleteAllCartItems(){
         SQLiteDatabase db =this.getWritableDatabase();
         db.execSQL("DELETE FROM cart_table"); //delete all rows in a table
+        db.close();
+    }
+
+    public void deleteAllFavItems(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        db.execSQL("DELETE FROM favorite_table"); //delete all rows in a table
         db.close();
     }
 
