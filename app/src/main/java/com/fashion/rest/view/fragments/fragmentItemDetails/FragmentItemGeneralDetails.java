@@ -3,6 +3,7 @@ package com.fashion.rest.view.fragments.fragmentItemDetails;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class FragmentItemGeneralDetails extends Fragment {
             cat_type = getArguments().getString("cat_type");
             offer_link = getArguments().getString("offer_link");
             itemTest = (ItemTest) getArguments().getParcelable("item_object");
+            cat_type = itemTest.getSub_cat().getAppearance();
         }
         super.onAttach(context);
 
@@ -49,9 +51,18 @@ public class FragmentItemGeneralDetails extends Fragment {
         inti();
         fillTitleAndDesAndOfferPercentage();
         //static method to fav image and fac_action listener
-        checkFavOrNot(itemTest.getId(),getActivity(),fav_or_not_general);
-        actionListenerToFav(itemTest.getId(),itemTest.getSub_cat().getId(),itemTest.getSub_cat().getCategory_id()
-                ,getActivity(),fav_or_not_general,fav_general_details);
+        Log.i("TAG cat_type",cat_type);
+        if (cat_type.equals("offers"))
+            {
+                fav_general_details.setVisibility(View.GONE);
+                fav_or_not_general.setVisibility(View.GONE);
+            }else {
+            fav_general_details.setVisibility(View.VISIBLE);
+            fav_or_not_general.setVisibility(View.VISIBLE);
+            checkFavOrNot(itemTest.getId(), getActivity(), fav_or_not_general);
+            actionListenerToFav(itemTest.getId(), itemTest.getSub_cat().getId(), itemTest.getSub_cat().getCategory_id()
+                    , getActivity(), fav_or_not_general, fav_general_details);
+        }
 
         changeFont();
         showOffer();

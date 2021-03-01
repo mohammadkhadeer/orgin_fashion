@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:id="@+id/all_cat_nested"
+    android:fitsSystemWindows="true"
     tools:context=".view.activity.ResultActivity">
+
 
 
     <LinearLayout

@@ -51,6 +51,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        statusBarColor();
         getInfoFromCat();
         inti();
         fillSubCategoryName();
@@ -162,6 +163,10 @@ public class ResultActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_result_activity, fragmentResults)
                 .commit();
+    }
+
+    private void statusBarColor() {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
 }

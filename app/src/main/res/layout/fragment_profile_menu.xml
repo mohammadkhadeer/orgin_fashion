@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/profile_fragment"
-    android:background="@color/colorSilver3"
     tools:context=".view.fragments.FragmentProfileMenu">
 
 
@@ -16,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="0dp"
+        android:background="@color/colorSilver3"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <LinearLayout
@@ -954,6 +954,11 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/colorSilver3"/>
 
         </LinearLayout>
 

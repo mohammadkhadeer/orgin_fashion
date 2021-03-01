@@ -193,7 +193,7 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
 
         fillItemCase1(getObject(position).getCustomItems().get(1),context,imageView2,nameTV2,priceTV2,oldPrice2,offerRL2,offerTV2,coverRL2);
 
-        checkFavOrNot(getObject(position).getCustomItems().get(1).getId(),context,fav_or_not_result1);
+        checkFavOrNot(getObject(position).getCustomItems().get(1).getId(),context,fav_or_not_result2);
 
         actionListenerToFav(getObject(position).getCustomItems().get(1).getId(),getObject(position).getCustomItems().get(1).getSub_cat().getId()
                 ,getObject(position).getCustomItems().get(1).getSub_cat().getCategory_id()

@@ -91,11 +91,16 @@ public class Functions {
 
     public static void checkFavOrNot(String item_id, Context context, ImageView imageView) {
         ArrayList<String> item_id_ArrayL = fillItemsIdInFavTable(context);
+        int flag=0;
         for (int i=0;i<item_id_ArrayL.size();i++)
         {
-            if (item_id_ArrayL.get(i).equals(item_id))
+            if (item_id_ArrayL.get(i).equals(item_id)){
+                flag =1;
                 imageView.setImageResource(R.drawable.ic_favorites);
+            }
         }
+        if (flag ==0)
+            imageView.setImageResource(R.drawable.item_favu);
     }
 
     public static boolean checkFavOrNotInsertOrDelete(String item_id, Context context) {

@@ -165,7 +165,7 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/fav_or_not_result1"
-                android:background="@drawable/item_favu"/>
+                />
 
         </RelativeLayout>
 
@@ -176,6 +176,7 @@
         android:layout_height="230dp"
         android:orientation="horizontal"
         android:layout_marginTop="30dp"
+        android:background="?android:attr/selectableItemBackground"
         android:id="@+id/cover_adapter_result_type1"
         >
 
