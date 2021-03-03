@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "165958144911",
+    "firebase_url": "https://fashion-562c3-default-rtdb.firebaseio.com",
+    "project_id": "fashion-562c3",
+    "storage_bucket": "fashion-562c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165958144911:android:7519da25a7639eaeb271fa",
+        "android_client_info": {
+          "package_name": "com.fashion.rest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165958144911-c2u882i7jebhqddjvno3tohs6gr0rm9q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fashion.rest",
+            "certificate_hash": "806737538e4fb9491a12acf8aa81966d8b4a055e"
+          }
+        },
+        {
+          "client_id": "165958144911-1j3l9cc9cpse9p5e2m12b9720eoq34g4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeOtMw5C7Fe_as_R1MSSIIrqKad2k07hA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165958144911-1j3l9cc9cpse9p5e2m12b9720eoq34g4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
