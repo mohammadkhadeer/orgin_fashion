@@ -22,6 +22,7 @@ import com.fashion.rest.model.Notification;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.model.OffersGradientsWithTextColor;
 import com.fashion.rest.model.Price;
+import com.fashion.rest.model.ReportType;
 import com.fashion.rest.model.Store;
 import com.fashion.rest.model.SubCategory;
 import com.fashion.rest.model.Sub_Cat;
@@ -266,5 +267,15 @@ public class Functions {
     public static Typeface changeFontBold(Context context) {
         Typeface typeFace = Typeface.createFromAsset(context.getAssets(), "NTAILUB.TTF");
         return typeFace;
+    }
+
+    public static ArrayList<ReportType> fillReportArrayL(Context context) {
+        ArrayList<ReportType> reportTypesArrayL = new ArrayList<ReportType>();
+
+        reportTypesArrayL.add(new ReportType(context.getResources().getString(R.string.out_of_stock),context.getResources().getString(R.string.out_of_stock_s),R.drawable.out_stock));
+        reportTypesArrayL.add(new ReportType(context.getResources().getString(R.string.fack_price),context.getResources().getString(R.string.fack_price_s),R.drawable.fake_price));
+        reportTypesArrayL.add(new ReportType(context.getResources().getString(R.string.pad_q),context.getResources().getString(R.string.pad_q_s),R.drawable.pad_q));
+
+        return reportTypesArrayL;
     }
 }

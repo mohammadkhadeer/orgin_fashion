@@ -24,6 +24,16 @@
     <string name="call">Call</string>
     <string name="aed">AED</string>
 
+    <string name="message_erp">Please select one of this following reasons</string>
+    <string name="reports">Report</string>
+
+    <string name="out_of_stock">Out stock</string>
+    <string name="fack_price">Fake price</string>
+    <string name="pad_q">bad quality</string>
+
+    <string name="out_of_stock_s">Out stock</string>
+    <string name="fack_price_s">Fake price</string>
+    <string name="pad_q_s">bad quality</string>
 
     <string name="set">Sets</string>
     <string name="bracelets">Bracelets</string>

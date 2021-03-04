@@ -11,6 +11,13 @@
     <string name="arabic">عربي</string>
     <string name="english">انجليزي</string>
     <string name="language">اللغة</string>
+
+    <string name="message_erp">حدد سبب من هذة الاسباب</string>
+    <string name="reports">تقرير</string>
+    <string name="out_of_stock_s">Out stock</string>
+    <string name="fack_price_s">Fake price</string>
+    <string name="pad_q_s">bad quality</string>
+
     <string name="set">المجموعات</string>
     <string name="bracelets">الاساور</string>
     <string name="necklaces">العقود</string>
@@ -223,5 +230,8 @@
     <string name="Result_number">عدد النتائج</string>
     <string name="aed">د.أ</string>
     <string name="no_more_items">لا يوجد المزيد من العناصر في</string>
+    <string name="out_of_stock">الكميه منتهية</string>
+    <string name="fack_price">سعر وهمي</string>
+    <string name="pad_q">جودة سيئة</string>
 
 </resources>

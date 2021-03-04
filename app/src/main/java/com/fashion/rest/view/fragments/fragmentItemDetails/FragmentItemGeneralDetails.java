@@ -1,6 +1,7 @@
 package com.fashion.rest.view.fragments.fragmentItemDetails;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemTest;
+import com.fashion.rest.view.activity.Login;
+import com.fashion.rest.view.activity.ReportActivity;
+import com.fashion.rest.view.activity.SplashScreen;
 import com.squareup.picasso.Picasso;
 
 import static com.fashion.rest.functions.Functions.actionListenerToFav;
@@ -51,7 +55,6 @@ public class FragmentItemGeneralDetails extends Fragment {
         inti();
         fillTitleAndDesAndOfferPercentage();
         //static method to fav image and fac_action listener
-        Log.i("TAG cat_type",cat_type);
         if (cat_type.equals("offers"))
             {
                 fav_general_details.setVisibility(View.GONE);
@@ -66,7 +69,21 @@ public class FragmentItemGeneralDetails extends Fragment {
 
         changeFont();
         showOffer();
+        actionListenerToReport();
         return view;
+    }
+
+    private void actionListenerToReport() {
+        repo_general_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ReportActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("item_object", itemTest);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+            }
+        });
     }
 
     private void fillTitleAndDesAndOfferPercentage() {
