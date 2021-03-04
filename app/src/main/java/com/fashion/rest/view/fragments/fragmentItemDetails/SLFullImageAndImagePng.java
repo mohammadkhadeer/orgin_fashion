@@ -9,40 +9,23 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
-import com.fashion.rest.model.Categories;
-import com.fashion.rest.model.Deal;
-import com.fashion.rest.model.Home;
+
 import com.fashion.rest.model.ItemTest;
-import com.fashion.rest.presnter.JsonPlaceHolderApi;
-import com.fashion.rest.view.Adapters.AdapterSet;
+
 import com.fashion.rest.view.Adapters.AdapterType2;
 import com.fashion.rest.view.Adapters.AdapterType4;
-import com.fashion.rest.view.activity.CategoryItem;
 import com.fashion.rest.view.activity.ResultActivity;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
-import static com.fashion.rest.functions.FillItem.fillAllItemDepCatArrayL;
-import static com.fashion.rest.functions.Functions.fillSetArrayL;
-import static com.fashion.rest.functions.Functions.fillSetArrayL2;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
-import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 
 
 public class SLFullImageAndImagePng extends Fragment {

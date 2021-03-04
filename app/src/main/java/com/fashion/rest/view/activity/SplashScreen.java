@@ -13,17 +13,11 @@ import com.fashion.rest.R;
 import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.model.Areas;
 import com.fashion.rest.model.City;
-import com.fashion.rest.model.Comment;
 import com.fashion.rest.model.Countries;
-import com.fashion.rest.model.Post;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
 import com.fashion.rest.view.fragments.FragmentSelectCountry;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseError;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,7 +25,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.fashion.rest.apiURL.API.api1;
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.RetrofitFunctions.getAreasApi;
 import static com.fashion.rest.functions.RetrofitFunctions.getCitiesApi;

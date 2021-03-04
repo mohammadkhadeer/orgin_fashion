@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import com.fashion.rest.view.activity.CategoryItem;
 
 import java.util.ArrayList;
 
-import static com.fashion.rest.functions.Functions.fillSetArrayL;
 
 public class FragmentSet extends Fragment implements AdapterSet.PassItem {
     View view;
@@ -58,7 +56,6 @@ public class FragmentSet extends Fragment implements AdapterSet.PassItem {
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_set, container, false);
         inti();
-        createRVSuggested();
         changeFont();
         actionListenerToSeeAll();
         return view;
@@ -90,18 +87,6 @@ public class FragmentSet extends Fragment implements AdapterSet.PassItem {
         relativeLayout = (RelativeLayout) view.findViewById(R.id.see_all_rl);
     }
 
-    private void createRVSuggested() {
-        dealsArrayList = fillSetArrayL(dealsArrayList,getActivity());
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.HORIZONTAL, false);
-
-        recyclerView.setLayoutManager(layoutManager);
-        adapterSet =new AdapterSet(getActivity()
-                ,dealsArrayList,getActivity().getResources().getString(R.string.set_s),this);
-        recyclerView.setAdapter(adapterSet);
-    }
 
     @Override
     public void onClicked(Deal deal) {

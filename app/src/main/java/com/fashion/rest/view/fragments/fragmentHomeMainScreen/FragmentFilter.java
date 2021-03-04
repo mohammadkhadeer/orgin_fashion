@@ -1,9 +1,7 @@
 package com.fashion.rest.view.fragments.fragmentHomeMainScreen;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -21,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fashion.rest.R;
-import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
 import com.fashion.rest.model.Categories;
@@ -50,8 +47,6 @@ import retrofit2.Retrofit;
 
 import static com.fashion.rest.functions.FillItem.fillAreas;
 import static com.fashion.rest.functions.FillItem.fillCityArrayL;
-import static com.fashion.rest.functions.Functions.fillCatArrayL;
-import static com.fashion.rest.functions.Functions.fillSubCatArrayL;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 

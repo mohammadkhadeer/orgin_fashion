@@ -16,22 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fashion.rest.R;
-import com.fashion.rest.model.Categories;
-import com.fashion.rest.model.CustomCategory;
 import com.fashion.rest.model.CustomItems;
-import com.fashion.rest.model.Deal;
-import com.fashion.rest.model.Home;
+
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
-import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
 import com.fashion.rest.view.Adapters.AdapterEndlessResult;
-import com.fashion.rest.view.activity.mainScreem.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +32,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.fashion.rest.functions.FillItem.fillAllItemDepCatArrayL;
-import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
-import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL2;
-import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 import static com.fashion.rest.functions.RetrofitFunctions.getItemsWithAllFilter;
 
 

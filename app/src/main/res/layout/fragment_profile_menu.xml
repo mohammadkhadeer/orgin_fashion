@@ -67,7 +67,6 @@
                                         android:layout_centerHorizontal="true"
                                         android:alpha="0.6"
                                         android:layout_centerVertical="true"
-                                        android:background="@drawable/recent_view"
                                         />
 
                                 </RelativeLayout>

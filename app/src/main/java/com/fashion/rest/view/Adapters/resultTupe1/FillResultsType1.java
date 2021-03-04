@@ -4,30 +4,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
-import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.ItemTest;
-import com.fashion.rest.view.Adapters.AdapterSet;
-import com.fashion.rest.view.Adapters.AdapterType2;
 import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-
 import static com.fashion.rest.apiURL.API.apiURLBase;
-import static com.fashion.rest.functions.Functions.fillSetArrayL;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class FillResultsType1 {

@@ -22,7 +22,6 @@ import com.fashion.rest.view.Adapters.AdapterSubCategorySeeAll;
 
 import java.util.ArrayList;
 
-import static com.fashion.rest.functions.Functions.fillSubCatArrayL;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class SubCategory extends AppCompatActivity implements AdapterSubCategorySeeAll.PassSubCategory{

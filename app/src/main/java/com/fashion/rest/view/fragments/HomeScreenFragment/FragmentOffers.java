@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -17,20 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Categories;
-import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassObject;
-import com.fashion.rest.utils.PaginationListener;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
 import com.fashion.rest.view.Adapters.AdapterOffers;
 import com.fashion.rest.view.activity.AllCategory;
-import com.fashion.rest.view.activity.SplashScreen;
 
 
 import java.util.ArrayList;
@@ -41,12 +36,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.fashion.rest.apiURL.API.apiURLBase;
-import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
 import static com.fashion.rest.functions.Functions.getIOs;
 import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
-import static com.fashion.rest.utils.PaginationListener.PAGE_START;
 import static com.fashion.rest.view.categoriesComp.FillType3.fillCase3Item;
 
 

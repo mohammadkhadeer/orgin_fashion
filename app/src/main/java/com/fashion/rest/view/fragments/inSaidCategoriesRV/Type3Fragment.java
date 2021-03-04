@@ -18,8 +18,6 @@ import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
 
 import java.util.ArrayList;
 
-import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
-
 public class Type3Fragment extends Fragment {
     View view;
     RecyclerView recyclerView;

@@ -1,31 +1,21 @@
 package com.fashion.rest.view.fragments.HomeScreenFragment;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
+
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
-import com.fashion.rest.presnter.PassObject;
-import com.fashion.rest.utils.PaginationListener;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
-import com.fashion.rest.view.Adapters.AdapterOffers;
-import com.fashion.rest.view.Adapters.RecyclerViewAdapter;
+
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
-import static com.fashion.rest.functions.Functions.fillSetArrayL;
 
 public class FragmentTest extends Fragment {
     View view;

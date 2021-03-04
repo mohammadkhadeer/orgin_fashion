@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.fashion.rest.view.Adapters.AdapterCategoryItems;
 
 import java.util.ArrayList;
 
-import static com.fashion.rest.functions.FillItem.fillAllItemDepCatArrayL;
 
 public class FragmentCategoryItems extends Fragment {
     View view;
@@ -48,14 +46,14 @@ public class FragmentCategoryItems extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void createItems() {
-        dealsArrayList = fillAllItemDepCatArrayL(categoryStr,getActivity());
-        recyclerView_items.setHasFixedSize(true);
-        recyclerView_items.setNestedScrollingEnabled(false);
-        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
-        recyclerView_items.setLayoutManager(mLayoutManager);
-        adapterCategoryItems =new AdapterCategoryItems(getActivity()
-                ,dealsArrayList);
-        recyclerView_items.setAdapter(adapterCategoryItems);
+//        dealsArrayList = fillAllItemDepCatArrayL(categoryStr,getActivity());
+//        recyclerView_items.setHasFixedSize(true);
+//        recyclerView_items.setNestedScrollingEnabled(false);
+//        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+//        recyclerView_items.setLayoutManager(mLayoutManager);
+//        adapterCategoryItems =new AdapterCategoryItems(getActivity()
+//                ,dealsArrayList);
+//        recyclerView_items.setAdapter(adapterCategoryItems);
     }
 
     private void inti() {

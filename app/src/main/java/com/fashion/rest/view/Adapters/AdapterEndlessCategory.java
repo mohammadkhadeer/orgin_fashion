@@ -2,15 +2,11 @@ package com.fashion.rest.view.Adapters;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
+
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,27 +16,18 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.Home;
-import com.fashion.rest.model.ListItem;
 import com.fashion.rest.utils.BaseViewHolderUser;
-import com.fashion.rest.view.activity.mainScreem.MainActivity;
-import com.fashion.rest.view.fragments.HomeScreenFragment.FragmentTest;
-import com.fashion.rest.view.fragments.inSaidCategoriesRV.MainFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 
-import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
-import static com.fashion.rest.view.categoriesComp.FillType1.fill;
 import static com.fashion.rest.view.categoriesComp.FillType2.fillCaseItem;
-import static com.fashion.rest.view.categoriesComp.FillType3.fillCase3Item;
 import static com.fashion.rest.view.categoriesComp.FillType4.fillCase4Item;
 
 

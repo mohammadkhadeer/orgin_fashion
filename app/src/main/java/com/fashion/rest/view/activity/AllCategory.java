@@ -13,19 +13,10 @@ import android.view.View;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Categories;
-import com.fashion.rest.model.Category;
 import com.fashion.rest.model.CustomCategory;
-import com.fashion.rest.model.Deal;
-import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.Adapters.AdapterAllCategory;
-import com.fashion.rest.view.Adapters.AdapterType3;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import static com.fashion.rest.functions.Functions.fillCat2ArrayL;
-import static com.fashion.rest.functions.Functions.fillCatArrayL;
-import static com.fashion.rest.functions.Functions.fillSetArrayL;
 
 public class AllCategory extends AppCompatActivity {
 

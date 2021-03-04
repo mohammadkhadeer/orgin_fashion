@@ -13,10 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.fashion.rest.R;
-import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.Home;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
@@ -33,7 +30,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.fashion.rest.functions.Functions.fillSetArrayL;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 

@@ -1,11 +1,8 @@
 package com.fashion.rest.view.fragments.fragmentItemDetails;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -21,15 +18,11 @@ import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
-import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
-import com.fashion.rest.view.Adapters.AdapterType2;
-import com.fashion.rest.view.Adapters.AdapterType4;
-import com.fashion.rest.view.activity.CategoryItem;
-import com.fashion.rest.view.activity.ResultActivity;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.fashion.rest.functions.FillItem.fillEndlessItemDepCatArrayL;
-import static com.fashion.rest.functions.Functions.fillSetArrayL;
-import static com.fashion.rest.functions.Functions.fillSetArrayL2;
 import static com.fashion.rest.functions.Functions.getIOs;
-import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
 
 
