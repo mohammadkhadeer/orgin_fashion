@@ -19,17 +19,13 @@ import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.Adapters.AdapterLoadingType2;
 import com.fashion.rest.view.Adapters.AdapterType2;
-import com.fashion.rest.view.activity.ItemDetails;
 import com.fashion.rest.view.activity.ResultActivity;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 

@@ -13,17 +13,10 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
 import com.fashion.rest.R;
-import com.fashion.rest.model.Area;
-import com.fashion.rest.model.MultiArea;
-import com.fashion.rest.model.SubCategory;
 import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.presnter.PassCityAndArea;
-import com.fashion.rest.view.Adapters.AdapterMultiArea;
-import com.fashion.rest.view.Adapters.AdapterSubCategory;
 import com.fashion.rest.view.Adapters.AdapterSubCategorySeeAll;
-
 import java.util.ArrayList;
 import java.util.Locale;
 

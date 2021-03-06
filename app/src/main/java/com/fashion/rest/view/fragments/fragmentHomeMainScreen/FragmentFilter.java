@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
@@ -25,7 +24,6 @@ import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.MultiArea;
-import com.fashion.rest.model.SubCategory;
 import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassCityAndArea;
@@ -36,15 +34,12 @@ import com.fashion.rest.view.Adapters.AdapterSelectedAreas;
 import com.fashion.rest.view.Adapters.AdapterSubCategory;
 import com.fashion.rest.view.activity.ResultActivity;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
 import static com.fashion.rest.functions.FillItem.fillAreas;
 import static com.fashion.rest.functions.FillItem.fillCityArrayL;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;

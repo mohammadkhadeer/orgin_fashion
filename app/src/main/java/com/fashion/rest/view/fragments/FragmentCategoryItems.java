@@ -9,13 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.view.Adapters.AdapterCategoryItems;
-
 import java.util.ArrayList;
-
 
 public class FragmentCategoryItems extends Fragment {
     View view;

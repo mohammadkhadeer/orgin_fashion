@@ -1,6 +1,5 @@
 package com.fashion.rest.view.fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -19,22 +18,14 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-
 import com.fashion.rest.R;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.SlidImage;
 import com.fashion.rest.presnter.ImageClicked;
-import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.view.Adapters.SlidingImage_Adapter;
-import com.fashion.rest.view.activity.ItemDetails;
-
 import java.util.ArrayList;
-
 import static com.fashion.rest.apiURL.API.apiURLBase;
-import static com.fashion.rest.functions.Functions.fillImgArrayL;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
-
 
 public class FragmentImageSlider extends Fragment implements SlidingImage_Adapter.ImageClicked{
 

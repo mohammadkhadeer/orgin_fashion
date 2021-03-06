@@ -15,26 +15,20 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
 import static com.fashion.rest.functions.Functions.getIOs;
 import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
-
 
 public class SLOffersCase extends Fragment {
     View view;

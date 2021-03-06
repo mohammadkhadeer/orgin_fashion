@@ -9,13 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
-
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 

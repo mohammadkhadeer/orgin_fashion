@@ -9,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.squareup.picasso.Picasso;
-
 
 public class ProfileDetailsInfo extends Fragment {
 

@@ -12,9 +12,6 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
-import com.fashion.rest.model.Category;
-import com.fashion.rest.model.MultiArea;
-import com.fashion.rest.model.SubCategory;
 import com.fashion.rest.model.Sub_Cat;
 
 import java.util.ArrayList;

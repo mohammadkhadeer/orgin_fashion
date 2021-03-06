@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.fashion.rest.model.Categories;
 import com.fashion.rest.view.Adapters.AdapterType3;
-
 import java.util.ArrayList;
 
 public class FillType3 {

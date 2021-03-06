@@ -4,23 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemTest;
-import com.fashion.rest.view.activity.Login;
 import com.fashion.rest.view.activity.ReportActivity;
-import com.fashion.rest.view.activity.SplashScreen;
 import com.squareup.picasso.Picasso;
-
 import static com.fashion.rest.functions.Functions.actionListenerToFav;
 import static com.fashion.rest.functions.Functions.calculatePercentage;
 import static com.fashion.rest.functions.Functions.checkFavOrNot;

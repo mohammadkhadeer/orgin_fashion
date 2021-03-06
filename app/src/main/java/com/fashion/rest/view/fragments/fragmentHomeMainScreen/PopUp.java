@@ -8,24 +8,18 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
 import com.fashion.rest.R;
 import com.fashion.rest.model.Area;
 import com.fashion.rest.model.MultiArea;
 import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.view.Adapters.AdapterMultiArea;
-
 import java.util.ArrayList;
 import java.util.Locale;
-
-import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class PopUp extends DialogFragment implements AdapterMultiArea.PassSelected {
     public ArrayList<MultiArea> multiAreasArrayList = new ArrayList<>();

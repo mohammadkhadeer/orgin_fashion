@@ -1,6 +1,5 @@
 package com.fashion.rest.view.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,14 +13,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.Adapters.AdapterSubCategorySeeAll;
-
 import java.util.ArrayList;
-
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class SubCategory extends AppCompatActivity implements AdapterSubCategorySeeAll.PassSubCategory{

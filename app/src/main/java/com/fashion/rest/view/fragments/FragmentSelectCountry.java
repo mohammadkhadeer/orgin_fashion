@@ -1,6 +1,5 @@
 package com.fashion.rest.view.fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,41 +13,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.database.DBHelper;
-import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Areas;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.Countries;
-import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.Flag;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
-import com.fashion.rest.presnter.PassCityAndArea;
-import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.view.Adapters.AdapterCountries;
-import com.fashion.rest.view.Adapters.AdapterSet;
-import com.fashion.rest.view.Adapters.AdapterSubCategorySeeAll;
-import com.fashion.rest.view.activity.CategoryItem;
 import com.fashion.rest.view.activity.Login;
-import com.fashion.rest.view.activity.SplashScreen;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.RetrofitFunctions.getAreasApi;
 import static com.fashion.rest.functions.RetrofitFunctions.getCitiesApi;
 import static com.fashion.rest.functions.RetrofitFunctions.getCountries;
-import static com.fashion.rest.functions.RetrofitFunctions.getNumberOfCountries;
 import static com.fashion.rest.sharedPreferences.Country.saveCountryInSP;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;

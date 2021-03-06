@@ -14,19 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
-
 import com.fashion.rest.model.ItemTest;
-
 import com.fashion.rest.view.Adapters.AdapterType2;
 import com.fashion.rest.view.Adapters.AdapterType4;
 import com.fashion.rest.view.activity.ResultActivity;
-
 import java.util.ArrayList;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
-
 
 public class SLFullImageAndImagePng extends Fragment {
     View view;

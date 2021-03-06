@@ -8,16 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.fashion.rest.R;
 import com.fashion.rest.model.ItemFilterModel;
 import com.fashion.rest.model.ItemSelectedFilterModel;
 import com.fashion.rest.presnter.Filter;
 import com.fashion.rest.view.Adapters.AdapterFiltersItem;
 import com.fashion.rest.view.Adapters.AdapterSelectedFilters;
-
 import java.util.ArrayList;
-
 import static com.fashion.rest.functions.CategoryFunction.fillCatObject;
 import static com.fashion.rest.functions.CategoryFunction.fillFromPrice;
 

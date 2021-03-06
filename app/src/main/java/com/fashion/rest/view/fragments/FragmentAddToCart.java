@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 
 import com.fashion.rest.R;
 
-
 public class FragmentAddToCart extends Fragment {
 
     public FragmentAddToCart() {

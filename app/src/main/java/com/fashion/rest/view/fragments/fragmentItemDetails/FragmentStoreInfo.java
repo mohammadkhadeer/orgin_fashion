@@ -21,7 +21,6 @@ import com.squareup.picasso.Picasso;
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
-
 public class FragmentStoreInfo extends Fragment {
 
     public FragmentStoreInfo() {

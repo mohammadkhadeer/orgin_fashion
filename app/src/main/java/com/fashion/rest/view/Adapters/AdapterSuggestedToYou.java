@@ -8,11 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class AdapterSuggestedToYou extends RecyclerView.Adapter<AdapterSuggestedToYou.ViewHolder>{

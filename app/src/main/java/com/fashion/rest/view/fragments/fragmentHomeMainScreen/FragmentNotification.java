@@ -7,13 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.fashion.rest.R;
 import com.fashion.rest.model.Notification;
 import com.fashion.rest.view.Adapters.AdapterNotification;
-
 import java.util.ArrayList;
-
 import static com.fashion.rest.functions.Functions.fillNotificationsArrayL;
 
 public class FragmentNotification extends Fragment {

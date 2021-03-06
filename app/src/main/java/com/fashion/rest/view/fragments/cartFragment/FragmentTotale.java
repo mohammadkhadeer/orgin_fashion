@@ -6,13 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemInDB;
-
 import java.util.ArrayList;
-
 import static com.fashion.rest.database.Read.getAllItemFromCart;
 import static com.fashion.rest.functions.Functions.roundTwoDecimals;
 

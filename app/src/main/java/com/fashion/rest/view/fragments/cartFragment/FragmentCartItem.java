@@ -8,14 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.fashion.rest.R;
 import com.fashion.rest.model.ItemInDB;
 import com.fashion.rest.presnter.UpdateTotalNumber;
 import com.fashion.rest.view.Adapters.AdapterCartItem;
-
 import java.util.ArrayList;
-
 import static com.fashion.rest.database.Read.getAllItemFromCart;
 
 public class FragmentCartItem extends Fragment implements AdapterCartItem.PassUpdate {

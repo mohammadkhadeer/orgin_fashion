@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,24 +14,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.model.CustomItems;
 import com.fashion.rest.model.Deal;
-import com.fashion.rest.model.ItemTest;
-import com.fashion.rest.model.ListItem;
 import com.fashion.rest.utils.BaseViewHolderUser;
-
 import java.util.List;
-
 import butterknife.ButterKnife;
-
 import static com.fashion.rest.functions.Functions.actionListenerToFav;
 import static com.fashion.rest.functions.Functions.checkFavOrNot;
 import static com.fashion.rest.view.Adapters.resultTupe1.FillResultsType1.fillItemCase1;
-import static com.fashion.rest.view.categoriesComp.FillType2.fillCaseItem;
-import static com.fashion.rest.view.categoriesComp.FillType4.fillCase4Item;
-
 
 public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUser>{
   private static final int VIEW_TYPE_LOADING = 0;

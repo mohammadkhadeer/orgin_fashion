@@ -6,14 +6,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import com.fashion.rest.R;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.ListItem;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 public class FillType1 {
 

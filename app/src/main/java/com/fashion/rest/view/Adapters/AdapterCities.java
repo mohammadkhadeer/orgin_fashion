@@ -1,26 +1,16 @@
 package com.fashion.rest.view.Adapters;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Paint;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.City;
-import com.fashion.rest.model.Deal;
-import com.fashion.rest.view.activity.ItemDetails;
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;

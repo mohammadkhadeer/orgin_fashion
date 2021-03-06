@@ -8,12 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemFilterModel;
-
 import java.util.ArrayList;
 
 public class AdapterFiltersItem extends RecyclerView.Adapter<AdapterFiltersItem.ViewHolder>{

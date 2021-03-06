@@ -9,29 +9,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Brand;
-import com.fashion.rest.model.Home;
-import com.fashion.rest.model.ItemTest;
-import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentFilter;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.RetrofitFunctions.getBrand;
-import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class ResultActivity extends AppCompatActivity {

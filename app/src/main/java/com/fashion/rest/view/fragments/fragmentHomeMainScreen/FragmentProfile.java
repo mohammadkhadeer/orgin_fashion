@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.fashion.rest.R;
 import com.fashion.rest.view.fragments.FragmentProfileMenu;
 import com.fashion.rest.view.fragments.ProfileDetailsInfo;

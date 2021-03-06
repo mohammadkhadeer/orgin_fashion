@@ -10,9 +10,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.fashion.rest.R;
-import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.Offer;
 
 public class Functions {

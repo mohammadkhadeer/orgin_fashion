@@ -2,7 +2,6 @@ package com.fashion.rest.view.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,16 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
-import com.fashion.rest.model.SubCategory;
 import com.fashion.rest.model.Sub_Cat;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 

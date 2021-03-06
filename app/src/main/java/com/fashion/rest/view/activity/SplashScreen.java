@@ -3,7 +3,6 @@ package com.fashion.rest.view.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +16,7 @@ import com.fashion.rest.model.Countries;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
 import com.fashion.rest.view.fragments.FragmentSelectCountry;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

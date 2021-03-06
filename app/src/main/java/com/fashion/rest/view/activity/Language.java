@@ -1,8 +1,5 @@
 package com.fashion.rest.view.activity;
 
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -12,11 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
 import com.fashion.rest.R;
-import com.fashion.rest.view.activity.mainScreem.MainActivity;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.sharedPreferences.Language.saveLanguageInSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;

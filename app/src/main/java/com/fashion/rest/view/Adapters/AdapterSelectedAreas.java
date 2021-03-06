@@ -12,8 +12,6 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
-import com.fashion.rest.model.Deal;
-
 import java.util.ArrayList;
 
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;

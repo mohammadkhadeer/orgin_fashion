@@ -1,10 +1,7 @@
 package com.fashion.rest.view.activity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,16 +12,13 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.ReportType;
 import com.fashion.rest.view.Adapters.AdapterReportType;
-
 import java.util.ArrayList;
 import java.util.Locale;
-
 import static com.fashion.rest.functions.Functions.fillReportArrayL;
 
 public class ReportActivity extends AppCompatActivity implements AdapterReportType.PassReport{
