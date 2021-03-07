@@ -18,6 +18,10 @@
     <string name="vist_websaite">Visit website</string>
     <string name="see_in_google_maps">See in google maps</string>
 
+    <string name="new_items">Items</string>
+    <string name="new_offer">Offers</string>
+    <string name="important_message">Important message</string>
+
     <string name="price">Price</string>
     <string name="from">From</string>
     <string name="to">To</string>

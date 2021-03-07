@@ -5,11 +5,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import com.fashion.rest.R;
+import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
+
+import static com.fashion.rest.functions.Functions.getTimeStamp;
+import static com.fashion.rest.sharedPreferences.LoginInfo.getTokenFromSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.saveLoginInSP;
 
 public class Login extends AppCompatActivity {
@@ -28,6 +33,11 @@ public class Login extends AppCompatActivity {
         inti();
         //actionListenerToLogin();
         //setBackgroundColor();
+//        Log.i("TOKEN",getTokenFromSP(this));
+//        DBHelper dbHelper = new DBHelper(this);
+//        dbHelper.deleteAllNotifications();
+//                Log.i("TAG",getTimeStamp());
+
         actionListenerToFB();
         actionListenerToG();
         actionListenerToSkip();

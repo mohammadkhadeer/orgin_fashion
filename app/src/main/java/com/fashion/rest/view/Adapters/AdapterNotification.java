@@ -14,20 +14,27 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fashion.rest.R;
+import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Notification;
+import com.fashion.rest.model.NotificationModel;
+import com.fashion.rest.view.activity.AboutUs;
 import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static com.fashion.rest.database.DataBaseInstance.getDataBaseInstance;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+
 public class AdapterNotification extends RecyclerView.Adapter<AdapterNotification.ViewHolder>{
 
     private final Context context;
-    public ArrayList<Notification> notificationCompsArrayL ;
+    public ArrayList<NotificationModel> notificationCompsArrayL ;
+    DBHelper dbHelper;
 
     public AdapterNotification
-            (Context context, ArrayList<Notification> notificationCompsArrayL)
+            (Context context, ArrayList<NotificationModel> notificationCompsArrayL)
     {   this.context = context;
         this.notificationCompsArrayL = notificationCompsArrayL;
     }
@@ -36,6 +43,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
     {
         View view = LayoutInflater.from(viewGroup.getContext()).
                 inflate(R.layout.adapter_notification, viewGroup, false);
+        dbHelper = getDataBaseInstance(context);
         return new ViewHolder(view);
     }
 
@@ -51,20 +59,11 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
 
     private void fillProcessImageAndUserUserImage(Context context, ViewHolder holder, int position) {
-        if (position ==0)
-        {
-            Picasso.get()
-                    .load(R.drawable.circl_silver_bg)
-                    .fit()
-                    .centerCrop()
-                    .into(holder.processIV);
-        }else {
-            Picasso.get()
-                    .load(notificationCompsArrayL.get(position).getImagePath())
-                    .fit()
-                    .centerCrop()
-                    .into(holder.processIV);
-        }
+        Picasso.get()
+                .load(notificationCompsArrayL.get(position).getImage_url())
+                .fit()
+                .centerCrop()
+                .into(holder.processIV);
 
     }
 
@@ -73,41 +72,57 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
             @Override
             public void onClick(View v) {
                 holder.coverRL.setBackgroundColor(ContextCompat.getColor(context, R.color.colorWhite));
+                updateNotificationToOpen(context,position);
                 transporteToShowItemSelectedDetails(context,position,holder);
             }
         });
     }
 
+    private void updateNotificationToOpen(Context context, int position) {
+        dbHelper.updateNotificationStatus("1",notificationCompsArrayL.get(position).getTime_stamp());
+    }
+
 
     private void transporteToShowItemSelectedDetails(Context context, int position, ViewHolder holder) {
-        String cat =notificationCompsArrayL.get(position).getCat();
+        if (notificationCompsArrayL.get(position).getNotification_type().equals("welcome_screen"))
+        {
+            Intent intent = new Intent(context, AboutUs.class);
+            intent.putExtra("item_object", notificationCompsArrayL.get(position));
+            ((Activity)context).startActivity(intent);
+            ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+        }
+        //String cat =notificationCompsArrayL.get(position).getCat();
 
-        Bundle bundle = new Bundle();
-        bundle.putString("itemID","itemID");
-        bundle.putString("itemName","itemName");
-        bundle.putString("cat","offers");
-        bundle.putString("cat_type","png_image");
-        bundle.putString("from","not");
-
-        Intent intent = new Intent(context, ItemDetails.class);
-        intent.putExtras(bundle);
-        ((Activity)context).startActivity(intent);
-        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("itemID","itemID");
+//        bundle.putString("itemName","itemName");
+//        bundle.putString("cat","offers");
+//        bundle.putString("cat_type","png_image");
+//        bundle.putString("from","not");
+//
+//        Intent intent = new Intent(context, ItemDetails.class);
+//        intent.putExtras(bundle);
+//        ((Activity)context).startActivity(intent);
+//        ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }
 
     private void fillTextHeadAndDes(Context context, int position, ViewHolder holder) {
-        holder.notificationTitleTV.setText(notificationCompsArrayL.get(position).getNotificationTitle());
+        holder.notificationTitleTV.setText(
+                getTextEngOrLocal(context,notificationCompsArrayL.get(position).getTitle_en(),notificationCompsArrayL.get(position).getTitle_local())
+        );
         String notificationDes = null;
 
 //        if (notificationCompsArrayL.get(position).getInOrOut().equals("welcome")) {
 //            notificationDes = context.getResources().getString(R.string.welcome_notifications);
 //        }
 
-        holder.notificationDesTV.setText(notificationCompsArrayL.get(position).getNotificationDes());
+        holder.notificationDesTV.setText(
+                getTextEngOrLocal(context,notificationCompsArrayL.get(position).getDes_en(),notificationCompsArrayL.get(position).getDes_local())
+        );
     }
 
     private void changeNotificationColorIfUserOpen(int position, ViewHolder holder,Context context) {
-        if (notificationCompsArrayL.get(position).getOpenOrNotYet().equals("0"))
+        if (notificationCompsArrayL.get(position).getOpen_or_not().equals("0"))
         {
             holder.coverRL.setBackgroundColor(ContextCompat.getColor(context, R.color.notificationNotOpenYet));
         }else{

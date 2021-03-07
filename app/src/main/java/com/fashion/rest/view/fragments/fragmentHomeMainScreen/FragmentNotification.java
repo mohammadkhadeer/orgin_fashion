@@ -9,15 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.fashion.rest.R;
 import com.fashion.rest.model.Notification;
+import com.fashion.rest.model.NotificationModel;
 import com.fashion.rest.view.Adapters.AdapterNotification;
 import java.util.ArrayList;
+
+import static com.fashion.rest.functions.FillItem.fillNotifications;
 import static com.fashion.rest.functions.Functions.fillNotificationsArrayL;
 
 public class FragmentNotification extends Fragment {
     View view;
     RecyclerView recyclerView;
     AdapterNotification adapterNotification;
-    public ArrayList<Notification> notificationCompsArrayL = new ArrayList<>();
+    public ArrayList<NotificationModel> notificationCompsArrayL = new ArrayList<>();
 
     public FragmentNotification(){}
 
@@ -31,7 +34,8 @@ public class FragmentNotification extends Fragment {
     }
 
     private void createRV() {
-        notificationCompsArrayL = fillNotificationsArrayL(getActivity());
+        notificationCompsArrayL = new ArrayList<>();
+        notificationCompsArrayL =fillNotifications(getActivity());
         recyclerView.setHasFixedSize(true);
         GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(mLayoutManager);

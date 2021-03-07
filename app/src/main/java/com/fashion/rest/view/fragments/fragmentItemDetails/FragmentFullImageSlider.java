@@ -155,7 +155,6 @@ public class FragmentFullImageSlider extends Fragment {
         protected Boolean doInBackground(String... params) {
             for (int i = 0; i < allImage.size(); i++) {
                 // you need to break your loop on particular condition here
-
                 if(isCancelled())
                     break;
             }

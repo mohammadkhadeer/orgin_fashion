@@ -52,6 +52,20 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COL_SUB_CAT_ID="COL_SUB_CAT_ID";
     public static final String COL_CATEGORY_ID="COL_CATEGORY_ID";
 
+    public static final String TABLE_NOTIFICATION="notification_table";
+    public static final String COL_NOTIFICATION_ID="COL_NOTIFICATION_ID";
+    public static final String COL_NOTIFICATION_IMAGE="COL_NOTIFICATION_IMAGE";
+    public static final String COL_NOTIFICATION_TITLE_EN="COL_NOTIFICATION_TITLE_EN";
+    public static final String COL_NOTIFICATION_TITLE_LOCAL="COL_NOTIFICATION_TITLE_LOCAL";
+    public static final String COL_NOTIFICATION_BODY_EN="COL_NOTIFICATION_BODY_EN";
+    public static final String COL_NOTIFICATION_BODY_LOCAL="COL_NOTIFICATION_BODY_LOCAL";
+    public static final String COL_NOTIFICATION_TYPE="COL_NOTIFICATION_TYPE";
+    public static final String COL_NOTIFICATION_ITEM_ID="COL_NOTIFICATION_ITEM_ID";
+    public static final String TIME_STAMP="TIME_STAMP";
+    public static final String OPTIONAL_EN="OPTIONAL_EN";
+    public static final String OPTIONAL_LOCAL="OPTIONAL_LOCAL";
+    public static final String COL_NOTIFICATION_OPEN_OR_NOT="COL_NOTIFICATION_OPEN_OR_NOT";
+
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -68,6 +82,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 "COL_CITY_SERVER_ID TEXT" + ",CITY_NAME_EN TEXT" +",CITY_NAME_LOCAL TEXT)");
         db.execSQL("create table "+TABLE_FAVORITE +" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "COL_ITEM_SERVER_ID TEXT" + ",COL_SUB_CAT_ID TEXT" +",COL_CATEGORY_ID TEXT)");
+        db.execSQL("create table "+TABLE_NOTIFICATION +" (COL_NOTIFICATION_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "COL_NOTIFICATION_IMAGE TEXT" + ",COL_NOTIFICATION_TITLE_EN TEXT"+ ",COL_NOTIFICATION_TITLE_LOCAL TEXT" +",COL_NOTIFICATION_BODY_EN TEXT" +",COL_NOTIFICATION_BODY_LOCAL TEXT"
+                +",COL_NOTIFICATION_TYPE TEXT" +",COL_NOTIFICATION_ITEM_ID TEXT" +",TIME_STAMP TEXT"+",OPTIONAL_EN TEXT"+",OPTIONAL_LOCAL TEXT" +",COL_NOTIFICATION_OPEN_OR_NOT TEXT)");
     }
 
     @Override
@@ -76,11 +93,36 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NEIGHBORHOOD);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_CITY);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_FAVORITE);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NOTIFICATION);
 
         onCreate(db);
     }
 
     ///////////////////////insert data//////////////////////////////////////////
+
+    public boolean insertNotifications(String image_url,String title_en,String title_local,String body_en
+            ,String body_local,String type,String item_id,String timeStamp,String optional_en,String optional_local,String openOrNotYet)
+    {
+        SQLiteDatabase db =this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_NOTIFICATION_IMAGE,image_url);
+        contentValues.put(COL_NOTIFICATION_TITLE_EN,title_en);
+        contentValues.put(COL_NOTIFICATION_TITLE_LOCAL,title_local);
+        contentValues.put(COL_NOTIFICATION_BODY_EN,body_en);
+        contentValues.put(COL_NOTIFICATION_BODY_LOCAL,body_local);
+        contentValues.put(COL_NOTIFICATION_TYPE,type);
+        contentValues.put(COL_NOTIFICATION_ITEM_ID,item_id);
+        contentValues.put(TIME_STAMP,timeStamp);
+        contentValues.put(OPTIONAL_EN,optional_en);
+        contentValues.put(OPTIONAL_LOCAL,optional_local);
+        contentValues.put(COL_NOTIFICATION_OPEN_OR_NOT,openOrNotYet);
+
+        long result= db.insert(TABLE_NOTIFICATION,null,contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
 
     public boolean insertItemToCart(String imageID,String imagePath,String name
             ,String des,String price,String priceN,String priceO,String numberOfItems)
@@ -171,6 +213,12 @@ public class DBHelper extends SQLiteOpenHelper {
     //////////////////////////to get data /////////////////////
 
 
+    public Cursor descendingNotifications(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_NOTIFICATION, null, null,
+                null, null, null, COL_NOTIFICATION_ID + " DESC", null);
+        return cursor;
+    }
 
     public Cursor descendingCartItems(){
         SQLiteDatabase db =this.getWritableDatabase();
@@ -213,6 +261,17 @@ public class DBHelper extends SQLiteOpenHelper {
 //        String strSQL = "UPDATE cart_table SET NUMBER_OF_ITEM_IN_THE_CART = numberOfItems WHERE NAME = "+ itemName;
 //
 //        db.execSQL(strSQL);
+    }
+
+    public void updateNotificationStatus(String open,String timeStamp)
+    {
+        //to change from not open to open
+        // if open 1 not open 0
+        SQLiteDatabase db =this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_NOTIFICATION_OPEN_OR_NOT,open);
+
+        db.update(TABLE_NOTIFICATION,contentValues," TIME_STAMP = ?",new String[] {timeStamp});
     }
 
     //////////////////////////////////////get single object//////////
@@ -262,6 +321,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public void deleteAllFavItems(){
         SQLiteDatabase db =this.getWritableDatabase();
         db.execSQL("DELETE FROM favorite_table"); //delete all rows in a table
+        db.close();
+    }
+
+    public void deleteAllNotifications(){
+        SQLiteDatabase db =this.getWritableDatabase();
+        db.execSQL("DELETE FROM notification_table"); //delete all rows in a table
         db.close();
     }
 

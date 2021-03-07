@@ -12,6 +12,7 @@ import com.fashion.rest.model.Area;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.ListItem;
+import com.fashion.rest.model.NotificationModel;
 import com.fashion.rest.model.OffersGradientsWithTextColor;
 import com.fashion.rest.model.Price;
 
@@ -73,6 +74,43 @@ public class FillItem {
             item_id_ArrayL.add(res.getString(1).replace("\n", ""));
         }
         return item_id_ArrayL;
+    }
+
+    public static ArrayList<NotificationModel> fillNotifications(Context context) {
+        ArrayList<NotificationModel> notificationModelsArrayL = new ArrayList<NotificationModel>();
+
+        Cursor res = getDataBaseInstance(context).descendingNotifications();
+
+        while (res.moveToNext()) {
+            // idOnServer col 1 ... city_en_name col 2 ... city_local_name col 3 ... area_en_name col 4 ... area_local_name col 5
+            Log.i("TAG","Col 1: "+res.getString(1).replace("\n", ""));
+            Log.i("TAG","Col 2: "+res.getString(2).replace("\n", ""));
+            Log.i("TAG","Col 3: "+res.getString(3).replace("\n", ""));
+            Log.i("TAG","Col 4: "+res.getString(4).replace("\n", ""));
+            Log.i("TAG","Col 5: "+res.getString(5).replace("\n", ""));
+            Log.i("TAG","Col 6: "+res.getString(6).replace("\n", ""));
+            Log.i("TAG","Col 7: "+res.getString(7).replace("\n", ""));
+            Log.i("TAG","Col 8: "+res.getString(8).replace("\n", ""));
+            Log.i("TAG","Col 9: "+res.getString(8).replace("\n", ""));
+            Log.i("TAG","Col 10: "+res.getString(10).replace("\n", ""));
+            Log.i("TAG","Col 11: "+res.getString(11).replace("\n", ""));
+
+            notificationModelsArrayL.add(new NotificationModel(
+                    res.getString(1).replace("\n", ""),
+                    res.getString(2).replace("\n", ""),
+                    res.getString(3).replace("\n", ""),
+                    res.getString(4).replace("\n", ""),
+                    res.getString(5).replace("\n", ""),
+                    res.getString(6).replace("\n", ""),
+                    res.getString(7).replace("\n", ""),
+                    res.getString(8).replace("\n", ""),
+                    res.getString(9).replace("\n", ""),
+                    res.getString(10).replace("\n", ""),
+                    res.getString(11).replace("\n", "")
+            ));
+        }
+
+        return notificationModelsArrayL;
     }
 
 }

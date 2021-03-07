@@ -1,6 +1,7 @@
 package com.fashion.rest.functions;
 
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -32,14 +33,44 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import static com.fashion.rest.database.DataBaseInstance.getDataBaseInstance;
 import static com.fashion.rest.functions.FillItem.fillItemsIdInFavTable;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
+import static com.fashion.rest.sharedPreferences.NumberOfNotification.getNumberOfItemInCartFromSP;
+import static com.fashion.rest.sharedPreferences.NumberOfNotification.saveNumberOfItemsInCartInSP;
 
 public class Functions {
+
+    public static String[] splitString(String textStr,String signal) {
+        final String[] stringAfterSplit = textStr.split(signal);;
+
+        return stringAfterSplit;
+    }
+
+
+    public static String getTimeStamp() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+        String format = simpleDateFormat.format(new Date());
+        Log.d("TAG", "Current Timestamp: " + format);
+
+        return format;
+    }
+
+    public static int notificationNumber(Context context) {
+        String num = getNumberOfItemInCartFromSP(context);
+        int z=-1;
+        if (num != null && !"".equals(num))
+        {
+            int x = Integer.parseInt(num);
+            z=x;
+        }
+
+        return z;
+    }
 
     public static String getIOs() {
         TimeZone tz = TimeZone.getTimeZone("UTC");
@@ -277,5 +308,21 @@ public class Functions {
         reportTypesArrayL.add(new ReportType(context.getResources().getString(R.string.pad_q),context.getResources().getString(R.string.pad_q_s),R.drawable.pad_q));
 
         return reportTypesArrayL;
+    }
+
+    public static boolean isAppOnForeground(Context context,String appPackageName) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
+        if (appProcesses == null) {
+            return false;
+        }
+        final String packageName = appPackageName;
+        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+            if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName.equals(packageName)) {
+                //                Log.e("app",appPackageName);
+                return true;
+            }
+        }
+        return false;
     }
 }

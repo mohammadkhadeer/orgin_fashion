@@ -41,7 +41,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import static com.fashion.rest.functions.FunctionCart.updateNumberOfItemInCartAndInsertToDataBase;
+import static com.fashion.rest.functions.Functions.notificationNumber;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
+import static com.fashion.rest.sharedPreferences.NumberOfNotification.cleanNotifications;
 
 public class MainActivity extends AppCompatActivity implements PassObject
         , PassCityAndArea , PopUp.PassSelectedAreas , PopUpCategory.PassSelectedSubCategory {
@@ -182,9 +184,16 @@ public class MainActivity extends AppCompatActivity implements PassObject
 
         intiBBT();
 
-        int num =6;
-        if(num >5)
+        //inti number of notifications
+        int num =notificationNumber(this);
+        if(num >0 && num != -1)
         notificationsBBT.setBadgeCount(num);
+    }
+
+    public void updateNumberOfNotifications(){
+        int num =notificationNumber(this);
+        if(num >0 && num != -1)
+            notificationsBBT.setBadgeCount(num);
     }
 
     private void intiBBT() {
@@ -205,6 +214,9 @@ public class MainActivity extends AppCompatActivity implements PassObject
                 fm.beginTransaction().hide(active).show(fragmentNotification).commit();
                 active = fragmentNotification;
                 lastFragmentStr= "fragmentNotification";
+                //make number not open notification zero
+                cleanNotifications(this);
+                notificationsBBT.setBadgeCount(0);
                 return true;
 
             case R.id.tab_profile:

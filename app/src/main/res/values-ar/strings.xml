@@ -233,5 +233,8 @@
     <string name="out_of_stock">الكميه منتهية</string>
     <string name="fack_price">سعر وهمي</string>
     <string name="pad_q">جودة سيئة</string>
+    <string name="new_items">المنتجات</string>
+    <string name="new_offer">العروض</string>
+    <string name="important_message">الرسائل المهمة</string>
 
 </resources>

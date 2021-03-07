@@ -23,6 +23,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getTimeStamp;
 import static com.fashion.rest.functions.RetrofitFunctions.getAreasApi;
 import static com.fashion.rest.functions.RetrofitFunctions.getCitiesApi;
 import static com.fashion.rest.functions.RetrofitFunctions.getCountries;
@@ -31,6 +32,7 @@ import static com.fashion.rest.sharedPreferences.Country.getCountryFromSP;
 import static com.fashion.rest.sharedPreferences.Country.saveCountryInSP;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;
+import static com.fashion.rest.sharedPreferences.LoginInfo.getTokenFromSP;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -40,7 +42,8 @@ public class SplashScreen extends AppCompatActivity {
     DBHelper dbHelper;
     SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
-
+    String welcome_image = "https://firebasestorage.googleapis.com/v0/b/hala-motor-8ff46.appspot.com/o/welcome.jpg?alt=media&token=bb1fa9bf-e789-4b47-996a-10509cc946ea";
+    String optional_en = "Welcome in monsters company";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,9 @@ public class SplashScreen extends AppCompatActivity {
         {
             timer();
         }else{
+            //insert welcome notification
+            dbHelper.insertNotifications(welcome_image,"M+","المرعبين المحدودة","Welcome in monsters company"
+                    ,"اهلا بكم في شركة المربين المحدودة","welcome_screen","empty",getTimeStamp(),getOptionalEng(),getOptionalLocal(),"0");
             getCountriesDe();
         }
     }
@@ -215,6 +221,69 @@ public class SplashScreen extends AppCompatActivity {
                 Log.i("TAG Error",t.getMessage());
             }
         });
+    }
+
+    public String getOptionalEng() {
+        String x = optional_en + "\n"+ "\n" +"We try to create fucking app where can handel almost famous people to can get at least 10 K JOD"+ "\n"+ "\n"
+                +"Now i will try to set any text just to make a screen as scroll screen"+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n"+
+                "line 1 any text "+ "\n";
+        return x;
+    }
+
+    public String getOptionalLocal() {
+        String x = "اهلا وسهلا بكم في شركة المرعبين المحدودة" + "\n"+ "\n" +"والله سلامتك بحنحاول نعمل تطبيق للمشاهير اقل اشي متوقعين انه نبيع عشر نسخ بشهر"+ "\n"+ "\n"
+                +"وهسا زي ما شفت لما كان الحكي انقليزي بدي احاول احط اي حكي مشان تصير الشاشة سكرول"+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+                "اي حكي مشان تصير سكرول "+ "\n"+
+
+                "و اخيرا انا انا ابريق الشاي"+ "\n";
+        return x;
     }
 
 }
