@@ -216,7 +216,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor descendingNotifications(){
         SQLiteDatabase db =this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_NOTIFICATION, null, null,
-                null, null, null, COL_NOTIFICATION_ID + " DESC", null);
+                null, null, null, COL_NOTIFICATION_ID + " DESC", String.valueOf(15));
         return cursor;
     }
 

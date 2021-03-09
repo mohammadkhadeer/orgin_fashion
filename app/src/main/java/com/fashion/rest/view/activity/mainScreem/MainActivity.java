@@ -297,4 +297,8 @@ public class MainActivity extends AppCompatActivity implements PassObject
     public void passSelectedSubCategory(Sub_Cat subCategory) {
         fragmentFilter.passSelectedSubCategory(subCategory);
     }
+
+    public void onDeviceTokenChange(){
+        Log.e("updated token:", "hhhhhhhhhhhhhh");
+    }
 }

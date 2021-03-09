@@ -97,6 +97,7 @@
 
         <service android:name=".service.SaveFCMTokenService" />
 
+        <receiver android:name=".broadcastReceiver.NotificationReceiver"/>
 
     </application>
 

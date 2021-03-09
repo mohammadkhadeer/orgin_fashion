@@ -14,6 +14,7 @@ import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
 
 import static com.fashion.rest.functions.Functions.getTimeStamp;
+import static com.fashion.rest.functions.Functions.splitString;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getTokenFromSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.saveLoginInSP;
 
@@ -23,6 +24,15 @@ public class Login extends AppCompatActivity {
     RelativeLayout fb,g,skip,background_iv;
     SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
+    String x = "Test message des just des\n" +
+            "@ \n" +
+            "تجربة وصف الرسالة الطويل \n" +
+            "&\n" +
+            "this is must be long des we well use it altrnative to des\n" +
+            "when we have it \n" +
+            "#\n" +
+            "الوصف الاختياري الطويل سنستخدمة بدلا من النص الطيل لانه ليس طويل بما يكفي ابو الرحاحلة يمكن يفقع عندك فما توخذ ببالك بدي ابعتة للكل مشان يتارشف ";
+    String[] titleArray,desArray,optionalArray,optionalAndDesArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +46,6 @@ public class Login extends AppCompatActivity {
 //        Log.i("TOKEN",getTokenFromSP(this));
 //        DBHelper dbHelper = new DBHelper(this);
 //        dbHelper.deleteAllNotifications();
-//                Log.i("TAG",getTimeStamp());
 
         actionListenerToFB();
         actionListenerToG();

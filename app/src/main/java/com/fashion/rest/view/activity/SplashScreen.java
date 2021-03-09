@@ -224,65 +224,69 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     public String getOptionalEng() {
-        String x = optional_en + "\n"+ "\n" +"We try to create fucking app where can handel almost famous people to can get at least 10 K JOD"+ "\n"+ "\n"
-                +"Now i will try to set any text just to make a screen as scroll screen"+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n"+
-                "line 1 any text "+ "\n";
+        String x = optional_en + "\n"+ "\n" +"We try to create fucking app where can handel almost famous people to can get at least 10 K JOD"+ "                " +
+                "                                                               " +
+                "                        "
+                +"Now i will try to set any text just to make a screen as scroll screen"+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               "+
+                "line 1 any text "+ "                                               ";
         return x;
     }
 
     public String getOptionalLocal() {
-        String x = "اهلا وسهلا بكم في شركة المرعبين المحدودة" + "\n"+ "\n" +"والله سلامتك بحنحاول نعمل تطبيق للمشاهير اقل اشي متوقعين انه نبيع عشر نسخ بشهر"+ "\n"+ "\n"
-                +"وهسا زي ما شفت لما كان الحكي انقليزي بدي احاول احط اي حكي مشان تصير الشاشة سكرول"+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
-                "اي حكي مشان تصير سكرول "+ "\n"+
+        String x = "اهلا وسهلا بكم في شركة المرعبين المحدودة" + "\n"+ "\n" +"والله سلامتك بحنحاول نعمل تطبيق للمشاهير اقل اشي متوقعين انه نبيع عشر نسخ بشهر"+ "                " +
+                "                                                               " +
+                "                        "
+                +"وهسا زي ما شفت لما كان الحكي انقليزي بدي احاول احط اي حكي مشان تصير الشاشة سكرول"+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
+                "اي حكي مشان تصير سكرول "+ "                                               "+
 
-                "و اخيرا انا انا ابريق الشاي"+ "\n";
+                "و اخيرا انا انا ابريق الشاي"+ "                                               ";
         return x;
     }
 

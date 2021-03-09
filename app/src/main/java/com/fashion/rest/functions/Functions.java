@@ -51,11 +51,9 @@ public class Functions {
         return stringAfterSplit;
     }
 
-
     public static String getTimeStamp() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
         String format = simpleDateFormat.format(new Date());
-        Log.d("TAG", "Current Timestamp: " + format);
 
         return format;
     }

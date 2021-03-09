@@ -1,19 +1,31 @@
 package com.fashion.rest.view.activity;
 
+import android.app.Notification;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
-import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.NotificationModel;
+import com.fashion.rest.service.FcmMessagingService;
 import com.squareup.picasso.Picasso;
 
-import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import java.net.URL;
 
+import static com.fashion.rest.app.App.CHANNEL_1_ID;
+import static com.fashion.rest.app.App.CHANNEL_3_ID;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AboutUs extends AppCompatActivity {
 
@@ -38,7 +50,12 @@ public class AboutUs extends AppCompatActivity {
                 .fit()
                 .centerCrop()
                 .into(imageView);
-        textView.setText(getTextEngOrLocal(this,notificationModel.getOptional_en(),notificationModel.getOptional_local()));
+        if (!notificationModel.getOptional_en().equals("optional"))
+        {
+            textView.setText(getTextEngOrLocal(this,notificationModel.getOptional_en(),notificationModel.getOptional_local()));
+        }else{
+            textView.setText(getTextEngOrLocal(this,notificationModel.getDes_en(),notificationModel.getDes_local()));
+        }
     }
 
     private void getNotificationFromIntent() {
@@ -55,6 +72,10 @@ public class AboutUs extends AppCompatActivity {
     }
 
     private void statusBarColor() {
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
     }
+
 }

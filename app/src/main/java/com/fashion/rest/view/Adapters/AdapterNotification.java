@@ -84,7 +84,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
 
     private void transporteToShowItemSelectedDetails(Context context, int position, ViewHolder holder) {
-        if (notificationCompsArrayL.get(position).getNotification_type().equals("welcome_screen"))
+        if (notificationCompsArrayL.get(position).getNotification_type().equals("welcome_screen") || notificationCompsArrayL.get(position).getNotification_type().equals("important_message"))
         {
             Intent intent = new Intent(context, AboutUs.class);
             intent.putExtra("item_object", notificationCompsArrayL.get(position));

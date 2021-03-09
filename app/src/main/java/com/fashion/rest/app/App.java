@@ -38,7 +38,7 @@ public class App extends Application {
             NotificationChannel channel_3 = new NotificationChannel(
                     CHANNEL_3_ID,
                     getResources().getString(R.string.important_message),
-                    NotificationManager.IMPORTANCE_LOW
+                    NotificationManager.IMPORTANCE_HIGH
             );
             channel_3.setDescription(getResources().getString(R.string.important_message));
 
