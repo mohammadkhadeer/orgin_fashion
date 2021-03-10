@@ -240,8 +240,8 @@ public class AdapterEndlessFavorite extends RecyclerView.Adapter<BaseViewHolderU
 
 
   private void fillPrice(TextView adapter_fav_price_tv, TextView adapter_fav_old_price_tv, Context context, int position) {
-    adapter_fav_price_tv.setText(String.valueOf(getItem(position).getPrice()));
-    adapter_fav_old_price_tv.setText(String.valueOf(getItem(position).getDiscountPrice()));
+    adapter_fav_price_tv.setText(String.valueOf(getItem(position).getDiscountPrice()));
+    adapter_fav_old_price_tv.setText(String.valueOf(getItem(position).getPrice()));
   }
 
   private void fillText(TextView adapter_fav_name_tv, TextView adapter_fav_store_name, TextView adapter_fav_per, int position, Context context) {
