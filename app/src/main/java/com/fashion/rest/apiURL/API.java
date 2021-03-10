@@ -71,7 +71,7 @@ public class API {
 
     public static String apiItemsWithAllFilter(String subCategoryID,String category_id){
         String apiName ="http://46.101.235.217/api/items/by-filter/%7B%22from%22%"+20+":%2020,%22to%22:"+55555555+",%22sub_category%22:%22"+subCategoryID+"%22,%22category%22:%22"+category_id+"%22,%22area%22:[%2260082119e4afcdaf7e1cb8ad%22]%7D/";
-//        Log.i("TAG: API",apiName);
+        Log.i("TAG: API",apiName);
         return apiName;
     }
 
@@ -83,6 +83,12 @@ public class API {
 
     public static String apiBrand(){
         String apiName ="http://46.101.235.217/api/brands/";
+//        Log.i("TAG",apiName);
+        return apiName;
+    }
+
+    public static String getSingleItem(String itemID){
+        String apiName ="http://46.101.235.217/api/items/"+itemID+"/";
 //        Log.i("TAG",apiName);
         return apiName;
     }

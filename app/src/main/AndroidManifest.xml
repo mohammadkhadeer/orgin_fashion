@@ -16,9 +16,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.ReportActivity"
+        <activity android:name=".view.activity.FavoriteItems"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme44"></activity>
+        <activity
+            android:name=".view.activity.ReportActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme44" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -30,21 +34,21 @@
 
         <activity
             android:name=".view.activity.SelectCountryActivity"
-            android:theme="@style/AppTheme23"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
         <activity android:name=".view.activity.Setting" />
         <activity
             android:name=".view.activity.ResultActivity"
-            android:theme="@style/AppTheme23"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
         <activity
             android:name=".view.activity.SubCategory"
-            android:theme="@style/AppTheme23"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
         <activity
             android:name=".view.activity.AllCategory"
-            android:theme="@style/AppTheme23"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
         <activity
             android:name=".view.activity.Login"
             android:screenOrientation="portrait"
@@ -66,7 +70,6 @@
         <activity
             android:name=".view.activity.AboutUs"
             android:theme="@style/AppTheme22" />
-
         <activity
             android:name=".view.activity.Language"
             android:screenOrientation="portrait"
@@ -87,18 +90,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
 
-
-        <service android:name=".service.FcmMessagingService"
+        <service
+            android:name=".service.FcmMessagingService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".service.SaveFCMTokenService" />
 
-        <receiver android:name=".broadcastReceiver.NotificationReceiver"/>
-
+        <receiver android:name=".broadcastReceiver.NotificationReceiver" />
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.fashion.rest.view.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.view.activity.FavoriteItems;
 import com.fashion.rest.view.activity.Setting;
 
 public class FragmentProfileMenu extends Fragment {
@@ -36,8 +38,20 @@ public class FragmentProfileMenu extends Fragment {
         changeFont();
         actionListenerToInsta();
         actionListenerToSetting();
+        actionListenerToFavoriteItems();
 
         return view;
+    }
+
+    private void actionListenerToFavoriteItems() {
+        favouriteRL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FavoriteItems.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+            }
+        });
     }
 
     private void actionListenerToSetting() {

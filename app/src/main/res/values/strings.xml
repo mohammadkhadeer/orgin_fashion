@@ -3,6 +3,11 @@
 
     <string name="no_more_item">  No More \n Items</string>
 
+    <string name="wait_loading">Please wait for loading ...</string>
+    <string name="finish_loading">Loading finish please swipe</string>
+
+    <string name="no_items_in_favorite">  No Items in \n favorite</string>
+
     <string name="tab_home">Home</string>
     <string name="tab_message">Messages</string>
     <string name="tab_adv">Add Post</string>
@@ -30,6 +35,8 @@
 
     <string name="message_erp">Please select one of this following reasons</string>
     <string name="reports">Report</string>
+
+    <string name="not_avalibale">Not available any more</string>
 
     <string name="out_of_stock">Out stock</string>
     <string name="fack_price">Fake price</string>
@@ -66,6 +73,8 @@
     <string name="kfc">KFC</string>
     <string name="pizza_h">Pizza hut</string>
     <string name="subway">Subway</string>
+
+    <string name="out_stok">This item out stock \n we are sorry</string>
 
     <string name="no_more_items">No more items in</string>
     <string name="category">Category</string>

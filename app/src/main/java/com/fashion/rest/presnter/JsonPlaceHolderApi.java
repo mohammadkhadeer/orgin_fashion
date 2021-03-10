@@ -8,6 +8,7 @@ import com.fashion.rest.model.Comment;
 import com.fashion.rest.model.Countries;
 import com.fashion.rest.model.Flag;
 import com.fashion.rest.model.Home;
+import com.fashion.rest.model.ItemFavorite;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.model.Post;
@@ -74,4 +75,7 @@ public interface JsonPlaceHolderApi {
 
     @GET(".")
     Call<List<Brand>> getBrand();
+
+    @GET(".")
+    Call<ItemFavorite> getDetailsItem();
 }

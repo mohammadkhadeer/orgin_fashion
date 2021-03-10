@@ -13,6 +13,7 @@ import static com.fashion.rest.apiURL.API.apiItems;
 import static com.fashion.rest.apiURL.API.apiItemsWithAllFilter;
 import static com.fashion.rest.apiURL.API.apiNumberOfCountries;
 import static com.fashion.rest.apiURL.API.apiOffers;
+import static com.fashion.rest.apiURL.API.getSingleItem;
 
 public class RetrofitFunctions {
 
@@ -100,6 +101,15 @@ public class RetrofitFunctions {
     public static Retrofit getBrand() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiBrand())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    public static Retrofit getSingleItemDetails(String ItemID) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getSingleItem(ItemID))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

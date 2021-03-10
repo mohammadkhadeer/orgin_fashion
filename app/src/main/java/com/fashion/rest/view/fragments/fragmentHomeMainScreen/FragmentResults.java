@@ -32,6 +32,8 @@ public class FragmentResults extends Fragment {
     public ArrayList<CustomItems> suggestedItemsArrayListTest;
     public ArrayList<CustomItems> suggestedItemsArrayListDO;
 
+    public ArrayList<ItemTest> toPagnationParpos= new ArrayList<>();;
+
     public static final int PAGE_START = 1;
     private int currentPage = PAGE_START;
     private boolean isLastPage = false;
@@ -126,7 +128,7 @@ public class FragmentResults extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        Call<List<ItemTest>> callHome = jsonPlaceHolderApi.getAllItems(0,16);
+        Call<List<ItemTest>> callHome = jsonPlaceHolderApi.getAllItems(toPagnationParpos.size(),16);
         callHome.enqueue(new Callback<List<ItemTest>>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -135,10 +137,12 @@ public class FragmentResults extends Fragment {
                 { return; }
                 List<ItemTest> itemsList = response.body();
 //                Log.i("TAG","itemsList");
-//                Log.i("TAG",String.valueOf(itemsList.size()));
 
                 suggestedItemsArrayListTest.addAll(fillCustomItems(itemsList));
                 suggestedItemsArrayListDO.addAll(fillCustomItems(itemsList));
+                // i well use this to can handel pagenation in right way cos when use
+                //suggestedItemsArrayListDO well not give right number cos i redesign the list to contean 2 items in same way
+                toPagnationParpos.addAll(itemsList);
 
                 if (currentPage != PAGE_START && suggestedItemsArrayListTest.size()!=0) adapterEndlessResult.removeLoading();
                 if (suggestedItemsArrayListTest.size()!=0)

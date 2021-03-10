@@ -17,6 +17,7 @@ import com.fashion.rest.model.Category;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.FastFood;
 import com.fashion.rest.model.Flag;
+import com.fashion.rest.model.ItemFavorite;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Location;
 import com.fashion.rest.model.Notification;
@@ -198,6 +199,61 @@ public class Functions {
         }
         return z;
     }
+
+    public static ArrayList<String> getNewItems(ArrayList<String> allItemsArrayList,ArrayList<String> itemMustLoaded) {
+        int z =0;
+        ArrayList<String> newItemsToLoad = new ArrayList<>();
+        int v = allItemsArrayList.size() - itemMustLoaded.size();
+        if (allItemsArrayList.size() ==0 || v==0)
+        {
+            z =0;
+        }else{
+            if ((allItemsArrayList.size()-itemMustLoaded.size()) > 8)
+            {
+                z=8+itemMustLoaded.size();
+                for (int i =itemMustLoaded.size();i<z;i++)
+                {
+                    newItemsToLoad.add(allItemsArrayList.get(i));
+                }
+            }else{
+                z= allItemsArrayList.size()-itemMustLoaded.size();
+                for (int i =itemMustLoaded.size();i<allItemsArrayList.size();i++)
+                {
+                    newItemsToLoad.add(allItemsArrayList.get(i));
+                }
+            }
+        }
+        return newItemsToLoad;
+    }
+
+    public static int loadMoreItem(int all,int Loaded) {
+        int z =0;
+        int v = all - Loaded;
+        if (all ==0 || v==0)
+        {
+            z =0;
+        }else{
+            if ((all-Loaded) > 8)
+            {
+                z=8;
+            }else{
+                z= all-Loaded;
+            }
+        }
+        return z;
+    }
+
+    public static ItemFavorite itemFav() {
+        ArrayList<Flag> flagArrayL = new ArrayList<>();
+        String image = null;
+        Flag flag = new Flag(image);
+        ArrayList<Location> locationsArrayL = new ArrayList<>();
+        Store store = new Store(flag," "," "," "," ",locationsArrayL);
+        Sub_Cat sub_cat = new Sub_Cat();
+        ItemFavorite itemFavorite = new ItemFavorite(flagArrayL,store,sub_cat," "," "," "," "," "," "," ",false,true);
+        return itemFavorite;
+    }
+
 
     public static double roundTwoDecimals(double d)
     {

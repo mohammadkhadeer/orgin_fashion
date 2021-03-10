@@ -236,5 +236,10 @@
     <string name="new_items">المنتجات</string>
     <string name="new_offer">العروض</string>
     <string name="important_message">الرسائل المهمة</string>
+    <string name="wait_loading">جاري تحميل المزيد</string>
+    <string name="finish_loading">انتهى التحميل استمر بالسحب</string>
+    <string name="no_items_in_favorite">لا يوجد عناصر في المفضلة</string>
+    <string name="out_stok">نفذت الكمية نعتذر</string>
+    <string name="not_avalibale">ليس متاحا بعد الان</string>
 
 </resources>

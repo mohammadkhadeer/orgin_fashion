@@ -24,6 +24,19 @@ import static com.fashion.rest.database.DataBaseInstance.getDataBaseInstance;
 
 public class FillItem {
 
+    public static ArrayList<String> itemsIdInFavorite(Context context) {
+        ArrayList<String> listArrayL = new ArrayList<String>();
+
+        Cursor res = getDataBaseInstance(context).descendingFav();
+
+        while (res.moveToNext()) {
+            // idOnServer col 1 ... city_en_name col 2 ... city_local_name col 3 ... area_en_name col 4 ... area_local_name col 5
+            listArrayL.add(res.getString(1).replace("\n", ""));
+        }
+
+        return listArrayL;
+    }
+
     public static ArrayList<Area> fillAreas(Context context,String city) {
         ArrayList<Area> listArrayL = new ArrayList<Area>();
 

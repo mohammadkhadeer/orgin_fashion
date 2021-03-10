@@ -293,9 +293,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_CART, " NAME = ?",new String[] {itemName});
     }
 
-    public Integer deleteItemFromFav(String itemName){
+    public Integer deleteItemFromFav(String itemID){
         SQLiteDatabase db =this.getWritableDatabase();
-        return db.delete(TABLE_FAVORITE, " COL_ITEM_SERVER_ID = ?",new String[] {itemName});
+        return db.delete(TABLE_FAVORITE, " COL_ITEM_SERVER_ID = ?",new String[] {itemID});
     }
 
     //////////////////////////////////////delete data "All line" ////////////////
