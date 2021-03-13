@@ -109,7 +109,8 @@ public class Functions {
         Location location = new Location("25.2616938","55.3818661","id");
         ArrayList<Location> locationsArrayL=new ArrayList<>();
         locationsArrayL.add(location);
-        Store store = new Store(flag,storeNameStr,"id",storeNameStr,"0582402431",locationsArrayL);
+        Store store = new Store();
+        store = offer.getStore();
         Sub_Cat sub_cat=new Sub_Cat("name","test","offers","offers","offers",flag);
         ItemTest itemTest = new ItemTest(
                 offer.getFlagArrayL()
@@ -248,10 +249,18 @@ public class Functions {
         String image = null;
         Flag flag = new Flag(image);
         ArrayList<Location> locationsArrayL = new ArrayList<>();
-        Store store = new Store(flag," "," "," "," ",locationsArrayL);
+        Store store = new Store();
         Sub_Cat sub_cat = new Sub_Cat();
         ItemFavorite itemFavorite = new ItemFavorite(flagArrayL,store,sub_cat," "," "," "," "," "," "," ",false,true);
         return itemFavorite;
+    }
+
+    public static ItemTest itemFav(ItemFavorite itemFavorite) {
+        ItemTest itemTest = new ItemTest(itemFavorite.getFlagArrayL(),itemFavorite.getStore(),itemFavorite.getSub_cat()
+        ,itemFavorite.getName(),itemFavorite.getName_local(),itemFavorite.getDescription(),itemFavorite.getDescription_local()
+        ,itemFavorite.getPrice(),itemFavorite.getDiscountPrice(),itemFavorite.getId());
+        return itemTest;
+
     }
 
 

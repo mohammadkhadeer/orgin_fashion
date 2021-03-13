@@ -52,7 +52,7 @@ public class API {
     public static String apiCat(){
         String apiName ="";
         apiName =apiURLBase() + "/categories/";
-        Log.i("TAG Cat",apiName);
+//        Log.i("TAG Cat",apiName);
         return apiName;
     }
 
@@ -71,8 +71,16 @@ public class API {
 
     public static String apiItemsWithAllFilter(String subCategoryID,String category_id){
         String apiName ="http://46.101.235.217/api/items/by-filter/%7B%22from%22%"+20+":%2020,%22to%22:"+55555555+",%22sub_category%22:%22"+subCategoryID+"%22,%22category%22:%22"+category_id+"%22,%22area%22:[%2260082119e4afcdaf7e1cb8ad%22]%7D/";
-        Log.i("TAG: API",apiName);
+//        Log.i("TAG: API",apiName);
         return apiName;
+    }
+
+    public static String apiStoreItems(String store_id,String store_area){
+        String apiName ="http://46.101.235.217/api/items/by-filter/%7B%22from%22%20:%2020,%22to%22:55555,%22sub_category%22:%226020da4212f197d167672163%22,%22store%22:%22"+store_id+"%22,%22category%22:%226020da0412f197d167672161%22,%22area%22:[%22"+store_area+"%22]%7D/";
+        String apiName2 = "http://46.101.235.217/api/items/by-filter/%7B%22from%22%20:%2020,%22to%22:55555,%22store%22:%22"+store_id+"%22,%22area%22:[%22"+store_area+"%22]%7D/";
+
+        Log.i("TAG: API",apiName2);
+        return apiName2;
     }
 
     public static String apiOffers(String date){

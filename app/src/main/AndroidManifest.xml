@@ -16,13 +16,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.FavoriteItems"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme44"></activity>
-        <activity
-            android:name=".view.activity.ReportActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme44" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -31,6 +24,19 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
+        <activity android:name=".view.activity.StoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23"></activity>
+
+        <activity
+            android:name=".view.activity.FavoriteItems"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme44" />
+        <activity
+            android:name=".view.activity.ReportActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme44" />
 
         <activity
             android:name=".view.activity.SelectCountryActivity"

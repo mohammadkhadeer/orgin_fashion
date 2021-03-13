@@ -11,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemTest;
+import com.fashion.rest.model.Store;
+import com.fashion.rest.view.activity.StoreActivity;
 import com.squareup.picasso.Picasso;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
@@ -31,13 +34,16 @@ public class FragmentStoreInfo extends Fragment {
     TextView userNameTV;
     ImageView userImageIV;
     RelativeLayout fragment_store_info;
+    LinearLayout store_ll;
     ItemTest itemTest;
+    Store store = new Store();
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
-            website_link = getArguments().getString("website_link");
             itemTest = (ItemTest) getArguments().getParcelable("item_object");
+//            website_link = getArguments().getString("website_link");
+            website_link = itemTest.getStore().getWebsite_link();
             storeNameStr = getTextEngOrLocal(getActivity(),itemTest.getStore().getName(),itemTest.getStore().getName_local());
             storeImage = apiURLBase()+itemTest.getStore().getFlag().getUrl();
         }
@@ -50,6 +56,7 @@ public class FragmentStoreInfo extends Fragment {
         userImageIV = (ImageView) view.findViewById(R.id.fragment_follow_image_IV);
         userNameTV = (TextView) view.findViewById(R.id.fragment_follow_user_name_TV);
         fragment_store_info = (RelativeLayout) view.findViewById(R.id.fragment_store_info);
+        store_ll = (LinearLayout) view.findViewById(R.id.store_ll);
     }
 
     @Override
@@ -71,6 +78,20 @@ public class FragmentStoreInfo extends Fragment {
 
         fillUserImageAndUserName();
         actionListenerToVisitWebsite();
+        actionListenerToStore();
+    }
+
+    private void actionListenerToStore() {
+        store_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                store = itemTest.getStore();
+                Intent intent = new Intent(getActivity(), StoreActivity.class);
+                intent.putExtra("item_object", itemTest);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+            }
+        });
     }
 
     private void actionListenerToVisitWebsite() {

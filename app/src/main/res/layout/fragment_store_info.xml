@@ -21,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/colorWhite"
+            android:id="@+id/store_ll"
+            android:background="?android:attr/selectableItemBackground"
             android:weightSum="100">
 
             <RelativeLayout
@@ -63,7 +64,6 @@
                 </LinearLayout>
 
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="0dp"

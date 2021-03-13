@@ -13,6 +13,7 @@ import static com.fashion.rest.apiURL.API.apiItems;
 import static com.fashion.rest.apiURL.API.apiItemsWithAllFilter;
 import static com.fashion.rest.apiURL.API.apiNumberOfCountries;
 import static com.fashion.rest.apiURL.API.apiOffers;
+import static com.fashion.rest.apiURL.API.apiStoreItems;
 import static com.fashion.rest.apiURL.API.getSingleItem;
 
 public class RetrofitFunctions {
@@ -83,6 +84,15 @@ public class RetrofitFunctions {
     public static Retrofit getItemsWithAllFilter(String subCategoryID,String category_id) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiItemsWithAllFilter(subCategoryID,category_id))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    public static Retrofit getStoreItems(String storeID,String store_area) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(apiStoreItems(storeID,store_area))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

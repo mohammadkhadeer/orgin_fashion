@@ -125,7 +125,8 @@ public class FragmentCategory extends Fragment{
         //here
         suggestedItemsArrayListTest = new ArrayList<>();
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<List<Home>> callHome = jsonPlaceHolderApi.getHome(suggestedItemsArrayListDO.size(),4);
+        int max = suggestedItemsArrayListDO.size() + 4;
+        Call<List<Home>> callHome = jsonPlaceHolderApi.getHome(suggestedItemsArrayListDO.size(),max);
         callHome.enqueue(new Callback<List<Home>>() {
             @Override
             public void onResponse(Call<List<Home>> call, Response<List<Home>> response) {

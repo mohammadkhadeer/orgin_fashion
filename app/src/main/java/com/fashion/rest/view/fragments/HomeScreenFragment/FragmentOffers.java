@@ -203,7 +203,8 @@ public class FragmentOffers extends Fragment{
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        Call<List<Offer>> call = jsonPlaceHolderApiOffers.getOffers(suggestedItemsArrayListDO.size(),8);
+        int max =suggestedItemsArrayListDO.size() + 8;
+        Call<List<Offer>> call = jsonPlaceHolderApiOffers.getOffers(suggestedItemsArrayListDO.size(),max);
         call.enqueue(new Callback<List<Offer>>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

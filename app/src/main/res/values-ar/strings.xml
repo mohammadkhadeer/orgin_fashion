@@ -241,5 +241,7 @@
     <string name="no_items_in_favorite">لا يوجد عناصر في المفضلة</string>
     <string name="out_stok">نفذت الكمية نعتذر</string>
     <string name="not_avalibale">ليس متاحا بعد الان</string>
+    <string name="view_in">اظهار في</string>
+    <string name="google_maps">خرائط قوقل</string>
 
 </resources>

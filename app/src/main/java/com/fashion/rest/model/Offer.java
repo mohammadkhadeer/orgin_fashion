@@ -7,15 +7,17 @@ import java.util.ArrayList;
 public class Offer {
     @SerializedName("Photo")
     ArrayList<Flag> flagArrayL;
-
+    @SerializedName("store")
+    Store store;
     String name,name_local,description,description_local,price,discountPrice,promo_code,valide,color,secondaryColor;
     @SerializedName("id")
     String item_id;
 
     public Offer(){}
 
-    public Offer(ArrayList<Flag> flagArrayL, String name, String name_local, String description, String description_local, String price, String discountPrice, String promo_code, String valide, String color, String secondaryColor, String item_id) {
+    public Offer(ArrayList<Flag> flagArrayL, Store store, String name, String name_local, String description, String description_local, String price, String discountPrice, String promo_code, String valide, String color, String secondaryColor, String item_id) {
         this.flagArrayL = flagArrayL;
+        this.store = store;
         this.name = name;
         this.name_local = name_local;
         this.description = description;
@@ -35,6 +37,14 @@ public class Offer {
 
     public void setFlagArrayL(ArrayList<Flag> flagArrayL) {
         this.flagArrayL = flagArrayL;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public String getName() {

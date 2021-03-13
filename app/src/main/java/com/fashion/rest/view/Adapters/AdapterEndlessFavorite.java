@@ -1,6 +1,8 @@
 package com.fashion.rest.view.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -23,8 +25,10 @@ import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.CustomItems;
 import com.fashion.rest.model.Deal;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.utils.BaseViewHolderUser;
 import com.fashion.rest.model.ItemFavorite;
+import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -35,6 +39,7 @@ import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.database.DataBaseInstance.getDataBaseInstance;
 import static com.fashion.rest.functions.Functions.calculatePercentage;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import static com.fashion.rest.functions.Functions.itemFav;
 
 public class AdapterEndlessFavorite extends RecyclerView.Adapter<BaseViewHolderUser>{
   private static final int VIEW_TYPE_LOADING = 0;
@@ -203,9 +208,18 @@ public class AdapterEndlessFavorite extends RecyclerView.Adapter<BaseViewHolderU
     item_cover.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (getItem(position).isInStock() == false){
-          Toast.makeText(context,getItem(position).getName(),Toast.LENGTH_SHORT).show();
+        if (getItem(position).isDeleted() == true)
+        {}else{
+          if (getItem(position).isInStock()){
+            ItemTest itemTest = itemFav(getItem(position));
+
+            Intent intent = new Intent(context, ItemDetails.class);
+            intent.putExtra("item_object", itemTest);
+            ((Activity)context).startActivity(intent);
+            ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+          }
         }
+
       }
     });
   }

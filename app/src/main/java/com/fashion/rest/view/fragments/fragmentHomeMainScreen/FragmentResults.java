@@ -26,6 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import static com.fashion.rest.functions.RetrofitFunctions.getItemsWithAllFilter;
+import static com.fashion.rest.functions.RetrofitFunctions.getStoreItems;
 
 public class FragmentResults extends Fragment {
     public ArrayList<CustomItems> dealsArrayList = new ArrayList<>();
@@ -52,20 +53,27 @@ public class FragmentResults extends Fragment {
     RecyclerView results_RV;
     NestedScrollView nestedScrollView;
 
-    String cat_id,sub_cat_id;
+    String cat_id,sub_cat_id,store_id,store_area;
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
             cat_id = getArguments().getString("cat_id");
             sub_cat_id = getArguments().getString("sub_cat_id");
+            store_id = getArguments().getString("store_id");
+            store_area = getArguments().getString("store_area");
         }
         super.onAttach(context);
-        intiRetrofit();
+        if (store_id != null || store_id == " ")
+        {
+            retrofit = getStoreItems(store_id,store_area);
+        }else{
+            retrofit = getItemsWithAllFilter(sub_cat_id,cat_id);
+        }
+        intiPlaceHolder();
     }
 
-    private void intiRetrofit() {
-        retrofit = getItemsWithAllFilter(sub_cat_id,cat_id);
+    private void intiPlaceHolder() {
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
@@ -128,7 +136,8 @@ public class FragmentResults extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
-        Call<List<ItemTest>> callHome = jsonPlaceHolderApi.getAllItems(toPagnationParpos.size(),16);
+        int max = toPagnationParpos.size()+8;
+        Call<List<ItemTest>> callHome = jsonPlaceHolderApi.getAllItems(toPagnationParpos.size(),max);
         callHome.enqueue(new Callback<List<ItemTest>>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -149,11 +158,8 @@ public class FragmentResults extends Fragment {
                 {
                     adapterEndlessResult.addItems(suggestedItemsArrayListTest);
                 }
-                if (suggestedItemsArrayListTest.size()!=0) {
+                if (itemsList.size()!=0) {
                     adapterEndlessResult.addLoading();
-                    isLoading = false;
-                } else {
-                    isLastPage = true;
                 }
             }
 

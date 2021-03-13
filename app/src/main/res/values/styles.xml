@@ -42,6 +42,7 @@
         <item name="colorAccent">@color/colorRed</item>
 
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
 
     </style>
