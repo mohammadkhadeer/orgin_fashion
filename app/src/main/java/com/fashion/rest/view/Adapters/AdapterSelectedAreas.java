@@ -21,18 +21,27 @@ public class AdapterSelectedAreas extends RecyclerView.Adapter<AdapterSelectedAr
     private final Context context;
     ArrayList<Area> areaArrayL = new ArrayList<>();
     CancelArea cancelArea;
+    String from;
     public AdapterSelectedAreas
-            (Context context,ArrayList<Area> areaArrayL,CancelArea cancelArea)
+            (Context context,ArrayList<Area> areaArrayL,CancelArea cancelArea,String from)
                 {
                     this.context = context;
                     this.areaArrayL = areaArrayL;
                     this.cancelArea = cancelArea;
+                    this.from = from;
                 }
 
     public AdapterSelectedAreas.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)
     {
-        View view = LayoutInflater.from(viewGroup.getContext()).
-                inflate(R.layout.adapter_selected_areas, viewGroup, false);
+        View view;
+        if (from.equals("all_filter"))
+        {
+            view = LayoutInflater.from(viewGroup.getContext()).
+                    inflate(R.layout.adapter_selected_areas_small, viewGroup, false);
+        }else{
+            view = LayoutInflater.from(viewGroup.getContext()).
+                    inflate(R.layout.adapter_selected_areas, viewGroup, false);
+        }
         return new ViewHolder(view);
     }
 

@@ -51,8 +51,10 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
 
     switch (viewType) {
       case VIEW_TYPE_NORMAL:
-        return new ViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_offers_endless, parent, false));
+        if (comeFrom.equals("all_filter"))
+          return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_offers_endless_all_offers, parent, false));
+        else
+          return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_offers_endless, parent, false));
       case VIEW_TYPE_LOADING:
         return new ProgressHolder(
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading_h_2, parent, false));
@@ -175,11 +177,11 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
             .centerCrop()
             .into(itemImage);
 
-//    Picasso.get()
-//            .load(apiURLBase()+getObject(position).getStore().getFlag().getUrl())
-//            .fit()
-//            .centerCrop()
-//            .into(itemImage);
+    Picasso.get()
+            .load(apiURLBase()+getObject(position).getStore().getFlag().getUrl())
+            .fit()
+            .centerCrop()
+            .into(store_image_offer);
 
   }
 

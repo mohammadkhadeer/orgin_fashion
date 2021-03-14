@@ -26,6 +26,7 @@ import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
 import com.fashion.rest.view.Adapters.AdapterOffers;
 import com.fashion.rest.view.activity.AllCategory;
+import com.fashion.rest.view.activity.AllOffersActivity;
 
 
 import java.util.ArrayList;
@@ -45,8 +46,6 @@ import static com.fashion.rest.view.categoriesComp.FillType3.fillCase3Item;
 public class FragmentOffers extends Fragment{
     View view;
     RecyclerView recyclerView,recyclerViewCat;
-    AdapterOffers adapterOffers;
-    RecyclerView.LayoutManager layoutManager;
 
     public ArrayList<Offer> dealsArrayList = new ArrayList<>();
     public ArrayList<Offer> suggestedItemsArrayListTest;
@@ -63,8 +62,8 @@ public class FragmentOffers extends Fragment{
     LinearLayoutManager mLayoutManager;
     AdapterEndlessOffers adapterEndlessOffers ;
 
-    RelativeLayout see_all_cat_rl;
-    TextView see_all_cat_tv;
+    RelativeLayout see_all_cat_rl,see_all_offers_rl;
+    TextView see_all_cat_tv,see_all_offers;
 
     int numberOfObjectNow = 0;
     JsonPlaceHolderApi jsonPlaceHolderApi,jsonPlaceHolderApiOffers;
@@ -132,6 +131,7 @@ public class FragmentOffers extends Fragment{
 
     private void changeFont() {
         see_all_cat_tv.setTypeface(Functions.changeFontGeneral(getActivity()));
+        see_all_offers.setTypeface(Functions.changeFontGeneral(getActivity()));
     }
 
     private void actionListenerToSeeAllCat() {
@@ -141,10 +141,21 @@ public class FragmentOffers extends Fragment{
                 moveToAllCatActivity();
             }
         });
+        see_all_offers_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToAllOffers();
+            }
+        });
+    }
+
+    private void moveToAllOffers() {
+        Intent intent = new Intent(getActivity(), AllOffersActivity.class);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }
 
     private void moveToAllCatActivity() {
-
         Intent intent = new Intent(getActivity(), AllCategory.class);
         intent.putExtra("categories", categoriesArrayList);
         startActivity(intent);
@@ -249,6 +260,8 @@ public class FragmentOffers extends Fragment{
         recyclerViewCat = (RecyclerView) view.findViewById(R.id.type3_RV);
         see_all_cat_rl = (RelativeLayout) view.findViewById(R.id.see_all_cat_rl);
         see_all_cat_tv = (TextView) view.findViewById(R.id.see_all_cat_tv);
+        see_all_offers_rl = (RelativeLayout) view.findViewById(R.id.see_all_offers_rl);
+        see_all_offers = (TextView) view.findViewById(R.id.see_all_offers);
     }
 
 }

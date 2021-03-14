@@ -21,18 +21,28 @@ public class AdapterCities extends RecyclerView.Adapter<AdapterCities.ViewHolder
 //    List<Offer> mList = new ArrayList<>();
     ArrayList<City> cities = new ArrayList<>();
     PassCity passCity;
+    String from;
     public AdapterCities
-            (Context context,ArrayList<City> dealsArrayL,PassCity passCity)
+            (Context context,ArrayList<City> dealsArrayL,PassCity passCity,String from)
                 {
                     this.context = context;
                     this.cities = dealsArrayL;
                     this.passCity = passCity;
+                    this.from = from;
                 }
 
     public AdapterCities.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)
     {
-        View view = LayoutInflater.from(viewGroup.getContext()).
-                inflate(R.layout.adapter_filter_city_and_areas, viewGroup, false);
+        View view;
+        if (from.equals("all_filter"))
+        {
+             view = LayoutInflater.from(viewGroup.getContext()).
+                    inflate(R.layout.adapter_filter_city_and_areas_small, viewGroup, false);
+        }else{
+             view = LayoutInflater.from(viewGroup.getContext()).
+                    inflate(R.layout.adapter_filter_city_and_areas, viewGroup, false);
+        }
+
         return new ViewHolder(view);
     }
 

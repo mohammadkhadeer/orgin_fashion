@@ -20,18 +20,28 @@ public class AdapterAreas extends RecyclerView.Adapter<AdapterAreas.ViewHolder>{
 //    List<Offer> mList = new ArrayList<>();
     ArrayList<Area> areaArrayL = new ArrayList<>();
     PassArea passArea;
+    String from;
     public AdapterAreas
-            (Context context,ArrayList<Area> areaArrayL,PassArea passArea)
+            (Context context,ArrayList<Area> areaArrayL,PassArea passArea,String from)
                 {
                     this.context = context;
                     this.areaArrayL = areaArrayL;
                     this.passArea = passArea;
+                    this.from = from;
                 }
 
     public AdapterAreas.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)
     {
-        View view = LayoutInflater.from(viewGroup.getContext()).
-                inflate(R.layout.adapter_filter_city_and_areas, viewGroup, false);
+        View view;
+        if (from.equals("all_filter"))
+        {
+            view = LayoutInflater.from(viewGroup.getContext()).
+                    inflate(R.layout.adapter_filter_city_and_areas_small, viewGroup, false);
+        }else{
+            view = LayoutInflater.from(viewGroup.getContext()).
+                    inflate(R.layout.adapter_filter_city_and_areas, viewGroup, false);
+        }
+
         return new ViewHolder(view);
     }
 

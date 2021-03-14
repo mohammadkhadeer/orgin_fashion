@@ -119,7 +119,6 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -178,7 +177,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
         cityRV.setLayoutManager(layoutManager);
         adapterCities = new AdapterCities(getActivity()
-                , citesArrayList, this);
+                , citesArrayList, this,"filter");
         cityRV.setAdapter(adapterCities);
     }
 
@@ -368,13 +367,13 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
         all_areasRV.setLayoutManager(layoutManagerArea);
         adapterAreas = new AdapterAreas(getActivity()
-                , areaArrayList, this);
+                , areaArrayList, this,"filter");
         all_areasRV.setAdapter(adapterAreas);
     }
 
     @Override
     public void onClicked(Area area) {
-        //when user start choose areas first thing will check if this first choose if yes create selected areas recycler view
+        //when user start choose areas first thing will check if this is a first choose if yes create selected areas recycler view
         //else will start add a new area to selected areas list and updated on adapter
         //also i have to remove a selected area from all area list and adapter
         if (selectedAreaArrayList.size() == 0) {
@@ -416,7 +415,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
         selected_areasRV.setLayoutManager(layoutManagerSelectedArea);
         adapterSelectedAreas = new AdapterSelectedAreas(getActivity()
-                , selectedAreaArrayList, this);
+                , selectedAreaArrayList, this,"filter");
         selected_areasRV.setAdapter(adapterSelectedAreas);
     }
 
@@ -497,7 +496,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
             selected_areasRV.setLayoutManager(layoutManagerSelectedArea);
             adapterSelectedAreas = new AdapterSelectedAreas(getActivity()
-                    , selectedAreaArrayList, this);
+                    , selectedAreaArrayList, this,"filter");
             selected_areasRV.setAdapter(adapterSelectedAreas);
 
         }
