@@ -28,6 +28,8 @@
     <string name="important_message">Important message</string>
 
     <string name="price">Price</string>
+    <string name="price_min">Fill min price please</string>
+    <string name="price_man">Fill max price please</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="call">Call</string>

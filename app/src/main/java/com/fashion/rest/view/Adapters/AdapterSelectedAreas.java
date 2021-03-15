@@ -57,6 +57,12 @@ public class AdapterSelectedAreas extends RecyclerView.Adapter<AdapterSelectedAr
         }
     }
 
+    public void removeAllArea() {
+        int size = areaArrayL.size();
+        areaArrayL.clear();
+        notifyItemRangeRemoved(0, size);
+    }
+
     @Override
     public void onBindViewHolder(final AdapterSelectedAreas.ViewHolder holder, final int position) {
 

@@ -13,9 +13,12 @@ import android.widget.RelativeLayout;
 
 import com.fashion.rest.R;
 import com.fashion.rest.database.DBHelper;
+import com.fashion.rest.model.Area;
 import com.fashion.rest.model.Category;
+import com.fashion.rest.model.City;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.FastFood;
+import com.fashion.rest.model.FilterOffersModel;
 import com.fashion.rest.model.Flag;
 import com.fashion.rest.model.ItemFavorite;
 import com.fashion.rest.model.ItemTest;
@@ -77,6 +80,18 @@ public class Functions {
         df.setTimeZone(tz);
         String nowAsISO = df.format(new Date());
         return nowAsISO;
+    }
+
+    public static FilterOffersModel getDefultToFilterModel(ArrayList<Area> areasList) {
+        City city = null;
+        FilterOffersModel filterOffersModel = new FilterOffersModel(
+                getIOs()
+                ,city
+                ,areasList
+                ,20
+                ,55555
+        );
+        return filterOffersModel;
     }
 
 

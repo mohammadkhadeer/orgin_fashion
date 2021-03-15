@@ -1,23 +1,31 @@
 package com.fashion.rest.view.fragments.allOffersFragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Area;
 import com.fashion.rest.model.City;
+import com.fashion.rest.model.FilterOffersModel;
 import com.fashion.rest.model.MultiArea;
+import com.fashion.rest.presnter.Filter;
+import com.fashion.rest.presnter.PassFilterOffersModel;
 import com.fashion.rest.view.Adapters.AdapterAreas;
 import com.fashion.rest.view.Adapters.AdapterCities;
 import com.fashion.rest.view.Adapters.AdapterSelectedAreas;
@@ -29,6 +37,7 @@ import java.util.ArrayList;
 
 import static com.fashion.rest.functions.FillItem.fillAreas;
 import static com.fashion.rest.functions.FillItem.fillCityArrayL;
+import static com.fashion.rest.functions.Functions.getDefultToFilterModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class FilterOffers extends Fragment  implements AdapterCities.PassCity, AdapterAreas.PassArea
@@ -57,7 +66,28 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
 
     RelativeLayout see_all_areas_all_offers_filter;
 
+    FilterOffersModel filterOffersModel;
+    PassFilterOffersModel passFilterOffersModel;
+
+    EditText editText_from,editText_to;
+
     View view;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof PassFilterOffersModel) {
+            passFilterOffersModel = (PassFilterOffersModel) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement FragmentAListener");
+        }
+    }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        passFilterOffersModel = null;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,8 +97,31 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         changeFont();
         createCitiesRV();
         actionListeners();
+        filterOffersModel = getDefultToFilterModel(selectedAreaArrayList);
 
         return view;
+    }
+
+    private void actionListenerToCancelCity() {
+        //remove all selected areas from selected areas rv
+        // clear arrayList selected areas
+        // pass a new value filter to perant screen
+        //1. gone city_name_con_result_all_offers_filter
+        //2. re visible city_rv
+        cancel_city_all_offers_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapterSelectedAreas.removeAllArea();
+                selectedAreaArrayList = new ArrayList<>();
+
+                filterOffersModel.setCity(null);
+                filterOffersModel.setAreasList(selectedAreaArrayList);
+                passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
+
+                city_name_con_result_all_offers_filter.setVisibility(View.GONE);
+                cities_rv.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     public void passSelected(ArrayList<MultiArea> multiAreasArrayList) {
@@ -89,6 +142,9 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
             }
         }
         removeSelectedAreaFromAreaArrayListAndAreaAdapterCase2(multiAreasArrayList);
+        //pass selected area
+        filterOffersModel.setAreasList(selectedAreaArrayList);
+        passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
     }
 
     private void removeSelectedAreaFromAreaArrayListAndAreaAdapterCase2(ArrayList<MultiArea> multiAreasArrayList) {
@@ -132,6 +188,51 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
     private void actionListeners() {
         actionListenerToCancelCity();
         actionListenerToSeeAllAreas();
+        actionListenerToDoneEditTextFrom();
+        actionListenerToDoneEditTextTo();
+    }
+
+    private void actionListenerToDoneEditTextTo() {
+        editText_to.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (!editText_to.getText().toString().isEmpty())
+                    {
+                        filterOffersModel.setTo(Integer.parseInt(editText_to.getText().toString()));
+                        passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.price_man), Toast.LENGTH_SHORT).show();
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void actionListenerToDoneEditTextFrom() {
+        editText_from.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (!editText_from.getText().toString().isEmpty())
+                    {
+                        filterOffersModel.setFrom(Integer.parseInt(editText_from.getText().toString()));
+                        passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
+                    }
+                    else{
+                        Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.price_min), Toast.LENGTH_SHORT).show();
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void actionListenerToSeeAllAreas() {
@@ -140,18 +241,6 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
             public void onClick(View v) {
                 PopUp popUp = new PopUp();
                 popUp.showDialog(getActivity(), areaArrayList, getActivity());
-            }
-        });
-    }
-
-    private void actionListenerToCancelCity() {
-        //1. gone city_name_con_result_all_offers_filter
-        //2. re visible city_rv
-        cancel_city_all_offers_filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                city_name_con_result_all_offers_filter.setVisibility(View.GONE);
-                cities_rv.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -177,6 +266,8 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         city_name_result_all_offers_filter = (TextView) view.findViewById(R.id.city_name_result_all_offers_filter);
         cancel_city_all_offers_filter = (RelativeLayout) view.findViewById(R.id.cancel_city_all_offers_filter);
         see_all_areas_all_offers_filter = (RelativeLayout) view.findViewById(R.id.see_all_areas_all_offers_filter);
+        editText_from = (EditText) view.findViewById(R.id.price_from);
+        editText_to = (EditText) view.findViewById(R.id.price_to);
     }
 
     @Override
@@ -185,6 +276,10 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         //2. made all city_name_con_result_all_offers_filter visible
         //3. set a city name in-said city_name_tv show
         //4. fill area_rv
+        //5. update filter model
+        filterOffersModel.setCity(city);
+        passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
+
         cities_rv.setVisibility(View.GONE);
         city_name_con_result_all_offers_filter.setVisibility(View.VISIBLE);
         city_name_result_all_offers_filter.setText(getTextEngOrLocal(getActivity(),city.getName_en(),city.getName_local()));
@@ -207,7 +302,7 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
 
     @Override
     public void onClicked(Area area) {
-        Log.i("TAG","area: "+area.getName_local());
+//        Log.i("TAG","area: "+area.getName_local());
         //when user start choose areas first thing will check if this is a first choose if yes create selected areas recycler view
         //else will start add a new area to selected areas list and updated on adapter
         //also i have to remove a selected area from all area list and adapter
@@ -231,11 +326,18 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         adapterSelectedAreas = new AdapterSelectedAreas(getActivity()
                 , selectedAreaArrayList, this,"all_filter");
         selected_areasRV_all_offers_filter.setAdapter(adapterSelectedAreas);
+        //pass selected area
+        filterOffersModel.setAreasList(selectedAreaArrayList);
+        passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
     }
 
     private void updateSelectedArea(Area area) {
         selectedAreaArrayList.add(0, area);
         adapterSelectedAreas.notifyDataSetChanged();
+
+        //pass selected area
+        filterOffersModel.setAreasList(selectedAreaArrayList);
+        passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
     }
 
     private void removeSelectedAreaFromAreaArrayListAndAreaAdapter(Area area) {
@@ -272,6 +374,9 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         //add removed area to all areas arrayList
         areaArrayList.add(0, area);
         adapterAreas.notifyDataSetChanged();
+        //pass selected area
+        filterOffersModel.setAreasList(selectedAreaArrayList);
+        passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
     }
 
     private void removeItemFromArrayList(Area area) {

@@ -244,5 +244,9 @@
     <string name="view_in">اظهار في</string>
     <string name="google_maps">خرائط قوقل</string>
     <string name="offers">العروض</string>
+    <string name="price_min">املا السعر الابتدائي رجاءا</string>
+    <string name="action_settings">الاعدادت</string>
+    <string name="title_activity_store">فاضي</string>
+    <string name="price_man">املا الحد الاقصى للسعر رجاءا</string>
 
 </resources>

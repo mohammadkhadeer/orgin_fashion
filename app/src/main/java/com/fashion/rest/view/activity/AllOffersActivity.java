@@ -17,10 +17,12 @@ import com.fashion.rest.R;
 import com.fashion.rest.model.Area;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.City;
+import com.fashion.rest.model.FilterOffersModel;
 import com.fashion.rest.model.MultiArea;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassCityAndArea;
+import com.fashion.rest.presnter.PassFilterOffersModel;
 import com.fashion.rest.view.Adapters.AdapterCities;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
 import com.fashion.rest.view.fragments.allOffersFragments.FilterOffers;
@@ -41,7 +43,7 @@ import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
 import static com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults.PAGE_START;
 
-public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSelectedAreas, PassCityAndArea {
+public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSelectedAreas, PassCityAndArea, PassFilterOffersModel {
 
     FilterOffers filterOffers = new FilterOffers();
 
@@ -82,7 +84,7 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
                 actionListenerToNestedScroll();
 
             }
-        }, 2000);
+        }, 200);
     }
 
     private void actionListenerToNestedScroll() {
@@ -198,6 +200,36 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
 
     @Override
     public void PassCat(Category category) {
+
+    }
+
+    @Override
+    public void PassFilterOffersModel(FilterOffersModel filterOffersModel) {
+        if (filterOffersModel.getCity() != null)
+        {
+            Log.i("TAG","City_local: "+filterOffersModel.getCity().getName_local());
+            Log.i("TAG","City_en: "+filterOffersModel.getCity().getName_en());
+            Log.i("TAG","City_id: "+filterOffersModel.getCity().getIdServer());
+        }else{
+            Log.i("TAG","City_object: null");
+        }
+
+        if (filterOffersModel.getAreasList().size() != 0)
+        {
+            for (int i=0;i<filterOffersModel.getAreasList().size();i++)
+            {
+                Log.i("TAG","Area_local: "+filterOffersModel.getAreasList().get(i).getName_local());
+                Log.i("TAG","Area_en: "+filterOffersModel.getAreasList().get(i).getName_en());
+                Log.i("TAG","Area_id: "+filterOffersModel.getAreasList().get(i).getId());
+            }
+
+        }else{
+            Log.i("TAG","AreasList size: zero");
+        }
+
+        Log.i("TAG","price from: "+String.valueOf(filterOffersModel.getFrom()));
+        Log.i("TAG","price to: "+String.valueOf(filterOffersModel.getTo()));
+
 
     }
 }
