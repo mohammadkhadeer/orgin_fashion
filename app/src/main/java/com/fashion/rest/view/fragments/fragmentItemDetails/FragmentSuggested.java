@@ -22,7 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
-import static com.fashion.rest.functions.RetrofitFunctions.getItems;
+import static com.fashion.rest.functions.RetrofitFunctions.getItemHome;
 
 public class FragmentSuggested extends Fragment{
     View view;
@@ -55,7 +55,7 @@ public class FragmentSuggested extends Fragment{
     }
 
     private void intiRetrofit() {
-        retrofit = getItems(itemTest.getSub_cat().getId(),itemTest.getSub_cat().getCategory_id());
+        retrofit = getItemHome(itemTest.getSub_cat().getId(),itemTest.getSub_cat().getCategory_id());
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
