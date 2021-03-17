@@ -2,6 +2,8 @@ package com.fashion.rest.apiURL;
 
 import android.util.Log;
 
+import com.fashion.rest.model.FilterOffersModel;
+
 public class API {
     public static String apiName ;
 
@@ -63,7 +65,7 @@ public class API {
 
     public static String apiItemsHome(String subCategoryID,String category_id){
         String apiName = "http://46.101.235.217/api/items/by-filter/%7B%22from%22%20:%205,%22to%22:55555,%22sub_category%22:%22"+subCategoryID+"%22,%22store%22:null,%22category%22:%22"+category_id+"%22,%22inStock%22:true,%22area%22:null%7D/";
-        Log.i("TAG",apiName);
+//        Log.i("TAG",apiName);
         return apiName;
     }
 
@@ -85,13 +87,19 @@ public class API {
         String apiName ="http://46.101.235.217/api/items/by-filter/%7B%22from%22%20:%2020,%22to%22:55555,%22sub_category%22:%226020da4212f197d167672163%22,%22store%22:%22"+store_id+"%22,%22category%22:%226020da0412f197d167672161%22,%22area%22:[%22"+store_area+"%22]%7D/";
         String apiName2 = "http://46.101.235.217/api/items/by-filter/%7B%22from%22%20:%2020,%22to%22:55555,%22store%22:%22"+store_id+"%22,%22area%22:[%22"+store_area+"%22]%7D/";
 
-        Log.i("TAG: API",apiName2);
+//        Log.i("TAG: API",apiName2);
         return apiName2;
     }
 
     public static String apiOffers(String date){
         String apiName ="http://46.101.235.217/api/offers/by-date/"+date+"/";
 //        Log.i("TAG offer",apiName);
+        return apiName;
+    }
+
+    public static String apiOffersWithFilter(FilterOffersModel filterOffersModel){
+        String apiName ="http://46.101.235.217/api/offers/by-filter/%7B%22from%22%20:%20"+20+",%22to%22:"+9999+",%22inStock%22:%22true%22,%20%22city%22:null,%22area%22:null%7D/";
+        Log.i("TAG offer",apiName);
         return apiName;
     }
 

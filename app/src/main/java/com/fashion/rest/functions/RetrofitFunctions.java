@@ -1,5 +1,7 @@
 package com.fashion.rest.functions;
 
+import com.fashion.rest.model.FilterOffersModel;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -14,6 +16,7 @@ import static com.fashion.rest.apiURL.API.apiItemsHome;
 import static com.fashion.rest.apiURL.API.apiItemsWithAllFilter;
 import static com.fashion.rest.apiURL.API.apiNumberOfCountries;
 import static com.fashion.rest.apiURL.API.apiOffers;
+import static com.fashion.rest.apiURL.API.apiOffersWithFilter;
 import static com.fashion.rest.apiURL.API.apiStoreItems;
 import static com.fashion.rest.apiURL.API.getSingleItem;
 
@@ -103,6 +106,15 @@ public class RetrofitFunctions {
     public static Retrofit getStoreItems(String storeID,String store_area) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiStoreItems(storeID,store_area))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    public static Retrofit getOffersWithAllFilter(FilterOffersModel filterOffersModel) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(apiOffersWithFilter(filterOffersModel))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

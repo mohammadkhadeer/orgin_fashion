@@ -49,15 +49,64 @@ public class LoginInfo {
         return token;
     }
 
-    public static void cleanLogin(Context context,SharedPreferences SharedPreferences,
-                                                SharedPreferences.Editor editor) {
+    public static void cleanLogin(Context context) {
         SharedPreferences = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
-        editor = SharedPreferences.edit();
-        editor.putString("login","");
-        editor.putString("token","");
+        Editor = SharedPreferences.edit();
+        Editor.putString("login","");
+        Editor.putString("name","");
+        Editor.putString("email","");
+        Editor.putString("photo","");
+        Editor.putString("type","");
 
-        editor.commit();
+        Editor.commit();
     }
 
+    public static void saveLoginInfoInSP(Context context,String name,String email,String photo,String type) {
+        SharedPreferences = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
+        Editor = SharedPreferences.edit();
+
+        Editor.putString("name",name);
+        Editor.putString("email",email);
+        Editor.putString("photo",photo);
+        Editor.putString("type",type);
+
+        Editor.commit();
+    }
+
+    public static String getNameFromSP(Context context) {
+        String login;
+        SharedPreferences shared = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
+
+        login = (shared.getString("name", ""));
+
+        return login;
+    }
+
+    public static String getEmailFromSP(Context context) {
+        String login;
+        SharedPreferences shared = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
+
+        login = (shared.getString("email", ""));
+
+        return login;
+    }
+
+    public static String getPhotoFromSP(Context context) {
+        String login;
+        SharedPreferences shared = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
+
+        login = (shared.getString("photo", ""));
+
+        return login;
+    }
+
+    public static String getTypeFromSP(Context context) {
+        String login;
+        SharedPreferences shared = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
+
+        login = (shared.getString("type", ""));
+
+        return login;
+    }
 
 }

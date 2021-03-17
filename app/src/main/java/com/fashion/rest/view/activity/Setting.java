@@ -19,6 +19,8 @@ import com.squareup.picasso.Picasso;
 import static com.fashion.rest.sharedPreferences.Country.getCountryFromSP;
 import static com.fashion.rest.sharedPreferences.Country.getCountryUrlFromSP;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
+import static com.fashion.rest.sharedPreferences.LoginInfo.cleanLogin;
+import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;
 
 public class Setting extends AppCompatActivity {
 
@@ -37,6 +39,53 @@ public class Setting extends AppCompatActivity {
         fillLanguage();
         fillCountry();
         actionListener();
+        fillAboutUsImage();
+        fillLoginOrLogout();
+        actionListenerToLogoutOrLogin();
+    }
+
+    private void fillLoginOrLogout() {
+        if (getLoginOrNotFromSP(getApplicationContext()).isEmpty())
+        {
+            setting_log_out_TV.setText(getResources().getString(R.string.login));
+        }else{
+            setting_log_out_TV.setText(getResources().getString(R.string.log_out));
+        }
+    }
+
+    private void actionListenerToLogoutOrLogin() {
+        setting_log_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getLoginOrNotFromSP(getApplicationContext()).isEmpty())
+                {
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                    intent.putExtra("from", "login");
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+                }else{
+                    cleanLogin(getApplicationContext());
+                    moveToSplashScreen();
+                }
+            }
+        });
+    }
+
+    private void moveToSplashScreen() {
+        Intent intent = new Intent(Setting.this, SplashScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+        finishAffinity();
+    }
+
+    private void fillAboutUsImage() {
+        String x = "https://firebasestorage.googleapis.com/v0/b/hala-motor-8ff46.appspot.com/o/1111.png?alt=media&token=ef9408df-a9a2-4890-8130-65ad843c0f9e";
+        Picasso.get()
+                .load(x)
+                .fit()
+                .centerCrop()
+                .into(setting_about_us_IV);
     }
 
     private void fillCountry() {

@@ -220,48 +220,27 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="150dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             app:cardCornerRadius="12dp">
 
-            <RelativeLayout
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/fb"
-                android:background="@color/fb">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/login_fb"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/fb"/>
-            </RelativeLayout>
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                />
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="60dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="35dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             app:cardCornerRadius="12dp">
@@ -269,6 +248,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
                 android:id="@+id/g">
 
                 <RelativeLayout
@@ -281,7 +261,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/login_g"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="18dp"
+                        android:textSize="14dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"/>
                 </RelativeLayout>
@@ -291,8 +271,8 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
@@ -329,11 +309,11 @@
 
            <RelativeLayout
                android:layout_width="60dp"
-               android:layout_height="35dp"
+               android:layout_height="30dp"
                android:layout_centerVertical="true"
                android:layout_centerHorizontal="true"
                android:id="@+id/skip"
-               android:background="@drawable/language_por">
+               android:background="@drawable/skip">
 
                <TextView
                    android:layout_width="wrap_content"

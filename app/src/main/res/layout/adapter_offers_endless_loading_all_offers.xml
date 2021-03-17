@@ -16,27 +16,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="43dp"
-        android:id="@+id/cover_offers"/>
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/adapter_suggested_to_you_cont"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorSilver3">
-            <ProgressBar
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
+
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/adapter_IV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
@@ -48,7 +42,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:id="@+id/cont_rl_offers"
             android:layout_alignParentBottom="true">
 
 
@@ -89,23 +82,11 @@
                         app:cardCornerRadius="8dp"
                         >
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            >
-
-                            <ProgressBar
-                                android:layout_width="10dp"
-                                android:layout_height="16dp"
-                                android:layout_centerInParent="true" />
-
-                        </RelativeLayout>
-
 
                         <ImageView
-                            android:id="@+id/store_image_offer"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@color/colorSilver"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
                             />
@@ -124,22 +105,19 @@
                     android:layout_height="match_parent"
                     android:layout_weight="45">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="test"
-                        android:textSize="14dp"
+                    <RelativeLayout
+                        android:layout_width="45dp"
+                        android:layout_height="14dp"
+                        android:background="@color/colorSilver"
                         android:layout_marginTop="20dp"
-                        android:id="@+id/adapter_type2_name"
                         />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="test test test test test "
-                        android:textSize="12dp"
+                    <RelativeLayout
+                        android:layout_width="150dp"
+                        android:layout_height="14dp"
+
                         android:layout_marginTop="38dp"
-                        android:id="@+id/adapter_type2_des"
+                        android:background="@color/colorSilver"
                         />
 
                 </RelativeLayout>
@@ -155,19 +133,9 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
-                        android:background="@drawable/black_call"
-                        android:id="@+id/adapter_type2_call_rl"
+                        android:background="@color/colorSilver"
                         >
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Call"
-                            android:textSize="12dp"
-                            android:id="@+id/adapter_type2_call_tv"
-                            android:textColor="@color/colorBlack"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"/>
 
                     </RelativeLayout>
 
@@ -180,7 +148,6 @@
                         android:layout_marginEnd="8dp"
                         android:visibility="gone"
                         android:background="@drawable/whtsapp"
-                        android:id="@+id/adapter_type2_w_rl"
                         >
 
                         <TextView

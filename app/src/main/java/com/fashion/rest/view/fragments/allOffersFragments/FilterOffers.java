@@ -111,8 +111,11 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         cancel_city_all_offers_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapterSelectedAreas.removeAllArea();
-                selectedAreaArrayList = new ArrayList<>();
+                if(selectedAreaArrayList.size()!=0)
+                {
+                    adapterSelectedAreas.removeAllArea();
+                    selectedAreaArrayList = new ArrayList<>();
+                }
 
                 filterOffersModel.setCity(null);
                 filterOffersModel.setAreasList(selectedAreaArrayList);

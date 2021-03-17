@@ -61,8 +61,9 @@ public class FcmMessagingService extends FirebaseMessagingService {
     @SuppressLint("WrongThread")
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
         intiValue();
-
+        Log.i("TAG", "onMessageReceived: ");
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             setValue(remoteMessage);
@@ -80,6 +81,8 @@ public class FcmMessagingService extends FirebaseMessagingService {
             Log.d("TAG", "imageUrl: " + imageUrl);
             convertUrlToBitmap = (ConvertUrlToBitmap) new ConvertUrlToBitmap().execute(imageUrl);
 
+        }else{
+            Log.i("TAG", "onMessageReceived: remoteMessage.getNotification() == null");
         }
     }
 

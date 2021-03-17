@@ -173,6 +173,7 @@ public class SplashScreen extends AppCompatActivity {
                     {
                         Intent intent = new Intent(SplashScreen.this, Login.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("from", "splash");
                         startActivity(intent);
                         overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
                         finishAffinity();

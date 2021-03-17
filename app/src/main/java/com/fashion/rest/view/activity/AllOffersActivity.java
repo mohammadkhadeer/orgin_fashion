@@ -25,6 +25,8 @@ import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.presnter.PassFilterOffersModel;
 import com.fashion.rest.view.Adapters.AdapterCities;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
+import com.fashion.rest.view.Adapters.AdapterLoadingType2;
+import com.fashion.rest.view.Adapters.AdapterLoadingVOffers;
 import com.fashion.rest.view.fragments.allOffersFragments.FilterOffers;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.PopUp;
 
@@ -37,10 +39,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static com.fashion.rest.functions.FillItem.fillCityArrayL;
+import static com.fashion.rest.functions.Functions.getDefultToFilterModel;
 import static com.fashion.rest.functions.Functions.getIOs;
 import static com.fashion.rest.functions.Functions.loadMoreItem;
 import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
+import static com.fashion.rest.functions.RetrofitFunctions.getOffersWithAllFilter;
 import static com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults.PAGE_START;
 
 public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSelectedAreas, PassCityAndArea, PassFilterOffersModel {
@@ -65,6 +69,12 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
     private boolean isLastPage = false;
     private int totalPage = 10;
     private boolean isLoading = false;
+    public ArrayList<Area> selectedAreaArrayList = new ArrayList<>();
+
+    RecyclerView all_offers_loading_rv;
+    AdapterLoadingVOffers adapterLoadingVOffers;
+    RecyclerView.LayoutManager layoutManagerLoading;
+    FilterOffersModel filterOffersModelGlobal;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -75,7 +85,9 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
         statusBarColor();
         handelFilterOffers();
         inti();
+        filterOffersModelGlobal = getDefultToFilterModel(selectedAreaArrayList);
         intiRet();
+        createLoadingRV();
         createRV();
         new Handler().postDelayed(new Runnable() {
 
@@ -85,6 +97,24 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
 
             }
         }, 200);
+    }
+
+    private void createLoadingRV() {
+        all_offers_loading_rv.setVisibility(View.VISIBLE);
+        all_offers_loading_rv.setHasFixedSize(true);
+
+        GridLayoutManager mLayoutManager = new GridLayoutManager(this, 1);
+        all_offers_loading_rv.setLayoutManager(mLayoutManager);
+
+//        all_offers_loading_rv.setNestedScrollingEnabled(false);
+//        all_offers_loading_rv.setHasFixedSize(true);
+//        layoutManagerLoading = new LinearLayoutManager(this,
+//                LinearLayoutManager.HORIZONTAL, false);
+//
+//        all_offers_loading_rv.setLayoutManager(layoutManagerLoading);
+
+        adapterLoadingVOffers =new AdapterLoadingVOffers(this);
+        all_offers_loading_rv.setAdapter(adapterLoadingVOffers);
     }
 
     private void actionListenerToNestedScroll() {
@@ -125,6 +155,10 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
         int max =suggestedItemsArrayListDO.size() + 8;
+        Log.i("TAG","Im here out said");
+        Log.i("TAG","suggestedItemsArrayListDO.size(): "+String.valueOf(suggestedItemsArrayListDO.size()));
+        Log.i("TAG","max: "+String.valueOf(max));
+
         Call<List<Offer>> call = jsonPlaceHolderApiOffers.getOffers(suggestedItemsArrayListDO.size(),max);
         call.enqueue(new Callback<List<Offer>>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -133,12 +167,17 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
                 if (!response.isSuccessful())
                 { return; }
                 List<Offer> offerList = response.body();
+                Log.i("TAG","Im here in said");
 
                 for (Offer offer:offerList)
                 {
+                    Log.i("TAG","NAME: "+offer.getName());
                     suggestedItemsArrayListTest.add(offer);
                     suggestedItemsArrayListDO.add(offer);
                 }
+
+                //hide loading rv
+                all_offers_loading_rv.setVisibility(View.GONE);
 
                 if (currentPage != PAGE_START && suggestedItemsArrayListTest.size()!=0) adapterEndlessOffers.removeLoading();
                 if (suggestedItemsArrayListTest.size()!=0)
@@ -162,6 +201,7 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
 
     private void intiRet() {
         retrofitOffers = getOffers(getIOs());
+        //retrofitOffers = getOffersWithAllFilter(filterOffersModelGlobal);
         jsonPlaceHolderApiOffers = retrofitOffers.create(JsonPlaceHolderApi.class);
     }
 
@@ -171,6 +211,7 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
 
         nested_all_offers = (NestedScrollView) findViewById(R.id.nested_all_offers);
         recyclerView_all_offers = (RecyclerView) findViewById(R.id.all_offers_rv);
+        all_offers_loading_rv= (RecyclerView) findViewById(R.id.all_offers_loading_rv);
     }
 
     private void handelFilterOffers() {
@@ -203,32 +244,43 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void PassFilterOffersModel(FilterOffersModel filterOffersModel) {
-        if (filterOffersModel.getCity() != null)
-        {
-            Log.i("TAG","City_local: "+filterOffersModel.getCity().getName_local());
-            Log.i("TAG","City_en: "+filterOffersModel.getCity().getName_en());
-            Log.i("TAG","City_id: "+filterOffersModel.getCity().getIdServer());
-        }else{
-            Log.i("TAG","City_object: null");
-        }
+        filterOffersModelGlobal = filterOffersModel;
+        suggestedItemsArrayListDO = new ArrayList<>();
+        currentPage = PAGE_START;
+        createLoadingRV();
+        //intiRet();
+        // whene clean the offer list nested scroll will work utmatecly no need to call any thing else
 
-        if (filterOffersModel.getAreasList().size() != 0)
-        {
-            for (int i=0;i<filterOffersModel.getAreasList().size();i++)
-            {
-                Log.i("TAG","Area_local: "+filterOffersModel.getAreasList().get(i).getName_local());
-                Log.i("TAG","Area_en: "+filterOffersModel.getAreasList().get(i).getName_en());
-                Log.i("TAG","Area_id: "+filterOffersModel.getAreasList().get(i).getId());
-            }
 
-        }else{
-            Log.i("TAG","AreasList size: zero");
-        }
 
-        Log.i("TAG","price from: "+String.valueOf(filterOffersModel.getFrom()));
-        Log.i("TAG","price to: "+String.valueOf(filterOffersModel.getTo()));
+
+//        if (filterOffersModel.getCity() != null)
+//        {
+//            Log.i("TAG","City_local: "+filterOffersModel.getCity().getName_local());
+//            Log.i("TAG","City_en: "+filterOffersModel.getCity().getName_en());
+//            Log.i("TAG","City_id: "+filterOffersModel.getCity().getIdServer());
+//        }else{
+//            Log.i("TAG","City_object: null");
+//        }
+//
+//        if (filterOffersModel.getAreasList().size() != 0)
+//        {
+//            for (int i=0;i<filterOffersModel.getAreasList().size();i++)
+//            {
+//                Log.i("TAG","Area_local: "+filterOffersModel.getAreasList().get(i).getName_local());
+//                Log.i("TAG","Area_en: "+filterOffersModel.getAreasList().get(i).getName_en());
+//                Log.i("TAG","Area_id: "+filterOffersModel.getAreasList().get(i).getId());
+//            }
+//
+//        }else{
+//            Log.i("TAG","AreasList size: zero");
+//        }
+//
+//        Log.i("TAG","price from: "+String.valueOf(filterOffersModel.getFrom()));
+//        Log.i("TAG","price to: "+String.valueOf(filterOffersModel.getTo()));
 
 
     }

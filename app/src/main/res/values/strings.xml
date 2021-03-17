@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Fashionista</string>
+    <string name="facebook_app_id">161235005842835</string>
+    <string name="fb_login_protocol_scheme">fb161235005842835</string>
+
+    <string name="app_name">Fashion</string>
 
     <string name="no_more_item">  No More \n Items</string>
 
