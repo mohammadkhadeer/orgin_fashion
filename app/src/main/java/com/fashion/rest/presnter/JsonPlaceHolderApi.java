@@ -13,13 +13,17 @@ import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.model.Post;
 import com.fashion.rest.model.Test;
+import com.fashion.rest.model.UserInfo;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -78,4 +82,15 @@ public interface JsonPlaceHolderApi {
 
     @GET(".")
     Call<ItemFavorite> getDetailsItem();
+
+    @POST("profiles")
+    Call<UserInfo> insertUser(@Body UserInfo userInfo);
+
+    //change every thing
+    @PUT("profiles/{id}")
+    Call<UserInfo> replaceUserInfo(@Path("id") String id ,@Body UserInfo userInfo);
+
+    //just update the change
+    @PATCH("profiles/{id}")
+    Call<UserInfo> updateUserInfo(@Path("id") String id ,@Body UserInfo userInfo);
 }

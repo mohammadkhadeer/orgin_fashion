@@ -27,6 +27,7 @@ import com.fashion.rest.view.Adapters.AdapterCities;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
 import com.fashion.rest.view.Adapters.AdapterLoadingType2;
 import com.fashion.rest.view.Adapters.AdapterLoadingVOffers;
+import com.fashion.rest.view.activity.mainScreem.MainActivity;
 import com.fashion.rest.view.fragments.allOffersFragments.FilterOffers;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.PopUp;
 
@@ -45,6 +46,7 @@ import static com.fashion.rest.functions.Functions.loadMoreItem;
 import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
 import static com.fashion.rest.functions.RetrofitFunctions.getOffersWithAllFilter;
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 import static com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults.PAGE_START;
 
 public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSelectedAreas, PassCityAndArea, PassFilterOffersModel {
@@ -80,6 +82,7 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(AllOffersActivity.this);
         setContentView(R.layout.activity_all_offers);
 
         statusBarColor();

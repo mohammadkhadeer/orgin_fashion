@@ -176,23 +176,9 @@ public class FragmentOffers extends Fragment{
                 if (!isLoading) {
 
                     if (mLayoutManager != null && mLayoutManager.findLastCompletelyVisibleItemPosition() == suggestedItemsArrayListDO.size() - 1&& suggestedItemsArrayListTest.size() !=0) {
-                        //bottom of list!
-
-//                        new Handler().postDelayed(new Runnable() {
-//
-//                            @RequiresApi(api = Build.VERSION_CODES.M)
-//                            @Override
-//                            public void run() {
-//
-//
-//                            }
-//                        }, 2000);
-
                         doApiCall();
-
                         currentPage ++;
                         isLoading = true;
-
                     }
                 }
             }

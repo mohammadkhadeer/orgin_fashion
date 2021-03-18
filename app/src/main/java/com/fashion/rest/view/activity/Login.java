@@ -23,6 +23,9 @@ import com.facebook.login.widget.LoginButton;
 import com.fashion.rest.R;
 import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.model.ItemTest;
+import com.fashion.rest.model.UserInfo;
+import com.fashion.rest.presnter.JsonPlaceHolderApi;
+import com.fashion.rest.service.SaveFCMTokenService;
 import com.fashion.rest.view.activity.mainScreem.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -35,9 +38,17 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 import static com.fashion.rest.functions.Functions.getTimeStamp;
 import static com.fashion.rest.functions.Functions.splitString;
+import static com.fashion.rest.functions.RetrofitFunctions.insertUserInfo;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getTokenFromSP;
+import static com.fashion.rest.sharedPreferences.LoginInfo.getUser_IDFromSP;
+import static com.fashion.rest.sharedPreferences.LoginInfo.saveIDInSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.saveLoginInSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.saveLoginInfoInSP;
 
@@ -55,6 +66,9 @@ public class Login extends AppCompatActivity {
     String from;
     private CallbackManager callbackManager;
 
+    JsonPlaceHolderApi jsonPlaceHolderApi;
+    Retrofit retrofit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +76,7 @@ public class Login extends AppCompatActivity {
 
         statusBarColor();
         inti();
+        intiRet();
         //setBackgroundColor();
 
         registerLogin();
@@ -69,6 +84,11 @@ public class Login extends AppCompatActivity {
         actionListenerToG();
         checkIfUserComFromSplashScreenOrFromLoginButton();
         actionListenerToSkip();
+    }
+
+    private void intiRet() {
+        retrofit = insertUserInfo();
+        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
     private void registerLogin() {
@@ -116,6 +136,7 @@ public class Login extends AppCompatActivity {
                     String email = object.getString("email");
                     String photo = "https://graph.facebook.com/" + object.getString("id") + "/picture?type=normal";
 
+                    updateUserInfoOnServer(name,photo);
                     saveLoginInSP(getApplicationContext(),sharedPreferences,editor,"1");
                     saveLoginInfoInSP(getApplicationContext(),name,email,photo,"fb");
                     moveToMainScreen();
@@ -133,7 +154,6 @@ public class Login extends AppCompatActivity {
         graphRequest.setParameters(parmeters);
         graphRequest.executeAsync();
     }
-
 
     private void checkIfUserComFromSplashScreenOrFromLoginButton() {
         if (getInfoFromCat().equals("login"))
@@ -230,6 +250,7 @@ public class Login extends AppCompatActivity {
                 String name = account.getGivenName() + " "+ account.getFamilyName();
                 String email = account.getEmail();
                 String photo = String.valueOf(account.getPhotoUrl());
+                updateUserInfoOnServer(name,photo);
 
                 saveLoginInSP(getApplicationContext(),sharedPreferences,editor,"1");
                 saveLoginInfoInSP(getApplicationContext(),name,email,photo,"google");
@@ -243,5 +264,18 @@ public class Login extends AppCompatActivity {
             Log.w("TAG", "signInResult:failed code=" + e.getStatusCode());
             //updateUI(null);
         }
+    }
+
+    private void updateUserInfoOnServer(String name, String photo) {
+        UserInfo userInfo = new UserInfo(getUser_IDFromSP(getApplicationContext()),getTokenFromSP(getApplicationContext()),name,photo);
+        Call<UserInfo> call = jsonPlaceHolderApi.replaceUserInfo(getUser_IDFromSP(getApplicationContext()),userInfo);
+        call.enqueue(new Callback<UserInfo>() {
+            @Override
+            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+            }
+            @Override
+            public void onFailure(Call<UserInfo> call, Throwable t) {
+            }
+        });
     }
 }

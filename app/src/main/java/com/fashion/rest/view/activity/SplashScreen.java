@@ -33,6 +33,8 @@ import static com.fashion.rest.sharedPreferences.Country.saveCountryInSP;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getTokenFromSP;
+import static com.fashion.rest.sharedPreferences.NumberOfNotification.getNumberOfItemInCartFromSP;
+import static com.fashion.rest.sharedPreferences.NumberOfNotification.saveNumberOfItemsInCartInSP;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -42,7 +44,8 @@ public class SplashScreen extends AppCompatActivity {
     DBHelper dbHelper;
     SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
-    String welcome_image = "https://firebasestorage.googleapis.com/v0/b/hala-motor-8ff46.appspot.com/o/welcome.jpg?alt=media&token=bb1fa9bf-e789-4b47-996a-10509cc946ea";
+    String welcome_image = "https://firebasestorage.googleapis.com/v0/b/uae-kandora.appspot.com/o/arabes_logo.jpeg?alt=media&token=cc61497d-565a-4154-9f34-cae0a9c436a4";
+    String welcome_2 ="https://firebasestorage.googleapis.com/v0/b/uae-kandora.appspot.com/o/welcome.jpg?alt=media&token=c9cf32bf-5e83-465e-91e9-4446317b0ea3";
     String optional_en = "Welcome in monsters company";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +60,28 @@ public class SplashScreen extends AppCompatActivity {
             timer();
         }else{
             //insert welcome notification
-            dbHelper.insertNotifications(welcome_image,"M+","المرعبين المحدودة","Welcome in monsters company"
-                    ,"اهلا بكم في شركة المربين المحدودة","welcome_screen","empty",getTimeStamp(),getOptionalEng(),getOptionalLocal(),"0");
+//            dbHelper.insertNotifications(welcome_2,"M+","M+","Welcome in M+ company"
+//                    ,"اهلا بكم في شركة M+","welcome_screen","empty",getTimeStamp()
+//                    ,getResources().getString(R.string.about_us_eng_r),getResources().getString(R.string.about_us_a_r),"0");
+
+            dbHelper.insertNotifications(welcome_image,"arabesc digital","اربيسك لتكنولوجيا","Welcome in Arabesc digital company"
+                    ,"اهلا بكم في شركة اربيسك للتكنولوجيا","welcome_screen","empty"
+                    ,getTimeStamp(),getResources().getString(R.string.about_us_eng),getResources().getString(R.string.about_us_ar),"0");
+
+            updateNumberOfNotification();
             getCountriesDe();
+        }
+    }
+
+    private void updateNumberOfNotification() {
+        String num = getNumberOfItemInCartFromSP(getApplicationContext());
+        if (num != null && !num.isEmpty())
+        {
+            int x = Integer.parseInt(num);
+            int y = x+1;
+            saveNumberOfItemsInCartInSP(getApplicationContext(),String.valueOf(y));
+        }else{
+            saveNumberOfItemsInCartInSP(getApplicationContext(),"1");
         }
     }
 
@@ -224,129 +246,4 @@ public class SplashScreen extends AppCompatActivity {
         });
     }
 
-    public String getOptionalEng() {
-        String x = optional_en + "\n"+ "\n" +"We try to create fucking app where can handel almost famous people to can get at least 10 K JOD"+ "                " +
-                "                                                               " +
-                "                        "
-                +"Now i will try to set any text just to make a screen as scroll screen"+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               "+
-                "line 1 any text "+ "                                               ";
-        return x;
-    }
-
-    public String getOptionalLocal() {
-        String x = "اهلا وسهلا بكم في شركة المرعبين المحدودة" + "\n"+ "\n" +"والله سلامتك بحنحاول نعمل تطبيق للمشاهير اقل اشي متوقعين انه نبيع عشر نسخ بشهر"+ "                " +
-                "                                                               " +
-                "                        "
-                +"وهسا زي ما شفت لما كان الحكي انقليزي بدي احاول احط اي حكي مشان تصير الشاشة سكرول"+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-                "اي حكي مشان تصير سكرول "+ "                                               "+
-
-                "و اخيرا انا انا ابريق الشاي"+ "                                               ";
-        return x;
-    }
-
 }
-
-//    private void getComment() {
-//        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-//        Call<List<Comment>> call = jsonPlaceHolderApi.getComment(api1(3));
-//        call.enqueue(new Callback<List<Comment>>() {
-//            @Override 544496417
-//            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
-//                if (!response.isSuccessful())
-//                {
-//                    Log.i("TAG Error code", String.valueOf(response.code()));
-//                    return;
-//                }
-//
-//                List<Comment> comments = response.body();
-//                for (Comment comment:comments)
-//                {
-//                    Log.i("TAG response id", String.valueOf(comment.getId()));
-//                    Log.i("TAG response userID", String.valueOf(comment.getPostId()));
-//                    Log.i("TAG response title", String.valueOf(comment.getName()));
-//                    Log.i("TAG response text", String.valueOf(comment.getText())+"\n");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Comment>> call, Throwable t) {
-//                Log.i("TAG Error",t.getMessage());
-//            }
-//        });
-//    }
-//
-//    private void getAllDta() {
-//        jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-//        Call<List<Post>> call = jsonPlaceHolderApi.getPosts();
-//        call.enqueue(new Callback<List<Post>>() {
-//            @Override
-//            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-//                if (!response.isSuccessful())
-//                {
-//                    Log.i("TAG Error code", String.valueOf(response.code()));
-//                    return;
-//                }
-//
-//                List<Post> posts = response.body();
-//                for (Post post:posts)
-//                {
-//                    Log.i("TAG response id", String.valueOf(post.getId()));
-//                    Log.i("TAG response userID", String.valueOf(post.getUserId()));
-//                    Log.i("TAG response title", String.valueOf(post.getTitle()));
-//                    Log.i("TAG response text", String.valueOf(post.getText())+"\n");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Post>> call, Throwable t) {
-//                Log.i("TAG Error",t.getMessage());
-//            }
-//        });
-//    }

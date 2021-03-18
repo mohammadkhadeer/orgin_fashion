@@ -40,6 +40,24 @@ public class LoginInfo {
         Editor.commit();
     }
 
+    public static void saveIDInSP(Context context, String id) {
+        SharedPreferences = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
+        Editor = SharedPreferences.edit();
+
+        Editor.putString("user_id",id);
+
+        Editor.commit();
+    }
+
+    public static String getUser_IDFromSP(Context context) {
+        String token;
+        SharedPreferences shared = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
+
+        token = (shared.getString("user_id", ""));
+
+        return token;
+    }
+
     public static String getTokenFromSP(Context context) {
         String token;
         SharedPreferences shared = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
