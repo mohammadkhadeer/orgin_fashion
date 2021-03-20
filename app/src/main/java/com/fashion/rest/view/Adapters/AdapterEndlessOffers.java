@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,13 +105,23 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
   public void removeLoading() {
     isLoaderVisible = false;
     ////////////here
-    int position = dealItemsList.size() - 1;
-    Offer item = getItem(position);
+    int position =-1;
+    if (dealItemsList.size() !=0)
+       position = dealItemsList.size() - 1;
+    Offer item = null;
+    if (position !=-1)
+      item = getItem(position);
+
     if (item != null) {
       dealItemsList.remove(position);
       notifyItemRemoved(position);
     }
 
+  }
+  public void removeAllOffers() {
+    int size = dealItemsList.size();
+    dealItemsList.clear();
+    notifyItemRangeRemoved(0, size);
   }
 
   public void clear() {

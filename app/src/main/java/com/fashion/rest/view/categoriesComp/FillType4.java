@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fashion.rest.R;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.Home;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
@@ -29,6 +30,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.functions.RetrofitFunctions.getItemHome;
 
@@ -111,13 +114,10 @@ public class FillType4 {
     }
 
     private static void moveToResultActivity(Context context, Home home) {
-        Bundle bundle = new Bundle();
-        bundle.putString("sub_cat_id",home.getSub_cat().getId());
-        bundle.putString("cat_id",home.getSub_cat().getCategory_id());
-        bundle.putString("sub_cat_name",getTextEngOrLocal(context,home.getSub_cat().getName_en(),home.getSub_cat().getName_local()));
+        FilterItemsModel filterItemsModel = getDefultToFilterItemModel(home.getSub_cat());
 
         Intent intent = new Intent(context, ResultActivity.class);
-        intent.putExtras(bundle);
+        intent.putExtra("filter_object",filterItemsModel);
         ((Activity)context).startActivity(intent);
         ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }

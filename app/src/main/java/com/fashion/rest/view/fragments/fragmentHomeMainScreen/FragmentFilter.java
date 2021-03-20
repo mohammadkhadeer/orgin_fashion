@@ -9,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -23,6 +25,7 @@ import com.fashion.rest.model.Area;
 import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.City;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.MultiArea;
 import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
@@ -42,6 +45,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import static com.fashion.rest.functions.FillItem.fillAreas;
 import static com.fashion.rest.functions.FillItem.fillCityArrayL;
+import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 
@@ -93,6 +97,9 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
     int makeUserCanSeeTheResult=0;
     static Sub_Cat generalSub_category;
+
+    FilterItemsModel filterItemsModel;
+
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
@@ -128,6 +135,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         createCitiesRV();
         getCategoriesList();
         actionListener();
+        filterItemsModel = getDefultToFilterItemModel(selectedAreaArrayList);
 
         return view;
     }
@@ -200,14 +208,63 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         actionListenerToCancelCat();
         actionListenerToCancelSubCategory();
         actionListenerToSeeAllCat();
+        actionListenerToFrom();
+        actionListenerToDoneEditTextTo();
+    }
+
+    private void actionListenerToDoneEditTextTo() {
+        price_to.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (!price_to.getText().toString().isEmpty())
+                    {
+                        filterItemsModel.setTo(Integer.parseInt(price_to.getText().toString()));
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.price_man), Toast.LENGTH_SHORT).show();
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void actionListenerToFrom() {
+        price_from.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (!price_from.getText().toString().isEmpty())
+                    {
+                        filterItemsModel.setFrom(Integer.parseInt(price_from.getText().toString()));
+                    }
+                    else{
+                        Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.price_min), Toast.LENGTH_SHORT).show();
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void actionListenerToSeeAllCat() {
         see_all_cat_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUpCategory popUpCategory = new PopUpCategory();
-                popUpCategory.showDialog(getActivity(), categoriesArrayList.get(0).getSub_catArrayList(), getActivity());
+                //
+                if (filterItemsModel.getSelectedCategory().getSub_catArrayList().size() >1)
+                {
+                    PopUpCategory popUpCategory = new PopUpCategory();
+                    popUpCategory.showDialog(getActivity(), categoriesArrayList.get(0).getSub_catArrayList(), getActivity());
+                }else{
+                    Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.no_sub_cat), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -216,6 +273,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         cancel_selected_sub_cat_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                filterItemsModel.setSub_cat(null);
                 freezeShowResult();
                 sub_catRV.setVisibility(View.VISIBLE);
                 sub_cat_name_con_result.setVisibility(View.GONE);
@@ -227,6 +285,8 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         cancel_selected_cat_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                filterItemsModel.setSelectedCategory(null);
+                filterItemsModel.setSub_cat(null);
                 freezeShowResult();
                 cat_name_con_result.setVisibility(View.GONE);
                 catRV.setVisibility(View.VISIBLE);
@@ -286,9 +346,12 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
                     Intent intent = new Intent(getActivity(), ResultActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtras(bundle);
+                    intent.putExtra("filter_object",filterItemsModel);
                     startActivity(intent);
                     getActivity().overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+
+//                    intent.putExtra("filter_object",filterItemsModel);
+
                 }else{
                     Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.select_category_message),Toast.LENGTH_SHORT).show();
                 }
@@ -303,6 +366,9 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         cancel_selected_city_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                filterItemsModel.setCity(null);
+                filterItemsModel.setAreasList(selectedAreaArrayList);
+
                 cityRV.setVisibility(View.VISIBLE);
                 city_name_con_result.setVisibility(View.GONE);
                 all_areasRV.setVisibility(View.GONE);
@@ -351,6 +417,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         //when user select city must to gone cities list and show to him as a relative layout
         //after that create all areas in this city in "all areas recycler view" under a city relative layout
         cityRV.setVisibility(View.GONE);
+        filterItemsModel.setCity(city);
         //need if to check language
         city_name_result.setText(getTextEngOrLocal(getActivity(),city.getName_en(),city.getName_local()));
         city_name_con_result.setVisibility(View.VISIBLE);
@@ -403,6 +470,8 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
     private void updateSelectedArea(Area area) {
         selectedAreaArrayList.add(0, area);
         adapterSelectedAreas.notifyDataSetChanged();
+
+        filterItemsModel.setAreasList(selectedAreaArrayList);
     }
 
     private void createSelectedAreaRV(Area area) {
@@ -417,6 +486,8 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         adapterSelectedAreas = new AdapterSelectedAreas(getActivity()
                 , selectedAreaArrayList, this,"filter");
         selected_areasRV.setAdapter(adapterSelectedAreas);
+
+        filterItemsModel.setAreasList(selectedAreaArrayList);
     }
 
     @Override
@@ -437,6 +508,8 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         //add removed area to all areas arrayList
         areaArrayList.add(0, area);
         adapterAreas.notifyDataSetChanged();
+
+        filterItemsModel.setAreasList(selectedAreaArrayList);
     }
 
     private void removeItemFromArrayList(Area area) {
@@ -510,8 +583,13 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         catRV.setVisibility(View.GONE);
 
         if (category.getSub_catArrayList().size() >1)
+        {
+            filterItemsModel.setSelectedCategory(category);
             createSubCategory(category);
+        }
         else{
+            filterItemsModel.setSelectedCategory(category);
+            filterItemsModel.setSub_cat(category.getSub_catArrayList().get(0));
             generalSub_category = new Sub_Cat(category.getSub_catArrayList().get(0).getName_en(),category.getSub_catArrayList().get(0).getName_local(),category.getSub_catArrayList().get(0).getAppearance()
                     ,category.getSub_catArrayList().get(0).getId(),category.getSub_catArrayList().get(0).getCategory_id(),category.getSub_catArrayList().get(0).getFlag());
 
@@ -535,6 +613,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
 
     @Override
     public void onClickedSubCategory(Sub_Cat subCategory) {
+        filterItemsModel.setSub_cat(subCategory);
         //when user select sub_category from list
         activeShowResult();
 

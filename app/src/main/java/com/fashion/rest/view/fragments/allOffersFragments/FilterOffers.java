@@ -108,6 +108,7 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         // pass a new value filter to perant screen
         //1. gone city_name_con_result_all_offers_filter
         //2. re visible city_rv
+        //
         cancel_city_all_offers_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,6 +281,7 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         //3. set a city name in-said city_name_tv show
         //4. fill area_rv
         //5. update filter model
+        //
         filterOffersModel.setCity(city);
         passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
 
@@ -331,6 +333,7 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         selected_areasRV_all_offers_filter.setAdapter(adapterSelectedAreas);
         //pass selected area
         filterOffersModel.setAreasList(selectedAreaArrayList);
+        //
         passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
     }
 
@@ -338,7 +341,7 @@ public class FilterOffers extends Fragment  implements AdapterCities.PassCity, A
         selectedAreaArrayList.add(0, area);
         adapterSelectedAreas.notifyDataSetChanged();
 
-        //pass selected area
+        //pass selected area //
         filterOffersModel.setAreasList(selectedAreaArrayList);
         passFilterOffersModel.PassFilterOffersModel(filterOffersModel);
     }

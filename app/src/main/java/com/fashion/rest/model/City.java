@@ -1,8 +1,11 @@
 package com.fashion.rest.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class City {
+public class City implements Parcelable {
     String name_en,name_local;
     @SerializedName("id")
     String idServer;
@@ -12,6 +15,24 @@ public class City {
         this.name_local = name_local;
         this.idServer = idServer;
     }
+
+    protected City(Parcel in) {
+        name_en = in.readString();
+        name_local = in.readString();
+        idServer = in.readString();
+    }
+
+    public static final Creator<City> CREATOR = new Creator<City>() {
+        @Override
+        public City createFromParcel(Parcel in) {
+            return new City(in);
+        }
+
+        @Override
+        public City[] newArray(int size) {
+            return new City[size];
+        }
+    };
 
     public String getName_en() {
         return name_en;
@@ -35,5 +56,17 @@ public class City {
 
     public void setIdServer(String idServer) {
         this.idServer = idServer;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name_en);
+        dest.writeString(name_local);
+        dest.writeString(idServer);
     }
 }

@@ -30,6 +30,10 @@
     <string name="new_offer">Offers</string>
     <string name="important_message">Important message</string>
 
+    <string name="no_sub_cat">No sub categories to show</string>
+
+    <string name="no_more_offers">Sad no result</string>
+
     <string name="price">Price</string>
     <string name="price_min">Fill min price please</string>
     <string name="price_man">Fill max price please</string>

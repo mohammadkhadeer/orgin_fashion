@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Store;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults;
@@ -27,6 +28,7 @@ import com.fashion.rest.view.fragments.fragmentItemDetails.FragmentContact;
 import com.squareup.picasso.Picasso;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
@@ -35,7 +37,7 @@ public class StoreActivity extends AppCompatActivity {
     //Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout appbar;
-
+    FilterItemsModel filterItemsModel;
     ImageView imageView,storeImage;
     //TextView store_name_tv;//store_details_title;
     //LinearLayout store_details_header_ll;
@@ -189,5 +191,6 @@ public class StoreActivity extends AppCompatActivity {
     private void getInfoFromCat() {
         itemTest = (ItemTest) getIntent().getParcelableExtra("item_object");
         store = itemTest.getStore();
+        filterItemsModel = getDefultToFilterItemModel(itemTest.getSub_cat(),store);
     }
 }

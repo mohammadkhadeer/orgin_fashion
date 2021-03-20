@@ -21,6 +21,10 @@
     <string name="fack_price_s">Fake price</string>
     <string name="pad_q_s">bad quality</string>
 
+    <string name="no_more_offers">لا تتوفر غروض
+        \n
+        بناءا على هذة التصفيات </string>
+
     <string name="set">المجموعات</string>
     <string name="bracelets">الاساور</string>
     <string name="necklaces">العقود</string>
@@ -359,5 +363,6 @@
 
     \n
     تميز و انظم الينا</string>
+    <string name="no_sub_cat">لا يوجد فئات فرعية لاظهارها</string>
 
 </resources>

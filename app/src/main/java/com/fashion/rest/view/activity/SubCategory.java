@@ -15,9 +15,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.Adapters.AdapterSubCategorySeeAll;
 import java.util.ArrayList;
+
+import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class SubCategory extends AppCompatActivity implements AdapterSubCategorySeeAll.PassSubCategory{
@@ -143,14 +146,11 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
     }
 
     private void moveToResultActivity(Sub_Cat subCategory) {
-        Bundle bundle = new Bundle();
-        bundle.putString("sub_cat_id",subCategory.getId());
-        bundle.putString("cat_id",subCategory.getCategory_id());
-        bundle.putString("sub_cat_name",getTextEngOrLocal(this,subCategory.getName_en(),subCategory.getName_local()));
+        FilterItemsModel filterItemsModel = getDefultToFilterItemModel(subCategory);
 
         Intent intent = new Intent(this, ResultActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtras(bundle);
+        intent.putExtra("filter_object",filterItemsModel);
         startActivity(intent);
         overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }

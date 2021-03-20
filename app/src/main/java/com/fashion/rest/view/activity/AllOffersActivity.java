@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.RelativeLayout;
 
 import com.fashion.rest.R;
 import com.fashion.rest.model.Area;
@@ -78,6 +79,8 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
     RecyclerView.LayoutManager layoutManagerLoading;
     FilterOffersModel filterOffersModelGlobal;
 
+    RelativeLayout no_items;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,13 +111,6 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
 
         GridLayoutManager mLayoutManager = new GridLayoutManager(this, 1);
         all_offers_loading_rv.setLayoutManager(mLayoutManager);
-
-//        all_offers_loading_rv.setNestedScrollingEnabled(false);
-//        all_offers_loading_rv.setHasFixedSize(true);
-//        layoutManagerLoading = new LinearLayoutManager(this,
-//                LinearLayoutManager.HORIZONTAL, false);
-//
-//        all_offers_loading_rv.setLayoutManager(layoutManagerLoading);
 
         adapterLoadingVOffers =new AdapterLoadingVOffers(this);
         all_offers_loading_rv.setAdapter(adapterLoadingVOffers);
@@ -168,7 +164,10 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
             @Override
             public void onResponse(Call<List<Offer>> call, Response<List<Offer>> response) {
                 if (!response.isSuccessful())
-                { return; }
+                {
+                    Log.i("TAG","Im here in response not successful");
+                    return;
+                }
                 List<Offer> offerList = response.body();
                 Log.i("TAG","Im here in said");
 
@@ -193,6 +192,14 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
                 } else {
                     isLastPage = true;
                 }
+                Log.i("TAG","after add offers suggestedItemsArrayListDO.size(): "+String.valueOf(suggestedItemsArrayListDO.size()));
+                if (suggestedItemsArrayListDO.size() ==0)
+                {
+                    Log.i("TAG","insaid if 0");
+                    no_items.setVisibility(View.VISIBLE);
+                }else{
+                    no_items.setVisibility(View.GONE);
+                }
 
             }
             @Override
@@ -203,8 +210,8 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
     }
 
     private void intiRet() {
-        retrofitOffers = getOffers(getIOs());
-        //retrofitOffers = getOffersWithAllFilter(filterOffersModelGlobal);
+        //retrofitOffers = getOffers(getIOs());
+        retrofitOffers = getOffersWithAllFilter(filterOffersModelGlobal);
         jsonPlaceHolderApiOffers = retrofitOffers.create(JsonPlaceHolderApi.class);
     }
 
@@ -215,6 +222,7 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
         nested_all_offers = (NestedScrollView) findViewById(R.id.nested_all_offers);
         recyclerView_all_offers = (RecyclerView) findViewById(R.id.all_offers_rv);
         all_offers_loading_rv= (RecyclerView) findViewById(R.id.all_offers_loading_rv);
+        no_items = (RelativeLayout) findViewById(R.id.no_items);
     }
 
     private void handelFilterOffers() {
@@ -251,10 +259,13 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
     @Override
     public void PassFilterOffersModel(FilterOffersModel filterOffersModel) {
         filterOffersModelGlobal = filterOffersModel;
+        intiRet();
         suggestedItemsArrayListDO = new ArrayList<>();
+        adapterEndlessOffers.removeAllOffers();
+        Log.i("TAG","Im here in said PassFilterOffersModel");
+        Log.i("TAG","suggestedItemsArrayListDO.size(): "+String.valueOf(suggestedItemsArrayListDO.size()));
         currentPage = PAGE_START;
         createLoadingRV();
-        //intiRet();
         // whene clean the offer list nested scroll will work utmatecly no need to call any thing else
 
 

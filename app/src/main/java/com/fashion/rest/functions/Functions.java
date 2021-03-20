@@ -14,10 +14,12 @@ import android.widget.RelativeLayout;
 import com.fashion.rest.R;
 import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.model.Area;
+import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.Category;
 import com.fashion.rest.model.City;
 import com.fashion.rest.model.Deal;
 import com.fashion.rest.model.FastFood;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.FilterOffersModel;
 import com.fashion.rest.model.Flag;
 import com.fashion.rest.model.ItemFavorite;
@@ -90,8 +92,58 @@ public class Functions {
                 getIOs()
                 ,city
                 ,areasList
+                ,1
+                ,999999
+        );
+        return filterOffersModel;
+    }
+
+    public static FilterItemsModel getDefultToFilterItemModel(ArrayList<Area> areasList) {
+        City city = null;
+        Categories category = null;
+        Sub_Cat sub_cat = null;
+        Store store = null;
+        FilterItemsModel filterOffersModel = new FilterItemsModel(
+                city
+                ,category
+                ,sub_cat
+                ,areasList
                 ,20
                 ,55555
+                ,store
+        );
+        return filterOffersModel;
+    }
+
+    public static FilterItemsModel getDefultToFilterItemModel(Sub_Cat sub_cat) {
+        ArrayList<Area> areasList = new ArrayList<>();
+        City city = null;
+        Categories category = null;
+        Store store = null;
+        FilterItemsModel filterOffersModel = new FilterItemsModel(
+                city
+                ,category
+                ,sub_cat
+                ,areasList
+                ,20
+                ,55555
+                ,store
+        );
+        return filterOffersModel;
+    }
+
+    public static FilterItemsModel getDefultToFilterItemModel(Sub_Cat sub_cat,Store store) {
+        ArrayList<Area> areasList = new ArrayList<>();
+        City city = null;
+        Categories category = null;
+        FilterItemsModel filterOffersModel = new FilterItemsModel(
+                city
+                ,category
+                ,sub_cat
+                ,areasList
+                ,20
+                ,55555
+                ,store
         );
         return filterOffersModel;
     }

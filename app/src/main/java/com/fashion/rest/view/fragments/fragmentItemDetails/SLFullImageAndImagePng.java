@@ -16,11 +16,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.view.Adapters.AdapterType2;
 import com.fashion.rest.view.Adapters.AdapterType4;
 import com.fashion.rest.view.activity.ResultActivity;
 import java.util.ArrayList;
+
+import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class SLFullImageAndImagePng extends Fragment {
@@ -97,13 +100,10 @@ public class SLFullImageAndImagePng extends Fragment {
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("sub_cat_id",itemTest.getSub_cat().getId());
-                bundle.putString("cat_id",itemTest.getSub_cat().getCategory_id());
-                bundle.putString("sub_cat_name",getTextEngOrLocal(getActivity(),itemTest.getSub_cat().getName_en(),itemTest.getSub_cat().getName_local()));
+                FilterItemsModel filterItemsModel = getDefultToFilterItemModel(itemTest.getSub_cat());
 
                 Intent intent = new Intent(getActivity(), ResultActivity.class);
-                intent.putExtras(bundle);
+                intent.putExtra("filter_object",filterItemsModel);
                 ((Activity)getActivity()).startActivity(intent);
                 ((Activity)getActivity()).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
             }

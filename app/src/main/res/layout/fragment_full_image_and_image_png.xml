@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
-    android:layout_marginBottom="50dp"
+    android:layout_marginBottom="55dp"
     tools:context=".view.fragments.fragmentHomeMainScreen.FragmentNotification">
 
     <RelativeLayout android:layout_width="match_parent"
@@ -74,7 +74,6 @@
                 />
 
         </LinearLayout>
-
 
     </RelativeLayout>
 

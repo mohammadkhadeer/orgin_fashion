@@ -85,7 +85,33 @@ public class API {
     }
 
     public static String apiOffersWithFilter(FilterOffersModel filterOffersModel){
-        String apiName ="http://46.101.235.217/api/offers/by-filter/%7B%22from%22%20:%20"+20+",%22to%22:"+9999+",%22inStock%22:%22true%22,%20%22city%22:null,%22area%22:null%7D/";
+        String apiName = null;
+        if (filterOffersModel.getCity() == null)
+        {
+            apiName = "http://46.101.235.217/api/offers/by-filter/%7B%22date%22:%20%22"+filterOffersModel.getISO()+"%22,%22from%22%20:%20"+filterOffersModel.getFrom()+",%22to%22:"+filterOffersModel.getTo()+",%22inStock%22:%22true%22,%20%22city%22:null,%22area%22:null%7D/";
+        }else{
+            if (filterOffersModel.getAreasList().size() > 0)
+            {
+                apiName = "http://46.101.235.217/api/offers/by-filter/%7B%22date%22:%20%22"+filterOffersModel.getISO()+"%22,%22from%22%20:%20"+filterOffersModel.getFrom()+",%22to%22:"+filterOffersModel.getTo()+",%22inStock%22:%22true%22,%20%22city%22:[%22"+filterOffersModel.getCity().getIdServer()+"%22],%22area%22:[%2260082119e4afcdaf7e1cb8ad%22]%7D/";
+            }else{
+                String areas = "";
+                if (filterOffersModel.getAreasList().size() == 1)
+                {
+                    areas ="%22"+filterOffersModel.getAreasList().get(0)+"%22";
+                }else{
+                    for (int i = 0;i<filterOffersModel.getAreasList().size();i++)
+                    {
+                        if (i == (filterOffersModel.getAreasList().size()-1))
+                        {
+                            areas =areas+"%22"+filterOffersModel.getAreasList().get(0)+"%22";
+                        }else{
+                            areas =","+areas+"%22"+filterOffersModel.getAreasList().get(0)+"%22";
+                        }
+                    }
+                }
+                apiName = "http://46.101.235.217/api/offers/by-filter/%7B%22date%22:%20%22"+filterOffersModel.getISO()+"%22,%22from%22%20:%20"+filterOffersModel.getFrom()+",%22to%22:"+filterOffersModel.getTo()+",%22inStock%22:%22true%22,%20%22city%22:[%22"+filterOffersModel.getCity().getIdServer()+"%22],%22area%22:["+areas+"]%7D/";
+            }
+        }
         Log.i("TAG offer",apiName);
         return apiName;
     }

@@ -1,6 +1,5 @@
 package com.fashion.rest.view.fragments.HomeScreenFragment;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -19,12 +18,13 @@ import android.widget.TextView;
 
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.Area;
 import com.fashion.rest.model.Categories;
+import com.fashion.rest.model.FilterOffersModel;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
-import com.fashion.rest.view.Adapters.AdapterOffers;
 import com.fashion.rest.view.activity.AllCategory;
 import com.fashion.rest.view.activity.AllOffersActivity;
 
@@ -37,11 +37,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.fashion.rest.functions.Functions.getIOs;
+import static com.fashion.rest.functions.Functions.getDefultToFilterModel;
 import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
-import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
+import static com.fashion.rest.functions.RetrofitFunctions.getOffersWithAllFilter;
 import static com.fashion.rest.view.categoriesComp.FillType3.fillCase3Item;
-
 
 public class FragmentOffers extends Fragment{
     View view;
@@ -68,11 +67,14 @@ public class FragmentOffers extends Fragment{
     int numberOfObjectNow = 0;
     JsonPlaceHolderApi jsonPlaceHolderApi,jsonPlaceHolderApiOffers;
     Retrofit retrofit,retrofitOffers;
+    public ArrayList<Area> selectedAreaArrayList = new ArrayList<>();
     public ArrayList<Categories> categoriesArrayList = new ArrayList<>();
+    FilterOffersModel filterOffersModelGlobal;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        filterOffersModelGlobal = getDefultToFilterModel(selectedAreaArrayList);
         intiRet();
         getCategoriesList();
     }
@@ -81,7 +83,7 @@ public class FragmentOffers extends Fragment{
         retrofit = getCategories();
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-        retrofitOffers = getOffers(getIOs());
+        retrofitOffers = getOffersWithAllFilter(filterOffersModelGlobal);
         jsonPlaceHolderApiOffers = retrofitOffers.create(JsonPlaceHolderApi.class);
     }
 

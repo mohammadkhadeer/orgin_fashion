@@ -8,13 +8,16 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 public class Categories implements Parcelable {
+    @SerializedName("id")
+    String id;
     String name,name_local;
     @SerializedName("image")
     Flag flag;
     @SerializedName("sub_categories")
     ArrayList<Sub_Cat> sub_catArrayList ;
 
-    public Categories(String name, String name_local, Flag flag, ArrayList<Sub_Cat> sub_catArrayList) {
+    public Categories(String id, String name, String name_local, Flag flag, ArrayList<Sub_Cat> sub_catArrayList) {
+        this.id = id;
         this.name = name;
         this.name_local = name_local;
         this.flag = flag;
@@ -22,10 +25,25 @@ public class Categories implements Parcelable {
     }
 
     protected Categories(Parcel in) {
+        id = in.readString();
         name = in.readString();
         name_local = in.readString();
         flag = in.readParcelable(Flag.class.getClassLoader());
         sub_catArrayList = in.createTypedArrayList(Sub_Cat.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(name_local);
+        dest.writeParcelable(flag, flags);
+        dest.writeTypedList(sub_catArrayList);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Categories> CREATOR = new Creator<Categories>() {
@@ -39,6 +57,14 @@ public class Categories implements Parcelable {
             return new Categories[size];
         }
     };
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -70,18 +96,5 @@ public class Categories implements Parcelable {
 
     public void setSub_catArrayList(ArrayList<Sub_Cat> sub_catArrayList) {
         this.sub_catArrayList = sub_catArrayList;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(name_local);
-        dest.writeParcelable(flag, flags);
-        dest.writeTypedList(sub_catArrayList);
     }
 }

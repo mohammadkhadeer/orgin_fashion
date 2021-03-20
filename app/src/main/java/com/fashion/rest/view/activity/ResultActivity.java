@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Brand;
+import com.fashion.rest.model.FilterItemsModel;
+import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentFilter;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults;
@@ -22,13 +24,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.functions.RetrofitFunctions.getBrand;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 
 public class ResultActivity extends AppCompatActivity {
 
     FragmentResults fragmentResults = new FragmentResults();
-    String cat_id,sub_cat_id,sub_cat_name,fromFilter;
+    FilterItemsModel filterItemsModel;
     ImageView backIV,brand_iv;
     RelativeLayout back_rl;
     TextView sub_category_name_tv,result_number_tv;
@@ -56,7 +59,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void fillSubCategoryName() {
-        sub_category_name_tv.setText(sub_cat_name);
+        sub_category_name_tv.setText(getTextEngOrLocal(getApplicationContext(),filterItemsModel.getSub_cat().getName_en(),filterItemsModel.getSub_cat().getName_local()));
     }
 
     private void getImageBrand() {
@@ -130,25 +133,13 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void getInfoFromCat() {
-        Bundle bundle = getIntent().getExtras();
-        sub_cat_id =bundle.getString("sub_cat_id");
-        cat_id =bundle.getString("cat_id");
-        sub_cat_name =bundle.getString("sub_cat_name");
-        fromFilter =bundle.getString("from");
-
-        //sub_catArrayList = (ArrayList<Sub_Cat>) getIntent().getSerializableExtra("sub_cat");
+        filterItemsModel = (FilterItemsModel) getIntent().getParcelableExtra("filter_object");
     }
 
     private void handelResultFragment() {
         Bundle bundle = new Bundle();
-        bundle.putString("sub_cat_id",sub_cat_id);
-        bundle.putString("cat_id",cat_id);
-
-        //pass price from and rice to and array of area
-        if (fromFilter != null && fromFilter.equals("filter"))
-        {
-            Log.i("TAG",fromFilter);
-        }
+        bundle.putString("sub_cat_id",filterItemsModel.getSub_cat().getId());
+        bundle.putString("cat_id",filterItemsModel.getSub_cat().getCategory_id());
 
         fragmentResults.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()

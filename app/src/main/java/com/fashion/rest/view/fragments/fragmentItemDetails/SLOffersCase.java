@@ -1,6 +1,8 @@
 package com.fashion.rest.view.fragments.fragmentItemDetails;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +23,8 @@ import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
+import com.fashion.rest.view.activity.AllOffersActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -188,20 +192,16 @@ public class SLOffersCase extends Fragment {
     }
 
     private void actionListenerToSeeAll() {
-//        relativeLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Bundle bundle = new Bundle();
-////                //bundle.putString("category",getActivity().getResources().getString(R.string.set));
-////                bundle.putString("category",getActivity().getResources().getString(R.string.set));
-////                bundle.putString("from","see_all");
-//
-//                Intent intent = new Intent(getActivity(), ResultActivity.class);
-//                //intent.putExtras(bundle);
-//                ((Activity)getActivity()).startActivity(intent);
-//                ((Activity)getActivity()).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
-//            }
-//        });
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), AllOffersActivity.class);
+                //intent.putExtras(bundle);
+                ((Activity)getActivity()).startActivity(intent);
+                ((Activity)getActivity()).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
+            }
+        });
     }
 
     private void changeFont() {
