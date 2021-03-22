@@ -154,9 +154,9 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
         int max =suggestedItemsArrayListDO.size() + 8;
-        Log.i("TAG","Im here out said");
-        Log.i("TAG","suggestedItemsArrayListDO.size(): "+String.valueOf(suggestedItemsArrayListDO.size()));
-        Log.i("TAG","max: "+String.valueOf(max));
+//        Log.i("TAG","Im here out said");
+//        Log.i("TAG","suggestedItemsArrayListDO.size(): "+String.valueOf(suggestedItemsArrayListDO.size()));
+//        Log.i("TAG","max: "+String.valueOf(max));
 
         Call<List<Offer>> call = jsonPlaceHolderApiOffers.getOffers(suggestedItemsArrayListDO.size(),max);
         call.enqueue(new Callback<List<Offer>>() {
@@ -165,15 +165,14 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
             public void onResponse(Call<List<Offer>> call, Response<List<Offer>> response) {
                 if (!response.isSuccessful())
                 {
-                    Log.i("TAG","Im here in response not successful");
+//                    Log.i("TAG","Im here in response not successful");
                     return;
                 }
                 List<Offer> offerList = response.body();
-                Log.i("TAG","Im here in said");
 
                 for (Offer offer:offerList)
                 {
-                    Log.i("TAG","NAME: "+offer.getName());
+//                    Log.i("TAG","NAME: "+offer.getName());
                     suggestedItemsArrayListTest.add(offer);
                     suggestedItemsArrayListDO.add(offer);
                 }
@@ -192,10 +191,10 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
                 } else {
                     isLastPage = true;
                 }
-                Log.i("TAG","after add offers suggestedItemsArrayListDO.size(): "+String.valueOf(suggestedItemsArrayListDO.size()));
+//                Log.i("TAG","after add offers suggestedItemsArrayListDO.size(): "+String.valueOf(suggestedItemsArrayListDO.size()));
                 if (suggestedItemsArrayListDO.size() ==0)
                 {
-                    Log.i("TAG","insaid if 0");
+//                    Log.i("TAG","insaid if 0");
                     no_items.setVisibility(View.VISIBLE);
                 }else{
                     no_items.setVisibility(View.GONE);
@@ -262,8 +261,8 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
         intiRet();
         suggestedItemsArrayListDO = new ArrayList<>();
         adapterEndlessOffers.removeAllOffers();
-        Log.i("TAG","Im here in said PassFilterOffersModel");
-        Log.i("TAG","suggestedItemsArrayListDO.size(): "+String.valueOf(suggestedItemsArrayListDO.size()));
+//        Log.i("TAG","Im here in said PassFilterOffersModel");
+//        Log.i("TAG","suggestedItemsArrayListDO.size(): "+String.valueOf(suggestedItemsArrayListDO.size()));
         currentPage = PAGE_START;
         createLoadingRV();
         // whene clean the offer list nested scroll will work utmatecly no need to call any thing else

@@ -52,7 +52,7 @@ public class API {
 
     public static String apiItemsHome(String subCategoryID,String category_id){
         String apiName = "http://46.101.235.217/api/items/by-filter/%7B%22from%22%20:%205,%22to%22:55555,%22sub_category%22:%22"+subCategoryID+"%22,%22store%22:null,%22category%22:%22"+category_id+"%22,%22inStock%22:true,%22area%22:null%7D/";
-//        Log.i("TAG",apiName);
+//        Log.i("TAG apiName1",apiName);
         return apiName;
     }
 
@@ -90,10 +90,13 @@ public class API {
         {
             apiName = "http://46.101.235.217/api/offers/by-filter/%7B%22date%22:%20%22"+filterOffersModel.getISO()+"%22,%22from%22%20:%20"+filterOffersModel.getFrom()+",%22to%22:"+filterOffersModel.getTo()+",%22inStock%22:%22true%22,%20%22city%22:null,%22area%22:null%7D/";
         }else{
-            if (filterOffersModel.getAreasList().size() > 0)
+            if (filterOffersModel.getAreasList().size() == 0)
             {
-                apiName = "http://46.101.235.217/api/offers/by-filter/%7B%22date%22:%20%22"+filterOffersModel.getISO()+"%22,%22from%22%20:%20"+filterOffersModel.getFrom()+",%22to%22:"+filterOffersModel.getTo()+",%22inStock%22:%22true%22,%20%22city%22:[%22"+filterOffersModel.getCity().getIdServer()+"%22],%22area%22:[%2260082119e4afcdaf7e1cb8ad%22]%7D/";
+                apiName = "http://46.101.235.217/api/offers/by-filter/%7B%22date%22:%20%22"+filterOffersModel.getISO()+"%22,%22from%22%20:%20"+filterOffersModel.getFrom()+",%22to%22:"+filterOffersModel.getTo()+",%22inStock%22:%22true%22,%20%22city%22:[%22"+filterOffersModel.getCity().getIdServer()+"%22],%22area%22:null%7D/";
+                Log.i("TAG offer city: ",apiName);
+
             }else{
+                Log.i("TAG offer area list: ", String.valueOf(filterOffersModel.getAreasList().size()));
                 String areas = "";
                 if (filterOffersModel.getAreasList().size() == 1)
                 {
