@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 
 public class SubCategory extends AppCompatActivity implements AdapterSubCategorySeeAll.PassSubCategory{
 
@@ -37,6 +38,7 @@ public class SubCategory extends AppCompatActivity implements AdapterSubCategory
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_sub_category);
 
         statusBarColor();

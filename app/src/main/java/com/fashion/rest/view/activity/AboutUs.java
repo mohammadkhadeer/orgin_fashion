@@ -26,6 +26,7 @@ import java.net.URL;
 import static com.fashion.rest.app.App.CHANNEL_1_ID;
 import static com.fashion.rest.app.App.CHANNEL_3_ID;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 
 public class AboutUs extends AppCompatActivity {
 
@@ -36,6 +37,7 @@ public class AboutUs extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_about_us);
         statusBarColor();
         getNotificationFromIntent();

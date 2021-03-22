@@ -7,12 +7,15 @@ import android.view.View;
 import com.fashion.rest.R;
 import com.fashion.rest.view.fragments.FragmentSelectCountry;
 
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
+
 public class SelectCountryActivity extends AppCompatActivity {
 
     FragmentSelectCountry fragmentSelectCountry = new FragmentSelectCountry();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_select_country);
 
         statusBarColor();

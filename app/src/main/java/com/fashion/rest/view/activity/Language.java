@@ -13,6 +13,7 @@ import com.fashion.rest.R;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.sharedPreferences.Language.saveLanguageInSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 
 public class Language extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class Language extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_language);
 
         statusBarColor();

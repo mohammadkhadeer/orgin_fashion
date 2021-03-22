@@ -21,6 +21,7 @@ import static com.fashion.rest.sharedPreferences.Country.getCountryUrlFromSP;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.cleanLogin;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 
 public class Setting extends AppCompatActivity {
 
@@ -31,6 +32,7 @@ public class Setting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_setting);
 
         statusBarColor();

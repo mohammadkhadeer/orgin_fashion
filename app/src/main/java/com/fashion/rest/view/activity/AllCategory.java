@@ -17,6 +17,8 @@ import com.fashion.rest.model.CustomCategory;
 import com.fashion.rest.view.Adapters.AdapterAllCategory;
 import java.util.ArrayList;
 
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
+
 
 public class AllCategory extends AppCompatActivity {
 
@@ -32,6 +34,7 @@ public class AllCategory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_all_category);
 
         statusBarColor();

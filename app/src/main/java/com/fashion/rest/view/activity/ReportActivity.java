@@ -20,6 +20,7 @@ import com.fashion.rest.view.Adapters.AdapterReportType;
 import java.util.ArrayList;
 import java.util.Locale;
 import static com.fashion.rest.functions.Functions.fillReportArrayL;
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 
 public class ReportActivity extends AppCompatActivity implements AdapterReportType.PassReport{
 
@@ -34,6 +35,7 @@ public class ReportActivity extends AppCompatActivity implements AdapterReportTy
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_report);
 
         getSupportActionBar().setElevation(15);

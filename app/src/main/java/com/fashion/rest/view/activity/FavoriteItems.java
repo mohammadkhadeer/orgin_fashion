@@ -52,6 +52,7 @@ import static com.fashion.rest.functions.RetrofitFunctions.getItemsWithAllFilter
 import static com.fashion.rest.functions.RetrofitFunctions.getSingleItemDetails;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 import static com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults.PAGE_START;
 
 public class FavoriteItems extends AppCompatActivity {
@@ -77,6 +78,7 @@ public class FavoriteItems extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_favorite_items);
 
         statusBarColor();

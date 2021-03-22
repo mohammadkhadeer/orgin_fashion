@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 
 public class ItemDetails extends AppCompatActivity implements ImageClicked {
     Toolbar toolbar;
@@ -50,6 +51,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_item_details);
 
         getInfoFromCat();

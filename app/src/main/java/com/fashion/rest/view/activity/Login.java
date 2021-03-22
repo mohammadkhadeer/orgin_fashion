@@ -51,6 +51,7 @@ import static com.fashion.rest.sharedPreferences.LoginInfo.getUser_IDFromSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.saveIDInSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.saveLoginInSP;
 import static com.fashion.rest.sharedPreferences.LoginInfo.saveLoginInfoInSP;
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 
 public class Login extends AppCompatActivity {
 
@@ -72,6 +73,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_login);
 
         statusBarColor();

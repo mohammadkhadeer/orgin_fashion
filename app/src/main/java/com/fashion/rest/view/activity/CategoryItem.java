@@ -10,6 +10,8 @@ import com.fashion.rest.presnter.Filter;
 import com.fashion.rest.view.fragments.FragmentCategoryItems;
 import com.fashion.rest.view.fragments.FragmentFilter;
 
+import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
+
 public class CategoryItem extends AppCompatActivity implements Filter {
 
     String categoryStr,whereCome;
@@ -19,6 +21,7 @@ public class CategoryItem extends AppCompatActivity implements Filter {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLocale(this);
         setContentView(R.layout.activity_category_item);
 
         statusBarColor();
