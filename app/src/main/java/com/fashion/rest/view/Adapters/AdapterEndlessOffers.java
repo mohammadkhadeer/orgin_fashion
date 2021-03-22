@@ -166,7 +166,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
       fillText(nameTV,position,context,desTV);
       changeFont(context);
       changeOffersGradientsAndTextColorCases(coverRL,position,context,getObject(position),nameTV,desTV,callRL,callTV,whatsApp);
-      callFunction(callRL,context);
+      callFunction(callRL,context,getObject(position).getStore().getPhone_number());
       actionListenerToGoShowItemDetails(context, cover_offers, position);
 
     }

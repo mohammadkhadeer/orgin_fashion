@@ -12,10 +12,11 @@ public class Offer {
     String name,name_local,description,description_local,price,discountPrice,promo_code,valide,color,secondaryColor;
     @SerializedName("id")
     String item_id;
+    boolean isBlack;
 
     public Offer(){}
 
-    public Offer(ArrayList<Flag> flagArrayL, Store store, String name, String name_local, String description, String description_local, String price, String discountPrice, String promo_code, String valide, String color, String secondaryColor, String item_id) {
+    public Offer(ArrayList<Flag> flagArrayL, Store store, String name, String name_local, String description, String description_local, String price, String discountPrice, String promo_code, String valide, String color, String secondaryColor, String item_id, boolean isBlack) {
         this.flagArrayL = flagArrayL;
         this.store = store;
         this.name = name;
@@ -29,6 +30,7 @@ public class Offer {
         this.color = color;
         this.secondaryColor = secondaryColor;
         this.item_id = item_id;
+        this.isBlack = isBlack;
     }
 
     public ArrayList<Flag> getFlagArrayL() {
@@ -133,5 +135,13 @@ public class Offer {
 
     public void setItem_id(String item_id) {
         this.item_id = item_id;
+    }
+
+    public boolean isBlack() {
+        return isBlack;
+    }
+
+    public void setBlack(boolean black) {
+        isBlack = black;
     }
 }

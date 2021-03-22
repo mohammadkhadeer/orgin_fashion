@@ -1,5 +1,6 @@
 package com.fashion.rest.view.categoriesComp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -12,13 +13,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.fashion.rest.R;
 import com.fashion.rest.model.Offer;
+import com.fashion.rest.permission.CheckPermission;
+
+import static com.fashion.rest.functions.ItemDetailsFunctions.callAds;
 
 public class Functions {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void changeOffersGradientsAndTextColorCases(RelativeLayout coverRL, int position, Context context, Offer object, TextView textView
             , TextView desTV, RelativeLayout callRL, TextView callTV, TextView whatsApp) {
 
-        colorBlackCollection(textView,desTV,callTV,whatsApp,context,object,callRL);
+        if (object.isBlack())
+            colorBlackCollection(textView,desTV,callTV,whatsApp,context,object,callRL);
+        else
+            colorWhiteCollection(textView,desTV,callTV,whatsApp,context,object,callRL);
+
         //this method to mad Gradient dinamec
         setGradients(coverRL,object,context);
 //        if (object.getOffersGradientsWithTextColor().getGradient().equals("roseanna"))
@@ -80,11 +88,13 @@ public class Functions {
         coverRL.setBackground(drawable);
     }
 
-    public static void callFunction(RelativeLayout callRl, final Context context) {
+    public static void callFunction(RelativeLayout callRl, final Context context, final String phoneNumber) {
         callRl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Call function",Toast.LENGTH_SHORT).show();
+                if (CheckPermission.checkPermissionMethodToPhone((Activity) context) == true) {
+                    callAds(context,phoneNumber);
+                }
             }
         });
     }
