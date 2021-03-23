@@ -108,8 +108,8 @@ public class Functions {
                 ,category
                 ,sub_cat
                 ,areasList
-                ,20
-                ,55555
+                ,1
+                ,999999
                 ,store
         );
         return filterOffersModel;
@@ -125,8 +125,8 @@ public class Functions {
                 ,category
                 ,sub_cat
                 ,areasList
-                ,20
-                ,55555
+                ,1
+                ,999999
                 ,store
         );
         return filterOffersModel;
@@ -148,6 +148,21 @@ public class Functions {
         return filterOffersModel;
     }
 
+
+    public static FilterItemsModel getDefultToFilterItemModel(ArrayList<Area> areasList,Categories category,Sub_Cat sub_cat) {
+        City city = null;
+        Store store = null;
+        FilterItemsModel filterOffersModel = new FilterItemsModel(
+                city
+                ,category
+                ,sub_cat
+                ,areasList
+                ,1
+                ,999999
+                ,store
+        );
+        return filterOffersModel;
+    }
 
     public static String getTextEngOrLocal(Context context,String eng,String local) {
 //        if (Locale.getDefault().getLanguage().equals("en"))

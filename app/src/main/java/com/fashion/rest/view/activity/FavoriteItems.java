@@ -1,6 +1,5 @@
 package com.fashion.rest.view.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -22,20 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fashion.rest.R;
-import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.functions.Functions;
-import com.fashion.rest.model.CustomItems;
-import com.fashion.rest.model.Flag;
 import com.fashion.rest.model.ItemFavorite;
-import com.fashion.rest.model.ItemTest;
-import com.fashion.rest.model.Store;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.Adapters.AdapterEndlessFavorite;
-import com.fashion.rest.view.Adapters.AdapterEndlessResult;
-import com.fashion.rest.view.activity.mainScreem.MainActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -43,15 +34,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.FillItem.itemsIdInFavorite;
 import static com.fashion.rest.functions.Functions.getNewItems;
 import static com.fashion.rest.functions.Functions.itemFav;
 import static com.fashion.rest.functions.Functions.loadMoreItem;
-import static com.fashion.rest.functions.RetrofitFunctions.getItemsWithAllFilter;
 import static com.fashion.rest.functions.RetrofitFunctions.getSingleItemDetails;
-import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
-import static com.fashion.rest.sharedPreferences.LoginInfo.getLoginOrNotFromSP;
 import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 import static com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults.PAGE_START;
 

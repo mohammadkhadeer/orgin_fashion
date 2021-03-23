@@ -142,6 +142,7 @@ public class ResultActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("sub_cat_id",filterItemsModel.getSub_cat().getId());
         bundle.putString("cat_id",filterItemsModel.getSub_cat().getCategory_id());
+        bundle.putParcelable("filter_object",filterItemsModel);
 
         fragmentResults.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()

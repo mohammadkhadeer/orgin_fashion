@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import java.util.ArrayList;
@@ -21,8 +22,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.functions.RetrofitFunctions.getItemHome;
+import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 
 public class FragmentSuggested extends Fragment{
     View view;
@@ -55,7 +59,9 @@ public class FragmentSuggested extends Fragment{
     }
 
     private void intiRetrofit() {
-        retrofit = getItemHome(itemTest.getSub_cat().getId(),itemTest.getSub_cat().getCategory_id());
+//        retrofit = getItemHome(itemTest.getSub_cat().getId(),itemTest.getSub_cat().getCategory_id());
+        FilterItemsModel filterItemsModel = getDefultToFilterItemModel(itemTest.getSub_cat());
+        retrofit = getItems(filterItemsModel);
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 

@@ -3,30 +3,26 @@ package com.fashion.rest.service;
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.fashion.rest.R;
 import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.model.NotificationModel;
 import com.fashion.rest.presenter.NotificationListener;
-import com.fashion.rest.presnter.Filter;
 import com.fashion.rest.view.activity.AboutUs;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import java.net.URL;
+import java.util.Map;
+
 import static com.fashion.rest.app.App.CHANNEL_1_ID;
 import static com.fashion.rest.app.App.CHANNEL_3_ID;
 import static com.fashion.rest.database.DataBaseInstance.getDataBaseInstance;
@@ -64,7 +60,15 @@ public class FcmMessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         intiValue();
         Log.i("TAG", "onMessageReceived: ");
-        // Check if message contains a notification payload.
+//        if (remoteMessage.getData() != null)
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//                sendNotificationAPI26(remoteMessage);
+//            else
+//                sendNotificationAPI(remoteMessage);
+
+
+
+         //Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             setValue(remoteMessage);
             updateNotOpenNotificationNumber();
@@ -85,6 +89,64 @@ public class FcmMessagingService extends FirebaseMessagingService {
             Log.i("TAG", "onMessageReceived: remoteMessage.getNotification() == null");
         }
     }
+
+
+
+
+    private void sendNotificationAPI(RemoteMessage remoteMessage) {
+        Map<String,String> data = remoteMessage.getData();
+
+        String title = data.get("title");
+        String contact = data.get("content");
+
+
+    }
+
+
+
+
+    private void sendNotificationAPI26(RemoteMessage remoteMessage) {
+        Map<String,String> data = remoteMessage.getData();
+
+        //cb2PcyO1I6Q:APA91bHSJOqgwgHKvPAg6pqztuu84l_3zpBhJ8UrxwaZHOZU-ukgdWTo-D0Pz7EvMStqJFh5NCaqBgF5rUCYshHX5qw3_k585rjT_CG3nBkIkF3Q7hyXUNWJd1atmilhyn_XB4s5WjAD
+        String title = data.get("title");
+        String contact = data.get("content");
+        Log.i("title: ", title);
+        Log.i("contact" , contact);
+
+        Intent resultIntent = new Intent(getApplicationContext(), AboutUs.class);
+        resultIntent.putExtra("item_object", notificationModel);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification notification = new NotificationCompat.Builder(getApplicationContext(),CHANNEL_3_ID)
+                .setColor(Color.BLUE)
+                .setContentTitle(title)
+                .setContentText(contact)
+                .setLargeIcon(bitmap1)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .build();
+
+        notificationManager.notify(1, notification);
+        //notificationListener.ready(1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void updateNotOpenNotificationNumber() {
         //check if app in the front ground update the number of notifications

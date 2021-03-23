@@ -60,13 +60,13 @@ public class SplashScreen extends AppCompatActivity {
             timer();
         }else{
             //insert welcome notification
-//            dbHelper.insertNotifications(welcome_2,"M+","M+","Welcome in M+ company"
-//                    ,"اهلا بكم في شركة M+","welcome_screen","empty",getTimeStamp()
-//                    ,getResources().getString(R.string.about_us_eng_r),getResources().getString(R.string.about_us_a_r),"0");
+            dbHelper.insertNotifications(welcome_2,"M+","M+","Welcome in M+ company"
+                    ,"اهلا بكم في شركة M+","welcome_screen","empty",getTimeStamp()
+                    ,getResources().getString(R.string.about_us_eng_r),getResources().getString(R.string.about_us_a_r),"0");
 
-            dbHelper.insertNotifications(welcome_image,"arabesc digital","اربيسك لتكنولوجيا","Welcome in Arabesc digital company"
-                    ,"اهلا بكم في شركة اربيسك للتكنولوجيا","welcome_screen","empty"
-                    ,getTimeStamp(),getResources().getString(R.string.about_us_eng),getResources().getString(R.string.about_us_ar),"0");
+//            dbHelper.insertNotifications(welcome_image,"arabesc digital","اربيسك لتكنولوجيا","Welcome in Arabesc digital company"
+//                    ,"اهلا بكم في شركة اربيسك للتكنولوجيا","welcome_screen","empty"
+//                    ,getTimeStamp(),getResources().getString(R.string.about_us_eng),getResources().getString(R.string.about_us_ar),"0");
 
             updateNumberOfNotification();
             getCountriesDe();

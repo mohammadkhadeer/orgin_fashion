@@ -1,5 +1,6 @@
 package com.fashion.rest.functions;
 
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.FilterOffersModel;
 
 import retrofit2.Retrofit;
@@ -11,11 +12,9 @@ import static com.fashion.rest.apiURL.API.apiCat;
 import static com.fashion.rest.apiURL.API.apiCities;
 import static com.fashion.rest.apiURL.API.apiCountries;
 import static com.fashion.rest.apiURL.API.apiHome;
-import static com.fashion.rest.apiURL.API.apiItems;
 import static com.fashion.rest.apiURL.API.apiItemsHome;
 import static com.fashion.rest.apiURL.API.apiItemsWithAllFilter;
 import static com.fashion.rest.apiURL.API.apiNumberOfCountries;
-import static com.fashion.rest.apiURL.API.apiOffers;
 import static com.fashion.rest.apiURL.API.apiOffersWithFilter;
 import static com.fashion.rest.apiURL.API.apiRegister;
 import static com.fashion.rest.apiURL.API.apiStoreItems;
@@ -86,18 +85,9 @@ public class RetrofitFunctions {
         return retrofit;
     }
 
-    public static Retrofit getItems(String subCategoryID,String category_id) {
+    public static Retrofit getItems(FilterItemsModel filterItemsModel) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(apiItems(subCategoryID,category_id))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit;
-    }
-
-    public static Retrofit getItemsWithAllFilter(String subCategoryID,String category_id) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(apiItemsWithAllFilter(subCategoryID,category_id))
+                .baseUrl(apiItemsWithAllFilter(filterItemsModel))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -116,15 +106,6 @@ public class RetrofitFunctions {
     public static Retrofit getOffersWithAllFilter(FilterOffersModel filterOffersModel) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiOffersWithFilter(filterOffersModel))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit;
-    }
-
-    public static Retrofit getOffers(String date) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(apiOffers(date))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

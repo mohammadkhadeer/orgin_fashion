@@ -28,9 +28,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static com.fashion.rest.apiURL.API.apiItemsWithAllFilter;
 import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.functions.RetrofitFunctions.getItemHome;
+import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 
 public class FillType2 {
     static AdapterType2 adapterType2;
@@ -93,7 +95,9 @@ public class FillType2 {
     }
 
     private static void intiRetrofit(Home home) {
-        retrofit2 = getItemHome(home.getSub_cat().getId(),home.getSub_cat().getCategory_id());
+//        retrofit2 = getItemHome(home.getSub_cat().getId(),home.getSub_cat().getCategory_id());
+        FilterItemsModel filterItemsModel = getDefultToFilterItemModel(home.getSub_cat());
+        retrofit2 = getItems(filterItemsModel);
         jsonPlaceHolderApi2 = retrofit2.create(JsonPlaceHolderApi.class);
     }
 

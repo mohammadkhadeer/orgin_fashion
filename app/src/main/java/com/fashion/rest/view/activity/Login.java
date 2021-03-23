@@ -81,6 +81,7 @@ public class Login extends AppCompatActivity {
         intiRet();
         //setBackgroundColor();
 
+//        Log.i("TAG:Token: ",getTokenFromSP(this));
         registerLogin();
         //actionListenerToFB();
         actionListenerToG();

@@ -24,11 +24,8 @@ import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassCityAndArea;
 import com.fashion.rest.presnter.PassFilterOffersModel;
-import com.fashion.rest.view.Adapters.AdapterCities;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
-import com.fashion.rest.view.Adapters.AdapterLoadingType2;
 import com.fashion.rest.view.Adapters.AdapterLoadingVOffers;
-import com.fashion.rest.view.activity.mainScreem.MainActivity;
 import com.fashion.rest.view.fragments.allOffersFragments.FilterOffers;
 import com.fashion.rest.view.fragments.fragmentHomeMainScreen.PopUp;
 
@@ -39,16 +36,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
-import static com.fashion.rest.functions.FillItem.fillCityArrayL;
 import static com.fashion.rest.functions.Functions.getDefultToFilterModel;
-import static com.fashion.rest.functions.Functions.getIOs;
-import static com.fashion.rest.functions.Functions.loadMoreItem;
-import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
-import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
 import static com.fashion.rest.functions.RetrofitFunctions.getOffersWithAllFilter;
 import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
-import static com.fashion.rest.view.fragments.fragmentHomeMainScreen.FragmentResults.PAGE_START;
 
 public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSelectedAreas, PassCityAndArea, PassFilterOffersModel {
 
@@ -72,12 +62,12 @@ public class AllOffersActivity extends AppCompatActivity implements PopUp.PassSe
     private boolean isLastPage = false;
     private int totalPage = 10;
     private boolean isLoading = false;
-    public ArrayList<Area> selectedAreaArrayList = new ArrayList<>();
 
     RecyclerView all_offers_loading_rv;
     AdapterLoadingVOffers adapterLoadingVOffers;
     RecyclerView.LayoutManager layoutManagerLoading;
     FilterOffersModel filterOffersModelGlobal;
+    public ArrayList<Area> selectedAreaArrayList = new ArrayList<>();
 
     RelativeLayout no_items;
 

@@ -14,8 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.RelativeLayout;
+
 import com.fashion.rest.R;
 import com.fashion.rest.model.CustomItems;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.view.Adapters.AdapterEndlessResult;
@@ -25,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import static com.fashion.rest.functions.RetrofitFunctions.getItemsWithAllFilter;
+import static com.fashion.rest.functions.RetrofitFunctions.getItems;
 import static com.fashion.rest.functions.RetrofitFunctions.getStoreItems;
 
 public class FragmentResults extends Fragment {
@@ -45,6 +48,7 @@ public class FragmentResults extends Fragment {
     AdapterEndlessResult adapterEndlessResult ;
     static JsonPlaceHolderApi jsonPlaceHolderApi;
     static Retrofit retrofit;
+    private FilterItemsModel filterItemsModel;
 
     public FragmentResults() {
     }
@@ -54,6 +58,7 @@ public class FragmentResults extends Fragment {
     NestedScrollView nestedScrollView;
 
     String cat_id,sub_cat_id,store_id,store_area;
+    RelativeLayout no_items;
 
     @Override
     public void onAttach(Context context) {
@@ -62,13 +67,18 @@ public class FragmentResults extends Fragment {
             sub_cat_id = getArguments().getString("sub_cat_id");
             store_id = getArguments().getString("store_id");
             store_area = getArguments().getString("store_area");
+
+            filterItemsModel = (FilterItemsModel) getArguments().getParcelable("filter_object");
         }
         super.onAttach(context);
+        Log.i("TAG",String.valueOf(filterItemsModel.getFrom()));
+        Log.i("TAG",String.valueOf(filterItemsModel.getTo()));
         if (store_id != null || store_id == " ")
         {
             retrofit = getStoreItems(store_id,store_area);
         }else{
-            retrofit = getItemsWithAllFilter(sub_cat_id,cat_id);
+            retrofit = getItems(filterItemsModel);
+//            retrofit = getItemsWithAllFilter(sub_cat_id,cat_id);
         }
         intiPlaceHolder();
     }
@@ -161,6 +171,15 @@ public class FragmentResults extends Fragment {
                 if (itemsList.size()!=0) {
                     adapterEndlessResult.addLoading();
                 }
+
+                //no items
+                if (suggestedItemsArrayListDO.size() ==0)
+                {
+//                    Log.i("TAG","insaid if 0");
+                    no_items.setVisibility(View.VISIBLE);
+                }else{
+                    no_items.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -212,6 +231,7 @@ public class FragmentResults extends Fragment {
 
         results_RV = (RecyclerView) view.findViewById(R.id.results_RV);
         nestedScrollView = (NestedScrollView) view.findViewById(R.id.results_nested);
+        no_items = (RelativeLayout) view.findViewById(R.id.no_items);
     }
 
 }

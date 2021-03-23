@@ -15,6 +15,7 @@ import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.calculatePercentage;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class FillResultsType1 {
@@ -23,7 +24,7 @@ public class FillResultsType1 {
             , RelativeLayout offerCover, TextView offerPer, LinearLayout itemCover) {
         fillImage(context,imageView,deal);
         fillTV(deal,name,context);
-        fillOffer(offerCover,offerPer);
+        fillOffer(offerCover,offerPer,deal);
         fillPrice(price,oldPrice,deal);
         changeFont(context,name,price,oldPrice,offerPer);
         actionListenerToItem(context,itemCover,deal);
@@ -46,10 +47,10 @@ public class FillResultsType1 {
         oldPrice.setText(String.valueOf(deal.getPrice()));
     }
 
-    private static void fillOffer(RelativeLayout offerCover, TextView offerPer) {
+    private static void fillOffer(RelativeLayout offerCover, TextView offerPer,ItemTest deal) {
         int pic = R.drawable.offer;
         offerCover.setBackgroundResource(pic);
-        offerPer.setText("40%");
+        offerPer.setText(calculatePercentage(deal.getPrice(),deal.getDiscountPrice()));
     }
 
     private static void fillTV(ItemTest itemTest, TextView name,Context context) {

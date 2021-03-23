@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.Area;
+import com.fashion.rest.model.FilterOffersModel;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
@@ -31,8 +33,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static com.fashion.rest.apiURL.API.apiOffersWithFilter;
+import static com.fashion.rest.functions.Functions.getDefultToFilterModel;
 import static com.fashion.rest.functions.Functions.getIOs;
-import static com.fashion.rest.functions.RetrofitFunctions.getOffers;
+import static com.fashion.rest.functions.RetrofitFunctions.getOffersWithAllFilter;
 
 public class SLOffersCase extends Fragment {
     View view;
@@ -57,6 +62,9 @@ public class SLOffersCase extends Fragment {
     JsonPlaceHolderApi jsonPlaceHolderApiOffers;
     Retrofit retrofitOffers;
     ItemTest itemTest;
+
+    FilterOffersModel filterOffersModelGlobal;
+    public ArrayList<Area> selectedAreaArrayList = new ArrayList<>();
 
     @Override
     public void onAttach(Context context) {
@@ -88,7 +96,8 @@ public class SLOffersCase extends Fragment {
     }
 
     private void intiRet() {
-        retrofitOffers = getOffers(getIOs());
+        filterOffersModelGlobal = getDefultToFilterModel(selectedAreaArrayList);
+        retrofitOffers = getOffersWithAllFilter(filterOffersModelGlobal);
         jsonPlaceHolderApiOffers = retrofitOffers.create(JsonPlaceHolderApi.class);
     }
 

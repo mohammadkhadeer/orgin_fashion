@@ -240,6 +240,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     if (!price_from.getText().toString().isEmpty())
                     {
+                        Log.i("TAG","From: "+price_from.getText().toString());
                         filterItemsModel.setFrom(Integer.parseInt(price_from.getText().toString()));
                     }
                     else{
@@ -336,6 +337,16 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
                 //move to ResultActivity
                 if (makeUserCanSeeTheResult !=0)
                 {
+                    if (!price_from.getText().toString().isEmpty())
+                    {
+                        Log.i("TAG","From: "+price_from.getText().toString());
+                        filterItemsModel.setFrom(Integer.parseInt(price_from.getText().toString()));
+                    }
+                    if (!price_to.getText().toString().isEmpty())
+                    {
+                        filterItemsModel.setTo(Integer.parseInt(price_to.getText().toString()));
+                    }
+                    
                     Bundle bundle = new Bundle();
                     bundle.putString("sub_cat_id",generalSub_category.getId());
                     bundle.putString("cat_id",generalSub_category.getCategory_id());
