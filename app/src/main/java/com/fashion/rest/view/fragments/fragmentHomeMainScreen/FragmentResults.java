@@ -71,8 +71,7 @@ public class FragmentResults extends Fragment {
             filterItemsModel = (FilterItemsModel) getArguments().getParcelable("filter_object");
         }
         super.onAttach(context);
-        Log.i("TAG",String.valueOf(filterItemsModel.getFrom()));
-        Log.i("TAG",String.valueOf(filterItemsModel.getTo()));
+
         if (store_id != null || store_id == " ")
         {
             retrofit = getStoreItems(store_id,store_area);

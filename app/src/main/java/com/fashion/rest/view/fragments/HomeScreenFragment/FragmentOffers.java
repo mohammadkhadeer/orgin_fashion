@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.fashion.rest.model.Offer;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.presnter.PassObject;
 import com.fashion.rest.view.Adapters.AdapterEndlessOffers;
+import com.fashion.rest.view.Adapters.AdapterLoadingVOffers;
 import com.fashion.rest.view.activity.AllCategory;
 import com.fashion.rest.view.activity.AllOffersActivity;
 
@@ -70,6 +72,10 @@ public class FragmentOffers extends Fragment{
     public ArrayList<Area> selectedAreaArrayList = new ArrayList<>();
     public ArrayList<Categories> categoriesArrayList = new ArrayList<>();
     FilterOffersModel filterOffersModelGlobal;
+
+    RecyclerView all_offers_loading_rv;
+    AdapterLoadingVOffers adapterLoadingVOffers;
+    LinearLayoutManager layoutManagerLoading;
 
     @Override
     public void onAttach(Context context) {
@@ -124,11 +130,26 @@ public class FragmentOffers extends Fragment{
         inti();
         createRV();
         changeFont();
+
+        createLoadingRV();
+
         actionListenerToRV();
         actionListenerToSeeAllCat();
 
         //createRVSuggested();
         return view;
+    }
+
+    private void createLoadingRV() {
+        all_offers_loading_rv.setVisibility(View.VISIBLE);
+
+        all_offers_loading_rv.setHasFixedSize(true);
+        layoutManagerLoading = new LinearLayoutManager(getActivity());
+        layoutManagerLoading.setOrientation(LinearLayoutManager.HORIZONTAL);
+        all_offers_loading_rv.setLayoutManager(layoutManagerLoading);
+
+        adapterLoadingVOffers =new AdapterLoadingVOffers(getActivity());
+        all_offers_loading_rv.setAdapter(adapterLoadingVOffers);
     }
 
     private void changeFont() {
@@ -223,6 +244,8 @@ public class FragmentOffers extends Fragment{
 //                    Log.i("TAG",offer.getDescription_local());
                 }
 
+                all_offers_loading_rv.setVisibility(View.GONE);
+
                 if (currentPage != PAGE_START && suggestedItemsArrayListTest.size()!=0) adapterEndlessOffers.removeLoading();
                 if (suggestedItemsArrayListTest.size()!=0)
                 {
@@ -244,6 +267,7 @@ public class FragmentOffers extends Fragment{
     }
 
     private void inti() {
+        all_offers_loading_rv= (RecyclerView) view.findViewById(R.id.all_offers_loading_rv);
         recyclerView = (RecyclerView) view.findViewById(R.id.offer_RV);
         recyclerViewCat = (RecyclerView) view.findViewById(R.id.type3_RV);
         see_all_cat_rl = (RelativeLayout) view.findViewById(R.id.see_all_cat_rl);
