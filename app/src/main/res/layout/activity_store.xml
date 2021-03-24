@@ -151,6 +151,25 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/store_web_rl"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="4dp"
+            android:background="?android:attr/selectableItemBackground"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vist_websaite"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorBlue7"
+                android:textSize="15dp"/>
+
+        </RelativeLayout>
+
         <FrameLayout
             android:id="@+id/store_items"
             android:layout_width="match_parent"

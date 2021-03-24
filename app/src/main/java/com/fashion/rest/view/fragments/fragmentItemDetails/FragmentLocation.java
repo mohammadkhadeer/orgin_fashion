@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class FragmentLocation extends Fragment {
     static  LatLng Your_Location ;
@@ -33,12 +36,13 @@ public class FragmentLocation extends Fragment {
     View view;
     ItemTest itemTest;
 //
+    float a,b;
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
             itemTest = (ItemTest) getArguments().getParcelable("item_object");
-            float a=Float.parseFloat(itemTest.getStore().getLocationsArrayL().get(0).getLatitude());
-            float b=Float.parseFloat(itemTest.getStore().getLocationsArrayL().get(0).getLongitude());
+             a=Float.parseFloat(itemTest.getStore().getLocationsArrayL().get(0).getLatitude());
+             b=Float.parseFloat(itemTest.getStore().getLocationsArrayL().get(0).getLongitude());
             Your_Location = new LatLng(a,b);
         }
         super.onAttach(context);
@@ -78,7 +82,10 @@ public class FragmentLocation extends Fragment {
         fragment_location_see_in_google_maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri gmmIntentUri = Uri.parse("geo:25.2616938,55.3818661");
+                String org = "geo:25.2616938,55.3818661";
+                String ac = "geo:"+a+","+b;
+
+                Uri gmmIntentUri = Uri.parse(ac);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -101,7 +108,7 @@ public class FragmentLocation extends Fragment {
                 mMap = googleMap;
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Your_Location, 15));  //move camera to location
                 if (mMap != null) {
-                    Marker hamburg = mMap.addMarker(new MarkerOptions().position(Your_Location).title("test"));
+                    Marker hamburg = mMap.addMarker(new MarkerOptions().position(Your_Location).title(getTextEngOrLocal(getActivity(),itemTest.getStore().getName(),itemTest.getStore().getName_local())));
                 }
                 // Rest of the stuff you need to do with the map
             }

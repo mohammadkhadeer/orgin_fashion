@@ -109,6 +109,7 @@
     <string name="week">weeks ago</string>
     <string name="month">months ago</string>
     <string name="year">years ago</string>
+    <string name="more_items">items</string>
 
     <string name="email">Email</string>
     <string name="pass">Password</string>

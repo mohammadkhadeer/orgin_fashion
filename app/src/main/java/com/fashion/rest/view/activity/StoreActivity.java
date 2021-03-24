@@ -43,7 +43,7 @@ public class StoreActivity extends AppCompatActivity {
     //TextView store_name_tv;//store_details_title;
     //LinearLayout store_details_header_ll;
     TextView store_name,store_address;
-    RelativeLayout view_in_google_maps_rl;
+    RelativeLayout view_in_google_maps_rl,store_web_rl;
 
     Store store;
     ItemTest itemTest;
@@ -64,7 +64,21 @@ public class StoreActivity extends AppCompatActivity {
         fillImageAndSroewName();
         handelResultFragment();
         actionListenerToGoogleMaps();
+        actionListenerToWeb();
         contactFragment();
+    }
+
+    private void actionListenerToWeb() {
+        store_web_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse(itemTest.getStore().getWebsite_link()));
+                startActivity(intent);
+            }
+        });
     }
 
     private void contactFragment() {
@@ -187,6 +201,7 @@ public class StoreActivity extends AppCompatActivity {
         store_name = (TextView) findViewById(R.id.store_name);
         store_address = (TextView) findViewById(R.id.store_address);
         view_in_google_maps_rl = (RelativeLayout) findViewById(R.id.view_in_google_maps_rl);
+        store_web_rl= (RelativeLayout) findViewById(R.id.store_web_rl);
 
     }
 
