@@ -36,6 +36,7 @@ import com.fashion.rest.model.Sub_Cat;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,6 +63,87 @@ public class Functions {
         String format = simpleDateFormat.format(new Date());
 
         return format;
+    }
+
+    public static String getTimeDiff(String notificationDate,Context context) {
+        String time=null;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+
+        try {
+            Date date1 = simpleDateFormat.parse(notificationDate);
+            Date date2 = simpleDateFormat.parse(getTimeStamp());
+
+            time =printDifference(date1, date2,context);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return time;
+    }
+
+    public static String printDifference(Date startDate, Date endDate,Context context) {
+        //milliseconds
+        String time=null;
+        long different = endDate.getTime() - startDate.getTime();
+
+        System.out.println("startDate : " + startDate);
+        System.out.println("endDate : "+ endDate);
+        System.out.println("different : " + different);
+
+        long secondsInMilli = 1000;
+        long minutesInMilli = secondsInMilli * 60;
+        long hoursInMilli = minutesInMilli * 60;
+        long daysInMilli = hoursInMilli * 24;
+        long weekInMilli = daysInMilli * 7;
+        long monthInMilli = daysInMilli * 30;
+        long yearInMilli = monthInMilli * 12;
+
+        long elapsedYear = different / yearInMilli;
+        different = different % yearInMilli;
+
+        long elapsedMonth = different / monthInMilli;
+        different = different % monthInMilli;
+
+        long elapsedWeek = different / weekInMilli;
+        different = different % weekInMilli;
+
+        long elapsedDays = different / daysInMilli;
+        different = different % daysInMilli;
+
+        long elapsedHours = different / hoursInMilli;
+        different = different % hoursInMilli;
+
+        long elapsedMinutes = different / minutesInMilli;
+        different = different % minutesInMilli;
+
+        long elapsedSeconds = different / secondsInMilli;
+
+        System.out.printf(
+                "%d year,%d month,%d weeks,%d days, %d hours, %d minutes, %d seconds%n",
+                elapsedYear,elapsedMonth,elapsedWeek,elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
+
+        if (elapsedYear != 0)
+            time = String.valueOf(elapsedYear)+" "+context.getResources().getString(R.string.year);
+        else
+            if (elapsedMonth !=0)
+                time= String.valueOf(elapsedMonth)+" "+context.getResources().getString(R.string.month);
+            else
+                if (elapsedWeek != 0)
+                    time= String.valueOf(elapsedWeek)+" "+context.getResources().getString(R.string.week);
+                else
+                    if (elapsedDays !=0)
+                        time =String.valueOf(elapsedDays)+" "+context.getResources().getString(R.string.day);
+                    else
+                        if (elapsedHours !=0)
+                            time =String.valueOf(elapsedDays)+" "+context.getResources().getString(R.string.hour);
+                        else
+                            if (elapsedMinutes > 2)
+                                time =String.valueOf(elapsedMinutes)+" "+context.getResources().getString(R.string.min);
+                            else
+                                time=context.getResources().getString(R.string.just_now);
+
+
+      return time;
     }
 
     public static int notificationNumber(Context context) {

@@ -364,5 +364,12 @@
     \n
     تميز و انظم الينا</string>
     <string name="no_sub_cat">لا يوجد فئات فرعية لاظهارها</string>
+    <string name="just_now">الان</string>
+    <string name="min">دقائق</string>
+    <string name="hour">ساعات</string>
+    <string name="week">اسبوع</string>
+    <string name="month">شهر</string>
+    <string name="year">سنة</string>
+    <string name="day">ايام</string>
 
 </resources>

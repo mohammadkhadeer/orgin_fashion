@@ -102,6 +102,14 @@
     <string name="finale">Total price</string>
     <string name="check_out">Check out</string>
 
+    <string name="just_now">Just now</string>
+    <string name="min">minutes ago</string>
+    <string name="hour">hours ago</string>
+    <string name="day">days ago</string>
+    <string name="week">weeks ago</string>
+    <string name="month">months ago</string>
+    <string name="year">years ago</string>
+
     <string name="email">Email</string>
     <string name="pass">Password</string>
     <string name="login">Log in</string>

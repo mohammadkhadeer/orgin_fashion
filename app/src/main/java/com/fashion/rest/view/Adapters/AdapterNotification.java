@@ -3,9 +3,11 @@ package com.fashion.rest.view.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +25,18 @@ import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import static com.fashion.rest.database.DataBaseInstance.getDataBaseInstance;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import static com.fashion.rest.functions.Functions.getTimeDiff;
 
 public class AdapterNotification extends RecyclerView.Adapter<AdapterNotification.ViewHolder>{
 
     private final Context context;
     public ArrayList<NotificationModel> notificationCompsArrayL ;
     DBHelper dbHelper;
+    private static final long FIVE_MINUTES = 1000 * 60 * 5; //5 minutes in milliseconds
 
     public AdapterNotification
             (Context context, ArrayList<NotificationModel> notificationCompsArrayL)
@@ -119,6 +124,19 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
         holder.notificationDesTV.setText(
                 getTextEngOrLocal(context,notificationCompsArrayL.get(position).getDes_en(),notificationCompsArrayL.get(position).getDes_local())
         );
+
+
+        String time =getTimeDiff(notificationCompsArrayL.get(position).getTime_stamp(),context);
+        if (time.equals(context.getResources().getString(R.string.just_now)))
+        {
+            holder.notification_time_tv.setText(time);
+            holder.notification_time_tv.setTextColor(Color.parseColor("#0581E2"));
+        }else{
+//            holder.notification_time_tv.setTextColor(Color.parseColor("#e0e0e0"));
+            holder.notification_time_tv.setText(time);
+
+        }
+
     }
 
     private void changeNotificationColorIfUserOpen(int position, ViewHolder holder,Context context) {
@@ -133,6 +151,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
     private void changeFont(Context context, ViewHolder holder) {
         holder.notificationTitleTV.setTypeface(Functions.changeFontBold(context));
         holder.notificationDesTV.setTypeface(Functions.changeFontGeneral(context));
+        holder.notification_time_tv.setTypeface(Functions.changeFontGeneral(context));
     }
 
     @Override
@@ -142,12 +161,13 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView processIV;
-        TextView notificationTitleTV,notificationDesTV;
+        TextView notificationTitleTV,notificationDesTV,notification_time_tv;
         RelativeLayout coverRL;
         public ViewHolder(View itemView) {
             super(itemView);
             notificationTitleTV = (TextView) itemView.findViewById(R.id.adapter_notification_head_tv);
             notificationDesTV = (TextView) itemView.findViewById(R.id.adapter_notification_des_tv);
+            notification_time_tv = (TextView) itemView.findViewById(R.id.adapter_notification_time_tv);
             processIV = (ImageView) itemView.findViewById(R.id.adapter_notification_process_iv) ;
             coverRL = (RelativeLayout) itemView.findViewById(R.id.adapter_notification_cover) ;
         }
