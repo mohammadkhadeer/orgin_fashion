@@ -25,7 +25,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import static com.fashion.rest.functions.FunctionsResultsNumber.fillNumberOfItemsResult;
 import static com.fashion.rest.functions.RetrofitFunctions.getBrand;
+import static com.fashion.rest.functions.RetrofitFunctions.getNumberOfItemsResults;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
 
@@ -50,10 +52,11 @@ public class ResultActivity extends AppCompatActivity {
         statusBarColor();
         getInfoFromCat();
         inti();
+        intiRetrofit();
         fillSubCategoryName();
         getImageBrand();
         changeFont();
-        fillResultNumber();
+        fillNumberOfItemsResult(this,result_number_tv,filterItemsModel);
         fillBackImageViewDepLanguage();
         actionListenerToBack();
 
@@ -65,7 +68,6 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void getImageBrand() {
-        intiRetrofit();
         Call<List<Brand>> callHome = jsonPlaceHolderApi.getBrand();
         callHome.enqueue(new Callback<List<Brand>>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -93,13 +95,6 @@ public class ResultActivity extends AppCompatActivity {
     private void intiRetrofit() {
         retrofit = getBrand();
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-    }
-
-
-    private void fillResultNumber() {
-        String result_text = getResources().getString(R.string.Result_number);
-        String result= result_text +" "+ "2";
-        result_number_tv.setText(result);
     }
 
     private void changeFont() {

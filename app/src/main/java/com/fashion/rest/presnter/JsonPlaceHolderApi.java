@@ -93,4 +93,7 @@ public interface JsonPlaceHolderApi {
     //just update the change
     @PATCH("profiles/{id}")
     Call<UserInfo> updateUserInfo(@Path("id") String id ,@Body UserInfo userInfo);
+
+    @GET(".")
+    Call<Integer> getNumberOfItems();
 }

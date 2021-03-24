@@ -3,6 +3,7 @@ package com.fashion.rest.view.fragments.fragmentHomeMainScreen;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
@@ -121,6 +122,7 @@ public class FragmentResults extends Fragment {
 
                                                                                               currentPage ++;
                                                                                               isLoading = true;
+
                                                                                               doApiCall();
                                                                                           }
                                                                                       }
@@ -141,11 +143,13 @@ public class FragmentResults extends Fragment {
         results_RV.setAdapter(adapterEndlessResult);
         doApiCall();
     }
-
+    int stopLoading = 0;
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void doApiCall() {
         suggestedItemsArrayListTest = new ArrayList<>();
         int max = toPagnationParpos.size()+8;
+//        Log.i("TAG","toPagnationParpos: "+String.valueOf(toPagnationParpos.size()));
+//        Log.i("TAG","max: "+String.valueOf(max));
         Call<List<ItemTest>> callHome = jsonPlaceHolderApi.getAllItems(toPagnationParpos.size(),max);
         callHome.enqueue(new Callback<List<ItemTest>>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -169,6 +173,13 @@ public class FragmentResults extends Fragment {
                 }
                 if (itemsList.size()!=0) {
                     adapterEndlessResult.addLoading();
+                    isLoading = false;
+                } else {
+                    isLastPage = true;
+                    adapterEndlessResult.stopLoading(stopLoading);
+                    if (stopLoading ==0)
+                        stopLoading =1;
+                    Log.i("TAG","im here");
                 }
 
                 //no items

@@ -10,7 +10,7 @@
 
   <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="95dp"
+      android:layout_height="20dp"
       android:id="@+id/adapter_show_user_item_cv"
       android:visibility="visible"
       android:layout_marginLeft="4dp"

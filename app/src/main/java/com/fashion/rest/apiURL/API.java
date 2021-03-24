@@ -1,5 +1,7 @@
 package com.fashion.rest.apiURL;
 
+import android.util.Log;
+
 import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.FilterOffersModel;
 
@@ -88,8 +90,8 @@ public class API {
                         areas = "%22"+areas+"%22";
                     }
                 }
-                apiName = apiURLBase()+"items/by-filter/%7B%22from%22%20:%20"+filterItemsModel.getFrom()+",%22to%22:"+filterItemsModel.getTo()+",%22sub_category%22:%22"+filterItemsModel.getSub_cat().getId()+"%22,%22store%22:null,%22category%22:%22"+filterItemsModel.getSub_cat().getCategory_id()+"%22,%22inStock%22:true,%22%20area%22:["+areas+"],%22city%22:[%22"+filterItemsModel.getCity().getIdServer()+"%22]%7D/";
-//                Log.i("TAG: API",apiName);
+                apiName = apiURLBase()+"items/by-filter/%7B%22from%22%20:%20"+filterItemsModel.getFrom()+",%22to%22:"+filterItemsModel.getTo()+",%22sub_category%22:%22"+filterItemsModel.getSub_cat().getId()+"%22,%22store%22:null,%22category%22:%22"+filterItemsModel.getSub_cat().getCategory_id()+"%22,%22inStock%22:true,%22%20area%22:["+areas+"],%22city%22:null%7D/";
+                Log.i("TAG: API",apiName);
             }
         }else{
 
@@ -154,6 +156,46 @@ public class API {
     public static String getSingleItem(String itemID){
         String apiName =apiURLBase()+"items/"+itemID+"/";
 //        Log.i("TAG",apiName);
+        return apiName;
+    }
+
+    public static String apiNumberOfItems(FilterItemsModel filterItemsModel){
+//        String apiName = "http://46.101.235.217/api/items/filter-count/%7B%22from%22%20:%2020,%22to%22:55555,%22sub_category%22:%226020da4212f197d167672163%22,%22store%22:%22601f0ab685d95e5383acfb8e%22,%22category%22:%226020da0412f197d167672161%22,%22inStock%22:true,%22%20area%22:[%2260082119e4afcdaf7e1cb8ad%22],%22city%22:[%2260081837731d75ae35f558be%22]%7D/";
+        String apiName=null;
+        if (filterItemsModel.getAreasList().size() == 0)
+        {
+            if (filterItemsModel.getCity() == null)
+            {
+                apiName =apiURLBase()+"items/filter-count/%7B%22from%22%20:%20"+filterItemsModel.getFrom()+",%22to%22:"+filterItemsModel.getTo()+",%22sub_category%22:%22"+filterItemsModel.getSub_cat().getId()+"%22,%22store%22:null,%22category%22:%22"+filterItemsModel.getSub_cat().getCategory_id()+"%22,%22inStock%22:true,%20%22city%22:null,%22area%22:null%7D/";
+            }else{
+                apiName= apiURLBase()+"items/filter-count/%7B%22from%22%20:%20"+filterItemsModel.getFrom()+",%22to%22:"+filterItemsModel.getTo()+",%22sub_category%22:%22"+filterItemsModel.getSub_cat().getId()+"%22,%22store%22:null,%22category%22:%22"+filterItemsModel.getSub_cat().getCategory_id()+"%22,%22inStock%22:true,%22area%22:null,%22city%22:[%22"+filterItemsModel.getCity().getIdServer()+"%22]%7D/";
+            }
+        }else{
+            String areas = "";
+            int flag= 0;
+            if (filterItemsModel.getAreasList().size() == 1)
+            {
+                areas ="%22"+filterItemsModel.getAreasList().get(0).getId()+"%22";
+            }else{
+                for (int i = 0;i<filterItemsModel.getAreasList().size();i++)
+                {
+                    flag =1;
+                    if (i ==0)
+                    {
+                        areas=filterItemsModel.getAreasList().get(0).getId();
+                    }else{
+                        areas =areas+","+filterItemsModel.getAreasList().get(i).getId();
+                    }
+
+                }
+                if (flag ==1)
+                {
+                    areas = "%22"+areas+"%22";
+                }
+            }
+            apiName = apiURLBase()+"items/filter-count/%7B%22from%22%20:%20"+filterItemsModel.getFrom()+",%22to%22:"+filterItemsModel.getTo()+",%22sub_category%22:%22"+filterItemsModel.getSub_cat().getId()+"%22,%22store%22:null,%22category%22:%22"+filterItemsModel.getSub_cat().getCategory_id()+"%22,%22inStock%22:true,%22%20area%22:["+areas+"],%22city%22:[%22"+filterItemsModel.getCity().getIdServer()+"%22]%7D/";
+        }
+//        Log.i("TAG: API",apiName2);
         return apiName;
     }
 

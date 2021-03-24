@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,7 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
 
   public void addItems(List<CustomItems> postItems) {
     dealItemsList.addAll(postItems);
+//    pageNumber = currnt;
     notifyDataSetChanged();
   }
 
@@ -109,6 +111,21 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
       notifyItemRemoved(position);
     }
   }
+
+  public void stopLoading(int stopLoading) {
+    if (stopLoading ==0)
+    {
+      isLoaderVisible = false;
+      ////////////here
+      int position = dealItemsList.size() - 1;
+      CustomItems deal = getItem(position);
+      if (deal != null) {
+        dealItemsList.remove(position);
+        notifyItemRemoved(position);
+      }
+    }
+  }
+
 
   CustomItems getItem(int position) {
     return dealItemsList.get(position);
@@ -237,28 +254,42 @@ public class AdapterEndlessResult extends RecyclerView.Adapter<BaseViewHolderUse
     public void onBind(int position) {
       super.onBind(position);
       int a= dealItemsList.size()-1, x = 0,mod=0;
-      if (8 == dealItemsList.size())
+
+      if (isLoaderVisible == true)
       {
-        x= 0;
-        mod = 0;
+        AddShineEffect(relativeLayout, shinImageView);
+        AddShineEffect(relativeLayout2, shinImageView2);
+        AddShineEffect(relativeLayout3, shinImageView3);
+        AddShineEffect(relativeLayout4, shinImageView4);
       }else{
-        x= a/8;
-        mod = a % 8;
-      }
-      if (dealItemsList.size() ==1)
-      {
         cardView.setVisibility(View.GONE);
-      }else {
-        if(mod>0)
-        {
-          cardView.setVisibility(View.GONE);
-        }else {
-          AddShineEffect(relativeLayout, shinImageView);
-          AddShineEffect(relativeLayout2, shinImageView2);
-          AddShineEffect(relativeLayout3, shinImageView3);
-          AddShineEffect(relativeLayout4, shinImageView4);
-        }
       }
+
+//      if (4 == dealItemsList.size())
+//      {
+//        x= 0;
+//        mod = 0;
+//      }else{
+//        x= a/4;
+//        mod = a % 4;
+//      }
+//      if (dealItemsList.size() ==1)
+//      {
+//        cardView.setVisibility(View.GONE);
+//      }else {
+//        Log.i("TAG","mod: "+String.valueOf(mod));
+//        if(mod>0)
+//        {
+//          cardView.setVisibility(View.GONE);
+//        }else {
+//          AddShineEffect(relativeLayout, shinImageView);
+//          AddShineEffect(relativeLayout2, shinImageView2);
+//          AddShineEffect(relativeLayout3, shinImageView3);
+//          AddShineEffect(relativeLayout4, shinImageView4);
+//        }
+//      }
+
+
     }
   }
 

@@ -15,6 +15,7 @@ import static com.fashion.rest.apiURL.API.apiHome;
 import static com.fashion.rest.apiURL.API.apiItemsHome;
 import static com.fashion.rest.apiURL.API.apiItemsWithAllFilter;
 import static com.fashion.rest.apiURL.API.apiNumberOfCountries;
+import static com.fashion.rest.apiURL.API.apiNumberOfItems;
 import static com.fashion.rest.apiURL.API.apiOffersWithFilter;
 import static com.fashion.rest.apiURL.API.apiRegister;
 import static com.fashion.rest.apiURL.API.apiStoreItems;
@@ -133,6 +134,15 @@ public class RetrofitFunctions {
     public static Retrofit insertUserInfo() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiRegister())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    public static Retrofit getNumberOfItemsResults(FilterItemsModel filterItemsModel) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(apiNumberOfItems(filterItemsModel))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

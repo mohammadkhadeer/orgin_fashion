@@ -26,7 +26,7 @@
             android:layout_height="15dp"
             android:id="@+id/progressBar"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="250dp"
             />
 
         <TextView
