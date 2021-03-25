@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.fashion.rest.apiURL.API.apiAreas;
 import static com.fashion.rest.apiURL.API.apiBrand;
+import static com.fashion.rest.apiURL.API.apiBrandSubCategory;
 import static com.fashion.rest.apiURL.API.apiCat;
 import static com.fashion.rest.apiURL.API.apiCities;
 import static com.fashion.rest.apiURL.API.apiCountries;
@@ -116,6 +117,15 @@ public class RetrofitFunctions {
     public static Retrofit getBrand() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiBrand())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    public static Retrofit getBrandSubCat(String brandID) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(apiBrandSubCategory(brandID))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

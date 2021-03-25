@@ -602,7 +602,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
             filterItemsModel.setSelectedCategory(category);
             filterItemsModel.setSub_cat(category.getSub_catArrayList().get(0));
             generalSub_category = new Sub_Cat(category.getSub_catArrayList().get(0).getName_en(),category.getSub_catArrayList().get(0).getName_local(),category.getSub_catArrayList().get(0).getAppearance()
-                    ,category.getSub_catArrayList().get(0).getId(),category.getSub_catArrayList().get(0).getCategory_id(),category.getSub_catArrayList().get(0).getFlag());
+                    ,category.getSub_catArrayList().get(0).getId(),category.getSub_catArrayList().get(0).getBrand(),category.getSub_catArrayList().get(0).getCategory_id(),category.getSub_catArrayList().get(0).getFlag());
 
             activeShowResult();
         }
@@ -629,7 +629,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         activeShowResult();
 
         generalSub_category = new Sub_Cat(subCategory.getName_en(),subCategory.getName_local(),subCategory.getAppearance()
-                ,subCategory.getId(),subCategory.getCategory_id(),subCategory.getFlag());
+                ,subCategory.getId(),subCategory.getBrand(),subCategory.getCategory_id(),subCategory.getFlag());
 
         sub_catRV.setVisibility(View.GONE);
         sub_cat_name_con_result.setVisibility(View.VISIBLE);
@@ -641,7 +641,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         //when user select subCategory from Pop up
         activeShowResult();
         generalSub_category = new Sub_Cat(subCategory.getName_en(),subCategory.getName_local(),subCategory.getAppearance()
-                                          ,subCategory.getId(),subCategory.getCategory_id(),subCategory.getFlag());
+                ,subCategory.getId(),subCategory.getBrand(),subCategory.getCategory_id(),subCategory.getFlag());
 
         sub_catRV.setVisibility(View.GONE);
         sub_cat_name_con_result.setVisibility(View.VISIBLE);

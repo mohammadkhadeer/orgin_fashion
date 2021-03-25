@@ -208,6 +208,10 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
       public void onClick(View v) {
         ItemTest itemTest = convertOfferToItem(getObject(position));
         Bundle bundle = new Bundle();
+        Log.i("TAG","in adapter offer brand: "+getObject(position).getBrand());
+        Log.i("TAG","in adapter offer brand: "+getObject(position).getPromo_code());
+        bundle.putString("offer_link", getObject(position).getBrand());
+        bundle.putString("promo_code", getObject(position).getPromo_code());
         bundle.putParcelable("item_object", itemTest);
 
         Intent intent = new Intent(context, ItemDetails.class);

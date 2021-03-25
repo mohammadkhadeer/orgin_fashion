@@ -81,6 +81,9 @@ public interface JsonPlaceHolderApi {
     Call<List<Brand>> getBrand();
 
     @GET(".")
+    Call<Brand> getBrandSubCat();
+
+    @GET(".")
     Call<ItemFavorite> getDetailsItem();
 
     @POST("profiles")

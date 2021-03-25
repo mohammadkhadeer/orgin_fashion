@@ -140,17 +140,97 @@
             android:background="@drawable/message"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textOffer"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
-                android:textSize="21dp"
-                android:text="@string/offer_4"
-                android:layout_marginBottom="8dp"
-                android:textColor="@color/colorRed6"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="35">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textOffer"
+                        android:textStyle="bold"
+                        android:layout_marginStart="16dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="18dp"
+                        android:text="@string/offer_4"
+                        android:textColor="@color/colorRed6"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:layout_weight="65">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/promo_code_text_tv"
+                                android:layout_marginStart="16dp"
+                                android:layout_centerVertical="true"
+                                android:textSize="14dp"
+                                android:textColor="@color/colorRed6"
+                                />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/rl_shin"
+
+                                >
+
+
+                                <ImageView
+                                    android:id="@+id/image_shin"
+                                    android:layout_width="10dp"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/shine" />
+
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/promo_code_tv"
+                                android:textStyle="bold"
+                                android:layout_marginStart="4dp"
+                                android:layout_centerVertical="true"
+                                android:textSize="17dp"
+                                android:textColor="@color/colorRed6"
+                                />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
 
         </LinearLayout>

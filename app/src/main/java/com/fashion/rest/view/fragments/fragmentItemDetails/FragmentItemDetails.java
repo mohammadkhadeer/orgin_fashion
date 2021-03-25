@@ -3,6 +3,7 @@ package com.fashion.rest.view.fragments.fragmentItemDetails;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,14 @@ public class FragmentItemDetails extends Fragment {
 
     public FragmentItemDetails(){}
     String cat_type;
-    String storeNameStr, storeImage, website_link,from;
+    String storeNameStr, storeImage, website_link,from,offerLink,promoCode;
     ItemTest itemTest;
 
     @Override
     public void onAttach(Context context) {
         if (getArguments() != null) {
+            promoCode = getArguments().getString("promo_code");
+            offerLink = getArguments().getString("offer_link");
             cat_type = getArguments().getString("cat_type");
             storeNameStr = getArguments().getString("storeNameStr");
             storeImage = getArguments().getString("storeImage");
@@ -69,10 +72,12 @@ public class FragmentItemDetails extends Fragment {
     }
 
     private void fragmentGeneralDetails() {
-        String offer_link = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/55.jpeg?alt=media&token=76fda7fb-1b1a-44e0-af9d-fad2cd341761";
+        Log.i("TAG","main fragment offer_link: "+offerLink);
+        Log.i("TAG","main fragment promo_code: "+promoCode);
         Bundle bundle = new Bundle();
         bundle.putString("cat_type", cat_type);
-        bundle.putString("offer_link", offer_link);
+        bundle.putString("offer_link", offerLink);
+        bundle.putString("promo_code", promoCode);
         bundle.putParcelable("item_object", itemTest);
 
         fragmentItemGeneralDetails.setArguments(bundle);

@@ -277,7 +277,7 @@ public class Functions {
         locationsArrayL.add(location);
         Store store = new Store();
         store = offer.getStore();
-        Sub_Cat sub_cat=new Sub_Cat("name","test","offers","offers","offers",flag);
+        Sub_Cat sub_cat=new Sub_Cat("name","test","offers","offers","offers","offers",flag);
         ItemTest itemTest = new ItemTest(
                 offer.getFlagArrayL()
                 ,store

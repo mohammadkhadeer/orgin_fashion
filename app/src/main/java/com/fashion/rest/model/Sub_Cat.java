@@ -7,18 +7,19 @@ import com.google.gson.annotations.SerializedName;
 
 
 public class Sub_Cat implements Parcelable {
-    String name_en,name_local,appearance,id;
+    String name_en,name_local,appearance,id,brand;
     @SerializedName("category")
     String category_id;
     @SerializedName("image")
     Flag flag;
     public  Sub_Cat(){}
 
-    public Sub_Cat(String name_en, String name_local, String appearance, String id, String category_id, Flag flag) {
+    public Sub_Cat(String name_en, String name_local, String appearance, String id, String brand, String category_id, Flag flag) {
         this.name_en = name_en;
         this.name_local = name_local;
         this.appearance = appearance;
         this.id = id;
+        this.brand = brand;
         this.category_id = category_id;
         this.flag = flag;
     }
@@ -28,8 +29,25 @@ public class Sub_Cat implements Parcelable {
         name_local = in.readString();
         appearance = in.readString();
         id = in.readString();
+        brand = in.readString();
         category_id = in.readString();
         flag = in.readParcelable(Flag.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name_en);
+        dest.writeString(name_local);
+        dest.writeString(appearance);
+        dest.writeString(id);
+        dest.writeString(brand);
+        dest.writeString(category_id);
+        dest.writeParcelable(flag, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Sub_Cat> CREATOR = new Creator<Sub_Cat>() {
@@ -76,6 +94,14 @@ public class Sub_Cat implements Parcelable {
         this.id = id;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public String getCategory_id() {
         return category_id;
     }
@@ -90,20 +116,5 @@ public class Sub_Cat implements Parcelable {
 
     public void setFlag(Flag flag) {
         this.flag = flag;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name_en);
-        dest.writeString(name_local);
-        dest.writeString(appearance);
-        dest.writeString(id);
-        dest.writeString(category_id);
-        dest.writeParcelable(flag, flags);
     }
 }

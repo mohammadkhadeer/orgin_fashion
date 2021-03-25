@@ -9,14 +9,14 @@ public class Offer {
     ArrayList<Flag> flagArrayL;
     @SerializedName("store")
     Store store;
-    String name,name_local,description,description_local,price,discountPrice,promo_code,valide,color,secondaryColor;
+    String name,name_local,description,description_local,price,discountPrice,promoCode,valide,color,secondaryColor,brand;
     @SerializedName("id")
     String item_id;
     boolean isBlack;
 
     public Offer(){}
 
-    public Offer(ArrayList<Flag> flagArrayL, Store store, String name, String name_local, String description, String description_local, String price, String discountPrice, String promo_code, String valide, String color, String secondaryColor, String item_id, boolean isBlack) {
+    public Offer(ArrayList<Flag> flagArrayL, Store store, String name, String name_local, String description, String description_local, String price, String discountPrice, String promo_code, String valide, String color, String secondaryColor, String brand, String item_id, boolean isBlack) {
         this.flagArrayL = flagArrayL;
         this.store = store;
         this.name = name;
@@ -25,10 +25,11 @@ public class Offer {
         this.description_local = description_local;
         this.price = price;
         this.discountPrice = discountPrice;
-        this.promo_code = promo_code;
+        this.promoCode = promo_code;
         this.valide = valide;
         this.color = color;
         this.secondaryColor = secondaryColor;
+        this.brand = brand;
         this.item_id = item_id;
         this.isBlack = isBlack;
     }
@@ -98,11 +99,11 @@ public class Offer {
     }
 
     public String getPromo_code() {
-        return promo_code;
+        return promoCode;
     }
 
     public void setPromo_code(String promo_code) {
-        this.promo_code = promo_code;
+        this.promoCode = promo_code;
     }
 
     public String getValide() {
@@ -127,6 +128,14 @@ public class Offer {
 
     public void setSecondaryColor(String secondaryColor) {
         this.secondaryColor = secondaryColor;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getItem_id() {

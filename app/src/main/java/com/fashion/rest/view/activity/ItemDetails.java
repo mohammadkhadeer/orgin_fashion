@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -42,7 +43,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
     FragmentContact fragmentContact = new FragmentContact();
     FragmentFullImageSlider fragmentFullImageSlider = new FragmentFullImageSlider();
 
-    String storeNameStr, storeImage, website_link,from;
+    String storeNameStr, storeImage, website_link,from,offerLink,promoCode;
     int fullImageOnTheTop =0;
 
     RelativeLayout fullImageCont;
@@ -76,12 +77,13 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
     private void getInfoFromCat() {
         itemTest = (ItemTest) getIntent().getParcelableExtra("item_object");
         from = getIntent().getStringExtra("from");
+        offerLink = getIntent().getStringExtra("offer_link");
+        promoCode = getIntent().getStringExtra("promo_code");
     }
 
     private void ItemDetailsFragment() {
-        storeNameStr = "Lacoste";
-        storeImage = "https://firebasestorage.googleapis.com/v0/b/restaurant-31ab3.appspot.com/o/lacoste-logo.png?alt=media&token=3f7d0317-11d6-4b6d-9763-4c3e3eec08e4";
-        website_link = "https://www.farfetch.com/ae/shopping/men/lacoste/items.aspx?utm_source=google&utm_medium=cpc&utm_keywordid=123323324&pid=google_search&af_channel=Search&c=658279425&af_c_id=658279425&af_siteid=&af_keywords=kwd-88551300&af_adset_id=35964967809&af_ad_id=492268062138&af_sub1=123323324&is_retargeting=true";
+        Log.i("TAG","activity offer_link: "+offerLink);
+        Log.i("TAG","activity promo_code: "+promoCode);
         Bundle bundle = new Bundle();
         bundle.putString("cat", "cat");
         bundle.putString("cat_type", "cat_type");
@@ -89,6 +91,8 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
         bundle.putString("storeImage", storeImage);
         bundle.putString("website_link", website_link);
         bundle.putString("from", from);
+        bundle.putString("offer_link", offerLink);
+        bundle.putString("promo_code", promoCode);
         bundle.putParcelable("item_object", itemTest);
 
         fragmentItemDetails.setArguments(bundle);

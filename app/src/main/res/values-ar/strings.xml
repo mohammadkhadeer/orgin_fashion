@@ -372,5 +372,6 @@
     <string name="year">سنة</string>
     <string name="day">ايام</string>
     <string name="more_items">عناصر</string>
+    <string name="promo_code">الرمز ترويجي</string>
 
 </resources>

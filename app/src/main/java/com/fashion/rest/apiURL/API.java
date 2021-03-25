@@ -87,11 +87,12 @@ public class API {
                     }
                     if (flag ==1)
                     {
-                        areas = "%22"+areas+"%22";
+//                        areas = "%22"+areas+"%22";
+                        areas = areas;
                     }
                 }
-                apiName = apiURLBase()+"items/by-filter/%7B%22from%22%20:%20"+filterItemsModel.getFrom()+",%22to%22:"+filterItemsModel.getTo()+",%22sub_category%22:%22"+filterItemsModel.getSub_cat().getId()+"%22,%22store%22:null,%22category%22:%22"+filterItemsModel.getSub_cat().getCategory_id()+"%22,%22inStock%22:true,%22%20area%22:["+areas+"],%22city%22:null%7D/";
-                Log.i("TAG: API",apiName);
+                apiName = "http://46.101.235.217/api/items/by-filter/%7B%22from%22%20:%20"+filterItemsModel.getFrom()+",%22to%22:"+filterItemsModel.getTo()+",%22sub_category%22:%22"+filterItemsModel.getSub_cat().getId()+"%22,%22store%22:null,%22category%22:%22"+filterItemsModel.getSub_cat().getCategory_id()+"%22,%22inStock%22:true,%22area%22:["+areas+"],%22city%22:null%7D/";
+//                Log.i("TAG:     API",apiName);
             }
         }else{
 
@@ -141,9 +142,11 @@ public class API {
                         areas = "%22"+areas+"%22";
                     }
                 }
-                apiName = apiURLBase()+"offers/by-filter/%7B%20%22date%22:%20%22"+filterOffersModel.getISO()+"%22,%22from%22%20:%20"+filterOffersModel.getFrom()+",%22to%22:"+filterOffersModel.getTo()+",%22inStock%22:%22true%22,%20%22city%22:[%22"+filterOffersModel.getCity().getIdServer()+"%22],%22area%22:["+areas+"]%7D/";
+                apiName = apiURLBase()+"offers/by-filter/%7B%20%22date%22:%20%22"+filterOffersModel.getISO()+"%22,%22from%22%20:%20"+filterOffersModel.getFrom()+",%22to%22:"+filterOffersModel.getTo()+",%22inStock%22:%22true%22,%20%22city%22:null,%22area%22:["+areas+"]%7D/";
+//                apiName = apiURLBase()+"offers/by-filter/%7B%20%22date%22:%20%22"+filterOffersModel.getISO()+"%22,%22from%22%20:%20"+filterOffersModel.getFrom()+",%22to%22:"+filterOffersModel.getTo()+",%22inStock%22:%22true%22,%20%22city%22:[%22"+filterOffersModel.getCity().getIdServer()+"%22],%22area%22:["+areas+"]%7D/";
             }
         }
+//        Log.i("TAG",apiName);
         return apiName;
     }
 
@@ -193,10 +196,16 @@ public class API {
                     areas = "%22"+areas+"%22";
                 }
             }
-            apiName = apiURLBase()+"items/filter-count/%7B%22from%22%20:%20"+filterItemsModel.getFrom()+",%22to%22:"+filterItemsModel.getTo()+",%22sub_category%22:%22"+filterItemsModel.getSub_cat().getId()+"%22,%22store%22:null,%22category%22:%22"+filterItemsModel.getSub_cat().getCategory_id()+"%22,%22inStock%22:true,%22%20area%22:["+areas+"],%22city%22:[%22"+filterItemsModel.getCity().getIdServer()+"%22]%7D/";
+            apiName = apiURLBase()+"items/filter-count/%7B%22from%22%20:%20"+filterItemsModel.getFrom()+",%22to%22:"+filterItemsModel.getTo()+",%22sub_category%22:%22"+filterItemsModel.getSub_cat().getId()+"%22,%22store%22:null,%22category%22:%22"+filterItemsModel.getSub_cat().getCategory_id()+"%22,%22inStock%22:true,%22area%22:["+areas+"],%22city%22:null%7D/";
         }
 //        Log.i("TAG: API",apiName2);
         return apiName;
     }
 
+
+    public static String apiBrandSubCategory(String brandID){
+        String apiName =apiURLBase()+"brands/"+brandID+"/";
+//        Log.i("TAG",apiName);
+        return apiName;
+    }
 }

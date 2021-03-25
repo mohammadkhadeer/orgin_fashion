@@ -27,6 +27,7 @@ import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.functions.FunctionsResultsNumber.fillNumberOfItemsResult;
 import static com.fashion.rest.functions.RetrofitFunctions.getBrand;
+import static com.fashion.rest.functions.RetrofitFunctions.getBrandSubCat;
 import static com.fashion.rest.functions.RetrofitFunctions.getNumberOfItemsResults;
 import static com.fashion.rest.sharedPreferences.Language.getLanguageFromSP;
 import static com.fashion.rest.view.activity.mainScreem.MainActivity.setLocale;
@@ -68,23 +69,23 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void getImageBrand() {
-        Call<List<Brand>> callHome = jsonPlaceHolderApi.getBrand();
-        callHome.enqueue(new Callback<List<Brand>>() {
+        Call<Brand> callHome = jsonPlaceHolderApi.getBrandSubCat();
+        callHome.enqueue(new Callback<Brand>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
+            public void onResponse(Call<Brand> call, Response<Brand> response) {
                 if (!response.isSuccessful())
                 { return; }
-                List<Brand> itemsList = response.body();
+                Brand itemsList = response.body();
                 Picasso.get()
-                        .load(apiURLBase()+itemsList.get(0).getFlag().getUrl())
+                        .load(apiURLBase()+itemsList.getFlag().getUrl())
                         .fit()
                         .centerCrop()
                         .into(brand_iv);
             }
 
             @Override
-            public void onFailure(Call<List<Brand>> call, Throwable t) {
+            public void onFailure(Call<Brand> call, Throwable t) {
                 Log.i("TAG","getItemsFromServer  in error");
                 Log.i("TAG Error",t.getMessage());
             }
@@ -93,7 +94,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void intiRetrofit() {
-        retrofit = getBrand();
+        retrofit = getBrandSubCat(filterItemsModel.getSub_cat().getBrand());
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
