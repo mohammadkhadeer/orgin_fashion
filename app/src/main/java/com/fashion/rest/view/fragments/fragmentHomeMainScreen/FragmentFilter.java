@@ -47,6 +47,7 @@ import static com.fashion.rest.functions.FillItem.fillAreas;
 import static com.fashion.rest.functions.FillItem.fillCityArrayL;
 import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
+import static com.fashion.rest.functions.FunctionsResultsNumber.fillNumberOfItemsResult;
 import static com.fashion.rest.functions.RetrofitFunctions.getCategories;
 
 
@@ -86,7 +87,8 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
     RelativeLayout showResult, cancel_selected_city_result, cancel_activity_result, see_all_areas_result, cancel_selected_cat_result
             , selected_cat_result, see_all_cat_result, cancel_selected_sub_cat_result;
     LinearLayout city_name_con_result, cat_name_con_result, sub_cat_name_con_result;
-    TextView city_name_result, title_activity_result, see_all_areas_result_tv, cat_name_result, see_all_cat_result_tv, sub_cat_name_result;
+    TextView city_name_result, title_activity_result, see_all_areas_result_tv, cat_name_result, see_all_cat_result_tv
+            , sub_cat_name_result,show_result_tv;
     EditText price_from,price_to;
 
     PassCityAndArea passCity;
@@ -196,6 +198,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         cat_name_result.setTypeface(Functions.changeFontGeneral(getActivity()));
         see_all_cat_result_tv.setTypeface(Functions.changeFontGeneral(getActivity()));
         sub_cat_name_result.setTypeface(Functions.changeFontGeneral(getActivity()));
+        show_result_tv.setTypeface(Functions.changeFontGeneral(getActivity()));
 
 //        see_all_areas_result_tv.setPaintFlags(see_all_areas_result_tv.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     }
@@ -385,6 +388,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
                 all_areasRV.setVisibility(View.GONE);
                 selectedAreaArrayList = new ArrayList<>();
                 selected_areasRV.setVisibility(View.GONE);
+                ShowNumberOfResult();
             }
         });
     }
@@ -402,6 +406,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         cat_name_result = (TextView) view.findViewById(R.id.cat_name_result);
         see_all_cat_result_tv = (TextView) view.findViewById(R.id.see_all_cat_result_tv);
         sub_cat_name_result = (TextView) view.findViewById(R.id.sub_cat_name_result);
+        show_result_tv = (TextView) view.findViewById(R.id.show_result);
 
         cityRV = (RecyclerView) view.findViewById(R.id.cityRV);
         all_areasRV = (RecyclerView) view.findViewById(R.id.all_areasRV);
@@ -433,6 +438,8 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         city_name_result.setText(getTextEngOrLocal(getActivity(),city.getName_en(),city.getName_local()));
         city_name_con_result.setVisibility(View.VISIBLE);
         createAllAreasRV(city);
+
+        ShowNumberOfResult();
     }
 
     private void createAllAreasRV(City city) {
@@ -460,6 +467,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
             updateSelectedArea(area);
         }
         removeSelectedAreaFromAreaArrayListAndAreaAdapter(area);
+        ShowNumberOfResult();
     }
 
     private void removeSelectedAreaFromAreaArrayListAndAreaAdapter(Area area) {
@@ -521,6 +529,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         adapterAreas.notifyDataSetChanged();
 
         filterItemsModel.setAreasList(selectedAreaArrayList);
+        ShowNumberOfResult();
     }
 
     private void removeItemFromArrayList(Area area) {
@@ -635,6 +644,7 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
         sub_cat_name_con_result.setVisibility(View.VISIBLE);
         //need if to check language
         sub_cat_name_result.setText(getTextEngOrLocal(getActivity(),subCategory.getName_en(),subCategory.getName_local()));
+        ShowNumberOfResult();
     }
 
     public void passSelectedSubCategory(Sub_Cat subCategory) {
@@ -652,10 +662,19 @@ public class FragmentFilter extends Fragment implements AdapterCities.PassCity
     private void activeShowResult(){
         makeUserCanSeeTheResult =1;
         showResult.setAlpha(1);
+        //fillNumberOfItemsResult(getActivity(),show_result_tv,filterItemsModel,"filter_fragment");
     }
 
     private void freezeShowResult(){
         makeUserCanSeeTheResult =0;
         showResult.setAlpha((float) 0.6);
+        //show_result_tv.setText(getActivity().getResources().getString(R.string.show_results));
+    }
+
+    private void ShowNumberOfResult() {
+//        if (makeUserCanSeeTheResult ==1)
+//            fillNumberOfItemsResult(getActivity(),show_result_tv,filterItemsModel,"filter_fragment");
+//        else
+//            show_result_tv.setText(getActivity().getResources().getString(R.string.show_results));
     }
 }

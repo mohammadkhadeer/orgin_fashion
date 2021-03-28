@@ -14,6 +14,7 @@ import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
+
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.calculatePercentage;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
@@ -59,9 +60,11 @@ public class FillResultsType1 {
 
     private static void fillImage(Context context, ImageView imageView, ItemTest itemTest) {
         //product image
+
         Picasso.get()
                 .load(apiURLBase()+itemTest.getFlagArrayL().get(0).getUrl())
                 .fit()
+
                 .centerCrop()
                 .into(imageView);
 

@@ -27,9 +27,10 @@
                 android:layout_height="match_parent"
                 app:cardCornerRadius="0dp">
 
-                <ImageView
+                <com.github.siyamed.shapeimageview.RoundedImageView
                     android:id="@+id/adapter_result_type1_IV"
                     android:layout_width="match_parent"
+                    app:siRadius="8dp"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"

@@ -569,6 +569,7 @@
                             android:layout_marginLeft="1dp"
                             android:text="@string/show_results"
                             android:textColor="@color/colorBlue7"
+                            android:id="@+id/show_result"
                             android:textSize="18dp"
                             android:textStyle="bold" />
 

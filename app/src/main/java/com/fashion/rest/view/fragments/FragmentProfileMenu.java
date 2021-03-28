@@ -1,7 +1,9 @@
 package com.fashion.rest.view.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,12 +21,15 @@ public class FragmentProfileMenu extends Fragment {
 
     RelativeLayout recentVRL,recentSRL,favouriteRL
             ,helpRL,contactRL,aboutRL
-            ,settingRL,instgramRL;
+            ,settingRL,instgramRL,fbRL;
     TextView recentVTV,recentSTV,favouriteTV
             ,helpTV,contactTV,aboutTV
             ,settingTV;
 
     View view;
+
+    public static String FACEBOOK_URL = "https://www.facebook.com/abukhader.obidat/";
+    public static String FACEBOOK_PAGE_ID = "abukhader.obidat";
 
     public FragmentProfileMenu(){}
 
@@ -37,10 +42,41 @@ public class FragmentProfileMenu extends Fragment {
 //        actionListener();
         changeFont();
         actionListenerToInsta();
+        actionListenerToFB();
         actionListenerToSetting();
         actionListenerToFavoriteItems();
 
         return view;
+    }
+
+    private void actionListenerToFB() {
+        fbRL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPage();
+            }
+        });
+    }
+
+    public String getFacebookPageURL(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
+            if (versionCode >= 3002850) { //newer versions of fb app
+                return "fb://facewebmodal/f?href=" + FACEBOOK_URL;
+            } else { //older versions of fb app
+                return "fb://page/" + FACEBOOK_PAGE_ID;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            return FACEBOOK_URL; //normal web url
+        }
+    }
+
+    private void openPage() {
+        Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+        String facebookUrl = getFacebookPageURL(getActivity());
+        facebookIntent.setData(Uri.parse(facebookUrl));
+        startActivity(facebookIntent);
     }
 
     private void actionListenerToFavoriteItems() {
@@ -82,14 +118,14 @@ public class FragmentProfileMenu extends Fragment {
         try {
             //abukhadeer92
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("http://instagram.com/_u/" + "AlsartawiJewelry"));
+            intent.setData(Uri.parse("http://instagram.com/_u/" + "abukhadeer92"));
             intent.setPackage("com.instagram.android");
             startActivity(intent);
         }
         catch (android.content.ActivityNotFoundException anfe)
         {
             startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.instagram.com/" + "AlsartawiJewelry")));
+                    Uri.parse("https://www.instagram.com/" + "abukhadeer92")));
         }
     }
 
@@ -188,6 +224,7 @@ public class FragmentProfileMenu extends Fragment {
         aboutRL = (RelativeLayout) view.findViewById(R.id.fragment_profile_about_app_RL);
         settingRL = (RelativeLayout) view.findViewById(R.id.fragment_profile_setting_RL);
         instgramRL = (RelativeLayout) view.findViewById(R.id.contact_us_activity_insta_rl);
+        fbRL = (RelativeLayout) view.findViewById(R.id.contact_us_activity_fb_rl);
 
 
         recentVTV = (TextView) view.findViewById(R.id.fragment_profile_recent_v_TV);

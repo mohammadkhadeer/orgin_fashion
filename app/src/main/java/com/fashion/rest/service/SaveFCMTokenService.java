@@ -4,13 +4,18 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.fashion.rest.R;
 import com.fashion.rest.model.UserInfo;
 import com.fashion.rest.presnter.JsonPlaceHolderApi;
 import com.fashion.rest.utils.FCM_Device_Tokens;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,6 +70,7 @@ public class SaveFCMTokenService extends Service {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         DatabaseReference fcmDatabaseRef = ref.child("FCM_Device_Tokens").push();
 
+        registerToTopic();
         //save on google firebase
         FCM_Device_Tokens obj = new FCM_Device_Tokens();
         obj.setToken(token);
@@ -72,6 +78,47 @@ public class SaveFCMTokenService extends Service {
         //save in server
         sendUserTokenToServer(token);
 
+    }
+
+    private void registerToTopic() {
+        FirebaseMessaging.getInstance().subscribeToTopic("important_message")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "msg topic scsess important_message";
+                        if (!task.isSuccessful()) {
+                            msg = "not";
+                        }
+                        Log.d("TAG important_message", msg);
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        FirebaseMessaging.getInstance().subscribeToTopic("new_items")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "msg topic scsess";
+                        if (!task.isSuccessful()) {
+                            msg = "not";
+                        }
+                        Log.d("TAG new_items", msg);
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        FirebaseMessaging.getInstance().subscribeToTopic("new_offers")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "msg topic scsess";
+                        if (!task.isSuccessful()) {
+                            msg = "not";
+                        }
+                        Log.d("TAG new_offers", msg);
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void sendUserTokenToServer(String token) {

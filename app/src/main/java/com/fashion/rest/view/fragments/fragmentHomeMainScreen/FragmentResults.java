@@ -165,7 +165,7 @@ public class FragmentResults extends Fragment {
                 // i well use this to can handel pagenation in right way cos when use
                 //suggestedItemsArrayListDO well not give right number cos i redesign the list to contean 2 items in same way
                 toPagnationParpos.addAll(itemsList);
-                Log.i("TAG","toPagnationParpos: "+String.valueOf(toPagnationParpos.size()));
+//                Log.i("TAG","toPagnationParpos: "+String.valueOf(toPagnationParpos.size()));
 
                 if (currentPage != PAGE_START && suggestedItemsArrayListTest.size()!=0) adapterEndlessResult.removeLoading();
                 if (suggestedItemsArrayListTest.size()!=0)

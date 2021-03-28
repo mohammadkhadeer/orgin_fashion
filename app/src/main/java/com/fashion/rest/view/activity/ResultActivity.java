@@ -57,7 +57,7 @@ public class ResultActivity extends AppCompatActivity {
         fillSubCategoryName();
         getImageBrand();
         changeFont();
-        fillNumberOfItemsResult(this,result_number_tv,filterItemsModel);
+        fillNumberOfItemsResult(this,result_number_tv,filterItemsModel,"result_activity");
         fillBackImageViewDepLanguage();
         actionListenerToBack();
 

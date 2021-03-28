@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements PassObject
     BottomBarTab homeBBT, notificationsBBT,profileBBT;
     private BottomBarTab[] bbtArr = {homeBBT, notificationsBBT, profileBBT};
     private String[] bbtArrStr = {"homeBBT", "notificationsBBT", "profileBBT"};
-    String lastFragmentStr;
+    String lastFragmentStr= "fragmentHome";;
 
     SharedPreferences SharedPreferences;
     SharedPreferences.Editor Editor;
@@ -152,7 +152,6 @@ public class MainActivity extends AppCompatActivity implements PassObject
     private void changeAppNameFontType() {
         appNameTV.setTypeface(Functions.changeFontGeneral(getApplicationContext()));
     }
-
 
     private void inti() {
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
@@ -261,15 +260,24 @@ public class MainActivity extends AppCompatActivity implements PassObject
 
     @Override
     public void onBackPressed() {
-        if (resultOnTheTop==1 || filterOnTheTop ==1)
+        if (!lastFragmentStr.equals("fragmentHome"))
         {
-            resultOnTheTop =0;
-            filterOnTheTop =0;
-            cont_all_filter_rl.setVisibility(View.GONE);
-            cont_all_main_comp.setVisibility(View.VISIBLE);
+            fm.beginTransaction().hide(active).show(fragmentHome).commit();
+            active = fragmentHome;
+            lastFragmentStr= "fragmentHome";
+            bottomBar.selectTabWithId(R.id.tab_home);
         }else{
             finish();
         }
+//        if (resultOnTheTop==1 || filterOnTheTop ==1)
+//        {
+//            resultOnTheTop =0;
+//            filterOnTheTop =0;
+//            cont_all_filter_rl.setVisibility(View.GONE);
+//            cont_all_main_comp.setVisibility(View.VISIBLE);
+//        }else{
+//            finish();
+//        }
     }
 
     @Override

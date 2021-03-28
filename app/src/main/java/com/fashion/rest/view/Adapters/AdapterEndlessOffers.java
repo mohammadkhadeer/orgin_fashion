@@ -1,8 +1,11 @@
 package com.fashion.rest.view.Adapters;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,11 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.fashion.rest.R;
+import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.model.Offer;
 import com.fashion.rest.utils.BaseViewHolderUser;
@@ -25,6 +30,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 import butterknife.ButterKnife;
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.calculatePercentage;
 import static com.fashion.rest.functions.Functions.convertOfferToItem;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 import static com.fashion.rest.view.categoriesComp.Functions.callFunction;
@@ -136,7 +142,7 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
   public class ViewHolder extends BaseViewHolderUser {
     ImageView imageView,store_image_offer;
     RelativeLayout coverRL,callRL,cover_offers;
-    TextView nameTV,desTV,priceTV,oldPrice,callTV,whatsApp;
+    TextView nameTV,desTV,priceTV,oldPrice,callTV,whatsApp,adapter_offer_price_TV,adapter_offer_old_price_TV;
 
     ViewHolder(View itemView) {
       super(itemView);
@@ -152,6 +158,8 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
       callRL = (RelativeLayout) itemView.findViewById(R.id.adapter_type2_call_rl) ;
       callTV = (TextView) itemView.findViewById(R.id.adapter_type2_call_tv);
       whatsApp = (TextView) itemView.findViewById(R.id.adapter_type2_w_tv);
+      adapter_offer_price_TV = (TextView) itemView.findViewById(R.id.adapter_offer_price_TV);
+      adapter_offer_old_price_TV = (TextView) itemView.findViewById(R.id.adapter_offer_old_price_TV);
     }
 
     protected void clear() {
@@ -164,8 +172,9 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
 
       fillImage(imageView, position, context,store_image_offer);
       fillText(nameTV,position,context,desTV);
-      changeFont(context);
-      changeOffersGradientsAndTextColorCases(coverRL,position,context,getObject(position),nameTV,desTV,callRL,callTV,whatsApp);
+      fillPrice(context,position,adapter_offer_price_TV,adapter_offer_old_price_TV);
+      changeFont(context,nameTV,desTV,callTV,adapter_offer_price_TV,adapter_offer_old_price_TV);
+      changeOffersGradientsAndTextColorCases(coverRL,position,context,getObject(position),nameTV,desTV,callRL,callTV,whatsApp,adapter_offer_price_TV,adapter_offer_old_price_TV);
       callFunction(callRL,context,getObject(position).getStore().getPhone_number());
       actionListenerToGoShowItemDetails(context, cover_offers, position);
 
@@ -173,9 +182,24 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
 
   }
 
+  private void changeFont(Context context, TextView nameTV, TextView desTV, TextView callTV, TextView adapter_offer_price_tv, TextView adapter_offer_old_price_tv) {
+    nameTV.setTypeface(Functions.changeFontGeneral(context));
+    desTV.setTypeface(Functions.changeFontGeneral(context));
+    callTV.setTypeface(Functions.changeFontGeneral(context));
+    adapter_offer_price_tv.setTypeface(Functions.changeFontGeneral(context));
+    adapter_offer_old_price_tv.setTypeface(Functions.changeFontGeneral(context));
+  }
+
+  private void fillPrice(Context context, int position, TextView adapter_offer_price_tv, TextView adapter_offer_old_price_tv) {
+    adapter_offer_price_tv.setText(String.valueOf(getObject(position).getDiscountPrice()));
+    adapter_offer_old_price_tv.setText(String.valueOf(getObject(position).getPrice()));
+
+    adapter_offer_old_price_tv.setPaintFlags(adapter_offer_old_price_tv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+  }
+
   private void fillText(TextView nameTV, int position, Context context, TextView desTV) {
-    nameTV.setText(String.valueOf(getTextEngOrLocal(context,getObject(position).getName(),getObject(position).getName_local())));
-    desTV.setText(String.valueOf(getTextEngOrLocal(context,getObject(position).getDescription(),getObject(position).getDescription_local())));
+    nameTV.setText(String.valueOf(getTextEngOrLocal(context,getObject(position).getStore().getName(),getObject(position).getStore().getName_local())));
+    desTV.setText(String.valueOf(getTextEngOrLocal(context,getObject(position).getName(),getObject(position).getName_local())));
 //    nameTV.setText(String.valueOf(position));
   }
 
@@ -187,6 +211,10 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
             .fit()
             .centerCrop()
             .into(itemImage);
+
+
+    itemImage.setAnimation(AnimationUtils.loadAnimation(context,R.anim.zoom_in));
+
 
     Picasso.get()
             .load(apiURLBase()+getObject(position).getStore().getFlag().getUrl())
@@ -293,9 +321,8 @@ public class AdapterEndlessOffers extends RecyclerView.Adapter<BaseViewHolderUse
       }
     }
   }
-  private void changeFont(Context context) {
-//    textView.setTypeface(Functions.changeFontGeneral(context));
-  }
+
+
 //  String loadedOrDownloading="downloading";
 //
 //  private void AddShineEffect(final RelativeLayout father, final ImageView child) {

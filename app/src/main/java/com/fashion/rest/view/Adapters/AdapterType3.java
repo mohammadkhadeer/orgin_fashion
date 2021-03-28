@@ -15,12 +15,14 @@ import android.widget.TextView;
 import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Categories;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.activity.ResultActivity;
 import com.fashion.rest.view.activity.SubCategory;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
@@ -69,15 +71,10 @@ public class AdapterType3 extends RecyclerView.Adapter<AdapterType3.ViewHolder>{
     }
 
     private void moveToShowResultActivity(Sub_Cat sub_cat) {
-        Bundle bundle = new Bundle();
-        Log.i("TAG sub_cat_id",sub_cat.getId());
-        Log.i("TAG cat_id",sub_cat.getCategory_id());
-        bundle.putString("sub_cat_id",sub_cat.getId());
-        bundle.putString("cat_id",sub_cat.getCategory_id());
-        bundle.putString("sub_cat_name",getTextEngOrLocal(context,sub_cat.getName_en(),sub_cat.getName_local()));
+        FilterItemsModel filterItemsModel = getDefultToFilterItemModel(sub_cat);
 
         Intent intent = new Intent(context, ResultActivity.class);
-        intent.putExtras(bundle);
+        intent.putExtra("filter_object",filterItemsModel);
         ((Activity)context).startActivity(intent);
         ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }

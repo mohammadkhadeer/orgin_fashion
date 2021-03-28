@@ -16,11 +16,13 @@ import com.fashion.rest.R;
 import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.Categories;
 import com.fashion.rest.model.CustomCategory;
+import com.fashion.rest.model.FilterItemsModel;
 import com.fashion.rest.model.Sub_Cat;
 import com.fashion.rest.view.activity.ResultActivity;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import static com.fashion.rest.apiURL.API.apiURLBase;
+import static com.fashion.rest.functions.Functions.getDefultToFilterItemModel;
 import static com.fashion.rest.functions.Functions.getTextEngOrLocal;
 
 public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.ViewHolder>{
@@ -164,7 +166,7 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                                     ,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getName_en()
                                     ,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getName_local()));
 
-                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(1),bundle);
                         }
 
                     }
@@ -211,7 +213,7 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                                             ,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getName_en()
                                             ,allCatArrayL.get(position).getCustomCategory().get(1).getSub_catArrayList().get(0).getName_local()));
 
-                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(1),bundle);
                         }
                     }
                 });
@@ -232,7 +234,7 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                                     ,getTextEngOrLocal(context
                                             ,allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().get(0).getName_en()
                                             ,allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().get(0).getName_local()));
-                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(0),bundle);
+                            moveToShowResultActivity(allCatArrayL.get(position).getCustomCategory().get(2),bundle);
                         }
                     }
                 });
@@ -241,8 +243,11 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
     }
 
     private void moveToShowResultActivity(Categories categories,Bundle bundle) {
+//        Sub_Cat subCategory = new Sub_Cat()
+        FilterItemsModel filterItemsModel = getDefultToFilterItemModel(categories.getSub_catArrayList().get(0));
+
         Intent intent = new Intent(context, ResultActivity.class);
-        intent.putExtras(bundle);
+        intent.putExtra("filter_object",filterItemsModel);
         ((Activity)context).startActivity(intent);
         ((Activity)context).overridePendingTransition(R.anim.right_to_left, R.anim.no_animation);
     }

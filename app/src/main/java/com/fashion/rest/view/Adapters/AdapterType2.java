@@ -16,6 +16,7 @@ import com.fashion.rest.functions.Functions;
 import com.fashion.rest.model.ItemTest;
 import com.fashion.rest.view.activity.ItemDetails;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import static com.fashion.rest.apiURL.API.apiURLBase;
 import static com.fashion.rest.functions.Functions.actionListenerToFav;

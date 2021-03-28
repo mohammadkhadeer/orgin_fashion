@@ -53,7 +53,7 @@ public class FunctionsResultsNumber {
     static JsonPlaceHolderApi jsonPlaceHolderApiResultItems;
     static Retrofit retrofitResultItems;
 
-    public static void fillNumberOfItemsResult(final Context context, final TextView numberOfResult, FilterItemsModel filterItemsModel) {
+    public static void fillNumberOfItemsResult(final Context context, final TextView numberOfResult, FilterItemsModel filterItemsModel, final String from) {
         retrofitResultItems = getNumberOfItemsResults(filterItemsModel);
         jsonPlaceHolderApiResultItems = retrofitResultItems.create(JsonPlaceHolderApi.class);
 
@@ -67,9 +67,17 @@ public class FunctionsResultsNumber {
                     Log.i("TAG Error code", String.valueOf(response.code()));
                     return;
                 }
+                String result;
 //                Log.i("TAG Response", response.body().toString());
-                String result_text = context.getResources().getString(R.string.Result_number);
-                String result= result_text +" "+ response.body().toString();
+                if (from.equals("result_activity"))
+                {
+                    String result_text = context.getResources().getString(R.string.Result_number);
+                     result= result_text +" "+ response.body().toString();
+                }else{
+                    String result_text = context.getResources().getString(R.string.show_results);
+                    result= result_text +" "+ response.body().toString();
+                }
+
 
                 numberOfResult.setText(result);
             }

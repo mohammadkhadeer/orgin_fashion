@@ -97,18 +97,20 @@
                             android:textSize="15dp"
                             />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="title description"
-                            android:id="@+id/adapter_notification_des_tv"
-                            android:textColor="@color/colorBlack"
-                            android:layout_marginStart="4dp"
-                            android:textSize="13dp"
-                            />
+
 
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="title description"
+                        android:id="@+id/adapter_notification_des_tv"
+                        android:textColor="@color/colorBlack"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="1dp"
+                        android:textSize="13dp"
+                        />
 
                 </LinearLayout>
 

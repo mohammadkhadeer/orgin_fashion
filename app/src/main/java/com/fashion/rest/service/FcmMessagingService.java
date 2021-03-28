@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
@@ -52,6 +53,7 @@ public class FcmMessagingService extends FirebaseMessagingService {
         intent.putExtra("TOKEN",new_token);
         saveTokenInSP(FcmMessagingService.this,new_token);
         FcmMessagingService.this.startService(intent);
+
     }
 
     @SuppressLint("WrongThread")
@@ -60,34 +62,34 @@ public class FcmMessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         intiValue();
         Log.i("TAG", "onMessageReceived: ");
-//        if (remoteMessage.getData() != null)
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-//                sendNotificationAPI26(remoteMessage);
-//            else
-//                sendNotificationAPI(remoteMessage);
+        if (remoteMessage.getData() != null)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                sendNotificationAPI26(remoteMessage);
+            else
+                sendNotificationAPI(remoteMessage);
 
 
 
          //Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {
-            setValue(remoteMessage);
-            updateNotOpenNotificationNumber();
-            insetNotificationToDB();
-
-            Log.d("TAG", "channel_id: " + channel_id);
-            Log.d("TAG", "title_en: " + titleArray[0]);
-            Log.d("TAG", "title_local: " + titleArray[1]);
-//            Log.d("TAG", "des_en: " + desArray[0]);
-//            Log.d("TAG", "des_Local: " + desArray[1]);
-//            Log.d("TAG", "optional_en: " + optionalArray[0]);
-//            Log.d("TAG", "optional_Local: " + optionalArray[1]);
+//        if (remoteMessage.getNotification() != null) {
+//            setValue(remoteMessage);
+//            updateNotOpenNotificationNumber();
+//            insetNotificationToDB();
 //
-            Log.d("TAG", "imageUrl: " + imageUrl);
-            convertUrlToBitmap = (ConvertUrlToBitmap) new ConvertUrlToBitmap().execute(imageUrl);
-
-        }else{
-            Log.i("TAG", "onMessageReceived: remoteMessage.getNotification() == null");
-        }
+//            Log.d("TAG", "channel_id: " + channel_id);
+//            Log.d("TAG", "title_en: " + titleArray[0]);
+//            Log.d("TAG", "title_local: " + titleArray[1]);
+////            Log.d("TAG", "des_en: " + desArray[0]);
+////            Log.d("TAG", "des_Local: " + desArray[1]);
+////            Log.d("TAG", "optional_en: " + optionalArray[0]);
+////            Log.d("TAG", "optional_Local: " + optionalArray[1]);
+////
+//            Log.d("TAG", "imageUrl: " + imageUrl);
+//            convertUrlToBitmap = (ConvertUrlToBitmap) new ConvertUrlToBitmap().execute(imageUrl);
+//
+//        }else{
+//            Log.i("TAG", "onMessageReceived: remoteMessage.getNotification() == null");
+//        }
     }
 
 
@@ -97,7 +99,7 @@ public class FcmMessagingService extends FirebaseMessagingService {
         Map<String,String> data = remoteMessage.getData();
 
         String title = data.get("title");
-        String contact = data.get("content");
+        String contact = data.get("des");
 
 
     }
@@ -110,9 +112,9 @@ public class FcmMessagingService extends FirebaseMessagingService {
 
         //cb2PcyO1I6Q:APA91bHSJOqgwgHKvPAg6pqztuu84l_3zpBhJ8UrxwaZHOZU-ukgdWTo-D0Pz7EvMStqJFh5NCaqBgF5rUCYshHX5qw3_k585rjT_CG3nBkIkF3Q7hyXUNWJd1atmilhyn_XB4s5WjAD
         String title = data.get("title");
-        String contact = data.get("content");
-        Log.i("title: ", title);
-        Log.i("contact" , contact);
+        String contact = data.get("des");
+        Log.i("TAG title: ", title);
+        Log.i("TAG des" , contact);
 
         Intent resultIntent = new Intent(getApplicationContext(), AboutUs.class);
         resultIntent.putExtra("item_object", notificationModel);
