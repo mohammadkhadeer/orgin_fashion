@@ -298,6 +298,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_FAVORITE, " COL_ITEM_SERVER_ID = ?",new String[] {itemID});
     }
 
+    public Integer deleteNotification(String timeStamp){
+        SQLiteDatabase db =this.getWritableDatabase();
+        return db.delete(TABLE_NOTIFICATION, " TIME_STAMP = ?",new String[] {timeStamp});
+    }
     //////////////////////////////////////delete data "All line" ////////////////
 
     public void deleteAllNeighborhood(){

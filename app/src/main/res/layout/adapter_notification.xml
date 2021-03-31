@@ -22,32 +22,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="65">
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="35">
-
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/adapter_wheels_inches_container_RL"
-        android:background="?android:attr/selectableItemBackground"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:orientation="horizontal">
+            android:layout_weight="20">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -69,6 +44,13 @@
                     />
 
             </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="70">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -121,20 +103,64 @@
                     android:id="@+id/adapter_notification_time_tv"
                     android:layout_marginTop="3dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="4dp"
                     android:textSize="9dp"
                     />
 
             </RelativeLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/adapter_notification_menu_rl"
+                android:background="?android:attr/selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/textViewOptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#8943;"
+                    android:layout_centerHorizontal="true"
+                    android:textAppearance="?android:textAppearanceLarge" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:weightSum="100">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/adapter_wheels_inches_container_RL"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_weight="90">
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="89.5dp"
+        android:layout_marginTop="69.5dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:background="@color/colorBlack2">

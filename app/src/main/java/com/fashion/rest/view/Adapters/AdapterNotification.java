@@ -9,15 +9,19 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fashion.rest.R;
 import com.fashion.rest.database.DBHelper;
 import com.fashion.rest.functions.Functions;
+import com.fashion.rest.model.ItemFavorite;
 import com.fashion.rest.model.Notification;
 import com.fashion.rest.model.NotificationModel;
 import com.fashion.rest.view.activity.AboutUs;
@@ -59,8 +63,45 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
         fillTextHeadAndDes(context,position,holder);
         fillProcessImageAndUserUserImage(context,holder,position);
         actionListenerToNotification(context,holder,position);
+        actionListenerToMenu(context,position,holder);
     }
 
+    private void actionListenerToMenu(final Context context, final int position, final ViewHolder holder) {
+        holder.adapter_notification_menu_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(context,notificationCompsArrayL.get(position).getTitle_en(),Toast.LENGTH_SHORT).show();
+                //creating a popup menu
+                PopupMenu popup = new PopupMenu(context, holder.adapter_notification_menu_rl);
+                //inflating menu from xml resource
+                popup.inflate(R.menu.menu_notification);
+                //adding click listener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_delete:
+                                //handle menu1 click
+                                deleteNotification(position);
+                                removeItem(position);
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+                //displaying the popup
+                popup.show();
+            }
+        });
+    }
+
+    private void removeItem(int position) {
+        if (notificationCompsArrayL.get(position) != null) {
+            notificationCompsArrayL.remove(position);
+            notifyItemRemoved(position);
+        }
+    }
 
 
     private void fillProcessImageAndUserUserImage(Context context, ViewHolder holder, int position) {
@@ -85,6 +126,10 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
     private void updateNotificationToOpen(Context context, int position) {
         dbHelper.updateNotificationStatus("1",notificationCompsArrayL.get(position).getTime_stamp());
+    }
+
+    private void deleteNotification(int position) {
+        dbHelper.deleteNotification(notificationCompsArrayL.get(position).getTime_stamp());
     }
 
 
@@ -162,7 +207,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView processIV;
         TextView notificationTitleTV,notificationDesTV,notification_time_tv;
-        RelativeLayout coverRL;
+        RelativeLayout coverRL,adapter_notification_menu_rl;
         public ViewHolder(View itemView) {
             super(itemView);
             notificationTitleTV = (TextView) itemView.findViewById(R.id.adapter_notification_head_tv);
@@ -170,6 +215,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
             notification_time_tv = (TextView) itemView.findViewById(R.id.adapter_notification_time_tv);
             processIV = (ImageView) itemView.findViewById(R.id.adapter_notification_process_iv) ;
             coverRL = (RelativeLayout) itemView.findViewById(R.id.adapter_notification_cover) ;
+            adapter_notification_menu_rl = (RelativeLayout) itemView.findViewById(R.id.adapter_notification_menu_rl) ;
         }
     }
 
