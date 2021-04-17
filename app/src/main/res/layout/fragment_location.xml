@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:id="@+id/google_map"
-                android:name="com.fashion.rest.view.fragments.fragmentItemDetails.FragmentLocation"
+                android:name="com.orgin_fashion.rest.view.fragments.fragmentItemDetails.FragmentLocation"
                 class="com.google.android.gms.maps.SupportMapFragment"
                 />
 

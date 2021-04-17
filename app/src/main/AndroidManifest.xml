@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.fashion.rest">
+    package="com.orgin_fashion.rest">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name=".app.App"
+        android:name="com.orgin_fashion.rest.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.AllOffersActivity"
+        <activity android:name="com.orgin_fashion.rest.view.activity.AllOffersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23"></activity>
 
@@ -29,44 +29,44 @@
             android:required="false" />
 
         <activity
-            android:name=".view.activity.StoreActivity"
+            android:name="com.orgin_fashion.rest.view.activity.StoreActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name=".view.activity.FavoriteItems"
+            android:name="com.orgin_fashion.rest.view.activity.FavoriteItems"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme44" />
         <activity
-            android:name=".view.activity.ReportActivity"
+            android:name="com.orgin_fashion.rest.view.activity.ReportActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme44" />
         <activity
-            android:name=".view.activity.SelectCountryActivity"
+            android:name="com.orgin_fashion.rest.view.activity.SelectCountryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
-        <activity android:name=".view.activity.Setting" />
+        <activity android:name="com.orgin_fashion.rest.view.activity.Setting" />
         <activity
-            android:name=".view.activity.ResultActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme23" />
-        <activity
-            android:name=".view.activity.SubCategory"
+            android:name="com.orgin_fashion.rest.view.activity.ResultActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name=".view.activity.AllCategory"
+            android:name="com.orgin_fashion.rest.view.activity.SubCategory"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name=".view.activity.Login"
+            android:name="com.orgin_fashion.rest.view.activity.AllCategory"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name=".view.activity.Cart"
+            android:name="com.orgin_fashion.rest.view.activity.Login"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name=".view.activity.SplashScreen"
+            android:name="com.orgin_fashion.rest.view.activity.Cart"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
+        <activity
+            android:name="com.orgin_fashion.rest.view.activity.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23">
             <intent-filter>
@@ -76,38 +76,38 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.AboutUs"
+            android:name="com.orgin_fashion.rest.view.activity.AboutUs"
             android:theme="@style/AppTheme22" />
         <activity
-            android:name=".view.activity.Language"
+            android:name="com.orgin_fashion.rest.view.activity.Language"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name=".view.activity.ItemDetails"
+            android:name="com.orgin_fashion.rest.view.activity.ItemDetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name=".view.activity.CategoryItem"
+            android:name="com.orgin_fashion.rest.view.activity.CategoryItem"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name=".view.activity.addItem.AddItem"
+            android:name="com.orgin_fashion.rest.view.activity.addItem.AddItem"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".view.activity.mainScreem.MainActivity"
+            android:name="com.orgin_fashion.rest.view.activity.mainScreem.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
 
         <service
-            android:name=".service.FcmMessagingService"
+            android:name="com.orgin_fashion.rest.service.FcmMessagingService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".service.SaveFCMTokenService" />
+        <service android:name="com.orgin_fashion.rest.service.SaveFCMTokenService" />
 
-        <receiver android:name=".broadcastReceiver.NotificationReceiver" />
+        <receiver android:name="com.orgin_fashion.rest.broadcastReceiver.NotificationReceiver" />
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
