@@ -62,34 +62,34 @@ public class FcmMessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         intiValue();
         Log.i("TAG", "onMessageReceived: ");
-        if (remoteMessage.getData() != null)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                sendNotificationAPI26(remoteMessage);
-            else
-                sendNotificationAPI(remoteMessage);
-
-
-
-         //Check if message contains a notification payload.
-//        if (remoteMessage.getNotification() != null) {
-//            setValue(remoteMessage);
-//            updateNotOpenNotificationNumber();
-//            insetNotificationToDB();
+//        if (remoteMessage.getData() != null)
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//                sendNotificationAPI26(remoteMessage);
+//            else
+//                sendNotificationAPI(remoteMessage);
 //
-//            Log.d("TAG", "channel_id: " + channel_id);
-//            Log.d("TAG", "title_en: " + titleArray[0]);
-//            Log.d("TAG", "title_local: " + titleArray[1]);
-////            Log.d("TAG", "des_en: " + desArray[0]);
-////            Log.d("TAG", "des_Local: " + desArray[1]);
-////            Log.d("TAG", "optional_en: " + optionalArray[0]);
-////            Log.d("TAG", "optional_Local: " + optionalArray[1]);
-////
-//            Log.d("TAG", "imageUrl: " + imageUrl);
-//            convertUrlToBitmap = (ConvertUrlToBitmap) new ConvertUrlToBitmap().execute(imageUrl);
 //
-//        }else{
-//            Log.i("TAG", "onMessageReceived: remoteMessage.getNotification() == null");
-//        }
+//
+//         Check if message contains a notification payload.
+        if (remoteMessage.getNotification() != null) {
+            setValue(remoteMessage);
+            updateNotOpenNotificationNumber();
+            insetNotificationToDB();
+
+            Log.d("TAG", "channel_id: " + channel_id);
+            Log.d("TAG", "title_en: " + titleArray[0]);
+            Log.d("TAG", "title_local: " + titleArray[1]);
+//            Log.d("TAG", "des_en: " + desArray[0]);
+//            Log.d("TAG", "des_Local: " + desArray[1]);
+//            Log.d("TAG", "optional_en: " + optionalArray[0]);
+//            Log.d("TAG", "optional_Local: " + optionalArray[1]);
+//
+            Log.d("TAG", "imageUrl: " + imageUrl);
+            convertUrlToBitmap = (ConvertUrlToBitmap) new ConvertUrlToBitmap().execute(imageUrl);
+
+        }else{
+            Log.i("TAG", "onMessageReceived: remoteMessage.getNotification() == null");
+        }
     }
 
 

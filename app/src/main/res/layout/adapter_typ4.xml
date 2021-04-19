@@ -207,6 +207,14 @@
 
     </RelativeLayout>
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/cover_adapter_type4_set"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -243,13 +251,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:id="@+id/cover_adapter_type4_set"
-        />
 
 </RelativeLayout>

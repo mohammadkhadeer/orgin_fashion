@@ -6,11 +6,11 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
-        applicationId "com.fashion.rest"
+        applicationId "com.orgin_fashion.rest"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 5
-        versionName "1.0.0.4"
+        versionCode 1
+        versionName "1.0.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 

@@ -2,7 +2,7 @@
     <string name="facebook_app_id">161235005842835</string>
     <string name="fb_login_protocol_scheme">fb161235005842835</string>
 
-    <string name="app_name">Fashion</string>
+    <string name="app_name">Basic v</string>
 
     <string name="no_more_item">  No More \n Items</string>
 
@@ -143,7 +143,7 @@
     <string name="settings">Settings</string>
     <string name="log_out">Log out</string>
 
-    <string name="email_contact_us">customer\@Alsartawi\.com</string>
+    <string name="email_contact_us">Hello\@bagdones\.com</string>
 
     <string name="ra_50">\+ 50</string>
     <string name="ra_100">\+ 100</string>
@@ -396,28 +396,39 @@
     تميز و انظم الينا</string>
 
 
-    <string name="about_us_eng_r">M\+\:\n\n
-    Best app can use it as a fam person\n
-    Related with product you already set it adv on ur fam platform\n
-    Home aplines \, restaurants \,\n
-    product in all types\,\n
+    <string name="about_us_eng_r">Bagdones\:
+        \n\n
+    Best app can use it as a fam person
+        \n
+    Related with product you already set it adv on ur fam platform
+        \n
+    Home aplines \, restaurants \,
+        \n
+    product in all types\,
+        \n
     \, accessories\,  plates \, etc\n
-    As well as if you set any thing else\n
-    Your can do it in seconds\n
+    As well as if you set any thing else
+        \n
+    Your can do it in seconds
+        \n
     \n
-    Should to know we have a best filter\n
-    Ever in this type apps where can find any\n
+    Should to know we have a best filter
+        \n
+    Ever in this type apps where can find any
+        \n
     Thing in seconds
     \n\n
-    Also we have amazing features where can\n
-    Real burned price or edited item price on\n
+    Also we have amazing features where can
+        \n
+    Real burned price or edited item price on
+        \n
     Special filter and can know if this item\n
     Price on special filter and can know\n
 
     \n
     We wish if can get best service to you</string>
 
-    <string name="about_us_a_r">M\+\:\n\n
+    <string name="about_us_a_r">بقدونس\:\n\n
     افضل تطبيق لخدمة المشاهير\n
     يمكن ان يكون مربوط بالمنتجات الخاصة بك على المنصة التي تمتلك الشهرة عليها\n
     اغراض المنزل \, المطاعم \,\n

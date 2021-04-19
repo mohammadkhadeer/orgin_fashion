@@ -44,7 +44,7 @@ public class SplashScreen extends AppCompatActivity {
     SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
     String welcome_image = "https://firebasestorage.googleapis.com/v0/b/uae-kandora.appspot.com/o/arabes_logo.jpeg?alt=media&token=cc61497d-565a-4154-9f34-cae0a9c436a4";
-    String welcome_2 ="https://firebasestorage.googleapis.com/v0/b/uae-kandora.appspot.com/o/welcome.jpg?alt=media&token=c9cf32bf-5e83-465e-91e9-4446317b0ea3";
+    String welcome_2 ="https://firebasestorage.googleapis.com/v0/b/uae-kandora.appspot.com/o/b-logo-02.png?alt=media&token=7e0de5d1-bb05-42be-9687-8d204a8da81d";
     String optional_en = "Welcome in monsters company";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +59,8 @@ public class SplashScreen extends AppCompatActivity {
             timer();
         }else{
             //insert welcome notification
-            dbHelper.insertNotifications(welcome_2,"M+","M+","Welcome in M+ company"
-                    ,"اهلا بكم في شركة M+","welcome_screen","empty",getTimeStamp()
+            dbHelper.insertNotifications(welcome_2,"Bagdones","بقدونس","Welcome in bagdones company"
+                    ,"اهلا بكم في شركة بقدونس","welcome_screen","empty",getTimeStamp()
                     ,getResources().getString(R.string.about_us_eng_r),getResources().getString(R.string.about_us_a_r),"0");
 
 //            dbHelper.insertNotifications(welcome_image,"arabesc digital","اربيسك لتكنولوجيا","Welcome in Arabesc digital company"

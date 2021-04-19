@@ -3,7 +3,7 @@
     <string name="facebook_app_id">161235005842835</string>
     <string name="fb_login_protocol_scheme">fb161235005842835</string>
 
-    <string name="app_name">الموضه</string>
+    <string name="app_name">النسخة الابتدائية</string>
     <string name="tab_home">الرئيسية</string>
     <string name="tab_message">الرسائل</string>
     <string name="tab_adv">اضافة</string>
@@ -60,7 +60,7 @@
     <string name="contact_us">اتصل بنا</string>
     <string name="abou_the_app">حول التطبيق</string>
     <string name="settings">الاعدادات</string>
-    <string name="email_contact_us">customer@Alsartawi.com</string>
+    <string name="email_contact_us">Hello@bagdones.com</string>
     <string name="ra_50">\+ 50</string>
     <string name="ra_100">\+ 100</string>
     <string name="ra_150">\+ 150</string>

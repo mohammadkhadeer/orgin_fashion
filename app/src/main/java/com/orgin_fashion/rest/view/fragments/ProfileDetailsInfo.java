@@ -107,9 +107,10 @@ public class ProfileDetailsInfo extends Fragment {
     }
 
     private void fillPleaseLogin() {
-        String x = "https://firebasestorage.googleapis.com/v0/b/hala-motor-8ff46.appspot.com/o/1111.png?alt=media&token=ef9408df-a9a2-4890-8130-65ad843c0f9e";
+        String fashion = "https://firebasestorage.googleapis.com/v0/b/hala-motor-8ff46.appspot.com/o/1111.png?alt=media&token=ef9408df-a9a2-4890-8130-65ad843c0f9e";
+        String bagdones = "https://firebasestorage.googleapis.com/v0/b/uae-kandora.appspot.com/o/b-logo-02.png?alt=media&token=7e0de5d1-bb05-42be-9687-8d204a8da81d";
         Picasso.get()
-                .load(x)
+                .load(bagdones)
                 .fit()
                 .centerCrop()
                 .into(image_view);
