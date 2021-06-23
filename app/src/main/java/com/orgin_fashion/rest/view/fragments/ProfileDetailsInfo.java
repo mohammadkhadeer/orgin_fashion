@@ -31,6 +31,7 @@ public class ProfileDetailsInfo extends Fragment {
     CardView profile_details_info_login,profile_details_info_details_CV;
     ImageView image_view,login_type_iv;
     TextView profile_details_app_name_TV,login_tv,profile_details_user_name_TV,profile_details_user_email;
+    String welcome_image = "https://firebasestorage.googleapis.com/v0/b/uae-kandora.appspot.com/o/arabes_logo.jpeg?alt=media&token=cc61497d-565a-4154-9f34-cae0a9c436a4";
 
     public ProfileDetailsInfo(){}
 
@@ -109,6 +110,7 @@ public class ProfileDetailsInfo extends Fragment {
     private void fillPleaseLogin() {
         String fashion = "https://firebasestorage.googleapis.com/v0/b/hala-motor-8ff46.appspot.com/o/1111.png?alt=media&token=ef9408df-a9a2-4890-8130-65ad843c0f9e";
         String bagdones = "https://firebasestorage.googleapis.com/v0/b/uae-kandora.appspot.com/o/b-logo-02.png?alt=media&token=7e0de5d1-bb05-42be-9687-8d204a8da81d";
+
         Picasso.get()
                 .load(bagdones)
                 .fit()

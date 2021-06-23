@@ -9,7 +9,7 @@
     <application
         android:name="com.orgin_fashion.rest.app.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_test"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_test"
         android:supportsRtl="true"
@@ -44,7 +44,9 @@
             android:name="com.orgin_fashion.rest.view.activity.SelectCountryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
+
         <activity android:name="com.orgin_fashion.rest.view.activity.Setting" />
+
         <activity
             android:name="com.orgin_fashion.rest.view.activity.ResultActivity"
             android:screenOrientation="portrait"

@@ -40,9 +40,10 @@ public class FillType2 {
     static Retrofit retrofit2;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void fillCaseItem(RecyclerView recyclerView, Context context, TextView catName, RelativeLayout seeAllType2, Home home,RecyclerView lodaingRV) {
+    public static void fillCaseItem(RecyclerView recyclerView, Context context, TextView catName, RelativeLayout seeAllType2
+            , Home home,RecyclerView lodaingRV,TextView see_all_tv) {
         createLoadingRV(lodaingRV,context);
-        fillText(context,catName,home);
+        fillText(context,catName,home,see_all_tv);
         intiRetrofit(home);
         getItemsFromServer(recyclerView,context,lodaingRV);
         actionListenerToSeeAll(seeAllType2,context,home);
@@ -98,8 +99,9 @@ public class FillType2 {
         jsonPlaceHolderApi2 = retrofit2.create(JsonPlaceHolderApi.class);
     }
 
-    private static void fillText(Context context, TextView catName,Home home) {
+    private static void fillText(Context context, TextView catName,Home home,TextView see_all_tv) {
         catName.setText(getTextEngOrLocal(context,home.getSub_cat().getName_en(),home.getSub_cat().getName_local()));
+        see_all_tv.setText(context.getResources().getString(R.string.see_all));
     }
 
     private static void actionListenerToSeeAll(RelativeLayout seeAllType2, final Context context, final Home home) {

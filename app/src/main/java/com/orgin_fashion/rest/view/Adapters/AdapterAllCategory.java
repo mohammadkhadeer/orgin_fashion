@@ -222,8 +222,6 @@ public class AdapterAllCategory extends RecyclerView.Adapter<AdapterAllCategory.
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("sub_cat_id",allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().get(2).getId());
-                        bundle.putString("cat_id",allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().get(2).getCategory_id());
                         bundle.putString("cat_name",getTextEngOrLocal(context,allCatArrayL.get(position).getCustomCategory().get(2).getName(),allCatArrayL.get(position).getCustomCategory().get(2).getName_local()));
 
                         if (allCatArrayL.get(position).getCustomCategory().get(2).getSub_catArrayList().size() >1)

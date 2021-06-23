@@ -8,175 +8,173 @@
     android:layout_marginBottom="5dp"
     >
 
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="95dp"
-      android:id="@+id/adapter_show_user_item_cv"
-      android:visibility="visible"
-      android:layout_marginLeft="4dp"
-      android:layout_marginRight="4dp"
-      android:layout_marginBottom="5dp"
-      android:layout_marginTop="5dp"
-      >
+  <ProgressBar
+      android:layout_width="15dp"
+      android:layout_height="15dp"
+      android:id="@+id/loading_main_list"
+      android:layout_centerHorizontal="true"></ProgressBar>
+<!--  <RelativeLayout-->
+<!--      android:layout_width="match_parent"-->
+<!--      android:layout_height="95dp"-->
+<!--      android:id="@+id/adapter_show_user_item_cv"-->
+<!--      android:visibility="visible"-->
+<!--      android:layout_marginLeft="4dp"-->
+<!--      android:layout_marginRight="4dp"-->
+<!--      android:layout_marginBottom="5dp"-->
+<!--      android:layout_marginTop="5dp"-->
+<!--      >-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
 
-      <RelativeLayout
-          android:layout_width="150dp"
-          android:layout_height="25dp"
-          android:id="@+id/adapter_show_user_item_item_image_load_rl"
-          android:layout_marginTop="0.5dp"
-          android:layout_marginLeft="16dp"
-          android:layout_marginStart="10dp"
-          >
+<!--      <RelativeLayout-->
+<!--          android:layout_width="150dp"-->
+<!--          android:layout_height="25dp"-->
+<!--          android:id="@+id/adapter_show_user_item_item_image_load_rl"-->
+<!--          android:layout_marginTop="0.5dp"-->
+<!--          android:layout_marginLeft="16dp"-->
+<!--          android:layout_marginStart="10dp"-->
+<!--          >-->
 
-        <ImageView
-            android:id="@+id/adapter_show_user_item_item_image_load"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="-50dp"
-            android:layout_height="30dp"
-            android:src="@color/colorSilver_"
-            />
+<!--        <ImageView-->
+<!--            android:id="@+id/adapter_show_user_item_item_image_load"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginLeft="-50dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@color/colorSilver_"-->
+<!--            />-->
 
-        <ImageView
-            android:id="@+id/adapter_show_user_item_item_image_shin"
-            android:layout_width="30dp"
-            android:layout_marginLeft="-30dp"
-            android:layout_height="200dp"
-            android:src="@drawable/shine" />
+<!--        <ImageView-->
+<!--            android:id="@+id/adapter_show_user_item_item_image_shin"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_marginLeft="-30dp"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:src="@drawable/shine" />-->
 
-      </RelativeLayout>
+<!--      </RelativeLayout>-->
 
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_marginTop="6dp"
-          >
+<!--      <RelativeLayout-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="match_parent"-->
+<!--          android:layout_marginTop="6dp"-->
+<!--          >-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal">-->
 
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="60dp"
-              android:id="@+id/adapter_show_user_item_item_image_load_rl2"
-              android:layout_marginLeft="0.5dp"
-              android:layout_marginStart="10dp"
-              android:layout_marginEnd="10dp"
-              >
+<!--          <RelativeLayout-->
+<!--              android:layout_width="match_parent"-->
+<!--              android:layout_height="60dp"-->
+<!--              android:id="@+id/adapter_show_user_item_item_image_load_rl2"-->
+<!--              android:layout_marginLeft="0.5dp"-->
+<!--              android:layout_marginStart="10dp"-->
+<!--              android:layout_marginEnd="10dp"-->
+<!--              >-->
 
-            <ImageView
-                android:id="@+id/adapter_show_user_item_item_image_load2"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="-50dp"
-                android:layout_height="60dp"
-                android:src="@color/colorSilver_"
-                />
+<!--            <ImageView-->
+<!--                android:id="@+id/adapter_show_user_item_item_image_load2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginLeft="-50dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:src="@color/colorSilver_"-->
+<!--                />-->
 
-            <ImageView
-                android:id="@+id/adapter_show_user_item_item_image_shin2"
-                android:layout_width="160dp"
-                android:layout_marginLeft="-50dp"
-                android:layout_height="60dp"
-                android:src="@drawable/shine" />
+<!--            <ImageView-->
+<!--                android:id="@+id/adapter_show_user_item_item_image_shin2"-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_marginLeft="-50dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:src="@drawable/shine" />-->
 
-          </RelativeLayout>
-
-
-          <RelativeLayout
-              android:layout_width="160dp"
-              android:layout_height="60dp"
-              android:id="@+id/adapter_show_user_item_item_image_load_rl3"
-              android:layout_marginLeft="0.5dp"
-              android:visibility="gone"
-              >
-
-            <ImageView
-                android:id="@+id/adapter_show_user_item_item_image_load3"
-                android:layout_width="160dp"
-                android:layout_marginLeft="-50dp"
-                android:layout_height="60dp"
-                android:src="@color/colorSilver_"
-                />
-
-            <ImageView
-                android:id="@+id/adapter_show_user_item_item_image_shin3"
-                android:layout_width="160dp"
-                android:layout_marginLeft="-50dp"
-                android:layout_height="60dp"
-                android:src="@drawable/shine" />
-
-          </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="100">
-
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="30">
-
-          </RelativeLayout>
-
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="2"
-              android:background="@color/colorWhite">
-
-          </RelativeLayout>
+<!--          </RelativeLayout>-->
 
 
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="30">
+<!--          <RelativeLayout-->
+<!--              android:layout_width="160dp"-->
+<!--              android:layout_height="60dp"-->
+<!--              android:id="@+id/adapter_show_user_item_item_image_load_rl3"-->
+<!--              android:layout_marginLeft="0.5dp"-->
+<!--              android:visibility="gone"-->
+<!--              >-->
 
-          </RelativeLayout>
+<!--            <ImageView-->
+<!--                android:id="@+id/adapter_show_user_item_item_image_load3"-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_marginLeft="-50dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:src="@color/colorSilver_"-->
+<!--                />-->
 
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="2"
-              android:background="@color/colorWhite">
+<!--            <ImageView-->
+<!--                android:id="@+id/adapter_show_user_item_item_image_shin3"-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_marginLeft="-50dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:src="@drawable/shine" />-->
 
-          </RelativeLayout>
+<!--          </RelativeLayout>-->
 
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="30">
+<!--        </LinearLayout>-->
 
-          </RelativeLayout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:weightSum="100">-->
 
-          <RelativeLayout
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="2"
-              android:background="@color/colorWhite">
+<!--          <RelativeLayout-->
+<!--              android:layout_width="0dp"-->
+<!--              android:layout_height="match_parent"-->
+<!--              android:layout_weight="30">-->
 
-          </RelativeLayout>
+<!--          </RelativeLayout>-->
 
-        </LinearLayout>
+<!--          <RelativeLayout-->
+<!--              android:layout_width="0dp"-->
+<!--              android:layout_height="match_parent"-->
+<!--              android:layout_weight="2"-->
+<!--              android:background="@color/colorWhite">-->
 
-      </RelativeLayout>
-
-
-
-
-
+<!--          </RelativeLayout>-->
 
 
+<!--          <RelativeLayout-->
+<!--              android:layout_width="0dp"-->
+<!--              android:layout_height="match_parent"-->
+<!--              android:layout_weight="30">-->
+
+<!--          </RelativeLayout>-->
+
+<!--          <RelativeLayout-->
+<!--              android:layout_width="0dp"-->
+<!--              android:layout_height="match_parent"-->
+<!--              android:layout_weight="2"-->
+<!--              android:background="@color/colorWhite">-->
+
+<!--          </RelativeLayout>-->
+
+<!--          <RelativeLayout-->
+<!--              android:layout_width="0dp"-->
+<!--              android:layout_height="match_parent"-->
+<!--              android:layout_weight="30">-->
+
+<!--          </RelativeLayout>-->
+
+<!--          <RelativeLayout-->
+<!--              android:layout_width="0dp"-->
+<!--              android:layout_height="match_parent"-->
+<!--              android:layout_weight="2"-->
+<!--              android:background="@color/colorWhite">-->
+
+<!--          </RelativeLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--      </RelativeLayout>-->
 
 
 
@@ -188,37 +186,44 @@
 
 
 
-      <RelativeLayout
-          android:layout_width="250dp"
-          android:layout_height="25dp"
-          android:id="@+id/adapter_show_user_item_item_image_load_rl4"
-          android:layout_marginTop="16dp"
-          android:visibility="gone"
-          android:layout_marginLeft="0.5dp"
-          android:layout_marginStart="10dp"
-          >
 
-        <ImageView
-            android:id="@+id/adapter_show_user_item_item_image_load4"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="-50dp"
-            android:layout_height="25dp"
-            android:layout_centerHorizontal="true"
-            android:src="@color/colorSilver_"
-            />
 
-        <ImageView
-            android:id="@+id/adapter_show_user_item_item_image_shin4"
-            android:layout_width="50dp"
-            android:layout_marginLeft="-50dp"
-            android:layout_height="25dp"
-            android:src="@drawable/shine" />
 
-      </RelativeLayout>
 
-    </LinearLayout>
 
-  </RelativeLayout>
+
+
+<!--      <RelativeLayout-->
+<!--          android:layout_width="250dp"-->
+<!--          android:layout_height="25dp"-->
+<!--          android:id="@+id/adapter_show_user_item_item_image_load_rl4"-->
+<!--          android:layout_marginTop="16dp"-->
+<!--          android:visibility="gone"-->
+<!--          android:layout_marginLeft="0.5dp"-->
+<!--          android:layout_marginStart="10dp"-->
+<!--          >-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/adapter_show_user_item_item_image_load4"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginLeft="-50dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:src="@color/colorSilver_"-->
+<!--            />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/adapter_show_user_item_item_image_shin4"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_marginLeft="-50dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:src="@drawable/shine" />-->
+
+<!--      </RelativeLayout>-->
+
+<!--    </LinearLayout>-->
+
+<!--  </RelativeLayout>-->
 
 
 </RelativeLayout>

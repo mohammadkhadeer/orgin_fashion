@@ -58,7 +58,8 @@ public class SplashScreen extends AppCompatActivity {
         {
             timer();
         }else{
-            //insert welcome notification
+
+//            //insert welcome notification
             dbHelper.insertNotifications(welcome_2,"Bagdones","بقدونس","Welcome in bagdones company"
                     ,"اهلا بكم في شركة بقدونس","welcome_screen","empty",getTimeStamp()
                     ,getResources().getString(R.string.about_us_eng_r),getResources().getString(R.string.about_us_a_r),"0");

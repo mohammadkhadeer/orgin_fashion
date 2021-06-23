@@ -19,64 +19,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="2dp"
-                android:weightSum="100">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"/>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="40">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Category name"
-                        android:textColor="@color/colorBlack23"
-                        android:layout_centerVertical="true"
-                        android:textSize="14dp"
-                        android:id="@+id/type4_cat_name_TV"
-                        />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="38"/>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/see_all_type4_rl"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:layout_weight="18">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/see_all"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/colorBlue7"
-                        android:textSize="12dp"
-                        android:id="@+id/adapter_type4_pName"
-                        />
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

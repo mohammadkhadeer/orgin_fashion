@@ -66,14 +66,14 @@ public class SaveFCMTokenService extends Service {
     private void sendRegistrationToServer(final String token) {
         // Add custom implementation, as needed.
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference fcmDatabaseRef = ref.child("FCM_Device_Tokens").push();
-
-        registerToTopic();
-        //save on google firebase
-        FCM_Device_Tokens obj = new FCM_Device_Tokens();
-        obj.setToken(token);
-        fcmDatabaseRef.setValue(obj);
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+//        DatabaseReference fcmDatabaseRef = ref.child("FCM_Device_Tokens").push();
+//
+//        registerToTopic();
+//        //save on google firebase
+//        FCM_Device_Tokens obj = new FCM_Device_Tokens();
+//        obj.setToken(token);
+//        fcmDatabaseRef.setValue(obj);
         //save in server
         sendUserTokenToServer(token);
 

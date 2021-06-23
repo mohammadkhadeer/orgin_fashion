@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.fashion.rest",
+  "applicationId": "com.orgin_fashion.rest",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 5,
-      "versionName": "1.0.0.4",
+      "versionCode": 2,
+      "versionName": "1.0.0.2",
       "enabled": true,
       "outputFile": "app-release.apk"
     }

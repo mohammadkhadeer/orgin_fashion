@@ -59,7 +59,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
         inti();
         titleActionBar();
         intiImageSlider();
-        handelFragmentFullImage();
+
         ItemDetailsFragment();
         contactFragment();
     }
@@ -203,6 +203,7 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
 
     @Override
     public void imageClicked(String test) {
+        handelFragmentFullImage();
         fullImageCont.setVisibility(View.VISIBLE);
         fullImageOnTheTop =1;
     }
@@ -230,10 +231,10 @@ public class ItemDetails extends AppCompatActivity implements ImageClicked {
     public void onBackPressed() {
         if (fullImageOnTheTop==1)
         {
+            fragmentFullImageSlider.diestroyAsynk();
             fullImageOnTheTop =0;
             fullImageCont.setVisibility(View.GONE);
         }else{
-            fragmentFullImageSlider.diestroyAsynk();
             finish();
         }
     }

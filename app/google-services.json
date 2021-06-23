@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1053642071102",
+    "firebase_url": "https://orgin-fashion-default-rtdb.firebaseio.com",
     "project_id": "orgin-fashion",
     "storage_bucket": "orgin-fashion.appspot.com"
   },
@@ -13,14 +14,6 @@
         }
       },
       "oauth_client": [
-        {
-          "client_id": "1053642071102-g7vjvostu99e37cfrshhs1v5uv7ch46i.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.orgin_fashion.rest",
-            "certificate_hash": "806737538e4fb9491a12acf8aa81966d8b4a055e"
-          }
-        },
         {
           "client_id": "1053642071102-j3vog2b8fo1ildiv7p3ehd3r181dq2au.apps.googleusercontent.com",
           "client_type": 3
