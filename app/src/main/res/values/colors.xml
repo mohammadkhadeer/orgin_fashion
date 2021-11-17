@@ -104,6 +104,10 @@
     <color name="sub_cat_color">#727373</color>
     <color name="new_selver">#fafafa</color>
 
+    <color name="logo_color_white">#16b2dd</color>
+    <color name="logo_color_dark">#0d2c50</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="primary_darker">#CC1D1D</color>
 
 
 </resources>

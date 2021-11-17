@@ -2,7 +2,7 @@
     <string name="facebook_app_id">161235005842835</string>
     <string name="fb_login_protocol_scheme">fb161235005842835</string>
 
-    <string name="app_name">Basic v</string>
+    <string name="app_name">Blue b</string>
 
     <string name="no_more_item">  No More \n Items</string>
 
@@ -113,9 +113,67 @@
     <string name="more_items">items</string>
     <string name="promo_code">Promo code</string>
 
+
+    <string name="ur_first_name_str">First name</string>
+    <string name="ur_last_name_str">Last name</string>
+    <string name="ur_user_name_str">User name</string>
+    <string name="ur_error_redundancy_user_name_tv_str">This user name all ready used</string>
+    <string name="ur_next_str">Next</string>
+    <string name="ur_real_name_error">Please use real name</string>
+
+    <string name="ur_number_not_allowed_message_str">Can not Add number</string>
+
+    <string name="ur_first_name_error_empty_str">Please fill first name</string>
+    <string name="ur_first_name_error_to_short_str">First name to short must be grater than 3 character</string>
+    <string name="ur_first_name_error_to_long_str">First name to long must be less than 10 character</string>
+
+
+    <string name="ur_last_name_error_empty_str">Please fill last name</string>
+    <string name="ur_fn_and_ln_is_empty_str">Please fill first name and last name</string>
+    <string name="ur_last_name_error_to_short_str">Last name to short must be grater than 3 character</string>
+    <string name="ur_last_name_error_to_long_str">Last name to long must be less than 10 character</string>
+
+    <string name="unap_title">User name and password</string>
+    <string name="unap_set_user_name_and_password">Set user name and password</string>
+    <string name="unap_user_name">User name</string>
+    <string name="unap_password_name">Password</string>
+    <string name="unap_un_and_p_is_empty">Please fill user name and password</string>
+    <string name="unap_un_is_empty">Please fill user name</string>
+    <string name="unap_p_is_empty">Please fill password</string>
+    <string name="unap_p_to_short">Password must be bigger thn 6</string>
+    <string name="unap_p_to_long">Password must be less than 10</string>
+    <string name="unap_un_to_short">User name must be bigger than 4</string>
+    <string name="unap_un_to_long">User name must be less than 10</string>
+    <string name="unap_un_all_ready_use">User name all ready used</string>
+
+    <string name="g_title">Gender</string>
+    <string name="g_what_is_your_gender">What is your gender \?</string>
+    <string name="g_male">Male</string>
+    <string name="g_female">Female</string>
+    <string name="g_error">Please select your gender</string>
+
+    <string name="bd_title">Birthday</string>
+    <string name="bd_what_is_your_birth_d">What is your birthday \?</string>
+
+    <string name="phone_n_title">Phone number</string>
+    <string name="get_l_title">Detect location</string>
+    <string name="get_l_progress_d">Please wait</string>
+    <string name="profile">Profile</string>
+    <string name="stadium">Stadium</string>
+    <string name="notification">Notification</string>
+    <string name="home">Home</string>
+    <string name="trending">Trending</string>
+
+    <string name="ms_search">Search</string>
+
+
     <string name="email">Email</string>
     <string name="pass">Password</string>
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="create_account">Create account</string>
     <string name="login">Log in</string>
+    <string name="error">Error</string>
+    <string name="ur_what_is_your_name">What is your name ?</string>
     <string name="login_fb">Log in  with facebook</string>
     <string name="login_g">Log in  with google</string>
     <string name="or">Or</string>

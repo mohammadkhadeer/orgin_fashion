@@ -8,7 +8,7 @@
     android:background="@color/colorSilver1"
     android:id="@+id/nested_fav"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragments.fragmentHomeMainScreen.FragmentHomeScreen"
+    tools:context="com.blue_b.rest.view.fragments.fragmentHomeMainScreen.FragmentHomeScreen"
     >
 
     <RelativeLayout

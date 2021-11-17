@@ -6,7 +6,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
-        applicationId "com.orgin_fashion.rest"
+        applicationId "com.blue_b.rest"
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 3
@@ -86,4 +86,8 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    implementation'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.jakewharton:butterknife:7.0.1'
+
 }

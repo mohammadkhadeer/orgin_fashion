@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".view.activity.ItemDetails"
+    tools:context="com.blue_b.rest.view.activity.ItemDetails"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/adapter_offers_category"
     android:id="@+id/contentType4">

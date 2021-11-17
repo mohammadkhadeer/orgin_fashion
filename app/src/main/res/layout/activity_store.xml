@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
     android:windowSoftInputMode="adjustPan"
-    tools:context=".view.activity.ItemDetails">
+    tools:context="com.blue_b.rest.view.activity.ItemDetails">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/show_item_details_app_bar"

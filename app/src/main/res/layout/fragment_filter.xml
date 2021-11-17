@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".view.fragments.FragmentFilter">
+    tools:context="com.blue_b.rest.view.fragments.FragmentFilter">
 
     <RelativeLayout android:layout_width="match_parent"
         android:layout_height="match_parent"

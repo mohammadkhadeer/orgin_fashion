@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:fitsSystemWindows="true"
-    tools:context=".view.activity.Language">
+    tools:context="com.blue_b.rest.view.activity.Language">
 
     <RadioGroup
         android:layout_width="match_parent"

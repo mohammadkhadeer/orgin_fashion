@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home_fragment"
     android:layout_height="wrap_content"
-    tools:context=".view.fragments.FragmentAddToCart">
+    tools:context="com.blue_b.rest.view.fragments.FragmentAddToCart">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"

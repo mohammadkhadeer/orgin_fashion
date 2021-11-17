@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.ItemDetails"
+    tools:context="com.blue_b.rest.view.activity.ItemDetails"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/content_show_item_selected_image_slider"
     android:id="@+id/selected_item_details_image_slider_container">

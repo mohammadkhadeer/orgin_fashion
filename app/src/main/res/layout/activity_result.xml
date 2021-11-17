@@ -8,7 +8,7 @@
     android:background="@color/colorWhite"
     android:id="@+id/all_cat_nested"
     android:fitsSystemWindows="true"
-    tools:context=".view.activity.ResultActivity">
+    tools:context="com.blue_b.rest.view.activity.ResultActivity">
 
 
 

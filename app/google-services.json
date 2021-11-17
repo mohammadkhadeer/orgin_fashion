@@ -1,34 +1,70 @@
 {
   "project_info": {
-    "project_number": "1053642071102",
-    "firebase_url": "https://orgin-fashion-default-rtdb.firebaseio.com",
-    "project_id": "orgin-fashion",
-    "storage_bucket": "orgin-fashion.appspot.com"
+    "project_number": "1023272563560",
+    "project_id": "blue-b-ea2c7",
+    "storage_bucket": "blue-b-ea2c7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1053642071102:android:cd097bd3fa096789ccc56f",
+        "mobilesdk_app_id": "1:1023272563560:android:d0a80f8658f164ed959cdd",
         "android_client_info": {
-          "package_name": "com.orgin_fashion.rest"
+          "package_name": "com.blue_b.rest"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1053642071102-j3vog2b8fo1ildiv7p3ehd3r181dq2au.apps.googleusercontent.com",
+          "client_id": "1023272563560-egjlu9n8evcc7j7opkdmfpoa981pbpsf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCWuDvHXx4L5-OGd0LagskZVc2SlfYY4lg"
+          "current_key": "AIzaSyCcM_uZs9OOaZRWVFIumtJS3ogLBq3ARuA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1053642071102-j3vog2b8fo1ildiv7p3ehd3r181dq2au.apps.googleusercontent.com",
+              "client_id": "1023272563560-egjlu9n8evcc7j7opkdmfpoa981pbpsf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023272563560:android:816ff7f9ddfef06e959cdd",
+        "android_client_info": {
+          "package_name": "com.blue_b.sm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023272563560-obm5u1f9pej7eo1t1su4cr8jhrp8n8m1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blue_b.sm",
+            "certificate_hash": "d6fb23e42dcb4a1c80ad6272f9cdf9fda9a2b5aa"
+          }
+        },
+        {
+          "client_id": "1023272563560-egjlu9n8evcc7j7opkdmfpoa981pbpsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcM_uZs9OOaZRWVFIumtJS3ogLBq3ARuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023272563560-egjlu9n8evcc7j7opkdmfpoa981pbpsf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

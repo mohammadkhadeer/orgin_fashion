@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="400dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragments.FragmentImageSlider">
+    tools:context="com.blue_b.rest.view.fragments.FragmentImageSlider">
 
     <RelativeLayout
         android:layout_width="match_parent"

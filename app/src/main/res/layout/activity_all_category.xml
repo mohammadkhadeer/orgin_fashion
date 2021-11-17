@@ -9,7 +9,7 @@
     android:background="@color/colorWhite"
     android:id="@+id/all_cat_nested"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragments.fragmentHomeMainScreen.FragmentHomeScreen"
+    tools:context="com.blue_b.rest.view.fragments.fragmentHomeMainScreen.FragmentHomeScreen"
     >
 
     <android.support.v7.widget.RecyclerView

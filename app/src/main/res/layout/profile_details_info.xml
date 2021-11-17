@@ -8,7 +8,7 @@
     android:background="@color/colorSilver3"
 
     android:layout_height="match_parent"
-    tools:context=".view.fragments.ProfileDetailsInfo">
+    tools:context="com.blue_b.rest.view.fragments.ProfileDetailsInfo">
 
 
     <android.support.v7.widget.CardView

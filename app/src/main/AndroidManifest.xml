@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.orgin_fashion.rest">
+    package="com.blue_b.rest">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name="com.orgin_fashion.rest.app.App"
+        android:name=".app.App"
         android:allowBackup="true"
-        android:icon="@drawable/logo_test"
+        android:icon="@drawable/blue_b_logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo_test"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/blue_b_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name="com.orgin_fashion.rest.view.activity.AllOffersActivity"
+
+        <activity
+            android:name=".view.activity.registration.Gender"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme23"></activity>
+            android:theme="@style/AppTheme23" />
+
+        <activity
+            android:name=".view.activity.registration.NameActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
+        <activity
+            android:name=".view.activity.AllOffersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -29,46 +43,44 @@
             android:required="false" />
 
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.StoreActivity"
+            android:name=".view.activity.StoreActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.FavoriteItems"
+            android:name=".view.activity.FavoriteItems"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme44" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.ReportActivity"
+            android:name=".view.activity.ReportActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme44" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.SelectCountryActivity"
+            android:name=".view.activity.SelectCountryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
-
-        <activity android:name="com.orgin_fashion.rest.view.activity.Setting" />
-
+        <activity android:name=".view.activity.Setting" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.ResultActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme23" />
-        <activity
-            android:name="com.orgin_fashion.rest.view.activity.SubCategory"
+            android:name=".view.activity.ResultActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.AllCategory"
+            android:name=".view.activity.SubCategory"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.Login"
+            android:name=".view.activity.AllCategory"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.Cart"
+            android:name=".view.activity.Login"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.SplashScreen"
+            android:name=".view.activity.Cart"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme23" />
+        <activity
+            android:name=".view.activity.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23">
             <intent-filter>
@@ -78,58 +90,59 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.AboutUs"
+            android:name=".view.activity.AboutUs"
             android:theme="@style/AppTheme22" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.Language"
+            android:name=".view.activity.Language"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.ItemDetails"
+            android:name=".view.activity.ItemDetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.CategoryItem"
+            android:name=".view.activity.CategoryItem"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.addItem.AddItem"
+            android:name=".view.activity.addItem.AddItem"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name="com.orgin_fashion.rest.view.activity.mainScreem.MainActivity"
+            android:name=".view.activity.mainScreem.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme23" />
 
         <service
-            android:name="com.orgin_fashion.rest.service.FcmMessagingService"
+            android:name=".service.FcmMessagingService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name="com.orgin_fashion.rest.service.SaveFCMTokenService" />
+        <service android:name=".service.SaveFCMTokenService" />
 
-        <receiver android:name="com.orgin_fashion.rest.broadcastReceiver.NotificationReceiver" />
+        <receiver android:name=".broadcastReceiver.NotificationReceiver" />
 
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
-
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.activity.StoreActivity"
+    tools:context="com.blue_b.rest.view.activity.StoreActivity"
     tools:showIn="@layout/activity_store2">
 
     <TextView

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:fitsSystemWindows="true"
-    tools:context=".view.activity.SelectCountryActivity">
+    tools:context="com.blue_b.rest.view.activity.SelectCountryActivity">
 
     <FrameLayout
         android:id="@+id/container_countries"

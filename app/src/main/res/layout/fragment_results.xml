@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/results_nested"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragments.fragmentHomeMainScreen.FragmentHomeScreen"
+    tools:context="com.blue_b.rest.view.fragments.fragmentHomeMainScreen.FragmentHomeScreen"
     >
 
     <RelativeLayout
